@@ -37,18 +37,21 @@ Si aucun connecteur calendrier actif, ne mentionne rien sur l'agenda.
 Format de sortie attendu :
 
 ```
-☀️ Bonjour. Voici votre matinée.
+☀️ Bonjour. Voici ta matinée.
 
-📰 Votre veille du jour
-[Résultat de la skill recherche-actualites-contextualisees]
+📰 Ta veille du jour
+[Actualités IA + secteur d'activité filtrées]
 
-📅 Votre agenda du jour (si connecteur disponible)
+🔬 Ta veille scientifique
+[1 à 2 publications PubMed récentes pertinentes pour la pratique clinique ou la création de contenu pédagogique]
+
+📅 Ton agenda du jour (si connecteur disponible)
 [Liste des événements de la journée]
 
-🎯 Votre focus suggéré
+🎯 Ton focus suggéré
 [1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + projets en cours]
 
-Bonne journée. Je suis prêt à vous aider.
+Bonne journée. Je suis prêt à t'aider.
 ```
 
 ---
