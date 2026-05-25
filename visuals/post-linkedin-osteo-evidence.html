@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visuel LinkedIn - Ostéopathie & Evidence</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card {
+      width: 1080px;
+      height: 1080px;
+      background: #111111;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Accent line top */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4f9cf9, #a78bfa);
+    }
+
+    /* Subtle background texture */
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,156,249,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79,156,249,0.12);
+      border: 1px solid rgba(79,156,249,0.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      width: fit-content;
+    }
+
+    .tag span {
+      font-size: 13px;
+      font-weight: 500;
+      color: #4f9cf9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-size: 52px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .title em {
+      font-style: normal;
+      background: linear-gradient(90deg, #4f9cf9, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      color: #888;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    /* Stats row */
+    .stats {
+      display: flex;
+      gap: 24px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-box.highlight {
+      background: rgba(79,156,249,0.08);
+      border-color: rgba(79,156,249,0.2);
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat-box.highlight .stat-number {
+      color: #4f9cf9;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* Findings */
+    .findings {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .findings-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .finding-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .finding-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4f9cf9;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .finding-dot.purple { background: #a78bfa; }
+    .finding-dot.green { background: #34d399; }
+
+    .finding-text {
+      font-size: 17px;
+      color: #cccccc;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .finding-text strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .source {
+      font-size: 12px;
+      color: #444;
+      font-weight: 400;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f9cf9, #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .author-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .author-title {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="tag">
+        <span>Recherche clinique · Avril 2026</span>
+      </div>
+      <div class="title">L'ostéopathie<br>face à la <em>science</em></div>
+      <div class="subtitle">
+        Umbrella review · 964 citations · 5 bases de données · Protocole PRISMA
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-box highlight">
+        <div class="stat-number">964</div>
+        <div class="stat-label">Citations analysées<br>toutes pathologies confondues</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3 mois</div>
+        <div class="stat-label">Durée d'efficacité<br>confirmée sur la douleur</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Effet indésirable grave<br>rapporté dans les études</div>
+      </div>
+    </div>
+
+    <!-- Findings -->
+    <div class="findings">
+      <div class="findings-title">Ce que disent les données</div>
+
+      <div class="finding-row">
+        <div class="finding-dot"></div>
+        <div class="finding-text"><strong>Douleur cervicale et lombaire chronique :</strong> amélioration confirmée jusqu'à 3 mois</div>
+      </div>
+      <div class="finding-row">
+        <div class="finding-dot"></div>
+        <div class="finding-text"><strong>Épaule et pied :</strong> réduction probable de la douleur</div>
+      </div>
+      <div class="finding-row">
+        <div class="finding-dot purple"></div>
+        <div class="finding-text"><strong>Myofascial release :</strong> meilleur niveau de preuve parmi toutes les techniques ostéopathiques testées</div>
+      </div>
+      <div class="finding-row">
+        <div class="finding-dot green"></div>
+        <div class="finding-text"><strong>Niveau de preuve global :</strong> faible à modéré · hétérogénéité importante entre études</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="source">Healthcare 2026 · doi 10.3390/healthcare14070928</div>
+      <div class="author">
+        <div class="author-dot">N</div>
+        <div class="author-info">
+          <div class="author-name">Nico Roger</div>
+          <div class="author-title">Ostéopathe · Evidence-based · Narbonne</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
