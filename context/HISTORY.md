@@ -7,6 +7,16 @@
 
 ---
 
+## 2026-05-26
+
+### Premier succès LinkedIn documenté
+- Post LinkedIn créé avec Claude sur l'umbrella review Healthcare 2026 (doi 10.3390/healthcare14070928) : ostéopathie et douleur musculo-squelettique, 964 citations, protocole PRISMA
+- Post publié il y a 1 jour, fort engagement confirmé par Nico
+- Format gagnant identifié : accroche affirmative + étude haut niveau de preuve + résultats en bullets + conclusion clinique personnelle ("recherche + perspective praticien")
+- Template sauvegardé dans `context/linkedin-template.md` pour réutilisation
+
+---
+
 ## 2026-05-20
 
 ### Installation initiale du Jarvis
