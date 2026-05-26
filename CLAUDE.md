@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working in this workspace.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ---
 
@@ -61,33 +61,45 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 
 ---
 
-## Workspace Structure
+## Architecture du workspace
+
+Ce workspace n'est pas un projet logiciel classique. C'est un système de contexte persistant pour un assistant IA personnel. Il n'y a pas de build, pas de tests, pas de dépendances à installer.
+
+### Schéma général
 
 ```
 .
 ├── CLAUDE.md                    # Ce fichier, chargé à chaque session
 ├── context/
 │   ├── CONTEXT.md               # Qui je suis, ce que je fais, mes objectifs
-│   ├── HISTORY.md               # Journal évolutif de mes sessions
-│   └── import/                  # Documents externes à analyser
+│   ├── HISTORY.md               # Journal chronologique des sessions (plus récent en haut)
+│   └── import/                  # Documents externes déposés pour analyse
 ├── .claude/
 │   ├── commands/
-│   │   ├── prime.md             # /prime pour démarrer une session
-│   │   ├── update.md            # /update pour mettre à jour le contexte
-│   │   └── morning.md           # /morning pour démarrer la journée
+│   │   ├── prime.md             # /prime : démarrage de session
+│   │   ├── update.md            # /update : mise à jour du contexte
+│   │   └── morning.md           # /morning : veille matinale
 │   └── skills/
-│       └── recherche-actualites/ # Skill veille personnalisée
+│       └── recherche-actualites/ # Skill de veille personnalisée (SKILL.md)
 └── module-installs/
-    └── jarvis-install/          # Module d'installation initial
+    └── jarvis-install/          # Module d'installation initiale interactive
 ```
 
-| Dossier | Utilité |
-|---------|---------|
-| `context/` | Tout ce qui me concerne et que Claude doit savoir |
-| `context/import/` | Documents externes (PDFs, exports, notes) à analyser |
-| `.claude/commands/` | Commandes personnalisées de mon Jarvis |
-| `.claude/skills/` | Skills (super-pouvoirs) de mon Jarvis |
-| `module-installs/` | Modules d'installation (initial et futurs) |
+### Cycle de vie du contexte
+
+Le workspace repose sur trois fichiers centraux qui évoluent ensemble :
+
+- **CLAUDE.md** : identité, préférences, instructions permanentes. Rarement modifié, uniquement pour des changements structurels.
+- **context/CONTEXT.md** : profil détaillé (activité, objectifs, projets, outils). Mis à jour dès qu'un changement significatif est détecté.
+- **context/HISTORY.md** : journal des sessions et décisions, le plus récent en haut. Ne jamais modifier manuellement, toujours via `/update`.
+
+### Architecture commandes / skills
+
+Les commandes (`.claude/commands/*.md`) sont des fichiers Markdown que Claude exécute quand l'utilisateur tape `/nom-commande`. Elles peuvent appeler des skills.
+
+Les skills (`.claude/skills/*/SKILL.md`) sont des modules de comportement spécialisé. La skill `recherche-actualites-contextualisees` est invoquée par `/morning` et par toute demande de veille d'actualités. Elle suit un pipeline en 5 phases : charger le contexte, préciser le périmètre, effectuer les recherches web, filtrer selon le profil, présenter le résultat.
+
+Le module `module-installs/jarvis-install/INSTALL.md` est un workflow d'interview interactif à usage unique, déclenché par `/install module-installs/jarvis-install` lors de la première configuration.
 
 ---
 
