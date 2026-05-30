@@ -34,10 +34,10 @@ Ces 5 éléments forment le **filtre de pertinence**.
 Si l'utilisateur n'a pas précisé le sujet, demande-lui :
 
 ```
-Sur quel domaine voulez-vous votre veille du jour ?
+Sur quel domaine veux-tu ta veille du jour ?
 
 1. Actualités IA et nouvelles technologies (recommandé par défaut)
-2. Actualités de votre secteur d'activité
+2. Actualités de ton secteur d'activité
 3. Actualités économiques et business
 4. Un sujet spécifique (à préciser)
 ```
@@ -99,13 +99,13 @@ Note pour toi-même : il vaut mieux présenter 3 actualités vraiment pertinente
 Présente la veille sous ce format exact :
 
 ```
-📰 Votre veille du [date du jour]
+📰 Ta veille du [date du jour]
 
-Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actuel]
+Filtrée selon ton contexte : [résumé en 1 ligne du profil et du focus actuel]
 
 ---
 
-🔥 Ce que vous devez absolument savoir
+🔥 Ce que tu dois absolument savoir
 
 [Actualité 1]
 - Pourquoi c'est important pour vous : [explication personnalisée en 1-2 lignes]
@@ -146,11 +146,11 @@ Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actue
 Si après recherche, aucune actualité ne passe le filtre de pertinence, sois honnête :
 
 ```
-📰 Votre veille du [date]
+📰 Ta veille du [date]
 
-J'ai effectué une recherche sur [domaines couverts] mais je n'ai pas trouvé d'actualité majeure qui impacte directement vos objectifs ou projets en cours aujourd'hui.
+J'ai effectué une recherche sur [domaines couverts] mais je n'ai pas trouvé d'actualité majeure qui impacte directement tes objectifs ou projets en cours aujourd'hui.
 
-Pas de bruit pour vous aujourd'hui. Voulez-vous que j'élargisse la recherche à un autre domaine ?
+Pas de bruit pour toi aujourd'hui. Tu veux que j'élargisse la recherche à un autre domaine ?
 ```
 
 C'est mieux que de remplir avec du contenu générique qui ne sert à rien.
