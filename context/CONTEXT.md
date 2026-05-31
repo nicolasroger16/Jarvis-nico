@@ -50,7 +50,7 @@ Ostéopathe en cabinet privé à Narbonne. Pratique evidence-based, avec une sp�
 ## Mes projets en cours
 
 - **Module e-learning fascias :** cours HTML v2 (riche, détaillé) + SPA interactive de navigation avec chapitres, suivi de progression et dark theme. Prochaine étape : intégration du cours complet dans le format interactif.
-- **MoveCheck :** service d'évaluation de mobilité à distance. Le patient filme des tests de mobilité standardisés à domicile, reçoit un programme personnalisé. Communication via réseaux sociaux (LinkedIn, Facebook, Instagram, TikTok).
+- **MoveCheck :** service d'évaluation de mobilité à distance. Le patient filme des tests de mobilité standardisés à domicile, reçoit un programme personnalisé. Substance disponible : protocoles d'exercices définis, app de filmage patient opérationnelle, FullPhysio (ou équivalent) pour la génération des plans de mobilité. Projet identifié comme priorité de lancement devant le e-learning. Communication prévue via réseaux sociaux (LinkedIn, Facebook, Instagram, TikTok).
 - **App "Notes d'honoraires" :** PWA de facturation pour le cabinet (génération PDF, partage Android via share sheet, historique avec recherche, import/export JSON, manifest installable avec icône "NR")
 - **Skill `elearning-therapeute` :** template e-learning clinique réutilisable, architecture en 5 parties, 3 paliers commerciaux
 - **Skill `mobility-social-content` :** génération de posts LinkedIn/Facebook + captions Instagram/TikTok + carrousels 6 slides en français pour MoveCheck
@@ -67,6 +67,7 @@ Ostéopathe en cabinet privé à Narbonne. Pratique evidence-based, avec une sp�
 - PWA pour le déploiement multi-plateforme
 - Netlify pour l'hébergement
 - API Anthropic pour les outils IA-powered
+- FullPhysio (ou équivalent) pour la génération de plans de mobilité patients (utilisé dans MoveCheck)
 - Environnement Android côté usage personnel
 
 ### Style de communication préféré
@@ -88,3 +89,4 @@ Quatre axes prioritaires :
 - **Contraintes techniques Android récurrentes :** les uploads de fichiers échouent parfois silencieusement (workaround : copier/coller du contenu). Certains composants UI interactifs ne rendent pas correctement, privilégier le texte brut et la livraison directe de fichiers.
 - **Sensibilité contenus mobilité :** ne jamais banaliser les risques de manipulation cervicale dans les contenus sociaux, vu les tendances dangereuses observées sur les réseaux.
 - **Cadre pédagogique fascias :** framework structuré en 4 modules (fondamentaux, physiologie du mouvement, efficacité clinique des techniques manuelles, ingénierie pédagogique e-learning). À utiliser comme référence pour la production de contenu.
+- **Lecture en cours :** livre de Luigi Stecco (Fascial Manipulation), lu en parallèle de la pratique clinique pour approfondir les fondamentaux fasciaux et nourrir l'enseignement.

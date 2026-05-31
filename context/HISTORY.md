@@ -7,6 +7,17 @@
 
 ---
 
+## 2026-05-31
+
+### Clarifications stratégiques et mises à jour contexte
+- MoveCheck identifié comme projet prioritaire de lancement devant le e-learning fascias : la substance est disponible (protocoles d'exercices, app de filmage patient, FullPhysio pour les plans de mobilité), ce qui reste à construire c'est l'acquisition et le workflow patient
+- MoveCheck Content Studio (carrousels 6 slides) confirmé comme non encore utilisé en publication, mais outil prêt à être activé
+- Projet LinkedIn régulier envisagé : 2 posts par semaine sur MoveCheck, avec rappels Google Calendar à mettre en place
+- Lecture en cours : livre de Luigi Stecco (Fascial Manipulation), pour approfondir les fondamentaux fasciaux
+- FullPhysio (ou équivalent) ajouté aux outils utilisés pour la génération des plans de mobilité MoveCheck
+
+---
+
 ## 2026-05-20
 
 ### Installation initiale du Jarvis
