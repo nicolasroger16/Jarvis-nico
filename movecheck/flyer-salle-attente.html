@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoveCheck – Flyer salle d'attente</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -164,16 +165,15 @@
       align-items: center;
       justify-content: center;
       background: #f9fbff;
+      overflow: hidden;
     }
 
-    .qr-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 6px;
+    #qrcode canvas, #qrcode img {
+      width: 33mm !important;
+      height: 33mm !important;
     }
 
-    .qr-placeholder .qr-hint {
+    .qr-hint {
       font-size: 7pt;
       color: #aaa;
       text-align: center;
@@ -256,8 +256,7 @@
 
     <div class="qr-section">
       <div class="qr-placeholder">
-        <!-- Remplacez ce texte par une balise <img src="votre-qr-code.png"> -->
-        <span class="qr-hint">Coller votre<br>QR code ici</span>
+        <div id="qrcode"></div>
       </div>
       <div class="qr-label">Scannez pour faire votre demande</div>
     </div>
@@ -268,5 +267,18 @@
     </div>
 
   </div>
+  <script>
+    // ← COLLE TON URL GOOGLE FORM ICI
+    var GOOGLE_FORM_URL = "https://forms.gle/TON-LIEN-ICI";
+
+    new QRCode(document.getElementById("qrcode"), {
+      text: GOOGLE_FORM_URL,
+      width: 132,
+      height: 132,
+      colorDark: "#1B2A3B",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  </script>
 </body>
 </html>
