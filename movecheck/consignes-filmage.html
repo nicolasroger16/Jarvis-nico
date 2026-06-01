@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoveCheck – Consignes de filmage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f5f7fa;
+      color: #1B2A3B;
+      padding: 0 0 40px 0;
+    }
+
+    header {
+      background: #1B6CA8;
+      color: white;
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+
+    header .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    header p {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin: 16px 16px 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .section-title {
+      background: #1B2A3B;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 16px;
+    }
+
+    .section-body {
+      padding: 16px;
+    }
+
+    .setup-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .setup-item:last-child { border-bottom: none; }
+
+    .setup-icon {
+      font-size: 20px;
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .setup-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1B2A3B;
+      margin-bottom: 2px;
+    }
+
+    .setup-text span {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .test-card {
+      margin: 16px 16px 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .test-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #f4f8fd;
+      border-bottom: 1px solid #e8eef5;
+    }
+
+    .test-num {
+      width: 32px;
+      height: 32px;
+      background: #1B6CA8;
+      color: white;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .test-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1B2A3B;
+      line-height: 1.2;
+    }
+
+    .test-name small {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .test-body {
+      padding: 14px 16px;
+    }
+
+    .test-row {
+      margin-bottom: 12px;
+    }
+
+    .test-row:last-child { margin-bottom: 0; }
+
+    .test-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1B6CA8;
+      margin-bottom: 4px;
+    }
+
+    .test-row-content {
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .camera-badge {
+      display: inline-block;
+      background: #e8f0f8;
+      color: #1B6CA8;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    .send-section {
+      margin: 16px 16px 0;
+      background: #1B6CA8;
+      border-radius: 12px;
+      padding: 20px 16px;
+      color: white;
+      text-align: center;
+    }
+
+    .send-section h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .send-section p {
+      font-size: 12px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      margin: 16px 16px 0;
+      background: #fff8e1;
+      border-left: 3px solid #f5a623;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      font-size: 11.5px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .footer-note strong { color: #333; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="tag">MoveCheck · Bilan mobilité à distance</div>
+    <h1>Vos consignes<br>de filmage</h1>
+    <p>Lisez tout avant de commencer.<br>5 tests · environ 20 minutes.</p>
+  </header>
+
+  <!-- SETUP -->
+  <div class="section">
+    <div class="section-title">Avant de filmer</div>
+    <div class="section-body">
+
+      <div class="setup-item">
+        <div class="setup-icon">📍</div>
+        <div class="setup-text">
+          <strong>L'espace</strong>
+          <span>Une pièce dégagée, assez grande pour faire un grand pas en avant. Sol plat, pas de tapis épais.</span>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-icon">📱</div>
+        <div class="setup-text">
+          <strong>La caméra</strong>
+          <span>Posez votre téléphone à hauteur de bassin, à environ 2 mètres de vous. Appuyez-le contre un mur ou utilisez un support. Vérifiez que tout votre corps est visible dans le cadre.</span>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-icon">👕</div>
+        <div class="setup-text">
+          <strong>La tenue</strong>
+          <span>Tenue ajustée ou short/t-shirt. Les articulations doivent être visibles. Pieds nus de préférence.</span>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-icon">🔁</div>
+        <div class="setup-text">
+          <strong>Chaque test</strong>
+          <span>Filmez chaque test deux fois : une fois de face, une fois de profil (côté droit). Pour les tests asymétriques, filmez les deux côtés.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TEST 1 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">1</div>
+      <div class="test-name">
+        L'Overhead Squat
+        <small>Le scanner global</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Levez les bras en "Y" au-dessus de la tête. Descendez en squat le plus bas possible, lentement. Remontez. Répétez 3 fois.</div>
+      </div>
+      <div class="test-row">
+        <div class="test-row-label">Position caméra</div>
+        <div class="test-row-content">
+          <span class="camera-badge">De face</span>
+          <span class="camera-badge">De profil</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 2 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">2</div>
+      <div class="test-name">
+        L'Enroulement Vertébral
+        <small>Chaîne postérieure</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Debout, jambes tendues. Relâchez la tête en premier, puis laissez le dos s'enrouler vertèbre par vertèbre vers l'avant. Essayez de toucher vos pieds sans forcer. Tenez 3 secondes, puis déroulez lentement.</div>
+      </div>
+      <div class="test-row">
+        <div class="test-row-label">Position caméra</div>
+        <div class="test-row-content">
+          <span class="camera-badge">De profil uniquement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 3 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">3</div>
+      <div class="test-name">
+        Le Test d'Apley
+        <small>Mobilité d'épaule</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés (main droite dessus puis main gauche dessus).</div>
+      </div>
+      <div class="test-row">
+        <div class="test-row-label">Position caméra</div>
+        <div class="test-row-content">
+          <span class="camera-badge">De dos</span>
+          <span class="camera-badge">Côté droit puis gauche</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 4 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">4</div>
+      <div class="test-name">
+        La Rotation Thoracique Assise
+        <small>Dissociation</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Assis sur une chaise, bras croisés sur la poitrine. Tournez le buste au maximum vers la droite, puis vers la gauche, sans bouger le bas du corps. Faites 3 rotations de chaque côté lentement.</div>
+      </div>
+      <div class="test-row">
+        <div class="test-row-label">Position caméra</div>
+        <div class="test-row-content">
+          <span class="camera-badge">De dessus (légèrement)</span>
+          <span class="camera-badge">Ou de face</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 5 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">5</div>
+      <div class="test-name">
+        La Fente Avant
+        <small>Hanches et équilibre</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Faites un grand pas en avant, descendez le genou arrière vers le sol en gardant le buste vertical. Tenez 2 secondes. Faites le mouvement 3 fois de chaque côté.</div>
+      </div>
+      <div class="test-row">
+        <div class="test-row-label">Position caméra</div>
+        <div class="test-row-content">
+          <span class="camera-badge">De profil</span>
+          <span class="camera-badge">Côté droit puis gauche</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVOI -->
+  <div class="send-section">
+    <h3>Envoyer vos vidéos</h3>
+    <p>Une fois tous les tests filmés, envoyez vos vidéos via l'application <strong>OneForm</strong> en utilisant le lien ou le code qui vous a été communiqué par votre ostéopathe.</p>
+  </div>
+
+  <!-- NOTE -->
+  <div class="footer-note">
+    <strong>Important :</strong> ce bilan ne remplace pas une consultation ostéopathique. En cas de douleur pendant un test, arrêtez et signalez-le lors de votre retour.
+  </div>
+
+</body>
+</html>
