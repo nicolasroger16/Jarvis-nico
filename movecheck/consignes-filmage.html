@@ -62,9 +62,7 @@
       padding: 10px 16px;
     }
 
-    .section-body {
-      padding: 16px;
-    }
+    .section-body { padding: 16px; }
 
     .setup-item {
       display: flex;
@@ -76,11 +74,7 @@
 
     .setup-item:last-child { border-bottom: none; }
 
-    .setup-icon {
-      font-size: 20px;
-      min-width: 28px;
-      text-align: center;
-    }
+    .setup-icon { font-size: 20px; min-width: 28px; text-align: center; }
 
     .setup-text strong {
       display: block;
@@ -132,6 +126,7 @@
       font-weight: 700;
       color: #1B2A3B;
       line-height: 1.2;
+      flex: 1;
     }
 
     .test-name small {
@@ -142,14 +137,9 @@
       margin-top: 2px;
     }
 
-    .test-body {
-      padding: 14px 16px;
-    }
+    .test-body { padding: 14px 16px; }
 
-    .test-row {
-      margin-bottom: 12px;
-    }
-
+    .test-row { margin-bottom: 12px; }
     .test-row:last-child { margin-bottom: 0; }
 
     .test-row-label {
@@ -175,10 +165,102 @@
       font-weight: 700;
       padding: 2px 8px;
       border-radius: 10px;
-      margin-top: 6px;
+      margin: 3px 3px 0 0;
+    }
+
+    .btn-video {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ff4444;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+
+    .comment-area {
+      margin-top: 12px;
+      border-top: 1px dashed #e0e0e0;
+      padding-top: 12px;
+    }
+
+    .comment-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .comment-area textarea {
+      width: 100%;
+      min-height: 70px;
+      border: 1.5px solid #e0e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: #333;
+      resize: vertical;
+      background: #fafcff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .comment-area textarea:focus {
+      border-color: #1B6CA8;
+    }
+
+    .comment-area textarea::placeholder {
+      color: #bbb;
     }
 
     .send-section {
+      margin: 20px 16px 0;
+      background: #25D366;
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .send-section h3 {
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .send-section p {
+      color: rgba(255,255,255,0.9);
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: #25D366;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .send-videos-section {
       margin: 16px 16px 0;
       background: #1B6CA8;
       border-radius: 12px;
@@ -187,13 +269,13 @@
       text-align: center;
     }
 
-    .send-section h3 {
+    .send-videos-section h3 {
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 8px;
     }
 
-    .send-section p {
+    .send-videos-section p {
       font-size: 12px;
       opacity: 0.9;
       line-height: 1.6;
@@ -225,7 +307,6 @@
   <div class="section">
     <div class="section-title">Avant de filmer</div>
     <div class="section-body">
-
       <div class="setup-item">
         <div class="setup-icon">📍</div>
         <div class="setup-text">
@@ -233,7 +314,6 @@
           <span>Une pièce dégagée, assez grande pour faire un grand pas en avant. Sol plat, pas de tapis épais.</span>
         </div>
       </div>
-
       <div class="setup-item">
         <div class="setup-icon">📱</div>
         <div class="setup-text">
@@ -241,7 +321,6 @@
           <span>Posez votre téléphone à hauteur de bassin, à environ 2 mètres de vous. Appuyez-le contre un mur ou utilisez un support. Vérifiez que tout votre corps est visible dans le cadre.</span>
         </div>
       </div>
-
       <div class="setup-item">
         <div class="setup-icon">👕</div>
         <div class="setup-text">
@@ -249,15 +328,13 @@
           <span>Tenue ajustée ou short/t-shirt. Les articulations doivent être visibles. Pieds nus de préférence.</span>
         </div>
       </div>
-
       <div class="setup-item">
         <div class="setup-icon">🔁</div>
         <div class="setup-text">
           <strong>Chaque test</strong>
-          <span>Filmez chaque test deux fois : une fois de face, une fois de profil (côté droit). Pour les tests asymétriques, filmez les deux côtés.</span>
+          <span>Filmez chaque test deux fois : une fois de face, une fois de profil. Pour les tests asymétriques, filmez les deux côtés.</span>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -282,6 +359,14 @@
           <span class="camera-badge">De profil</span>
         </div>
       </div>
+      <div class="test-row">
+        <!-- Remplace # par l'URL de ta vidéo YouTube -->
+        <a class="btn-video" href="LIEN_VIDEO_TEST_1" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations sur ce test</div>
+        <textarea id="obs1" placeholder="Ex : douleur genou droit, talons qui se décollent, gêne aux épaules..."></textarea>
+      </div>
     </div>
   </div>
 
@@ -305,6 +390,13 @@
           <span class="camera-badge">De profil uniquement</span>
         </div>
       </div>
+      <div class="test-row">
+        <a class="btn-video" href="LIEN_VIDEO_TEST_2" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations sur ce test</div>
+        <textarea id="obs2" placeholder="Ex : tension derrière les genoux, douleur lombaire, impossible de descendre plus bas..."></textarea>
+      </div>
     </div>
   </div>
 
@@ -320,7 +412,7 @@
     <div class="test-body">
       <div class="test-row">
         <div class="test-row-label">Consigne</div>
-        <div class="test-row-content">Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés (main droite dessus puis main gauche dessus).</div>
+        <div class="test-row-content">Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés.</div>
       </div>
       <div class="test-row">
         <div class="test-row-label">Position caméra</div>
@@ -328,6 +420,13 @@
           <span class="camera-badge">De dos</span>
           <span class="camera-badge">Côté droit puis gauche</span>
         </div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="LIEN_VIDEO_TEST_3" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations sur ce test</div>
+        <textarea id="obs3" placeholder="Ex : épaule gauche bloquée, douleur côté droit, mains qui ne se touchent pas..."></textarea>
       </div>
     </div>
   </div>
@@ -349,9 +448,15 @@
       <div class="test-row">
         <div class="test-row-label">Position caméra</div>
         <div class="test-row-content">
-          <span class="camera-badge">De dessus (légèrement)</span>
-          <span class="camera-badge">Ou de face</span>
+          <span class="camera-badge">De face</span>
         </div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="LIEN_VIDEO_TEST_4" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations sur ce test</div>
+        <textarea id="obs4" placeholder="Ex : rotation droite limitée, douleur entre les omoplates, le bassin bouge..."></textarea>
       </div>
     </div>
   </div>
@@ -377,19 +482,58 @@
           <span class="camera-badge">Côté droit puis gauche</span>
         </div>
       </div>
+      <div class="test-row">
+        <a class="btn-video" href="LIEN_VIDEO_TEST_5" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations sur ce test</div>
+        <textarea id="obs5" placeholder="Ex : douleur hanche gauche, genou qui tremble, impossible de descendre côté droit..."></textarea>
+      </div>
     </div>
   </div>
 
-  <!-- ENVOI -->
+  <!-- ENVOYER OBSERVATIONS -->
   <div class="send-section">
-    <h3>Envoyer vos vidéos</h3>
-    <p>Une fois tous les tests filmés, envoyez vos vidéos via l'application <strong>OneForm</strong> en utilisant le lien ou le code qui vous a été communiqué par votre ostéopathe.</p>
+    <h3>Envoyer vos observations</h3>
+    <p>Une fois les 5 tests renseignés, envoyez vos commentaires directement à votre ostéopathe via WhatsApp.</p>
+    <button class="btn-whatsapp" onclick="envoyerWhatsApp()">
+      💬 Envoyer mes observations
+    </button>
   </div>
 
-  <!-- NOTE -->
-  <div class="footer-note">
-    <strong>Important :</strong> ce bilan ne remplace pas une consultation ostéopathique. En cas de douleur pendant un test, arrêtez et signalez-le lors de votre retour.
+  <!-- ENVOYER VIDÉOS -->
+  <div class="send-videos-section">
+    <h3>Envoyer vos vidéos</h3>
+    <p>Envoyez ensuite vos vidéos via l'application <strong>OneForm</strong> en utilisant le lien ou le code communiqué par votre ostéopathe.</p>
   </div>
+
+  <div class="footer-note">
+    <strong>Important :</strong> ce bilan ne remplace pas une consultation ostéopathique. En cas de douleur vive pendant un test, arrêtez et signalez-le dans vos observations.
+  </div>
+
+  <script>
+    // ← Remplace par ton numéro WhatsApp pro (format international sans +)
+    var NUMERO_WHATSAPP = "33XXXXXXXXX";
+
+    function envoyerWhatsApp() {
+      var obs1 = document.getElementById("obs1").value.trim();
+      var obs2 = document.getElementById("obs2").value.trim();
+      var obs3 = document.getElementById("obs3").value.trim();
+      var obs4 = document.getElementById("obs4").value.trim();
+      var obs5 = document.getElementById("obs5").value.trim();
+
+      var message =
+        "Bonjour, voici mes observations suite au bilan MoveCheck :\n\n" +
+        "1. Overhead Squat : " + (obs1 || "Aucune remarque") + "\n" +
+        "2. Enroulement Vertébral : " + (obs2 || "Aucune remarque") + "\n" +
+        "3. Test d'Apley : " + (obs3 || "Aucune remarque") + "\n" +
+        "4. Rotation Thoracique : " + (obs4 || "Aucune remarque") + "\n" +
+        "5. Fente Avant : " + (obs5 || "Aucune remarque");
+
+      var url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    }
+  </script>
 
 </body>
 </html>
