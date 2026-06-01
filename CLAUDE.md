@@ -124,6 +124,12 @@ Skill de veille intelligente qui filtre les actualités selon mon contexte perso
 
 L'avantage : pas de bruit. Seulement ce qui me concerne vraiment, vu mes objectifs et projets actuels.
 
+### frontend-design
+
+Skill de design frontend pour concevoir, améliorer ou auditer des interfaces dans mon stack (HTML/CSS/JS, React, PWA). Activée quand je demande de créer un composant, retravailler une page, proposer une charte graphique, ou auditer l'UI d'un projet.
+
+Connaît mes projets actifs (e-learning fascias, MoveCheck Content Studio, app honoraires) et leurs identités visuelles. Mobile-first et dark theme par défaut.
+
 ---
 
 ## Getting Started
