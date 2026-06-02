@@ -1,0 +1,3 @@
+[build]
+  base    = "movecheck"
+  publish = "movecheck"
