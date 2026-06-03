@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoveCheck – Consignes de filmage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #F0F4F8;
+      --card: #FFFFFF;
+      --accent: #0D9488;
+      --accent-light: #CCFBF1;
+      --dark: #0F172A;
+      --mid: #475569;
+      --light: #94A3B8;
+      --border: #E2E8F0;
+      --red: #EF4444;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      padding-bottom: 48px;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--dark);
+      padding: 36px 24px 32px;
+      text-align: center;
+    }
+
+    .header-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      font-weight: 900;
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    header h1 span { color: var(--accent); }
+
+    header p {
+      font-size: 15px;
+      color: #94A3B8;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* SECTION */
+    .section {
+      margin: 20px 16px 0;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .section-title {
+      padding: 14px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      background: var(--accent-light);
+    }
+
+    .section-body { padding: 4px 0; }
+
+    .setup-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .setup-item:last-child { border-bottom: none; }
+
+    .setup-icon {
+      font-size: 22px;
+      min-width: 30px;
+      text-align: center;
+      padding-top: 2px;
+    }
+
+    .setup-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .setup-text span {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* TEST CARD */
+    .test-card {
+      margin: 20px 16px 0;
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .test-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--dark);
+    }
+
+    .test-num {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .test-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .test-name small {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748B;
+      margin-top: 3px;
+    }
+
+    .test-body { padding: 20px; }
+
+    .test-row { margin-bottom: 16px; }
+    .test-row:last-child { margin-bottom: 0; }
+
+    .test-row-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .test-row-content {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    .btn-video {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    /* COMMENT */
+    .comment-area {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .comment-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+
+    .comment-area textarea {
+      width: 100%;
+      min-height: 80px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--dark);
+      resize: vertical;
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .comment-area textarea:focus { border-color: var(--accent); }
+
+    .comment-area textarea::placeholder {
+      color: #CBD5E1;
+      font-size: 14px;
+    }
+
+    /* SEND WHATSAPP */
+    .send-section {
+      margin: 20px 16px 0;
+      background: #25D366;
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .send-section h3 {
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .send-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: white;
+      color: #25D366;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* SEND VIDEOS */
+    .send-videos-section {
+      margin: 20px 16px 0;
+      background: var(--accent);
+      border-radius: 16px;
+      padding: 24px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .send-videos-section h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .send-videos-section p {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer-note {
+      margin: 20px 16px 0;
+      background: #FFF7ED;
+      border-left: 4px solid #F97316;
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .footer-note strong { color: var(--dark); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.jpg" alt="Logo Nicolas Roger Ostéopathe" style="width:70px;height:70px;border-radius:12px;object-fit:cover;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+    <div class="header-tag">MoveCheck · Bilan mobilité</div>
+    <h1>Vos consignes<br><span>de filmage</span></h1>
+    <p>Lisez ce guide avant de commencer.<br>5 tests · environ 20 minutes.</p>
+  </header>
+
+  <!-- SETUP -->
+  <div class="section">
+    <div class="section-title">Avant de commencer</div>
+    <div class="section-body">
+      <div class="setup-item">
+        <div class="setup-icon">📍</div>
+        <div class="setup-text">
+          <strong>L'espace</strong>
+          <span>Une pièce dégagée, assez grande pour faire un grand pas en avant. Sol plat, pas de tapis épais.</span>
+        </div>
+      </div>
+      <div class="setup-item">
+        <div class="setup-icon">👕</div>
+        <div class="setup-text">
+          <strong>La tenue</strong>
+          <span>Tenue ajustée ou short/t-shirt. Les articulations doivent être visibles. Pieds nus de préférence.</span>
+        </div>
+      </div>
+      <div class="setup-item">
+        <div class="setup-icon">📲</div>
+        <div class="setup-text">
+          <strong>Le filmage</strong>
+          <span>Vous filmerez chaque test directement via le lien OneForm envoyé par votre ostéopathe. L'application vous guide étape par étape.</span>
+        </div>
+      </div>
+      <div class="setup-item">
+        <div class="setup-icon">✏️</div>
+        <div class="setup-text">
+          <strong>Vos observations</strong>
+          <span>Après chaque test, notez vos ressentis (douleur, gêne, difficulté) dans le champ prévu. Envoyez tout via WhatsApp à la fin.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 1 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">1</div>
+      <div class="test-name">
+        L'Overhead Squat
+        <small>Le scanner global</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Levez les bras en "Y" au-dessus de la tête. Descendez en squat le plus bas possible, lentement. Remontez. Répétez 3 fois.</div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="https://youtu.be/2VO765PBHck?is=eIGBOlyEcSEDsk4o" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations</div>
+        <textarea id="obs1" placeholder="Ex : douleur genou droit, talons qui se décollent, gêne aux épaules..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 2 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">2</div>
+      <div class="test-name">
+        L'Enroulement Vertébral
+        <small>Chaîne postérieure</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Debout, jambes tendues. Relâchez la tête en premier, puis laissez le dos s'enrouler vertèbre par vertèbre vers l'avant. Essayez de toucher vos pieds sans forcer. Tenez 3 secondes, puis déroulez lentement.</div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="https://youtube.com/shorts/ihzdokaxYW0?is=U8cbpQu8ZiO5M9D2" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations</div>
+        <textarea id="obs2" placeholder="Ex : tension derrière les genoux, douleur lombaire, impossible de descendre plus bas..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 3 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">3</div>
+      <div class="test-name">
+        Le Test d'Apley
+        <small>Mobilité d'épaule</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés.</div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="https://youtube.com/shorts/DPWV7B3xiIo?is=buyQvZjsjswBJmIt" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations</div>
+        <textarea id="obs3" placeholder="Ex : épaule gauche bloquée, douleur côté droit, mains qui ne se touchent pas..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 4 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">4</div>
+      <div class="test-name">
+        La Rotation Thoracique Assise
+        <small>Dissociation</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Assis sur une chaise, bras croisés sur la poitrine. Tournez le buste au maximum vers la droite, puis vers la gauche, sans bouger le bas du corps. Faites 3 rotations de chaque côté lentement.</div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="https://youtube.com/shorts/95VllZB8ZkY?is=MoBKEIrlQtw6ain1" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations</div>
+        <textarea id="obs4" placeholder="Ex : rotation droite limitée, douleur entre les omoplates, le bassin bouge..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 5 -->
+  <div class="test-card">
+    <div class="test-header">
+      <div class="test-num">5</div>
+      <div class="test-name">
+        La Fente Avant
+        <small>Hanches et équilibre</small>
+      </div>
+    </div>
+    <div class="test-body">
+      <div class="test-row">
+        <div class="test-row-label">Consigne</div>
+        <div class="test-row-content">Faites un grand pas en avant, descendez le genou arrière vers le sol en gardant le buste vertical. Tenez 2 secondes. Faites le mouvement 3 fois de chaque côté.</div>
+      </div>
+      <div class="test-row">
+        <a class="btn-video" href="https://youtu.be/nLvfEiEP3NY?is=KVcRwX6wzycY3TRg" target="_blank">▶ Voir la démo</a>
+      </div>
+      <div class="comment-area">
+        <div class="comment-label">Vos observations</div>
+        <textarea id="obs5" placeholder="Ex : douleur hanche gauche, genou qui tremble, impossible de descendre côté droit..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENVOYER OBSERVATIONS -->
+  <div class="send-section">
+    <h3>Envoyer vos observations</h3>
+    <p>Une fois les 5 tests renseignés, envoyez vos commentaires directement à votre ostéopathe.</p>
+    <button class="btn-whatsapp" onclick="envoyerWhatsApp()">
+      💬 Envoyer mes observations
+    </button>
+  </div>
+
+  <!-- ENVOYER VIDÉOS -->
+  <div class="send-videos-section">
+    <h3>Envoyer vos vidéos</h3>
+    <p>Filmez ensuite les 5 tests via le lien <strong>OneForm</strong> envoyé par votre ostéopathe. L'application vous guide étape par étape.</p>
+  </div>
+
+  <div class="footer-note">
+    <strong>Important :</strong> ce bilan ne remplace pas une consultation ostéopathique. En cas de douleur vive pendant un test, arrêtez et signalez-le dans vos observations.
+  </div>
+
+  <script>
+    // ← Remplace par ton numéro WhatsApp pro (format international sans +)
+    var NUMERO_WHATSAPP = "33695817410";
+
+    function envoyerWhatsApp() {
+      var obs1 = document.getElementById("obs1").value.trim();
+      var obs2 = document.getElementById("obs2").value.trim();
+      var obs3 = document.getElementById("obs3").value.trim();
+      var obs4 = document.getElementById("obs4").value.trim();
+      var obs5 = document.getElementById("obs5").value.trim();
+
+      var message =
+        "Bonjour, voici mes observations suite au bilan MoveCheck :\n\n" +
+        "1. Overhead Squat : " + (obs1 || "Aucune remarque") + "\n" +
+        "2. Enroulement Vertébral : " + (obs2 || "Aucune remarque") + "\n" +
+        "3. Test d'Apley : " + (obs3 || "Aucune remarque") + "\n" +
+        "4. Rotation Thoracique : " + (obs4 || "Aucune remarque") + "\n" +
+        "5. Fente Avant : " + (obs5 || "Aucune remarque");
+
+      var url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
