@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1612" />
+  <meta name="description" content="MoveCheck — Évaluez votre mobilité depuis chez vous. Programme personnalisé conçu par un ostéopathe evidence-based à Narbonne." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>MoveCheck — Évaluation mobilité à distance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --ink: #1a1612;
+      --ink-soft: #2a2218;
+      --muted: #5a5047;
+      --light: #8a7d70;
+      --cream: #faf8f4;
+      --warm: #f2ede5;
+      --warm-2: #ebe3d4;
+      --divider: #e0d8cc;
+      --gold: #b8860b;
+      --gold-light: #f5e9c0;
+      --green: #3d7a52;
+      --green-light: #e8f3ec;
+      --blue: #2e5e8a;
+      --blue-light: #e6eef6;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 400;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+    ============================================================ */
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 100px;
+      padding: 5px 14px;
+      display: inline-block;
+    }
+
+    .eyebrow--light {
+      color: var(--gold-light);
+      border-color: rgba(245, 233, 192, 0.4);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    h2.light {
+      color: var(--cream);
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 14px 24px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn--primary {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .btn--primary:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    .btn--secondary {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(224, 216, 204, 0.4);
+    }
+
+    .btn--secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--divider);
+    }
+
+    .btn--outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn--gold {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .btn--gold:hover {
+      background: #9a7009;
+      border-color: #9a7009;
+    }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================================
+       TOPBAR (STICKY)
+    ============================================================ */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 22, 18, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(224, 216, 204, 0.1);
+    }
+
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 24px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .topbar__brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+
+    .topbar__brand span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      background: var(--ink);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(184, 134, 11, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(61, 122, 82, 0.05) 0%, transparent 60%);
+      padding: clamp(80px, 10vw, 120px) 0 clamp(60px, 8vw, 100px);
+      overflow: hidden;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero__grid {
+        grid-template-columns: 1fr 380px;
+        gap: 64px;
+      }
+    }
+
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(250, 248, 244, 0.7);
+      max-width: 520px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Hero card */
+    .hero__card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(224, 216, 204, 0.12);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .hero__card-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(250, 248, 244, 0.4);
+      margin-bottom: 4px;
+    }
+
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(224, 216, 204, 0.1);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+
+    .stat-chip__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .stat-chip__dot--green {
+      background: var(--green);
+    }
+
+    .stat-chip__dot--blue {
+      background: var(--blue);
+    }
+
+    .stat-chip__label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       SECTION BASE
+    ============================================================ */
+    .section {
+      padding: clamp(64px, 8vw, 100px) 0;
+    }
+
+    .section__header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: clamp(40px, 5vw, 64px);
+    }
+
+    .section__header--center {
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ============================================================
+       PROCESS SECTION
+    ============================================================ */
+    .process {
+      background: var(--cream);
+    }
+
+    .process__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 720px) {
+      .process__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .process-card {
+      background: var(--warm);
+      border: 1px solid var(--warm-2);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .process-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(184, 134, 11, 0.08);
+    }
+
+    .process-card__number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--gold-light);
+      border: 1px solid rgba(184, 134, 11, 0.2);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .process-card__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .process-card__body {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       "POUR QUI" SECTION
+    ============================================================ */
+    .audience {
+      background: var(--warm);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .audience__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .audience__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .audience-card {
+      background: var(--green-light);
+      border: 1px solid rgba(61, 122, 82, 0.15);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .audience-card:hover {
+      border-color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .audience-card__icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .audience-card__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .audience-card__body {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       EVIDENCE SECTION (dark)
+    ============================================================ */
+    .evidence {
+      background: var(--ink-soft);
+      background-image:
+        radial-gradient(ellipse 70% 50% at 80% 30%, rgba(184, 134, 11, 0.06) 0%, transparent 60%);
+      color: var(--cream);
+    }
+
+    .evidence__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (min-width: 860px) {
+      .evidence__inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+    }
+
+    .evidence__text {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .evidence__body {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(250, 248, 244, 0.7);
+    }
+
+    .evidence__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .evidence__tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      background: rgba(184, 134, 11, 0.1);
+      border: 1px solid rgba(184, 134, 11, 0.25);
+      border-radius: 100px;
+      padding: 5px 12px;
+    }
+
+    .evidence__pullquote {
+      border-left: 3px solid var(--gold);
+      padding: 28px 32px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 0 16px 16px 0;
+    }
+
+    .evidence__pullquote blockquote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--cream);
+    }
+
+    .evidence__pullquote cite {
+      display: block;
+      margin-top: 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* ============================================================
+       PRICING SECTION
+    ============================================================ */
+    .pricing {
+      background: var(--cream);
+    }
+
+    .pricing__card-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .pricing-card {
+      background: var(--warm);
+      border: 1px solid var(--divider);
+      border-radius: 24px;
+      padding: clamp(36px, 5vw, 56px);
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      box-shadow: 0 2px 40px rgba(26, 22, 18, 0.06);
+    }
+
+    .pricing-card__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pricing-card__label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--light);
+    }
+
+    .pricing-card__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .pricing-card__price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .pricing-card__amount {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 8vw, 4rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .pricing-card__currency {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .pricing-card__divider {
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .pricing-card__includes {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pricing-card__includes-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--light);
+    }
+
+    .pricing-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .pricing-item__check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green-light);
+      border: 1px solid rgba(61, 122, 82, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing-item__check svg {
+      width: 10px;
+      height: 10px;
+      color: var(--green);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(224, 216, 204, 0.1);
+      padding: 40px 0;
+    }
+
+    .footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer__brand-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--cream);
+    }
+
+    .footer__brand-name span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .footer__brand-sub {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(250, 248, 244, 0.5);
+    }
+
+    .footer__tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(250, 248, 244, 0.3);
+    }
+
+    .footer__copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(250, 248, 244, 0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       RESPONSIVE MISC
+    ============================================================ */
+    @media (max-width: 480px) {
+      .topbar__inner {
+        padding: 0 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero__ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       TOPBAR
+  ============================================================ -->
+  <header class="topbar" role="banner">
+    <div class="topbar__inner">
+      <a href="/" class="topbar__brand" aria-label="MoveCheck — Accueil">
+        Move<span>Check</span>
+      </a>
+      <a href="app.html" class="btn btn--gold" aria-label="Commencer l'évaluation MoveCheck">
+        Commencer l'évaluation
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero__grid">
+
+          <div class="hero__content">
+            <span class="eyebrow eyebrow--light">Service ostéopathique en ligne</span>
+
+            <h1 id="hero-heading">
+              Évaluez votre <em>mobilité</em> depuis chez vous
+            </h1>
+
+            <p class="hero__subtitle">
+              Filmez vos tests de mobilité standardisés à domicile. Recevez un programme personnalisé, conçu par un ostéopathe evidence-based.
+            </p>
+
+            <div class="hero__ctas">
+              <a href="app.html" class="btn btn--primary">
+                Commencer l'évaluation
+              </a>
+              <a href="#process" class="btn btn--secondary">
+                Comment ça marche ?
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero__card" aria-label="Points clés du service">
+            <p class="hero__card-title">Pourquoi MoveCheck</p>
+
+            <div class="stat-chip">
+              <div class="stat-chip__dot"></div>
+              <span class="stat-chip__label">100% à distance</span>
+            </div>
+
+            <div class="stat-chip">
+              <div class="stat-chip__dot stat-chip__dot--green"></div>
+              <span class="stat-chip__label">Réponse sous 48h</span>
+            </div>
+
+            <div class="stat-chip">
+              <div class="stat-chip__dot stat-chip__dot--blue"></div>
+              <span class="stat-chip__label">Evidence-based</span>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS
+    ============================================================ -->
+    <section class="section process" id="process" aria-labelledby="process-heading">
+      <div class="container">
+
+        <div class="section__header section__header--center">
+          <span class="eyebrow">Le processus</span>
+          <h2 id="process-heading">Trois étapes, un programme sur-mesure</h2>
+        </div>
+
+        <div class="process__grid">
+
+          <article class="process-card">
+            <div class="process-card__number" aria-label="Étape 1">01</div>
+            <h3 class="process-card__title">Filmez vos tests</h3>
+            <p class="process-card__body">
+              Suivez nos instructions précises pour filmer vos tests de mobilité standardisés à domicile. Pas de matériel spécial requis.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-card__number" aria-label="Étape 2">02</div>
+            <h3 class="process-card__title">Envoyez votre dossier</h3>
+            <p class="process-card__body">
+              Remplissez votre bilan initial et partagez vos vidéos. L'analyse est réalisée par Nico, ostéopathe spécialisé.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-card__number" aria-label="Étape 3">03</div>
+            <h3 class="process-card__title">Recevez votre programme</h3>
+            <p class="process-card__body">
+              Sous 48h, vous recevez un programme d'exercices de mobilisation personnalisé, expliqué en détail.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         POUR QUI
+    ============================================================ -->
+    <section class="section audience" aria-labelledby="audience-heading">
+      <div class="container">
+
+        <div class="section__header section__header--center">
+          <span class="eyebrow">Indications</span>
+          <h2 id="audience-heading">Conçu pour votre situation</h2>
+        </div>
+
+        <div class="audience__grid">
+
+          <article class="audience-card">
+            <div class="audience-card__icon" role="img" aria-label="Douleurs chroniques">🦴</div>
+            <h3 class="audience-card__title">Douleurs chroniques</h3>
+            <p class="audience-card__body">
+              Dos, nuque, épaules, hanches. Identifiez les restrictions de mobilité à l'origine de vos douleurs persistantes.
+            </p>
+          </article>
+
+          <article class="audience-card">
+            <div class="audience-card__icon" role="img" aria-label="Prévention et performance">🏃</div>
+            <h3 class="audience-card__title">Prévention et performance</h3>
+            <p class="audience-card__body">
+              Sportifs et personnes actives. Optimisez votre mobilité articulaire pour prévenir les blessures et progresser.
+            </p>
+          </article>
+
+          <article class="audience-card">
+            <div class="audience-card__icon" role="img" aria-label="Suivi post-opératoire">🩹</div>
+            <h3 class="audience-card__title">Suivi post-opératoire</h3>
+            <p class="audience-card__body">
+              Après une opération ou une rééducation. Consolidez vos acquis avec un programme adapté à votre progression.
+            </p>
+          </article>
+
+          <article class="audience-card">
+            <div class="audience-card__icon" role="img" aria-label="Téléconsultation">🌍</div>
+            <h3 class="audience-card__title">Téléconsultation</h3>
+            <p class="audience-card__body">
+              À distance, en mobilité réduite ou sans ostéopathe à proximité. Accédez à une expertise spécialisée où que vous soyez.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EVIDENCE-BASED
+    ============================================================ -->
+    <section class="section evidence" aria-labelledby="evidence-heading">
+      <div class="container">
+        <div class="evidence__inner">
+
+          <div class="evidence__text">
+            <span class="eyebrow eyebrow--light">Approche scientifique</span>
+            <h2 class="light" id="evidence-heading">Une approche fondée sur les données</h2>
+
+            <p class="evidence__body">
+              L'évaluation suit des protocoles validés scientifiquement : test de Schober, CROM (cervical range of motion), AROM des membres, et autres mesures standardisées utilisées dans la recherche clinique.
+            </p>
+
+            <p class="evidence__body">
+              Les exercices proposés sont sélectionnés à partir de revues systématiques et méta-analyses, pas sur la tradition ou l'intuition seules. Chaque recommandation est justifiée par le niveau de preuve disponible.
+            </p>
+
+            <div class="evidence__tags" role="list" aria-label="Protocoles utilisés">
+              <span class="evidence__tag" role="listitem">Schober</span>
+              <span class="evidence__tag" role="listitem">CROM</span>
+              <span class="evidence__tag" role="listitem">AROM</span>
+              <span class="evidence__tag" role="listitem">Méta-analyses</span>
+              <span class="evidence__tag" role="listitem">Revues systématiques</span>
+            </div>
+
+            <div>
+              <a href="app.html" class="btn btn--gold">
+                Commencer l'évaluation
+              </a>
+            </div>
+          </div>
+
+          <div class="evidence__pullquote">
+            <blockquote>
+              "L'ostéopathie efficace, c'est celle qui s'appuie sur la science, pas sur des croyances."
+            </blockquote>
+            <cite>Nico, ostéopathe D.O. — Narbonne</cite>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TARIFS
+    ============================================================ -->
+    <section class="section pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+
+        <div class="section__header section__header--center">
+          <span class="eyebrow">Accès</span>
+          <h2 id="pricing-heading">Simple et transparent</h2>
+        </div>
+
+        <div class="pricing__card-wrap">
+          <div class="pricing-card">
+
+            <div class="pricing-card__header">
+              <p class="pricing-card__label">Formule unique</p>
+              <h3 class="pricing-card__title">Évaluation complète</h3>
+            </div>
+
+            <div class="pricing-card__price">
+              <span class="pricing-card__amount">45</span>
+              <span class="pricing-card__currency">€</span>
+            </div>
+
+            <div class="pricing-card__divider" role="separator"></div>
+
+            <div class="pricing-card__includes">
+              <p class="pricing-card__includes-label">Ce qui est inclus</p>
+
+              <div class="pricing-item">
+                <div class="pricing-item__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span>Bilan de mobilité complet (questionnaire + vidéos)</span>
+              </div>
+
+              <div class="pricing-item">
+                <div class="pricing-item__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span>Analyse vidéo personnalisée par l'ostéopathe</span>
+              </div>
+
+              <div class="pricing-item">
+                <div class="pricing-item__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span>Programme personnalisé PDF, exercices expliqués</span>
+              </div>
+
+              <div class="pricing-item">
+                <div class="pricing-item__check" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span>Suivi par email, réponse sous 48h</span>
+              </div>
+
+            </div>
+
+            <a href="app.html" class="btn btn--primary" style="justify-content: center;">
+              Commencer maintenant
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__brand">
+          <p class="footer__brand-name">Move<span>Check</span></p>
+          <p class="footer__brand-sub">Nico, ostéopathe D.O. — Narbonne, France</p>
+          <p class="footer__tagline">Thérapie manuelle evidence-based</p>
+        </div>
+
+        <p class="footer__copy">© 2025 MoveCheck</p>
+
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
