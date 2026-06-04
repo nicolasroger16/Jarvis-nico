@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MoveCheck — Évaluation de mobilité à distance par Nicolas Roger, ostéopathe." />
+  <meta name="theme-color" content="#faf8f4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="MoveCheck" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="canonical" href="index.html" />
+  <title>MoveCheck — Évaluation de mobilité à distance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1612;
+      --ink-soft: #2a2218;
+      --muted: #5a5047;
+      --light: #8a7d70;
+      --cream: #faf8f4;
+      --warm: #f2ede5;
+      --warm-2: #ebe3d4;
+      --divider: #e0d8cc;
+      --gold: #b8860b;
+      --gold-light: #f5e9c0;
+      --green: #3d7a52;
+      --green-light: #e8f3ec;
+      --blue: #2e5e8a;
+      --blue-light: #e6eef6;
+      --red: #8a3d3d;
+      --red-light: #f6e6e6;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 2px 12px rgba(26,22,18,0.08);
+      --shadow-card: 0 1px 4px rgba(26,22,18,0.06);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--divider);
+      padding: 0 20px;
+    }
+
+    .topbar-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .brand em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .progress-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .step-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .progress-bar {
+      width: 100%;
+      max-width: 200px;
+      height: 4px;
+      background: var(--warm-2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 99px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px 120px;
+    }
+
+    /* ─── STEPS ─── */
+    .step {
+      display: none;
+      animation: fadeSlide 0.35s ease forwards;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-header {
+      margin-bottom: 32px;
+    }
+
+    .step-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .step-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ─── FORM ELEMENTS ─── */
+    .field {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    label .optional {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--light);
+      font-weight: 300;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+      background: #fff;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,134,11,0.12);
+    }
+
+    input[type="text"].invalid,
+    input[type="email"].invalid,
+    input[type="tel"].invalid,
+    input[type="number"].invalid,
+    select.invalid,
+    textarea.invalid {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(138,61,61,0.10);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a5047' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ─── RADIO GROUP ─── */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+
+    .radio-option:hover {
+      border-color: var(--gold);
+      background: var(--gold-light);
+    }
+
+    .radio-option input[type="radio"] {
+      accent-color: var(--gold);
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .radio-option.selected {
+      border-color: var(--gold);
+      background: var(--gold-light);
+    }
+
+    .radio-option span {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    /* ─── INFO BOXES ─── */
+    .info-box {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 28px;
+    }
+
+    .info-box.blue {
+      background: var(--blue-light);
+      border-left: 3px solid var(--blue);
+    }
+
+    .info-box.gold {
+      background: var(--gold-light);
+      border-left: 3px solid var(--gold);
+    }
+
+    .info-box.red {
+      background: var(--red-light);
+      border-left: 3px solid var(--red);
+    }
+
+    .info-box.green {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+    }
+
+    .info-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .info-box p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    /* ─── TEST CARDS ─── */
+    .test-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .test-card {
+      background: #fff;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+      box-shadow: var(--shadow-card);
+    }
+
+    .test-card.checked {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .test-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold);
+      background: var(--gold-light);
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: 4px;
+      padding: 3px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .test-body {
+      flex: 1;
+    }
+
+    .test-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .test-instructions {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .test-camera {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .test-camera svg {
+      flex-shrink: 0;
+    }
+
+    .test-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+    }
+
+    .test-check input[type="checkbox"] {
+      accent-color: var(--green);
+      width: 16px;
+      height: 16px;
+    }
+
+    .test-check.is-checked {
+      color: var(--green);
+    }
+
+    /* ─── SEND STEP ─── */
+    .email-block {
+      background: var(--warm);
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .email-block p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .email-code {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      color: var(--gold);
+      background: var(--gold-light);
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .email-code:hover {
+      background: #eedd99;
+    }
+
+    .copy-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      background: none;
+      border: 1px solid rgba(184,134,11,0.4);
+      border-radius: 4px;
+      padding: 3px 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover, .copy-btn.copied {
+      background: rgba(184,134,11,0.15);
+    }
+
+    .email-note {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ─── CONFIRMATION CHECKBOX ─── */
+    .confirm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: #fff;
+      border: 1.5px solid var(--divider);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      margin-bottom: 32px;
+      user-select: none;
+    }
+
+    .confirm-check:hover {
+      border-color: var(--gold);
+    }
+
+    .confirm-check.checked {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    .confirm-check input[type="checkbox"] {
+      accent-color: var(--green);
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .confirm-check span {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* ─── NAVIGATION ─── */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      border-top: 1px solid var(--divider);
+      padding: 16px 20px;
+      z-index: 99;
+    }
+
+    .nav-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(184,134,11,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #a0750a;
+      box-shadow: 0 4px 12px rgba(184,134,11,0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      background: var(--light);
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--divider);
+    }
+
+    .btn-secondary:hover {
+      background: var(--warm);
+      color: var(--ink);
+      border-color: var(--warm-2);
+    }
+
+    .btn-secondary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-submit {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(61,122,82,0.3);
+      flex: 1;
+    }
+
+    .btn-submit:hover {
+      background: #2e5e3e;
+      box-shadow: 0 4px 12px rgba(61,122,82,0.4);
+      transform: translateY(-1px);
+    }
+
+    /* ─── SUCCESS SCREEN ─── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeSlide 0.5s ease forwards;
+    }
+
+    .success-screen.active {
+      display: block;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success-icon svg {
+      width: 40px;
+      height: 40px;
+      color: var(--green);
+      stroke: var(--green);
+    }
+
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .success-body {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 20px;
+      line-height: 1.7;
+    }
+
+    .success-note {
+      font-size: 13px;
+      color: var(--light);
+      font-style: italic;
+    }
+
+    /* ─── ERROR MESSAGE ─── */
+    .error-msg {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 6px;
+      font-weight: 500;
+      display: none;
+    }
+
+    .error-msg.show {
+      display: block;
+    }
+
+    /* ─── VALIDATION ERROR BANNER ─── */
+    .validation-banner {
+      background: var(--red-light);
+      border: 1.5px solid var(--red);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--red);
+      font-weight: 500;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    .validation-banner.show {
+      display: block;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 480px) {
+      .step-title {
+        font-size: 24px;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        height: 56px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+      }
+
+      .main {
+        padding-top: 28px;
+      }
+
+      .test-card {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Move<em>Check</em></div>
+      <div class="progress-wrap">
+        <div class="step-label" id="stepLabel">Étape 1 sur 4</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 25%"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="mainContent">
+
+    <!-- STEP 1 — Informations personnelles -->
+    <section class="step active" id="step1">
+      <div class="step-header">
+        <div class="step-number">Étape 1 sur 4</div>
+        <h1 class="step-title">Qui êtes-vous ?</h1>
+      </div>
+
+      <div class="validation-banner" id="banner1">Veuillez remplir tous les champs obligatoires avant de continuer.</div>
+
+      <div class="info-box blue">
+        <span class="info-icon">🔒</span>
+        <p>Ces informations restent confidentielles et sont uniquement utilisées pour vous contacter et personnaliser votre programme.</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Marie" autocomplete="given-name" />
+          <div class="error-msg" id="err-prenom">Ce champ est requis.</div>
+        </div>
+        <div class="field">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Dupont" autocomplete="family-name" />
+          <div class="error-msg" id="err-nom">Ce champ est requis.</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="age">Âge</label>
+          <input type="number" id="age" name="age" placeholder="35" min="16" max="99" autocomplete="age" />
+          <div class="error-msg" id="err-age">Âge entre 16 et 99 ans requis.</div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="marie@exemple.fr" autocomplete="email" />
+          <div class="error-msg" id="err-email">Adresse email valide requise.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="tel">Téléphone <span class="optional">(facultatif, suivi WhatsApp)</span></label>
+        <input type="tel" id="tel" name="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel" />
+      </div>
+    </section>
+
+    <!-- STEP 2 — Situation -->
+    <section class="step" id="step2">
+      <div class="step-header">
+        <div class="step-number">Étape 2 sur 4</div>
+        <h1 class="step-title">Quelle est votre situation ?</h1>
+      </div>
+
+      <div class="validation-banner" id="banner2">Veuillez remplir tous les champs obligatoires avant de continuer.</div>
+
+      <div class="field">
+        <label for="zone">Zone douloureuse principale</label>
+        <select id="zone" name="zone">
+          <option value="" disabled selected>Sélectionnez une zone...</option>
+          <option value="cervicales">Nuque / Cervicales</option>
+          <option value="epaules">Épaules</option>
+          <option value="lombaires">Dos / Lombaires</option>
+          <option value="hanches">Hanches</option>
+          <option value="genoux">Genoux</option>
+          <option value="chevilles">Chevilles / Pieds</option>
+          <option value="prevention">Aucune douleur particulière (prévention / performance)</option>
+        </select>
+        <div class="error-msg" id="err-zone">Veuillez sélectionner une zone.</div>
+      </div>
+
+      <div class="field">
+        <label>Depuis combien de temps ?</label>
+        <div class="radio-group" id="dureeGroup">
+          <label class="radio-option" onclick="selectRadio(this, 'duree', 'moins-1mois')">
+            <input type="radio" name="duree" value="moins-1mois" />
+            <span>Moins d'un mois</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this, 'duree', '1-3mois')">
+            <input type="radio" name="duree" value="1-3mois" />
+            <span>1 à 3 mois</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this, 'duree', '3-6mois')">
+            <input type="radio" name="duree" value="3-6mois" />
+            <span>3 à 6 mois</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this, 'duree', 'plus-6mois')">
+            <input type="radio" name="duree" value="plus-6mois" />
+            <span>Plus de 6 mois</span>
+          </label>
+        </div>
+        <div class="error-msg" id="err-duree">Veuillez sélectionner une durée.</div>
+      </div>
+
+      <div class="field">
+        <label>Avez-vous déjà consulté un professionnel pour ce problème ?</label>
+        <div class="radio-group" id="consultGroup">
+          <label class="radio-option" onclick="selectRadio(this, 'consult', 'oui')">
+            <input type="radio" name="consult" value="oui" />
+            <span>Oui</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this, 'consult', 'non')">
+            <input type="radio" name="consult" value="non" />
+            <span>Non</span>
+          </label>
+        </div>
+        <div class="error-msg" id="err-consult">Veuillez répondre à cette question.</div>
+      </div>
+
+      <div class="field">
+        <label for="contexte">Contexte <span class="optional">(facultatif)</span></label>
+        <textarea id="contexte" name="contexte" placeholder="Décrivez brièvement votre situation, vos antécédents, vos objectifs..."></textarea>
+      </div>
+
+      <div class="info-box red">
+        <span class="info-icon">⚠️</span>
+        <p>MoveCheck n'est pas une consultation médicale d'urgence. En cas de douleur intense, d'engourdissement, ou de symptômes neurologiques, consultez un médecin en priorité.</p>
+      </div>
+    </section>
+
+    <!-- STEP 3 — Tests de mobilité -->
+    <section class="step" id="step3">
+      <div class="step-header">
+        <div class="step-number">Étape 3 sur 4</div>
+        <h1 class="step-title">Vos tests de mobilité</h1>
+        <p class="step-subtitle">Filmez chaque test selon les instructions. Un smartphone posé sur une surface stable suffit.</p>
+      </div>
+
+      <div class="info-box gold">
+        <span class="info-icon">📱</span>
+        <p>Filmez en format portrait (téléphone vertical). Gardez les vidéos sur votre téléphone, vous les enverrez à l'étape suivante.</p>
+      </div>
+
+      <div class="test-cards">
+
+        <div class="test-card" id="card1">
+          <div class="test-number">01</div>
+          <div class="test-body">
+            <div class="test-name">Flexion cervicale</div>
+            <div class="test-instructions">Debout, dos droit. Amenez le menton vers la poitrine lentement.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil
+            </div>
+            <label class="test-check" for="check1" onclick="toggleCheck(event, 'card1', 'checklabel1')">
+              <input type="checkbox" id="check1" />
+              <span id="checklabel1">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card2">
+          <div class="test-number">02</div>
+          <div class="test-body">
+            <div class="test-name">Rotation cervicale</div>
+            <div class="test-instructions">Debout, dos droit. Tournez la tête à gauche puis à droite lentement.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de face
+            </div>
+            <label class="test-check" for="check2" onclick="toggleCheck(event, 'card2', 'checklabel2')">
+              <input type="checkbox" id="check2" />
+              <span id="checklabel2">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card3">
+          <div class="test-number">03</div>
+          <div class="test-body">
+            <div class="test-name">Flexion épaule</div>
+            <div class="test-instructions">Debout. Levez le bras tendu vers l'avant jusqu'au maximum. Répétez des deux côtés.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil, gauche et droit
+            </div>
+            <label class="test-check" for="check3" onclick="toggleCheck(event, 'card3', 'checklabel3')">
+              <input type="checkbox" id="check3" />
+              <span id="checklabel3">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card4">
+          <div class="test-number">04</div>
+          <div class="test-body">
+            <div class="test-name">Abduction épaule</div>
+            <div class="test-instructions">Debout. Levez le bras tendu sur le côté jusqu'au maximum. Répétez des deux côtés.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de face
+            </div>
+            <label class="test-check" for="check4" onclick="toggleCheck(event, 'card4', 'checklabel4')">
+              <input type="checkbox" id="check4" />
+              <span id="checklabel4">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card5">
+          <div class="test-number">05</div>
+          <div class="test-body">
+            <div class="test-name">Flexion lombaire</div>
+            <div class="test-instructions">Debout, pieds joints. Penchez-vous vers l'avant, jambes tendues, et descendez le plus bas possible.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil
+            </div>
+            <label class="test-check" for="check5" onclick="toggleCheck(event, 'card5', 'checklabel5')">
+              <input type="checkbox" id="check5" />
+              <span id="checklabel5">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card6">
+          <div class="test-number">06</div>
+          <div class="test-body">
+            <div class="test-name">Extension lombaire</div>
+            <div class="test-instructions">Debout. Penchez-vous en arrière, mains sur les hanches, en contrôlant le mouvement.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil
+            </div>
+            <label class="test-check" for="check6" onclick="toggleCheck(event, 'card6', 'checklabel6')">
+              <input type="checkbox" id="check6" />
+              <span id="checklabel6">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card7">
+          <div class="test-number">07</div>
+          <div class="test-body">
+            <div class="test-name">Flexion hanche</div>
+            <div class="test-instructions">Debout, dos droit. Ramenez un genou vers la poitrine, puis l'autre. Dos bien droit, sans vous pencher.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil
+            </div>
+            <label class="test-check" for="check7" onclick="toggleCheck(event, 'card7', 'checklabel7')">
+              <input type="checkbox" id="check7" />
+              <span id="checklabel7">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="test-card" id="card8">
+          <div class="test-number">08</div>
+          <div class="test-body">
+            <div class="test-name">Dorsiflexion cheville</div>
+            <div class="test-instructions">En position fendue contre un mur (knee-to-wall test). Avancez le genou vers le mur sans décoller le talon. Mesurez la distance pied/mur. Répétez des deux côtés.</div>
+            <div class="test-camera">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Filmez de profil, gauche et droit
+            </div>
+            <label class="test-check" for="check8" onclick="toggleCheck(event, 'card8', 'checklabel8')">
+              <input type="checkbox" id="check8" />
+              <span id="checklabel8">Vidéo filmée</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STEP 4 — Envoi -->
+    <section class="step" id="step4">
+      <div class="step-header">
+        <div class="step-number">Étape 4 sur 4</div>
+        <h1 class="step-title">Envoyez votre dossier</h1>
+        <p class="step-subtitle">Dernière étape. Envoyez vos vidéos et confirmez votre demande.</p>
+      </div>
+
+      <div class="validation-banner" id="banner4">Veuillez cocher la case de confirmation avant d'envoyer votre demande.</div>
+
+      <div class="email-block">
+        <p>Envoyez vos vidéos à l'adresse suivante par email ou WeTransfer :</p>
+        <div class="email-code" id="emailCode" title="Cliquez pour copier">
+          <span>movecheck@nicolasroger.fr</span>
+          <button class="copy-btn" id="copyBtn" onclick="copyEmail(event)">Copier</button>
+        </div>
+        <div class="email-note">Objet du mail : MoveCheck - [Votre prénom Nom]</div>
+      </div>
+
+      <div class="info-box blue">
+        <span class="info-icon">📎</span>
+        <p>Joignez toutes vos vidéos dans un seul email, ou utilisez WeTransfer (wetransfer.com) pour les fichiers volumineux. Indiquez votre nom et prénom dans l'objet.</p>
+      </div>
+
+      <label class="confirm-check" id="confirmLabel" onclick="toggleConfirm()">
+        <input type="checkbox" id="confirmCheck" />
+        <span>J'ai filmé mes tests de mobilité et je les enverrai avec ce formulaire</span>
+      </label>
+
+    </section>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Demande envoyée !</h2>
+      <p class="success-body">
+        Nous avons bien reçu votre demande. Envoyez maintenant vos vidéos à l'adresse indiquée. Vous recevrez votre programme personnalisé sous 48h.
+      </p>
+      <p class="success-note">Une question ? Répondez simplement à l'email de confirmation.</p>
+    </div>
+
+  </main>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="navBar">
+    <div class="nav-inner">
+      <button class="btn btn-secondary" id="btnPrev" onclick="prevStep()" disabled>Précédent</button>
+      <button class="btn btn-primary" id="btnNext" onclick="nextStep()">Suivant</button>
+    </div>
+  </nav>
+
+  <script>
+    // ─── STATE ───────────────────────────────────────────────────────────────
+    let currentStep = 1;
+    const TOTAL_STEPS = 4;
+    const STORAGE_KEY = 'movecheck_form';
+
+    // Load from localStorage
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const data = JSON.parse(saved);
+          if (data.prenom)   document.getElementById('prenom').value   = data.prenom;
+          if (data.nom)      document.getElementById('nom').value      = data.nom;
+          if (data.age)      document.getElementById('age').value      = data.age;
+          if (data.email)    document.getElementById('email').value    = data.email;
+          if (data.tel)      document.getElementById('tel').value      = data.tel;
+          if (data.zone)     document.getElementById('zone').value     = data.zone;
+          if (data.contexte) document.getElementById('contexte').value = data.contexte;
+          if (data.duree) {
+            const radio = document.querySelector(`input[name="duree"][value="${data.duree}"]`);
+            if (radio) {
+              radio.checked = true;
+              radio.closest('.radio-option').classList.add('selected');
+            }
+          }
+          if (data.consult) {
+            const radio = document.querySelector(`input[name="consult"][value="${data.consult}"]`);
+            if (radio) {
+              radio.checked = true;
+              radio.closest('.radio-option').classList.add('selected');
+            }
+          }
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    function saveState() {
+      try {
+        const dureeEl  = document.querySelector('input[name="duree"]:checked');
+        const consultEl = document.querySelector('input[name="consult"]:checked');
+        const data = {
+          prenom:   document.getElementById('prenom').value,
+          nom:      document.getElementById('nom').value,
+          age:      document.getElementById('age').value,
+          email:    document.getElementById('email').value,
+          tel:      document.getElementById('tel').value,
+          zone:     document.getElementById('zone').value,
+          duree:    dureeEl  ? dureeEl.value  : '',
+          consult:  consultEl ? consultEl.value : '',
+          contexte: document.getElementById('contexte').value,
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) { /* ignore */ }
+    }
+
+    // Auto-save on input
+    document.addEventListener('input', saveState);
+    document.addEventListener('change', saveState);
+
+    // ─── NAVIGATION ──────────────────────────────────────────────────────────
+    function showStep(n) {
+      document.querySelectorAll('.step').forEach((s, i) => {
+        s.classList.toggle('active', i + 1 === n);
+      });
+      currentStep = n;
+
+      // Update progress
+      const pct = (n / TOTAL_STEPS) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('stepLabel').textContent = `Étape ${n} sur ${TOTAL_STEPS}`;
+
+      // Update buttons
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      btnPrev.disabled = n === 1;
+
+      if (n === TOTAL_STEPS) {
+        btnNext.textContent = 'Envoyer ma demande';
+        btnNext.className = 'btn btn-submit';
+      } else {
+        btnNext.textContent = 'Suivant';
+        btnNext.className = 'btn btn-primary';
+      }
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep() {
+      if (!validateStep(currentStep)) return;
+      if (currentStep < TOTAL_STEPS) {
+        showStep(currentStep + 1);
+      } else {
+        submitForm();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    // ─── VALIDATION ──────────────────────────────────────────────────────────
+    function setInvalid(id, errId, show) {
+      const el = document.getElementById(id);
+      const errEl = document.getElementById(errId);
+      if (el) el.classList.toggle('invalid', show);
+      if (errEl) errEl.classList.toggle('show', show);
+    }
+
+    function validateEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    function validateStep(n) {
+      let valid = true;
+
+      if (n === 1) {
+        const prenom = document.getElementById('prenom').value.trim();
+        const nom    = document.getElementById('nom').value.trim();
+        const age    = parseInt(document.getElementById('age').value);
+        const email  = document.getElementById('email').value.trim();
+
+        const pOk = prenom.length > 0;
+        const nOk = nom.length > 0;
+        const aOk = !isNaN(age) && age >= 16 && age <= 99;
+        const eOk = validateEmail(email);
+
+        setInvalid('prenom', 'err-prenom', !pOk);
+        setInvalid('nom',    'err-nom',    !nOk);
+        setInvalid('age',    'err-age',    !aOk);
+        setInvalid('email',  'err-email',  !eOk);
+
+        valid = pOk && nOk && aOk && eOk;
+        document.getElementById('banner1').classList.toggle('show', !valid);
+      }
+
+      if (n === 2) {
+        const zone    = document.getElementById('zone').value;
+        const duree   = document.querySelector('input[name="duree"]:checked');
+        const consult = document.querySelector('input[name="consult"]:checked');
+
+        const zOk = zone !== '';
+        const dOk = duree !== null;
+        const cOk = consult !== null;
+
+        setInvalid('zone', 'err-zone', !zOk);
+        document.getElementById('err-duree').classList.toggle('show', !dOk);
+        document.getElementById('err-consult').classList.toggle('show', !cOk);
+
+        valid = zOk && dOk && cOk;
+        document.getElementById('banner2').classList.toggle('show', !valid);
+      }
+
+      if (n === 4) {
+        const confirmed = document.getElementById('confirmCheck').checked;
+        valid = confirmed;
+        document.getElementById('banner4').classList.toggle('show', !valid);
+      }
+
+      return valid;
+    }
+
+    // ─── RADIO SELECTION ─────────────────────────────────────────────────────
+    function selectRadio(labelEl, name, value) {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+        r.closest('.radio-option').classList.remove('selected');
+      });
+      labelEl.classList.add('selected');
+      // Clear error
+      const errEl = document.getElementById(`err-${name}`);
+      if (errEl) errEl.classList.remove('show');
+    }
+
+    // ─── TEST CARD CHECKBOX ───────────────────────────────────────────────────
+    function toggleCheck(event, cardId, labelId) {
+      // Let the checkbox toggle naturally; just sync UI
+      setTimeout(() => {
+        const card = document.getElementById(cardId);
+        const input = card.querySelector('input[type="checkbox"]');
+        const lbl   = document.getElementById(labelId);
+        const check = card.querySelector('.test-check');
+        const isChecked = input.checked;
+
+        card.classList.toggle('checked', isChecked);
+        check.classList.toggle('is-checked', isChecked);
+        lbl.textContent = isChecked ? 'Vidéo filmée ✓' : 'Vidéo filmée';
+      }, 0);
+    }
+
+    // ─── CONFIRM CHECKBOX ─────────────────────────────────────────────────────
+    function toggleConfirm() {
+      setTimeout(() => {
+        const cb  = document.getElementById('confirmCheck');
+        const lbl = document.getElementById('confirmLabel');
+        lbl.classList.toggle('checked', cb.checked);
+        if (cb.checked) {
+          document.getElementById('banner4').classList.remove('show');
+        }
+      }, 0);
+    }
+
+    // ─── COPY EMAIL ───────────────────────────────────────────────────────────
+    function copyEmail(event) {
+      event.stopPropagation();
+      const text = 'movecheck@nicolasroger.fr';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById('copyBtn');
+          btn.textContent = 'Copié !';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = 'Copier';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      }
+    }
+
+    // ─── SUBMIT ───────────────────────────────────────────────────────────────
+    function submitForm() {
+      if (!validateStep(4)) return;
+
+      const prenom   = document.getElementById('prenom').value.trim();
+      const nom      = document.getElementById('nom').value.trim();
+      const age      = document.getElementById('age').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const tel      = document.getElementById('tel').value.trim();
+      const zone     = document.getElementById('zone').options[document.getElementById('zone').selectedIndex].text;
+      const dureeEl  = document.querySelector('input[name="duree"]:checked');
+      const consultEl = document.querySelector('input[name="consult"]:checked');
+      const contexte = document.getElementById('contexte').value.trim();
+
+      const duree   = dureeEl  ? dureeEl.closest('.radio-option').querySelector('span').textContent : 'Non renseigné';
+      const consult = consultEl ? consultEl.closest('.radio-option').querySelector('span').textContent : 'Non renseigné';
+
+      const subject = encodeURIComponent(`MoveCheck - ${prenom} ${nom}`);
+
+      const bodyLines = [
+        `DEMANDE MOVECHECK`,
+        `=================`,
+        ``,
+        `INFORMATIONS PERSONNELLES`,
+        `Prénom : ${prenom}`,
+        `Nom : ${nom}`,
+        `Âge : ${age} ans`,
+        `Email : ${email}`,
+        `Téléphone : ${tel || 'Non renseigné'}`,
+        ``,
+        `SITUATION`,
+        `Zone douloureuse : ${zone}`,
+        `Durée : ${duree}`,
+        `Consultation professionnelle : ${consult}`,
+        `Contexte : ${contexte || 'Non renseigné'}`,
+        ``,
+        `---`,
+        `Formulaire envoyé via MoveCheck le ${new Date().toLocaleDateString('fr-FR')}.`,
+        `Les vidéos seront envoyées séparément à l'adresse movecheck@nicolasroger.fr`,
+      ];
+
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailto = `mailto:nicolasroger16@gmail.com?subject=${subject}&body=${body}`;
+
+      // Open mailto
+      window.location.href = mailto;
+
+      // Show success after short delay
+      setTimeout(() => {
+        showSuccess();
+      }, 600);
+    }
+
+    function showSuccess() {
+      document.getElementById('mainContent').innerHTML = '';
+      document.getElementById('navBar').style.display = 'none';
+
+      const success = document.createElement('div');
+      success.className = 'success-screen active';
+      success.style.padding = '60px 20px';
+      success.innerHTML = `
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2 class="success-title">Demande envoyée !</h2>
+        <p class="success-body">
+          Nous avons bien reçu votre demande. Envoyez maintenant vos vidéos à l'adresse indiquée. Vous recevrez votre programme personnalisé sous 48h.
+        </p>
+        <p class="success-note">Une question ? Répondez simplement à l'email de confirmation.</p>
+      `;
+      document.getElementById('mainContent').appendChild(success);
+
+      // Clear localStorage
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    }
+
+    // ─── INIT ─────────────────────────────────────────────────────────────────
+    loadState();
+    showStep(1);
+  </script>
+
+</body>
+</html>
