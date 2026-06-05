@@ -9,149 +9,1172 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --ink: #1a1612; --ink-soft: #2a2218; --muted: #5a5047; --light: #8a7d70;
-    --cream: #faf8f4; --warm: #f2ede5; --warm-2: #ebe3d4; --divider: #e0d8cc;
-    --gold: #b8860b; --gold-light: #f5e9c0; --green: #3d7a52; --green-light: #e8f3ec;
-    --blue: #2e5e8a; --blue-light: #e6eef6; --red: #8a3d3d; --red-light: #f6e6e6;
+    --ink: #1a1612;
+    --ink-soft: #2a2218;
+    --muted: #5a5047;
+    --light: #8a7d70;
+    --cream: #faf8f4;
+    --warm: #f2ede5;
+    --warm-2: #ebe3d4;
+    --divider: #e0d8cc;
+    --gold: #b8860b;
+    --gold-light: #f5e9c0;
+    --green: #3d7a52;
+    --green-light: #e8f3ec;
+    --blue: #2e5e8a;
+    --blue-light: #e6eef6;
+    --red: #8a3d3d;
+    --red-light: #f6e6e6;
   }
-  html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; background: var(--cream); color: var(--ink); font-size: 14px; line-height: 1.5; }
-  .app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 56px; background: var(--cream); border-bottom: 1px solid var(--divider); flex-shrink: 0; z-index: 100; }
-  .topbar-left { display: flex; align-items: center; gap: 12px; }
-  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; color: var(--muted); }
+
+  html, body {
+    height: 100%;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ─── LAYOUT ─── */
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ─── TOPBAR ─── */
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 56px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--divider);
+    flex-shrink: 0;
+    z-index: 100;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    color: var(--muted);
+  }
+
   .hamburger:hover { background: var(--warm); }
-  .brand { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
-  .brand span { font-style: italic; color: var(--gold); }
-  .body { display: flex; flex: 1; overflow: hidden; }
-  .sidebar { width: 280px; flex-shrink: 0; background: var(--warm); border-right: 1px solid var(--divider); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.25s ease; }
-  .sidebar-header { padding: 16px 14px 12px; border-bottom: 1px solid var(--divider); flex-shrink: 0; }
-  .btn-new { width: 100%; padding: 10px 16px; background: var(--ink); color: var(--cream); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.15s; margin-bottom: 10px; }
+
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+
+  .brand span {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .brand-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 2px;
+  }
+
+  /* ─── BODY ─── */
+
+  .body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ─── SIDEBAR ─── */
+
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: var(--warm);
+    border-right: 1px solid var(--divider);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.25s ease;
+  }
+
+  .sidebar-header {
+    padding: 16px 14px 12px;
+    border-bottom: 1px solid var(--divider);
+    flex-shrink: 0;
+  }
+
+  .btn-new {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition: background 0.15s;
+    margin-bottom: 10px;
+  }
+
   .btn-new:hover { background: var(--ink-soft); }
-  .search-wrap { position: relative; }
-  .search-input { width: 100%; padding: 8px 10px 8px 32px; background: var(--cream); border: 1px solid var(--divider); border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s; }
+
+  .btn-new svg { flex-shrink: 0; }
+
+  .search-wrap {
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px 10px 8px 32px;
+    background: var(--cream);
+    border: 1px solid var(--divider);
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
   .search-input:focus { border-color: var(--gold); }
   .search-input::placeholder { color: var(--light); }
-  .search-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--light); pointer-events: none; }
-  .patient-list { flex: 1; overflow-y: auto; padding: 8px; }
+
+  .search-icon {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light);
+    pointer-events: none;
+  }
+
+  .patient-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 8px;
+  }
+
   .patient-list::-webkit-scrollbar { width: 4px; }
   .patient-list::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
-  .patient-card { padding: 11px 12px; border-radius: 8px; cursor: pointer; border-left: 3px solid transparent; transition: background 0.12s, border-color 0.12s; margin-bottom: 2px; position: relative; }
+
+  .patient-card {
+    padding: 11px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 0.12s, border-color 0.12s;
+    margin-bottom: 2px;
+    position: relative;
+  }
+
   .patient-card:hover { background: var(--warm-2); }
-  .patient-card.active { background: var(--cream); border-left-color: var(--gold); }
-  .patient-card-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px; }
-  .patient-name { font-weight: 600; font-size: 13.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .unread-badge { background: var(--gold); color: #fff; font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; border-radius: 10px; padding: 1px 6px; flex-shrink: 0; line-height: 1.6; }
-  .patient-zone { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .patient-preview { font-size: 12px; color: var(--light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .empty-patients { padding: 32px 16px; text-align: center; color: var(--light); }
+
+  .patient-card.active {
+    background: var(--cream);
+    border-left-color: var(--gold);
+  }
+
+  .patient-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .patient-name {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .unread-badge {
+    background: var(--gold);
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 1px 6px;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  .patient-zone {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .patient-preview {
+    font-size: 12px;
+    color: var(--light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .empty-patients {
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--light);
+  }
+
   .empty-patients p { font-size: 13px; margin-bottom: 12px; }
-  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--cream); }
-  .no-selection { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--light); gap: 12px; }
-  .no-selection-icon { font-size: 48px; opacity: 0.3; }
+
+  /* ─── MAIN PANEL ─── */
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .no-selection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    gap: 12px;
+  }
+
+  .no-selection-icon {
+    font-size: 48px;
+    opacity: 0.3;
+  }
+
   .no-selection p { font-size: 15px; }
-  .patient-header { padding: 16px 24px 14px; border-bottom: 1px solid var(--divider); display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-shrink: 0; flex-wrap: wrap; }
+
+  /* ─── PATIENT HEADER ─── */
+
+  .patient-header {
+    padding: 16px 24px 14px;
+    border-bottom: 1px solid var(--divider);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
   .patient-header-left { flex: 1; min-width: 0; }
-  .patient-full-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .patient-pills { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .pill-code { display: flex; align-items: center; gap: 6px; background: var(--gold-light); border: 1px solid #d4a82a; border-radius: 20px; padding: 3px 10px 3px 12px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink-soft); }
-  .pill-code-actions { display: flex; align-items: center; gap: 2px; }
-  .pill-icon-btn { background: none; border: none; cursor: pointer; padding: 2px 4px; border-radius: 4px; color: var(--muted); display: flex; align-items: center; font-size: 11px; transition: background 0.12s, color 0.12s; }
+
+  .patient-full-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .patient-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pill-code {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold-light);
+    border: 1px solid #d4a82a;
+    border-radius: 20px;
+    padding: 3px 10px 3px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  .pill-code-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .pill-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    transition: background 0.12s, color 0.12s;
+  }
+
   .pill-icon-btn:hover { background: rgba(184,134,11,0.12); color: var(--gold); }
-  .pill-zone { background: var(--green-light); border: 1px solid #a8d4b7; border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--green); font-weight: 500; }
-  .btn-delete { background: none; border: 1px solid var(--divider); border-radius: 7px; padding: 6px 12px; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--red); cursor: pointer; transition: background 0.12s, border-color 0.12s; white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 4px; }
+
+  .pill-zone {
+    background: var(--green-light);
+    border: 1px solid #a8d4b7;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .btn-delete {
+    background: none;
+    border: 1px solid var(--divider);
+    border-radius: 7px;
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--red);
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
   .btn-delete:hover { background: var(--red-light); border-color: #c07070; }
-  .tabs-bar { display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid var(--divider); flex-shrink: 0; }
-  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: color 0.12s, border-color 0.12s; white-space: nowrap; }
+
+  /* ─── TABS ─── */
+
+  .tabs-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--divider);
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s;
+    white-space: nowrap;
+  }
+
   .tab-btn:hover { color: var(--ink); }
-  .tab-btn.active { color: var(--ink); border-bottom-color: var(--gold); }
-  .tab-content { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
-  .tab-pane { display: none; flex: 1; overflow: hidden; flex-direction: column; }
-  .tab-pane.active { display: flex; }
-  .messages-area { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+
+  .tab-btn.active {
+    color: var(--ink);
+    border-bottom-color: var(--gold);
+  }
+
+  .tab-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab-pane {
+    display: none;
+    flex: 1;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .tab-pane.active {
+    display: flex;
+  }
+
+  /* ─── MESSAGES TAB ─── */
+
+  .messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
   .messages-area::-webkit-scrollbar { width: 4px; }
   .messages-area::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
-  .msg-row { display: flex; gap: 10px; align-items: flex-end; }
+
+  .msg-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
   .msg-row.admin { flex-direction: row-reverse; }
-  .msg-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--warm-2); border: 1px solid var(--divider); display: flex; align-items: center; justify-content: center; font-size: 10px; font-family: 'DM Mono', monospace; color: var(--muted); flex-shrink: 0; font-weight: 500; text-transform: uppercase; }
-  .msg-bubble { max-width: 60%; padding: 10px 14px; font-size: 13.5px; line-height: 1.5; word-wrap: break-word; }
-  .msg-row.admin .msg-bubble { background: var(--ink); color: #fff; border-radius: 18px 18px 4px 18px; }
-  .msg-row.patient .msg-bubble { background: var(--warm-2); color: var(--ink); border-radius: 18px 18px 18px 4px; border: 1px solid var(--divider); }
-  .msg-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--light); margin-top: 4px; display: block; }
+
+  .msg-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--warm-2);
+    border: 1px solid var(--divider);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    flex-shrink: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .msg-bubble {
+    max-width: 60%;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+  .msg-row.admin .msg-bubble {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  .msg-row.patient .msg-bubble {
+    background: var(--warm-2);
+    color: var(--ink);
+    border-radius: 18px 18px 18px 4px;
+    border: 1px solid var(--divider);
+  }
+
+  .msg-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    margin-top: 4px;
+    display: block;
+  }
+
   .msg-row.admin .msg-time { text-align: right; }
-  .messages-empty { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--light); font-size: 13px; }
-  .compose-area { padding: 14px 24px 16px; border-top: 1px solid var(--divider); display: flex; gap: 10px; align-items: flex-end; flex-shrink: 0; }
-  .compose-textarea { flex: 1; padding: 10px 12px; background: var(--warm); border: 1px solid var(--divider); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); resize: none; outline: none; min-height: 56px; max-height: 120px; transition: border-color 0.15s; line-height: 1.4; }
+
+  .messages-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 13px;
+  }
+
+  .compose-area {
+    padding: 14px 24px 16px;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .compose-textarea {
+    flex: 1;
+    padding: 10px 12px;
+    background: var(--warm);
+    border: 1px solid var(--divider);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    resize: none;
+    outline: none;
+    min-height: 56px;
+    max-height: 120px;
+    transition: border-color 0.15s;
+    line-height: 1.4;
+  }
+
   .compose-textarea:focus { border-color: var(--gold); background: var(--cream); }
   .compose-textarea::placeholder { color: var(--light); }
-  .btn-send { padding: 10px 18px; background: var(--gold); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; white-space: nowrap; flex-shrink: 0; height: 56px; }
+
+  .btn-send {
+    padding: 10px 18px;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 56px;
+  }
+
   .btn-send:hover { background: #9a6f09; }
-  .videos-area { flex: 1; overflow-y: auto; padding: 20px 24px; }
+
+  /* ─── VIDEOS TAB ─── */
+
+  .videos-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+  }
+
   .videos-area::-webkit-scrollbar { width: 4px; }
   .videos-area::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
-  .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .video-card { background: var(--warm); border: 1px solid var(--divider); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-  .video-card-icon { font-size: 28px; opacity: 0.7; }
-  .video-card-name { font-weight: 600; font-size: 13px; color: var(--ink); }
-  .video-card-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .video-card-info { display: flex; align-items: center; justify-content: space-between; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--light); }
-  .btn-download { width: 100%; padding: 7px 12px; background: none; border: 1px solid var(--divider); border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--muted); cursor: not-allowed; position: relative; }
-  .btn-download:hover::after { content: attr(data-tooltip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; pointer-events: none; font-family: 'DM Sans', sans-serif; z-index: 999; }
-  .videos-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px; color: var(--light); gap: 8px; }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .video-card {
+    background: var(--warm);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .video-card-icon {
+    font-size: 28px;
+    opacity: 0.7;
+  }
+
+  .video-card-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .video-card-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .video-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--light);
+  }
+
+  .btn-download {
+    width: 100%;
+    padding: 7px 12px;
+    background: none;
+    border: 1px solid var(--divider);
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: not-allowed;
+    position: relative;
+  }
+
+  .btn-download:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    font-family: 'DM Sans', sans-serif;
+    z-index: 999;
+  }
+
+  .videos-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--light);
+    gap: 8px;
+  }
+
   .videos-empty-icon { font-size: 40px; opacity: 0.25; }
   .videos-empty p { font-size: 13px; }
-  .infos-area { flex: 1; overflow-y: auto; padding: 24px; }
+
+  /* ─── ANALYSIS LIST (Vidéos tab) ─── */
+
+  .analysis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .analysis-card {
+    background: var(--warm);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  .analysis-card.has-video { border-color: var(--green); }
+
+  .analysis-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .analysis-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light);
+    min-width: 22px;
+  }
+
+  .analysis-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .analysis-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .analysis-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+    margin-top: 1px;
+  }
+
+  .analysis-status {
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .analysis-status.received {
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .analysis-status.pending {
+    background: var(--warm-2);
+    color: var(--light);
+  }
+
+  .analysis-vid-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--divider);
+    background: var(--green-light);
+    flex-wrap: wrap;
+  }
+
+  .analysis-vid-row svg { color: var(--green); flex-shrink: 0; }
+
+  .analysis-vid-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .analysis-vid-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .btn-download-sm {
+    padding: 4px 10px;
+    background: none;
+    border: 1px solid var(--green);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--green);
+    cursor: not-allowed;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .btn-download-sm:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    background: var(--ink);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .analysis-obs {
+    padding: 10px 14px;
+  }
+
+  .analysis-obs-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--light);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 5px;
+  }
+
+  .analysis-obs-text {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding: 7px 10px;
+    border-radius: 0 6px 6px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .analysis-waiting {
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--light);
+    font-style: italic;
+  }
+
+  /* ─── INFOS TAB ─── */
+
+  .infos-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+
   .infos-area::-webkit-scrollbar { width: 4px; }
   .infos-area::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 640px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
   .form-group.full { grid-column: 1 / -1; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-  .form-input, .form-select, .form-textarea { padding: 9px 12px; background: var(--warm); border: 1px solid var(--divider); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s, background 0.15s; }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); background: var(--cream); }
-  .form-textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    padding: 9px 12px;
+    background: var(--warm);
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+    background: var(--cream);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.5;
+  }
+
   .form-select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7d70' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-  .form-created { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--light); margin-top: 4px; }
-  .form-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
-  .btn-save { padding: 9px 20px; background: var(--ink); color: var(--cream); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+
+  .form-created {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--light);
+    margin-top: 4px;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .btn-save {
+    padding: 9px 20px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
   .btn-save:hover { background: var(--ink-soft); }
-  .save-feedback { font-size: 13px; color: var(--green); font-weight: 500; opacity: 0; transition: opacity 0.2s; }
+
+  .save-feedback {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
   .save-feedback.visible { opacity: 1; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,22,18,0.55); backdrop-filter: blur(2px); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
+
+  /* ─── MODAL ─── */
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 22, 18, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
   .modal-overlay.open { display: flex; }
-  .modal-card { background: var(--cream); border-radius: 14px; padding: 28px 28px 24px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(26,22,18,0.2); }
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
-  .modal-close { position: absolute; top: 18px; right: 18px; background: none; border: none; cursor: pointer; color: var(--muted); padding: 4px; border-radius: 6px; font-size: 18px; line-height: 1; transition: background 0.12s; }
+
+  .modal-card {
+    background: var(--cream);
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(26,22,18,0.2);
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    padding: 4px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1;
+    transition: background 0.12s;
+  }
+
   .modal-close:hover { background: var(--warm); }
-  .modal-form .form-grid { max-width: none; }
-  .btn-submit { width: 100%; padding: 11px; background: var(--ink); color: var(--cream); border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 20px; transition: background 0.15s; }
+
+  .modal-form .form-grid {
+    max-width: none;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 11px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.15s;
+  }
+
   .btn-submit:hover { background: var(--ink-soft); }
-  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--gold-light); border: 1px solid #d4a82a; border-radius: 10px; padding: 12px 18px; font-size: 13px; font-weight: 500; color: var(--ink); box-shadow: 0 4px 20px rgba(26,22,18,0.12); z-index: 1000; transform: translateY(80px); opacity: 0; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s; max-width: 320px; pointer-events: none; }
-  .toast.show { transform: translateY(0); opacity: 1; }
-  .toast-code { font-family: 'DM Mono', monospace; color: var(--gold); font-weight: 600; }
-  .confirm-overlay { display: none; position: fixed; inset: 0; background: rgba(26,22,18,0.5); z-index: 600; align-items: center; justify-content: center; padding: 20px; }
+
+  /* ─── TOAST ─── */
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--gold-light);
+    border: 1px solid #d4a82a;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    box-shadow: 0 4px 20px rgba(26,22,18,0.12);
+    z-index: 1000;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s;
+    max-width: 320px;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .toast-code {
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ─── CONFIRM DIALOG ─── */
+
+  .confirm-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,22,18,0.5);
+    z-index: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
   .confirm-overlay.open { display: flex; }
-  .confirm-card { background: var(--cream); border-radius: 12px; padding: 24px; max-width: 360px; width: 100%; box-shadow: 0 12px 40px rgba(26,22,18,0.18); }
-  .confirm-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
-  .confirm-body { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
-  .confirm-actions { display: flex; gap: 10px; justify-content: flex-end; }
-  .btn-cancel { padding: 8px 16px; background: none; border: 1px solid var(--divider); border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); cursor: pointer; transition: background 0.12s; }
+
+  .confirm-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 12px 40px rgba(26,22,18,0.18);
+  }
+
+  .confirm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .confirm-body {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .btn-cancel {
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid var(--divider);
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+
   .btn-cancel:hover { background: var(--warm); }
-  .btn-confirm-del { padding: 8px 16px; background: var(--red); color: #fff; border: none; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+
+  .btn-confirm-del {
+    padding: 8px 16px;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
   .btn-confirm-del:hover { background: #7a2d2d; }
-  .code-dropdown { position: absolute; top: calc(100% + 6px); left: 0; background: var(--cream); border: 1px solid var(--divider); border-radius: 9px; box-shadow: 0 6px 24px rgba(26,22,18,0.12); z-index: 200; min-width: 200px; overflow: hidden; display: none; }
+
+  /* ─── COPY DROPDOWN ─── */
+
+  .code-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: var(--cream);
+    border: 1px solid var(--divider);
+    border-radius: 9px;
+    box-shadow: 0 6px 24px rgba(26,22,18,0.12);
+    z-index: 200;
+    min-width: 200px;
+    overflow: hidden;
+    display: none;
+  }
+
   .code-dropdown.open { display: block; }
-  .code-dropdown-item { padding: 10px 14px; font-size: 13px; color: var(--ink); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.1s; }
+
+  .code-dropdown-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.1s;
+  }
+
   .code-dropdown-item:hover { background: var(--warm); }
-  .pill-code-wrapper { position: relative; }
-  .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(26,22,18,0.4); z-index: 200; }
+
+  .pill-code-wrapper {
+    position: relative;
+  }
+
+  /* ─── MOBILE ─── */
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,22,18,0.4);
+    z-index: 200;
+  }
+
   @media (max-width: 768px) {
     .hamburger { display: flex; }
-    .sidebar { position: fixed; top: 56px; left: 0; bottom: 0; z-index: 300; transform: translateX(-100%); width: 280px; box-shadow: 4px 0 20px rgba(26,22,18,0.1); }
-    .sidebar.open { transform: translateX(0); }
+
+    .sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      bottom: 0;
+      z-index: 300;
+      transform: translateX(-100%);
+      width: 280px;
+      box-shadow: 4px 0 20px rgba(26,22,18,0.1);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
     .sidebar-backdrop.open { display: block; }
-    .videos-grid { grid-template-columns: repeat(2, 1fr); }
-    .form-grid { grid-template-columns: 1fr; }
+
+    .videos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
     .patient-header { padding: 12px 16px; }
     .tabs-bar { padding: 0 16px; }
     .messages-area { padding: 16px; }
@@ -159,43 +1182,70 @@
     .videos-area { padding: 16px; }
     .infos-area { padding: 16px; }
   }
+
   @media (max-width: 480px) {
-    .videos-grid { grid-template-columns: 1fr; }
+    .videos-grid {
+      grid-template-columns: 1fr;
+    }
+
     .msg-bubble { max-width: 80%; }
   }
 </style>
 </head>
 <body>
+
 <div class="app">
+
+  <!-- TOPBAR -->
   <header class="topbar">
     <div class="topbar-left">
       <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 5h15M2.5 10h15M2.5 15h15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M2.5 5h15M2.5 10h15M2.5 15h15" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
       </button>
-      <div><div class="brand">Move<span>Check</span> Pro</div></div>
+      <div>
+        <div class="brand">Move<span>Check</span> Pro</div>
+      </div>
     </div>
   </header>
+
   <div class="body">
+
+    <!-- SIDEBAR BACKDROP (mobile) -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <button class="btn-new" id="btnNewPatient">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
           Nouveau patient
         </button>
         <div class="search-wrap">
-          <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M10 10l2.5 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
           <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un patient...">
         </div>
       </div>
       <div class="patient-list" id="patientList"></div>
     </aside>
+
+    <!-- MAIN PANEL -->
     <main class="main" id="mainPanel">
       <div class="no-selection" id="noSelection">
-        <div class="no-selection-icon">🫀</div>
+        <div class="no-selection-icon">�ae</div>
         <p>Sélectionne un patient pour commencer</p>
       </div>
+
+      <!-- PATIENT VIEW (hidden until selected) -->
       <div id="patientView" style="display:none; flex-direction:column; flex:1; overflow:hidden;">
+
+        <!-- Patient header -->
         <div class="patient-header">
           <div class="patient-header-left">
             <h2 class="patient-full-name" id="patientFullName"></h2>
@@ -205,7 +1255,9 @@
                   <span id="patientCodeText"></span>
                   <div class="pill-code-actions">
                     <button class="pill-icon-btn" id="btnCodeActions" title="Actions" aria-expanded="false">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 6.5h10M2 9.5h10M2 3.5h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 6.5h10M2 9.5h10M2 3.5h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                      </svg>
                     </button>
                   </div>
                   <div class="code-dropdown" id="codeDropdown">
@@ -225,12 +1277,18 @@
           </div>
           <button class="btn-delete" id="btnDeletePatient">Supprimer le dossier</button>
         </div>
+
+        <!-- Tabs bar -->
         <div class="tabs-bar">
           <button class="tab-btn active" data-tab="messages">Messages</button>
           <button class="tab-btn" data-tab="videos">Vidéos</button>
           <button class="tab-btn" data-tab="infos">Infos</button>
         </div>
+
+        <!-- Tab contents -->
         <div class="tab-content">
+
+          <!-- MESSAGES -->
           <div class="tab-pane active" id="tab-messages">
             <div class="messages-area" id="messagesArea"></div>
             <div class="compose-area">
@@ -238,17 +1296,33 @@
               <button class="btn-send" id="btnSend">Envoyer</button>
             </div>
           </div>
+
+          <!-- VIDEOS -->
           <div class="tab-pane" id="tab-videos">
             <div class="videos-area" id="videosArea"></div>
           </div>
+
+          <!-- INFOS -->
           <div class="tab-pane" id="tab-infos">
             <div class="infos-area">
               <form class="modal-form" id="infosForm" onsubmit="return false;">
                 <div class="form-grid">
-                  <div class="form-group"><label class="form-label">Prénom</label><input type="text" class="form-input" id="infoFirstName" required></div>
-                  <div class="form-group"><label class="form-label">Nom</label><input type="text" class="form-input" id="infoLastName" required></div>
-                  <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="infoEmail"></div>
-                  <div class="form-group"><label class="form-label">Téléphone</label><input type="tel" class="form-input" id="infoPhone" placeholder="+33 6 ..."></div>
+                  <div class="form-group">
+                    <label class="form-label">Prénom</label>
+                    <input type="text" class="form-input" id="infoFirstName" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Nom</label>
+                    <input type="text" class="form-input" id="infoLastName" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="infoEmail">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Téléphone</label>
+                    <input type="tel" class="form-input" id="infoPhone" placeholder="+33 6 ...">
+                  </div>
                   <div class="form-group">
                     <label class="form-label">Zone principale</label>
                     <select class="form-select" id="infoZone">
@@ -261,7 +1335,10 @@
                       <option value="Prévention/Performance">Prévention / Performance</option>
                     </select>
                   </div>
-                  <div class="form-group full"><label class="form-label">Notes privées</label><textarea class="form-textarea" id="infoNotes" placeholder="Observations, remarques..."></textarea></div>
+                  <div class="form-group full">
+                    <label class="form-label">Notes privées</label>
+                    <textarea class="form-textarea" id="infoNotes" placeholder="Observations, remarques..."></textarea>
+                  </div>
                 </div>
                 <div class="form-actions">
                   <button type="submit" class="btn-save" id="btnSaveInfos">Enregistrer les modifications</button>
@@ -271,21 +1348,40 @@
               </form>
             </div>
           </div>
-        </div>
-      </div>
+
+        </div><!-- /tab-content -->
+
+      </div><!-- /patientView -->
+
     </main>
-  </div>
-</div>
+
+  </div><!-- /body -->
+
+</div><!-- /app -->
+
+<!-- MODAL: Nouveau patient -->
 <div class="modal-overlay" id="modalNew">
   <div class="modal-card">
     <button class="modal-close" id="btnCloseModal" aria-label="Fermer">&times;</button>
     <h2 class="modal-title">Nouveau dossier patient</h2>
     <form class="modal-form" id="newPatientForm" onsubmit="return false;">
       <div class="form-grid">
-        <div class="form-group"><label class="form-label">Prénom <span style="color:var(--red)">*</span></label><input type="text" class="form-input" id="newFirstName" required autocomplete="given-name"></div>
-        <div class="form-group"><label class="form-label">Nom <span style="color:var(--red)">*</span></label><input type="text" class="form-input" id="newLastName" required autocomplete="family-name"></div>
-        <div class="form-group full"><label class="form-label">Email <span style="color:var(--red)">*</span></label><input type="email" class="form-input" id="newEmail" required autocomplete="email"></div>
-        <div class="form-group full"><label class="form-label">Téléphone</label><input type="tel" class="form-input" id="newPhone" placeholder="+33 6 ..." autocomplete="tel"></div>
+        <div class="form-group">
+          <label class="form-label">Prénom <span style="color:var(--red)">*</span></label>
+          <input type="text" class="form-input" id="newFirstName" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nom <span style="color:var(--red)">*</span></label>
+          <input type="text" class="form-input" id="newLastName" required autocomplete="family-name">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Email <span style="color:var(--red)">*</span></label>
+          <input type="email" class="form-input" id="newEmail" required autocomplete="email">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Téléphone</label>
+          <input type="tel" class="form-input" id="newPhone" placeholder="+33 6 ..." autocomplete="tel">
+        </div>
         <div class="form-group full">
           <label class="form-label">Zone principale</label>
           <select class="form-select" id="newZone">
@@ -298,12 +1394,17 @@
             <option value="Prévention/Performance">Prévention / Performance</option>
           </select>
         </div>
-        <div class="form-group full"><label class="form-label">Notes privées</label><textarea class="form-textarea" id="newNotes" placeholder="Observations, remarques..."></textarea></div>
+        <div class="form-group full">
+          <label class="form-label">Notes privées</label>
+          <textarea class="form-textarea" id="newNotes" placeholder="Observations, remarques..."></textarea>
+        </div>
       </div>
       <button type="submit" class="btn-submit" id="btnSubmitNew">Créer le dossier</button>
     </form>
   </div>
 </div>
+
+<!-- CONFIRM: Suppression patient -->
 <div class="confirm-overlay" id="confirmOverlay">
   <div class="confirm-card">
     <h3 class="confirm-title">Supprimer ce dossier ?</h3>
@@ -314,214 +1415,603 @@
     </div>
   </div>
 </div>
+
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
+
 <script>
-  function getData() { return JSON.parse(localStorage.getItem('movecheck_pro') || '{"patients"}'); }
-  function getData() { return JSON.parse(localStorage.getItem('movecheck_pro') || '{"patients":{}}'); }
-  function saveData(d) { localStorage.setItem('movecheck_pro', JSON.stringify(d)); }
-  function genId() { return Math.random().toString(36).slice(2, 9); }
-  function genCode() { return 'MC-' + Math.random().toString(36).slice(2, 6).toUpperCase(); }
-  function formatDate(iso) { return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }); }
-  function formatTime(iso) { return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }); }
-  function formatDatetime(iso) { return formatDate(iso) + ' à ' + formatTime(iso); }
-  function formatSize(bytes) { if (bytes >= 1e9) return (bytes/1e9).toFixed(1)+' Go'; if (bytes >= 1e6) return (bytes/1e6).toFixed(1)+' Mo'; if (bytes >= 1e3) return (bytes/1e3).toFixed(0)+' Ko'; return bytes+' o'; }
-  function initials(p) { return ((p.firstName||'?')[0]+(p.lastName||'?')[0]).toUpperCase(); }
-  function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  // ─── HELPERS ──────────────────────────────────────────────────────
+
+  function getData() {
+    return JSON.parse(localStorage.getItem('movecheck_pro') || '{"patients":{}}');
+  }
+  function saveData(d) {
+    localStorage.setItem('movecheck_pro', JSON.stringify(d));
+  }
+  function genId() {
+    return Math.random().toString(36).slice(2, 9);
+  }
+  function genCode() {
+    return 'MC-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+  }
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+  function formatTime(iso) {
+    return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+  function formatDatetime(iso) {
+    return formatDate(iso) + ' à ' + formatTime(iso);
+  }
+  function formatSize(bytes) {
+    if (bytes >= 1e9) return (bytes / 1e9).toFixed(1) + ' Go';
+    if (bytes >= 1e6) return (bytes / 1e6).toFixed(1) + ' Mo';
+    if (bytes >= 1e3) return (bytes / 1e3).toFixed(0) + ' Ko';
+    return bytes + ' o';
+  }
+  function initials(p) {
+    return ((p.firstName || '?')[0] + (p.lastName || '?')[0]).toUpperCase();
+  }
+  function esc(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ─── EXERCICES SENTINELLES ─────────────────────────
+
+  const TESTS = [
+    { id: 1, name: "L'Overhead Squat",            subtitle: 'Le scanner global'     },
+    { id: 2, name: "L'Enroulement Vertébral",     subtitle: 'Chaîne postérieure'    },
+    { id: 3, name: "Le Test d'Apley",             subtitle: "Mobilité d'épaule"     },
+    { id: 4, name: 'La Rotation Thoracique Assise', subtitle: 'Dissociation'        },
+    { id: 5, name: 'La Fente Avant',              subtitle: 'Hanches et équilibre'  }
+  ];
+
+  // ─── SEED DATA ─────────────────────────────────────────────────────
 
   function seedIfEmpty() {
     const d = getData();
     if (Object.keys(d.patients).length > 0) return;
+
     const now = new Date();
-    const d1 = new Date(now - 86400*3*1000).toISOString();
-    const d2 = new Date(now - 86400*2*1000).toISOString();
-    const d3 = new Date(now - 3600*5*1000).toISOString();
-    const d4 = new Date(now - 3600*1*1000).toISOString();
-    d.patients['P001'] = { id:'P001', code:'MC-ROSA', firstName:'Marie', lastName:'Laurent', email:'marie.laurent@exemple.fr', phone:'+33 6 12 34 56 78', zone:'Épaules', notes:'Patiente très assidue. Progression notable sur la flexion antérieure.', createdAt:d1,
-      messages:[
-        {id:'msg1',from:'admin',content:'Bonjour Marie, j\'ai bien reçu votre dossier. Voici le protocole d\'exercices pour cette semaine.',timestamp:d1,read:true},
-        {id:'msg2',from:'patient',content:'Bonjour, merci ! J\'ai fait les exercices ce matin. J\'ai une légère gêne lors de la rotation externe, est-ce normal ?',timestamp:d2,read:false},
-        {id:'msg3',from:'admin',content:'C\'est tout à fait normal pour ce stade de la rééducation. Continuez à ce rythme.',timestamp:d3,read:true}
+    const d1 = new Date(now - 86400 * 3 * 1000).toISOString();
+    const d2 = new Date(now - 86400 * 2 * 1000).toISOString();
+    const d3 = new Date(now - 3600 * 5 * 1000).toISOString();
+    const d4 = new Date(now - 3600 * 1 * 1000).toISOString();
+
+    d.patients['P001'] = {
+      id: 'P001',
+      code: 'MC-ROSA',
+      firstName: 'Marie',
+      lastName: 'Laurent',
+      email: 'marie.laurent@exemple.fr',
+      phone: '+33 6 12 34 56 78',
+      zone: 'Épaules',
+      notes: 'Patiente très assidue. Progression notable sur la flexion antérieure.',
+      createdAt: d1,
+      messages: [
+        {
+          id: 'msg1',
+          from: 'admin',
+          content: 'Bonjour Marie, j\'ai bien reçu votre dossier. Voici le protocole d\'exercices pour cette semaine. N\'hésitez pas à m\'envoyer une vidéo de vos mouvements.',
+          timestamp: d1,
+          read: true
+        },
+        {
+          id: 'msg2',
+          from: 'patient',
+          content: 'Bonjour, merci ! J\'ai fait les exercices ce matin. J\'ai une légère gêne lors de la rotation externe, est-ce normal ?',
+          timestamp: d2,
+          read: false
+        },
+        {
+          id: 'msg3',
+          from: 'admin',
+          content: 'C\'est tout à fait normal pour ce stade de la rééducation. Continuez à ce rythme, nous réévaluerons lors de la prochaine séance.',
+          timestamp: d3,
+          read: true
+        }
       ],
-      videos:[
-        {id:'vid1',testName:'Abduction épaule droite',fileName:'abduction_epaule_marie.mp4',fileSize:28450000,uploadedAt:d2,blobUrl:null},
-        {id:'vid2',testName:'Rotation externe',fileName:'rotation_ext_marie.mp4',fileSize:15220000,uploadedAt:d3,blobUrl:null}
+      videos: [
+        {
+          id: 'vid1',
+          testName: 'Abduction épaule droite',
+          fileName: 'abduction_epaule_marie_20240601.mp4',
+          fileSize: 28450000,
+          uploadedAt: d2,
+          blobUrl: null
+        },
+        {
+          id: 'vid2',
+          testName: 'Rotation externe',
+          fileName: 'rotation_ext_marie_20240602.mp4',
+          fileSize: 15220000,
+          uploadedAt: d3,
+          blobUrl: null
+        }
       ]
     };
-    d.patients['P002'] = { id:'P002', code:'MC-BOLT', firstName:'Thomas', lastName:'Girard', email:'thomas.girard@exemple.fr', phone:'+33 7 98 76 54 32', zone:'Dos/Lombaires', notes:'', createdAt:d2,
-      messages:[{id:'msg4',from:'admin',content:'Bonjour Thomas, bienvenue sur MoveCheck. Enregistrez une vidéo de votre flexion lombaire.',timestamp:d4,read:true}],
-      videos:[]
+
+    d.patients['P002'] = {
+      id: 'P002',
+      code: 'MC-BOLT',
+      firstName: 'Thomas',
+      lastName: 'Girard',
+      email: 'thomas.girard@exemple.fr',
+      phone: '+33 7 98 76 54 32',
+      zone: 'Dos/Lombaires',
+      notes: '',
+      createdAt: d2,
+      messages: [
+        {
+          id: 'msg4',
+          from: 'admin',
+          content: 'Bonjour Thomas, bienvenue sur MoveCheck. Je vous invite à enregistrer une vidéo de votre flexion lombaire ce soir, si possible à plat dos sur un tapis ferme.',
+          timestamp: d4,
+          read: true
+        }
+      ],
+      videos: []
     };
+
     saveData(d);
   }
 
-  let selectedPatientId = null, activeTab = 'messages', searchQuery = '', deleteTargetId = null;
-  let toastTimer = null;
+  // ─── STATE ──────────────────────────────────────────────────────────
 
+  let selectedPatientId = null;
+  let activeTab = 'messages';
+  let searchQuery = '';
+  let deleteTargetId = null;
+
+  // ─── TOAST ──────────────────────────────────────────────────────────
+
+  let toastTimer = null;
   function showToast(html) {
-    const t = document.getElementById('toast'); t.innerHTML = html; t.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 5000);
+    const t = document.getElementById('toast');
+    t.innerHTML = html;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 5000);
   }
 
-  function getLastMessage(p) { const m = p.messages||[]; return m.length ? m[m.length-1] : null; }
-  function getUnreadCount(p) { return (p.messages||[]).filter(m => m.from==='patient' && !m.read).length; }
+  // ─── SIDEBAR RENDERING ─────────────────────────────────────────────
+
+  function getLastMessage(patient) {
+    const msgs = patient.messages || [];
+    if (!msgs.length) return null;
+    return msgs[msgs.length - 1];
+  }
+
+  function getUnreadCount(patient) {
+    return (patient.messages || []).filter(m => m.from === 'patient' && !m.read).length;
+  }
 
   function renderSidebar() {
-    const d = getData(), list = document.getElementById('patientList'), query = searchQuery.toLowerCase();
-    const patients = Object.values(d.patients).filter(p => !query || (p.firstName+' '+p.lastName).toLowerCase().includes(query)||(p.code||'').toLowerCase().includes(query)||(p.zone||'').toLowerCase().includes(query));
-    if (!patients.length) { list.innerHTML = '<div class="empty-patients"><p>Aucun patient trouvé</p></div>'; return; }
+    const d = getData();
+    const list = document.getElementById('patientList');
+    const query = searchQuery.toLowerCase();
+
+    const patients = Object.values(d.patients).filter(p => {
+      if (!query) return true;
+      return (
+        (p.firstName + ' ' + p.lastName).toLowerCase().includes(query) ||
+        (p.code || '').toLowerCase().includes(query) ||
+        (p.zone || '').toLowerCase().includes(query)
+      );
+    });
+
+    if (!patients.length) {
+      list.innerHTML = `
+        <div class="empty-patients">
+          <p>Aucun patient trouvé</p>
+          <button class="btn-new" onclick="openModal()" style="padding:8px 14px; font-size:12px; width:auto; display:inline-flex;">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Créer un patient
+          </button>
+        </div>
+      `;
+      return;
+    }
+
     list.innerHTML = patients.map(p => {
-      const lastMsg = getLastMessage(p), unread = getUnreadCount(p);
-      const preview = lastMsg ? esc(lastMsg.content.substring(0,55)+(lastMsg.content.length>55?'...':'')) : '<span style="color:var(--light);font-style:italic;">Aucun message</span>';
-      return `<div class="patient-card ${p.id===selectedPatientId?'active':''}" data-pid="${p.id}" onclick="selectPatient('${p.id}')">
-        <div class="patient-card-top"><span class="patient-name">${esc(p.firstName)} ${esc(p.lastName)}</span>${unread>0?`<span class="unread-badge">${unread}</span>`:''}</div>
-        <div class="patient-zone">${esc(p.zone)}</div><div class="patient-preview">${preview}</div></div>`;
+      const lastMsg = getLastMessage(p);
+      const unread = getUnreadCount(p);
+      const preview = lastMsg
+        ? esc(lastMsg.content.substring(0, 55) + (lastMsg.content.length > 55 ? '...' : ''))
+        : '<span style="color:var(--light);font-style:italic;">Aucun message</span>';
+      const isActive = p.id === selectedPatientId;
+      return `
+        <div class="patient-card ${isActive ? 'active' : ''}" data-pid="${p.id}" onclick="selectPatient('${p.id}')">
+          <div class="patient-card-top">
+            <span class="patient-name">${esc(p.firstName)} ${esc(p.lastName)}</span>
+            ${unread > 0 ? `<span class="unread-badge">${unread}</span>` : ''}
+          </div>
+          <div class="patient-zone">${esc(p.zone)}</div>
+          <div class="patient-preview">${preview}</div>
+        </div>
+      `;
     }).join('');
   }
 
+  // ─── MAIN PANEL RENDERING ──────────────────────────────────────────
+
   function renderPatientView() {
-    const d = getData(), p = d.patients[selectedPatientId]; if (!p) return;
-    document.getElementById('patientFullName').textContent = p.firstName+' '+p.lastName;
+    const d = getData();
+    const p = d.patients[selectedPatientId];
+    if (!p) return;
+
+    // Header
+    document.getElementById('patientFullName').textContent = p.firstName + ' ' + p.lastName;
     document.getElementById('patientCodeText').textContent = p.code;
     document.getElementById('patientZonePill').textContent = p.zone;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab===activeTab));
-    document.querySelectorAll('.tab-pane').forEach(pn => pn.classList.toggle('active', pn.id==='tab-'+activeTab));
-    if (activeTab==='messages') renderMessages(p);
-    if (activeTab==='videos') renderVideos(p);
-    if (activeTab==='infos') renderInfos(p);
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === activeTab);
+    });
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.classList.toggle('active', pane.id === 'tab-' + activeTab);
+    });
+
+    if (activeTab === 'messages') renderMessages(p);
+    if (activeTab === 'videos') renderVideos(p);
+    if (activeTab === 'infos') renderInfos(p);
   }
 
   function renderMessages(p) {
-    const area = document.getElementById('messagesArea'), msgs = p.messages||[];
-    if (!msgs.length) { area.innerHTML = '<div class="messages-empty">Aucun message.</div>'; return; }
+    const area = document.getElementById('messagesArea');
+    const msgs = p.messages || [];
+
+    if (!msgs.length) {
+      area.innerHTML = '<div class="messages-empty">Aucun message pour ce patient.</div>';
+      return;
+    }
+
     area.innerHTML = msgs.map(m => {
-      const isAdmin = m.from==='admin';
-      return `<div class="msg-row ${isAdmin?'admin':'patient'}"><div class="msg-avatar">${isAdmin?'Moi':initials(p)}</div><div><div class="msg-bubble">${esc(m.content).replace(/\n/g,'<br>')}</div><span class="msg-time">${formatDatetime(m.timestamp)}</span></div></div>`;
+      const isAdmin = m.from === 'admin';
+      const avatarLabel = isAdmin ? 'Moi' : initials(p);
+      return `
+        <div class="msg-row ${isAdmin ? 'admin' : 'patient'}">
+          <div class="msg-avatar">${avatarLabel}</div>
+          <div>
+            <div class="msg-bubble">${esc(m.content).replace(/\n/g, '<br>')}</div>
+            <span class="msg-time">${formatDatetime(m.timestamp)}</span>
+          </div>
+        </div>
+      `;
     }).join('');
+
     area.scrollTop = area.scrollHeight;
   }
 
   function renderVideos(p) {
-    const area = document.getElementById('videosArea'), vids = p.videos||[];
-    if (!vids.length) { area.innerHTML = '<div class="videos-empty"><div class="videos-empty-icon">🎥</div><p>Aucune vidéo reçue</p></div>'; return; }
-    area.innerHTML = `<div class="videos-grid">${vids.map(v=>`<div class="video-card"><div class="video-card-icon">🎬</div><div class="video-card-name">${esc(v.testName)}</div><div class="video-card-meta" title="${esc(v.fileName)}">${esc(v.fileName)}</div><div class="video-card-info"><span>${formatSize(v.fileSize)}</span><span>${formatDate(v.uploadedAt)}</span></div><button class="btn-download" data-tooltip="Disponible en version complète">Télécharger</button></div>`).join('')}</div>`;
+    const area = document.getElementById('videosArea');
+    const vids = p.videos || [];
+    const obs  = p.observations || {};
+
+    area.innerHTML = `
+      <div class="analysis-list">
+        ${TESTS.map(test => {
+          const vid    = vids.find(v => v.testName === test.name);
+          const obsText = obs[test.id] || '';
+          const hasVid = !!vid;
+          const hasObs = !!obsText.trim();
+          return `
+            <div class="analysis-card${hasVid ? ' has-video' : ''}">
+              <div class="analysis-card-header">
+                <div class="analysis-num">${String(test.id).padStart(2, '0')}</div>
+                <div class="analysis-info">
+                  <div class="analysis-name">${esc(test.name)}</div>
+                  <div class="analysis-sub">${esc(test.subtitle)}</div>
+                </div>
+                <div class="analysis-status ${hasVid ? 'received' : 'pending'}">
+                  ${hasVid ? '✓ Vidéo reçue' : 'En attente'}
+                </div>
+              </div>
+              ${hasVid ? `
+                <div class="analysis-vid-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                  <span class="analysis-vid-name">${esc(vid.fileName)}</span>
+                  <span class="analysis-vid-meta">${formatSize(vid.fileSize)} · ${formatDate(vid.uploadedAt)}</span>
+                  <button class="btn-download-sm" data-tooltip="Disponible en version complète">Télécharger</button>
+                </div>
+              ` : ''}
+              ${hasObs ? `
+                <div class="analysis-obs">
+                  <div class="analysis-obs-label">Observations patient</div>
+                  <div class="analysis-obs-text">${esc(obsText)}</div>
+                </div>
+              ` : (!hasVid ? `<div class="analysis-waiting">Aucun fichier ni observation pour ce test.</div>` : '')}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
   }
 
   function renderInfos(p) {
-    document.getElementById('infoFirstName').value = p.firstName||'';
-    document.getElementById('infoLastName').value = p.lastName||'';
-    document.getElementById('infoEmail').value = p.email||'';
-    document.getElementById('infoPhone').value = p.phone||'';
-    document.getElementById('infoZone').value = p.zone||'Dos/Lombaires';
-    document.getElementById('infoNotes').value = p.notes||'';
-    document.getElementById('infoCreated').textContent = 'Dossier créé le '+formatDate(p.createdAt);
+    document.getElementById('infoFirstName').value = p.firstName || '';
+    document.getElementById('infoLastName').value = p.lastName || '';
+    document.getElementById('infoEmail').value = p.email || '';
+    document.getElementById('infoPhone').value = p.phone || '';
+    document.getElementById('infoZone').value = p.zone || 'Dos/Lombaires';
+    document.getElementById('infoNotes').value = p.notes || '';
+    document.getElementById('infoCreated').textContent = 'Dossier créé le ' + formatDate(p.createdAt);
     document.getElementById('saveFeedback').classList.remove('visible');
   }
 
   function selectPatient(id) {
-    const d = getData(); if (!d.patients[id]) return;
+    const d = getData();
+    if (!d.patients[id]) return;
+
+    // Mark patient messages as read
     const p = d.patients[id];
-    (p.messages||[]).forEach(m => { if (m.from==='patient') m.read = true; });
+    (p.messages || []).forEach(m => { if (m.from === 'patient') m.read = true; });
     saveData(d);
-    selectedPatientId = id; activeTab = 'messages';
+
+    selectedPatientId = id;
+    activeTab = 'messages';
+
     document.getElementById('noSelection').style.display = 'none';
-    const pv = document.getElementById('patientView'); pv.style.display = 'flex';
-    renderPatientView(); renderSidebar(); closeSidebar();
+    const pv = document.getElementById('patientView');
+    pv.style.display = 'flex';
+
+    renderPatientView();
+    renderSidebar();
+
+    // Close mobile sidebar
+    closeSidebar();
   }
 
+  // ─── TABS ──────────────────────────────────────────────────────────
+
   document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => { if (!selectedPatientId) return; activeTab = btn.dataset.tab; renderPatientView(); });
+    btn.addEventListener('click', () => {
+      if (!selectedPatientId) return;
+      activeTab = btn.dataset.tab;
+      renderPatientView();
+    });
   });
 
+  // ─── MESSAGES: SEND ──────────────────────────────────────────────
+
   function sendMessage() {
-    const ta = document.getElementById('composeTextarea'), content = ta.value.trim();
+    const ta = document.getElementById('composeTextarea');
+    const content = ta.value.trim();
     if (!content || !selectedPatientId) return;
-    const d = getData(), p = d.patients[selectedPatientId]; if (!p) return;
-    p.messages.push({id:genId(),from:'admin',content,timestamp:new Date().toISOString(),read:true});
-    saveData(d); ta.value = ''; renderMessages(p); renderSidebar();
+
+    const d = getData();
+    const p = d.patients[selectedPatientId];
+    if (!p) return;
+
+    p.messages.push({
+      id: genId(),
+      from: 'admin',
+      content: content,
+      timestamp: new Date().toISOString(),
+      read: true
+    });
+    saveData(d);
+
+    ta.value = '';
+    renderMessages(p);
+    renderSidebar();
   }
 
   document.getElementById('btnSend').addEventListener('click', sendMessage);
-  document.getElementById('composeTextarea').addEventListener('keydown', e => { if (e.key==='Enter'&&(e.ctrlKey||e.metaKey)) sendMessage(); });
+  document.getElementById('composeTextarea').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) sendMessage();
+  });
+
+  // ─── INFOS: SAVE ──────────────────────────────────────────────
 
   document.getElementById('infosForm').addEventListener('submit', () => {
     if (!selectedPatientId) return;
-    const d = getData(), p = d.patients[selectedPatientId]; if (!p) return;
+    const d = getData();
+    const p = d.patients[selectedPatientId];
+    if (!p) return;
+
     p.firstName = document.getElementById('infoFirstName').value.trim();
-    p.lastName = document.getElementById('infoLastName').value.trim();
-    p.email = document.getElementById('infoEmail').value.trim();
-    p.phone = document.getElementById('infoPhone').value.trim();
-    p.zone = document.getElementById('infoZone').value;
-    p.notes = document.getElementById('infoNotes').value.trim();
+    p.lastName  = document.getElementById('infoLastName').value.trim();
+    p.email     = document.getElementById('infoEmail').value.trim();
+    p.phone     = document.getElementById('infoPhone').value.trim();
+    p.zone      = document.getElementById('infoZone').value;
+    p.notes     = document.getElementById('infoNotes').value.trim();
     saveData(d);
-    document.getElementById('patientFullName').textContent = p.firstName+' '+p.lastName;
+
+    // Update header
+    document.getElementById('patientFullName').textContent = p.firstName + ' ' + p.lastName;
     document.getElementById('patientZonePill').textContent = p.zone;
     renderSidebar();
-    const fb = document.getElementById('saveFeedback'); fb.classList.add('visible'); setTimeout(() => fb.classList.remove('visible'), 2200);
+
+    const fb = document.getElementById('saveFeedback');
+    fb.classList.add('visible');
+    setTimeout(() => fb.classList.remove('visible'), 2200);
   });
 
-  function openModal() { document.getElementById('modalNew').classList.add('open'); document.getElementById('newPatientForm').reset(); document.getElementById('newFirstName').focus(); }
-  function closeModal() { document.getElementById('modalNew').classList.remove('open'); }
+  // ─── MODAL: NOUVEAU PATIENT ─────────────────────────────────────────
+
+  function openModal() {
+    document.getElementById('modalNew').classList.add('open');
+    document.getElementById('newPatientForm').reset();
+    document.getElementById('newFirstName').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modalNew').classList.remove('open');
+  }
+
   document.getElementById('btnNewPatient').addEventListener('click', openModal);
   document.getElementById('btnCloseModal').addEventListener('click', closeModal);
-  document.getElementById('modalNew').addEventListener('click', e => { if (e.target===document.getElementById('modalNew')) closeModal(); });
+  document.getElementById('modalNew').addEventListener('click', e => {
+    if (e.target === document.getElementById('modalNew')) closeModal();
+  });
 
   document.getElementById('newPatientForm').addEventListener('submit', () => {
-    const firstName=document.getElementById('newFirstName').value.trim(), lastName=document.getElementById('newLastName').value.trim(), email=document.getElementById('newEmail').value.trim();
-    const phone=document.getElementById('newPhone').value.trim(), zone=document.getElementById('newZone').value, notes=document.getElementById('newNotes').value.trim();
-    if (!firstName||!lastName||!email) return;
-    const d=getData(), id='P'+genId(), code=genCode();
-    d.patients[id]={id,code,firstName,lastName,email,phone,zone,notes,createdAt:new Date().toISOString(),messages:[],videos:[]};
-    saveData(d); closeModal(); selectPatient(id); renderSidebar();
+    const firstName = document.getElementById('newFirstName').value.trim();
+    const lastName  = document.getElementById('newLastName').value.trim();
+    const email     = document.getElementById('newEmail').value.trim();
+    const phone     = document.getElementById('newPhone').value.trim();
+    const zone      = document.getElementById('newZone').value;
+    const notes     = document.getElementById('newNotes').value.trim();
+
+    if (!firstName || !lastName || !email) return;
+
+    const d = getData();
+    const id = 'P' + genId();
+    const code = genCode();
+
+    d.patients[id] = {
+      id,
+      code,
+      firstName,
+      lastName,
+      email,
+      phone,
+      zone,
+      notes,
+      createdAt: new Date().toISOString(),
+      messages: [],
+      videos: []
+    };
+    saveData(d);
+    closeModal();
+    selectPatient(id);
+    renderSidebar();
+
     showToast(`Dossier créé. Code d'accès&nbsp;: <span class="toast-code">${esc(code)}</span>`);
   });
 
+  // ─── DELETE PATIENT ─────────────────────────────────────────────
+
   document.getElementById('btnDeletePatient').addEventListener('click', () => {
     if (!selectedPatientId) return;
-    const d=getData(), p=d.patients[selectedPatientId]; if (!p) return;
-    deleteTargetId=selectedPatientId;
-    document.getElementById('confirmBody').textContent=`Tu es sur le point de supprimer définitivement le dossier de ${p.firstName} ${p.lastName} (${p.code}). Cette action est irréversible.`;
+    const d = getData();
+    const p = d.patients[selectedPatientId];
+    if (!p) return;
+    deleteTargetId = selectedPatientId;
+    document.getElementById('confirmBody').textContent =
+      `Tu es sur le point de supprimer définitivement le dossier de ${p.firstName} ${p.lastName} (${p.code}). Cette action est irréversible.`;
     document.getElementById('confirmOverlay').classList.add('open');
   });
-  document.getElementById('btnCancelDelete').addEventListener('click', () => { document.getElementById('confirmOverlay').classList.remove('open'); deleteTargetId=null; });
+
+  document.getElementById('btnCancelDelete').addEventListener('click', () => {
+    document.getElementById('confirmOverlay').classList.remove('open');
+    deleteTargetId = null;
+  });
+
   document.getElementById('btnConfirmDelete').addEventListener('click', () => {
     if (!deleteTargetId) return;
-    const d=getData(), pName=d.patients[deleteTargetId]?d.patients[deleteTargetId].firstName+' '+d.patients[deleteTargetId].lastName:'Patient';
-    delete d.patients[deleteTargetId]; saveData(d); selectedPatientId=null; deleteTargetId=null;
+    const d = getData();
+    const pName = d.patients[deleteTargetId]
+      ? d.patients[deleteTargetId].firstName + ' ' + d.patients[deleteTargetId].lastName
+      : 'Patient';
+    delete d.patients[deleteTargetId];
+    saveData(d);
+    selectedPatientId = null;
+    deleteTargetId = null;
     document.getElementById('confirmOverlay').classList.remove('open');
-    document.getElementById('patientView').style.display='none';
-    document.getElementById('noSelection').style.display='flex';
-    renderSidebar(); showToast(`Dossier de <strong>${esc(pName)}</strong> supprimé.`);
+    document.getElementById('patientView').style.display = 'none';
+    document.getElementById('noSelection').style.display = 'flex';
+    renderSidebar();
+    showToast(`Dossier de <strong>${esc(pName)}</strong> supprimé.`);
   });
-  document.getElementById('confirmOverlay').addEventListener('click', e => { if (e.target===document.getElementById('confirmOverlay')) { document.getElementById('confirmOverlay').classList.remove('open'); deleteTargetId=null; } });
 
-  document.getElementById('btnCodeActions').addEventListener('click', e => { e.stopPropagation(); document.getElementById('codeDropdown').classList.toggle('open'); });
-  document.addEventListener('click', () => { document.getElementById('codeDropdown').classList.remove('open'); });
-  document.getElementById('codeDropdown').addEventListener('click', e => { e.stopPropagation(); });
+  document.getElementById('confirmOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('confirmOverlay')) {
+      document.getElementById('confirmOverlay').classList.remove('open');
+      deleteTargetId = null;
+    }
+  });
+
+  // ─── CODE DROPDOWN ──────────────────────────────────────────────
+
+  document.getElementById('btnCodeActions').addEventListener('click', e => {
+    e.stopPropagation();
+    const dd = document.getElementById('codeDropdown');
+    dd.classList.toggle('open');
+  });
+
+  document.addEventListener('click', () => {
+    document.getElementById('codeDropdown').classList.remove('open');
+  });
+
+  document.getElementById('codeDropdown').addEventListener('click', e => {
+    e.stopPropagation();
+  });
+
   document.getElementById('btnCopyCode').addEventListener('click', () => {
-    const code=document.getElementById('patientCodeText').textContent;
-    navigator.clipboard.writeText(code).then(() => showToast(`Code <span class="toast-code">${esc(code)}</span> copié.`)).catch(() => showToast(`Code : <span class="toast-code">${esc(code)}</span>`));
+    const code = document.getElementById('patientCodeText').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      showToast(`Code <span class="toast-code">${esc(code)}</span> copié dans le presse-papiers.`);
+    }).catch(() => {
+      showToast(`Code à partager : <span class="toast-code">${esc(code)}</span>`);
+    });
     document.getElementById('codeDropdown').classList.remove('open');
   });
+
   document.getElementById('btnOpenPortal').addEventListener('click', () => {
-    const code=document.getElementById('patientCodeText').textContent;
-    window.open('patient.html?code='+encodeURIComponent(code), '_blank');
+    const code = document.getElementById('patientCodeText').textContent;
+    const url = 'patient.html?code=' + encodeURIComponent(code);
+    window.open(url, '_blank');
     document.getElementById('codeDropdown').classList.remove('open');
   });
 
-  document.getElementById('searchInput').addEventListener('input', e => { searchQuery=e.target.value; renderSidebar(); });
+  // ─── SEARCH ─────────────────────────────────────────────────────────
 
-  function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarBackdrop').classList.add('open'); }
-  function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarBackdrop').classList.remove('open'); }
-  document.getElementById('hamburgerBtn').addEventListener('click', () => { document.getElementById('sidebar').classList.contains('open') ? closeSidebar() : openSidebar(); });
-  document.getElementById('sidebarBackdrop').addEventListener('click', closeSidebar);
-  document.addEventListener('keydown', e => {
-    if (e.key==='Escape') { if (document.getElementById('modalNew').classList.contains('open')) closeModal(); if (document.getElementById('confirmOverlay').classList.contains('open')) { document.getElementById('confirmOverlay').classList.remove('open'); deleteTargetId=null; } document.getElementById('codeDropdown').classList.remove('open'); }
+  document.getElementById('searchInput').addEventListener('input', e => {
+    searchQuery = e.target.value;
+    renderSidebar();
   });
+
+  // ─── MOBILE SIDEBAR ─────────────────────────────────────────────
+
+  function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('sidebarBackdrop').classList.add('open');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebarBackdrop').classList.remove('open');
+  }
+
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('open')) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+
+  document.getElementById('sidebarBackdrop').addEventListener('click', closeSidebar);
+
+  // ─── KEYBOARD SHORTCUTS ───────────────────────────────────────────
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('modalNew').classList.contains('open')) closeModal();
+      if (document.getElementById('confirmOverlay').classList.contains('open')) {
+        document.getElementById('confirmOverlay').classList.remove('open');
+        deleteTargetId = null;
+      }
+      document.getElementById('codeDropdown').classList.remove('open');
+    }
+  });
+
+  // ─── INIT ─────────────────────────────────────────────────────────────
 
   seedIfEmpty();
   renderSidebar();
-  const initData=getData(), initPatients=Object.values(initData.patients);
-  if (initPatients.length>0) selectPatient(initPatients[0].id);
+
+  // Auto-select first patient if available
+  const initData = getData();
+  const initPatients = Object.values(initData.patients);
+  if (initPatients.length > 0) {
+    selectPatient(initPatients[0].id);
+  }
+
 </script>
 </body>
 </html>
