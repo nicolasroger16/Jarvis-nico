@@ -1087,67 +1087,43 @@ function formatSize(bytes) {
 const TESTS = [
   {
     id: 1,
-    name: 'Flexion cervicale',
-    depart: 'Debout, dos droit, regard droit devant.',
-    mouvement: 'Amenez lentement le menton vers la poitrine.',
-    camera: 'De profil, cadrer de la tête aux épaules.',
-    reps: '3 fois'
+    name: "L'Overhead Squat",
+    subtitle: 'Le scanner global',
+    consigne: 'Levez les bras en "Y" au-dessus de la tête. Descendez en squat le plus bas possible, lentement. Remontez. Répétez 3 fois.',
+    angles: ['De face', 'De profil'],
+    demo: 'https://youtu.be/2VO765PBHck?is=eIGBOlyEcSEDsk4o'
   },
   {
     id: 2,
-    name: 'Rotation cervicale',
-    depart: 'Debout, dos droit.',
-    mouvement: 'Tournez la tête lentement à droite, revenez, puis à gauche.',
-    camera: 'De face, cadrer tête et épaules.',
-    reps: '3 fois chaque côté'
+    name: "L'Enroulement Vertébral",
+    subtitle: 'Chaîne postérieure',
+    consigne: "Debout, jambes tendues. Relâchez la tête en premier, puis laissez le dos s'enrouler vertèbre par vertèbre vers l'avant. Essayez de toucher vos pieds sans forcer. Tenez 3 secondes, puis déroulez lentement.",
+    angles: ['De profil uniquement'],
+    demo: 'https://youtube.com/shorts/ihzdokaxYW0?is=U8cbpQu8ZiO5M9D2'
   },
   {
     id: 3,
-    name: 'Flexion d\'épaule',
-    depart: 'Debout, bras le long du corps.',
-    mouvement: 'Levez le bras tendu vers l\'avant jusqu\'au maximum.',
-    camera: 'De profil.',
-    reps: '2 fois par côté — filmez gauche et droit séparément'
+    name: "Le Test d'Apley",
+    subtitle: "Mobilité d'épaule",
+    consigne: "Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés.",
+    angles: ['De dos', 'Côté droit puis gauche'],
+    demo: 'https://youtube.com/shorts/DPWV7B3xiIo?is=buyQvZjsjswBJmIt'
   },
   {
     id: 4,
-    name: 'Abduction d\'épaule',
-    depart: 'Debout, bras le long du corps.',
-    mouvement: 'Levez le bras tendu sur le côté jusqu\'au maximum.',
-    camera: 'De face.',
-    reps: '2 fois par côté — gauche et droit'
+    name: 'La Rotation Thoracique Assise',
+    subtitle: 'Dissociation',
+    consigne: "Assis sur une chaise, bras croisés sur la poitrine. Tournez le buste au maximum vers la droite, puis vers la gauche, sans bouger le bas du corps. Faites 3 rotations de chaque côté lentement.",
+    angles: ['De face'],
+    demo: 'https://youtube.com/shorts/95VllZB8ZkY?is=MoBKEIrlQtw6ain1'
   },
   {
     id: 5,
-    name: 'Flexion lombaire',
-    depart: 'Debout, pieds joints, jambes tendues.',
-    mouvement: 'Penchez-vous lentement vers l\'avant, laissez les bras descendre vers le sol.',
-    camera: 'De profil.',
-    reps: '3 fois'
-  },
-  {
-    id: 6,
-    name: 'Extension lombaire',
-    depart: 'Debout, pieds écartés à la largeur des épaules, mains sur les hanches.',
-    mouvement: 'Penchez-vous doucement en arrière.',
-    camera: 'De profil.',
-    reps: '3 fois'
-  },
-  {
-    id: 7,
-    name: 'Flexion de hanche',
-    depart: 'Debout, dos droit.',
-    mouvement: 'Ramenez un genou vers la poitrine, sans vous pencher.',
-    camera: 'De profil.',
-    reps: '2 fois par côté — gauche et droit'
-  },
-  {
-    id: 8,
-    name: 'Knee-to-wall (cheville)',
-    depart: 'En position fente contre un mur, pied à environ 10 cm du mur.',
-    mouvement: 'Amenez le genou vers le mur sans décoller le talon.',
-    camera: 'De profil, pied et genou visibles.',
-    reps: 'Notez la distance maximale pied-mur — gauche et droit'
+    name: 'La Fente Avant',
+    subtitle: 'Hanches et équilibre',
+    consigne: "Faites un grand pas en avant, descendez le genou arrière vers le sol en gardant le buste vertical. Tenez 2 secondes. Faites le mouvement 3 fois de chaque côté.",
+    angles: ['De profil', 'Côté droit puis gauche'],
+    demo: 'https://youtu.be/nLvfEiEP3NY?is=KVcRwX6wzycY3TRg'
   }
 ]
 
@@ -1272,37 +1248,33 @@ function renderAccordion() {
     <div class="accordion-item" id="acc-${test.id}">
       <button class="accordion-trigger" onclick="toggleAccordion(${test.id})">
         <span class="test-num">${String(test.id).padStart(2, '0')}</span>
-        <span class="test-name">${test.name}</span>
+        <span class="test-name" style="display:flex;flex-direction:column;gap:2px;">
+          ${test.name}
+          <small style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);font-weight:400;letter-spacing:0.04em;">${test.subtitle}</small>
+        </span>
         <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="accordion-body">
-        <div class="accordion-grid">
-          <div class="consigne-field">
-            <div class="consigne-field-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Position de départ
-            </div>
-            <div class="consigne-field-value">${test.depart}</div>
+        <div class="consigne-field" style="margin-bottom:12px;">
+          <div class="consigne-field-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            Consigne
           </div>
-          <div class="consigne-field">
-            <div class="consigne-field-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-              Mouvement à filmer
-            </div>
-            <div class="consigne-field-value">${test.mouvement}</div>
+          <div class="consigne-field-value">${test.consigne}</div>
+        </div>
+        <div class="consigne-field" style="margin-bottom:12px;">
+          <div class="consigne-field-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Angles de filmage
           </div>
-          <div class="consigne-field">
-            <div class="consigne-field-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              Position de la caméra
-            </div>
-            <div class="consigne-field-value">${test.camera}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+            ${test.angles.map(a => `<span style="display:inline-block;background:var(--green);color:#fff;font-size:0.75rem;font-weight:600;padding:3px 10px;border-radius:20px;">${a}</span>`).join('')}
           </div>
         </div>
-        <div class="consigne-reps">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-          <strong>Répétitions :</strong>&nbsp;${test.reps}
-        </div>
+        <a href="${test.demo}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-size:0.8rem;font-weight:600;padding:9px 16px;border-radius:8px;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Voir la démonstration
+        </a>
       </div>
     </div>
   `).join('')
@@ -1387,8 +1359,8 @@ function handleFileSelect(input) {
 function updateProgress() {
   const videos = getPatientVideos()
   const count = TESTS.filter(t => videos.find(v => v.testName === t.name)).length
-  document.getElementById('progress-text').textContent = count + '/8 vidéos envoyées'
-  document.getElementById('progress-fill').style.width = (count / 8 * 100) + '%'
+  document.getElementById('progress-text').textContent = count + '/5 vidéos envoyées'
+  document.getElementById('progress-fill').style.width = (count / 5 * 100) + '%'
 }
 
 /* ============================================================
