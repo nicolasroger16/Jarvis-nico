@@ -658,6 +658,171 @@
   .videos-empty-icon { font-size: 40px; opacity: 0.25; }
   .videos-empty p { font-size: 13px; }
 
+  /* ─── ANALYSIS LIST (Vidéos tab) ─── */
+
+  .analysis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .analysis-card {
+    background: var(--warm);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  .analysis-card.has-video { border-color: var(--green); }
+
+  .analysis-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .analysis-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--light);
+    min-width: 22px;
+  }
+
+  .analysis-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .analysis-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .analysis-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+    margin-top: 1px;
+  }
+
+  .analysis-status {
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .analysis-status.received {
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .analysis-status.pending {
+    background: var(--warm-2);
+    color: var(--light);
+  }
+
+  .analysis-vid-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--divider);
+    background: var(--green-light);
+    flex-wrap: wrap;
+  }
+
+  .analysis-vid-row svg { color: var(--green); flex-shrink: 0; }
+
+  .analysis-vid-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .analysis-vid-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .btn-download-sm {
+    padding: 4px 10px;
+    background: none;
+    border: 1px solid var(--green);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--green);
+    cursor: not-allowed;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .btn-download-sm:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    background: var(--ink);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .analysis-obs {
+    padding: 10px 14px;
+  }
+
+  .analysis-obs-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--light);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 5px;
+  }
+
+  .analysis-obs-text {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    background: var(--gold-light);
+    border-left: 3px solid var(--gold);
+    padding: 7px 10px;
+    border-radius: 0 6px 6px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .analysis-waiting {
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--light);
+    font-style: italic;
+  }
+
   /* ─── INFOS TAB ─── */
 
   .infos-area {
@@ -1291,6 +1456,16 @@
     return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  // ─── EXERCICES SENTINELLES ─────────────────────────────────
+
+  const TESTS = [
+    { id: 1, name: "L'Overhead Squat",            subtitle: 'Le scanner global'     },
+    { id: 2, name: "L'Enroulement Vertébral",     subtitle: 'Chaîne postérieure'    },
+    { id: 3, name: "Le Test d'Apley",             subtitle: "Mobilité d'épaule"     },
+    { id: 4, name: 'La Rotation Thoracique Assise', subtitle: 'Dissociation'        },
+    { id: 5, name: 'La Fente Avant',              subtitle: 'Hanches et équilibre'  }
+  ];
+
   // ─── SEED DATA ─────────────────────────────────────────────────────────────
 
   function seedIfEmpty() {
@@ -1512,33 +1687,44 @@
   function renderVideos(p) {
     const area = document.getElementById('videosArea');
     const vids = p.videos || [];
-
-    if (!vids.length) {
-      area.innerHTML = `
-        <div class="videos-empty">
-          <div class="videos-empty-icon">🎥</div>
-          <p>Aucune vidéo reçue pour ce patient</p>
-        </div>
-      `;
-      return;
-    }
+    const obs  = p.observations || {};
 
     area.innerHTML = `
-      <div class="videos-grid">
-        ${vids.map(v => `
-          <div class="video-card">
-            <div class="video-card-icon">🎬</div>
-            <div class="video-card-name">${esc(v.testName)}</div>
-            <div class="video-card-meta" title="${esc(v.fileName)}">${esc(v.fileName)}</div>
-            <div class="video-card-info">
-              <span>${formatSize(v.fileSize)}</span>
-              <span>${formatDate(v.uploadedAt)}</span>
+      <div class="analysis-list">
+        ${TESTS.map(test => {
+          const vid    = vids.find(v => v.testName === test.name);
+          const obsText = obs[test.id] || '';
+          const hasVid = !!vid;
+          const hasObs = !!obsText.trim();
+          return `
+            <div class="analysis-card${hasVid ? ' has-video' : ''}">
+              <div class="analysis-card-header">
+                <div class="analysis-num">${String(test.id).padStart(2, '0')}</div>
+                <div class="analysis-info">
+                  <div class="analysis-name">${esc(test.name)}</div>
+                  <div class="analysis-sub">${esc(test.subtitle)}</div>
+                </div>
+                <div class="analysis-status ${hasVid ? 'received' : 'pending'}">
+                  ${hasVid ? '✓ Vidéo reçue' : 'En attente'}
+                </div>
+              </div>
+              ${hasVid ? `
+                <div class="analysis-vid-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                  <span class="analysis-vid-name">${esc(vid.fileName)}</span>
+                  <span class="analysis-vid-meta">${formatSize(vid.fileSize)} · ${formatDate(vid.uploadedAt)}</span>
+                  <button class="btn-download-sm" data-tooltip="Disponible en version complète">Télécharger</button>
+                </div>
+              ` : ''}
+              ${hasObs ? `
+                <div class="analysis-obs">
+                  <div class="analysis-obs-label">Observations patient</div>
+                  <div class="analysis-obs-text">${esc(obsText)}</div>
+                </div>
+              ` : (!hasVid ? `<div class="analysis-waiting">Aucun fichier ni observation pour ce test.</div>` : '')}
             </div>
-            <button class="btn-download" data-tooltip="Disponible en version complète">
-              Télécharger
-            </button>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     `;
   }
@@ -1766,7 +1952,7 @@
 
   document.getElementById('btnOpenPortal').addEventListener('click', () => {
     const code = document.getElementById('patientCodeText').textContent;
-    const url = '../patient.html?code=' + encodeURIComponent(code);
+    const url = 'patient.html?code=' + encodeURIComponent(code);
     window.open(url, '_blank');
     document.getElementById('codeDropdown').classList.remove('open');
   });

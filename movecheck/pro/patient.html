@@ -696,6 +696,44 @@ input[type="file"] { display: none; }
 }
 
 /* ============================================================
+   OBSERVATION FIELDS (in accordion)
+   ============================================================ */
+.obs-wrap {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider);
+}
+.obs-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+.obs-label svg { flex-shrink: 0; color: var(--gold); }
+.obs-textarea {
+  width: 100%;
+  min-height: 72px;
+  border: 1.5px solid var(--divider);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--warm);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  line-height: 1.5;
+}
+.obs-textarea:focus { border-color: var(--gold); background: var(--cream); }
+.obs-textarea::placeholder { color: var(--light); font-size: 0.82rem; }
+
+/* ============================================================
    TAB 3: MESSAGES
    ============================================================ */
 .chat-wrap {
@@ -987,7 +1025,7 @@ input[type="file"] { display: none; }
         <div class="progress-bar-wrap">
           <div class="progress-label">
             <span>Progression</span>
-            <span id="progress-text">0/8 vidéos envoyées</span>
+            <span id="progress-text">0/5 vidéos envoyées</span>
           </div>
           <div class="progress-track">
             <div class="progress-fill" id="progress-fill" style="width:0%"></div>
@@ -1244,7 +1282,10 @@ document.getElementById('goto-videos-btn').addEventListener('click', function ()
    ============================================================ */
 function renderAccordion() {
   const list = document.getElementById('accordion-list')
-  list.innerHTML = TESTS.map(test => `
+  const obs = getObservations()
+  list.innerHTML = TESTS.map(test => {
+    const savedObs = (obs[test.id] || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    return `
     <div class="accordion-item" id="acc-${test.id}">
       <button class="accordion-trigger" onclick="toggleAccordion(${test.id})">
         <span class="test-num">${String(test.id).padStart(2, '0')}</span>
@@ -1275,14 +1316,39 @@ function renderAccordion() {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Voir la démonstration
         </a>
+        <div class="obs-wrap">
+          <div class="obs-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Vos observations
+          </div>
+          <textarea class="obs-textarea" id="obs-${test.id}" placeholder="Douleur, gêne, limitation..." oninput="saveObs(${test.id}, this.value)">${savedObs}</textarea>
+        </div>
       </div>
     </div>
-  `).join('')
+  `}).join('')
 }
 
 function toggleAccordion(id) {
   const item = document.getElementById('acc-' + id)
   item.classList.toggle('open')
+}
+
+function getObservations() {
+  if (!currentPatient) return {}
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  return p ? (p.observations || {}) : {}
+}
+
+function saveObs(testId, value) {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  if (!p) return
+  if (!p.observations) p.observations = {}
+  p.observations[testId] = value
+  saveData(data)
+  currentPatient = data.patients[currentPatient.id]
 }
 
 /* ============================================================
