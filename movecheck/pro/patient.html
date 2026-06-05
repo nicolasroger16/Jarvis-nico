@@ -12,177 +12,954 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"/>
 <style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
-  --ink:#1a1612; --ink-soft:#2a2218; --muted:#5a5047; --light:#8a7d70;
-  --cream:#faf8f4; --warm:#f2ede5; --warm-2:#ebe3d4; --divider:#e0d8cc;
-  --gold:#b8860b; --gold-light:#f5e9c0; --green:#3d7a52; --green-light:#e8f3ec;
-  --blue:#2e5e8a; --blue-light:#e6eef6; --red:#8a3d3d; --red-light:#f6e6e6;
+  --ink:         #1a1612;
+  --ink-soft:    #2a2218;
+  --muted:       #5a5047;
+  --light:       #8a7d70;
+  --cream:       #faf8f4;
+  --warm:        #f2ede5;
+  --warm-2:      #ebe3d4;
+  --divider:     #e0d8cc;
+  --gold:        #b8860b;
+  --gold-light:  #f5e9c0;
+  --green:       #3d7a52;
+  --green-light: #e8f3ec;
+  --blue:        #2e5e8a;
+  --blue-light:  #e6eef6;
+  --red:         #8a3d3d;
+  --red-light:   #f6e6e6;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100dvh;}
-a{text-decoration:none;color:inherit;}
-button{cursor:pointer;font-family:inherit;}
-input,textarea{font-family:inherit;}
-#screen-code{display:flex;}
-#screen-app{display:none;}
-.topbar{position:fixed;top:0;left:0;right:0;height:56px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100;border-bottom:1px solid rgba(255,255,255,0.08);}
-.topbar-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-0.01em;}
-.topbar-brand span{color:var(--gold);font-style:italic;}
-.topbar-right{display:flex;align-items:center;gap:16px;}
-.topbar-patient-name{font-size:0.8rem;color:rgba(255,255,255,0.55);font-weight:500;}
-.topbar-logout{font-size:0.78rem;color:var(--gold);font-weight:500;cursor:pointer;background:none;border:none;padding:4px 8px;border-radius:4px;transition:background 0.15s;}
-.topbar-logout:hover{background:rgba(184,134,11,0.15);}
-#screen-code{min-height:100dvh;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--cream);}
-.code-topbar{position:fixed;top:0;left:0;right:0;height:56px;background:var(--ink);display:flex;align-items:center;padding:0 24px;z-index:10;}
-.code-topbar-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;}
-.code-topbar-brand span{color:var(--gold);font-style:italic;}
-.code-card{background:#fff;border:1px solid var(--divider);border-radius:16px;padding:48px 40px;max-width:420px;width:100%;text-align:center;box-shadow:0 4px 24px rgba(26,22,18,0.08);margin-top:56px;}
-.code-card-icon{width:64px;height:64px;background:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
-.code-card-icon svg{width:32px;height:32px;color:var(--gold);}
-.code-card h1{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3;}
-.code-card .subtitle{font-size:0.9rem;color:var(--muted);margin-bottom:32px;line-height:1.5;}
-.code-input-wrap{position:relative;margin-bottom:16px;}
-.code-input{width:100%;height:56px;border:2px solid var(--divider);border-radius:10px;padding:0 16px;font-size:1.2rem;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:0.15em;text-align:center;color:var(--ink);background:var(--cream);transition:border-color 0.2s,box-shadow 0.2s;text-transform:uppercase;}
-.code-input::placeholder{color:var(--light);letter-spacing:0.1em;font-weight:400;}
-.code-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,11,0.12);background:#fff;}
-.code-input.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(138,61,61,0.1);}
-.code-error{font-size:0.83rem;color:var(--red);margin-bottom:16px;padding:10px 14px;background:var(--red-light);border-radius:8px;text-align:left;display:none;}
-.code-error.visible{display:block;}
-.btn-primary{width:100%;height:52px;background:var(--ink);color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;letter-spacing:0.01em;transition:background 0.2s,transform 0.1s;}
-.btn-primary:hover{background:var(--ink-soft);}
-.btn-primary:active{transform:scale(0.98);}
-.code-note{margin-top:24px;font-size:0.8rem;color:var(--light);line-height:1.5;}
-#screen-app{flex-direction:column;min-height:100dvh;}
-.app-content{margin-top:56px;margin-bottom:64px;flex:1;}
-.tab-nav{background:#fff;border-bottom:1px solid var(--divider);display:flex;position:sticky;top:56px;z-index:90;}
-.tab-btn{flex:1;height:52px;background:none;border:none;border-bottom:3px solid transparent;font-size:0.88rem;font-weight:500;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;transition:color 0.2s,border-color 0.2s;position:relative;}
-.tab-btn:hover{color:var(--ink);}
-.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:600;}
-.tab-btn svg{width:18px;height:18px;flex-shrink:0;}
-.tab-badge{position:absolute;top:10px;right:calc(50% - 36px);background:var(--red);color:#fff;font-size:0.65rem;font-family:'DM Mono',monospace;font-weight:500;border-radius:10px;padding:1px 5px;min-width:16px;text-align:center;line-height:1.4;}
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid var(--divider);z-index:100;padding-bottom:env(safe-area-inset-bottom);}
-.bottom-nav-inner{display:flex;height:100%;}
-.bottom-nav-btn{flex:1;height:100%;background:none;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:0.7rem;font-weight:500;color:var(--muted);position:relative;transition:color 0.2s;}
-.bottom-nav-btn svg{width:22px;height:22px;}
-.bottom-nav-btn.active{color:var(--gold);}
-.bottom-nav-badge{position:absolute;top:6px;right:calc(50% - 18px);background:var(--red);color:#fff;font-size:0.6rem;border-radius:8px;padding:1px 4px;min-width:14px;text-align:center;line-height:1.4;}
-.tab-panel{display:none;padding:0 0 40px;}
-.tab-panel.active{display:block;}
-.panel-inner{max-width:720px;margin:0 auto;padding:32px 24px 0;}
-.panel-header{margin-bottom:28px;}
-.panel-header h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3;}
-.panel-header p{font-size:0.88rem;color:var(--muted);line-height:1.5;}
-.info-box{border-radius:10px;padding:16px 18px;margin-bottom:24px;font-size:0.86rem;line-height:1.55;display:flex;gap:12px;}
-.info-box svg{flex-shrink:0;margin-top:2px;width:18px;height:18px;}
-.info-box.gold{background:var(--gold-light);color:#7a5800;border:1px solid rgba(184,134,11,0.25);}
-.info-box.gold svg{color:var(--gold);}
-.info-box.blue{background:var(--blue-light);color:#1a3a5c;border:1px solid rgba(46,94,138,0.2);}
-.info-box.blue svg{color:var(--blue);}
-.consigne-welcome{margin-bottom:28px;}
-.consigne-welcome h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
-.consigne-welcome p{font-size:0.9rem;color:var(--muted);line-height:1.6;}
-.accordion-list{display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
-.accordion-item{background:#fff;border:1px solid var(--divider);border-radius:10px;overflow:hidden;transition:box-shadow 0.2s;}
-.accordion-item.open{box-shadow:0 2px 16px rgba(26,22,18,0.07);}
-.accordion-trigger{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;background:none;border:none;text-align:left;cursor:pointer;transition:background 0.15s;}
-.accordion-trigger:hover{background:var(--cream);}
-.test-num{font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:500;color:var(--gold);background:var(--gold-light);border-radius:6px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.test-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);flex:1;}
-.accordion-chevron{color:var(--light);transition:transform 0.25s ease;flex-shrink:0;}
-.accordion-item.open .accordion-chevron{transform:rotate(180deg);}
-.accordion-body{display:none;padding:0 18px 18px 62px;}
-.accordion-item.open .accordion-body{display:block;}
-.accordion-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
-@media(max-width:520px){.accordion-grid{grid-template-columns:1fr;}}
-.consigne-field{background:var(--cream);border-radius:8px;padding:12px 14px;}
-.consigne-field-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--light);margin-bottom:4px;display:flex;align-items:center;gap:5px;}
-.consigne-field-label svg{width:13px;height:13px;}
-.consigne-field-value{font-size:0.86rem;color:var(--ink);line-height:1.5;}
-.cta-next{display:flex;justify-content:center;margin-top:8px;}
-.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:0.92rem;font-weight:600;cursor:pointer;transition:background 0.2s,transform 0.1s;}
-.btn-cta:hover{background:var(--ink-soft);}
-.btn-cta:active{transform:scale(0.98);}
-.btn-cta svg{width:18px;height:18px;}
-.progress-bar-wrap{margin-bottom:24px;}
-.progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.progress-label span:first-child{font-size:0.88rem;font-weight:600;color:var(--ink);}
-.progress-label span:last-child{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);font-weight:500;}
-.progress-track{height:8px;background:var(--divider);border-radius:4px;overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),#e6a800);border-radius:4px;transition:width 0.4s ease;}
-.video-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
-.video-row{background:#fff;border:1px solid var(--divider);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;transition:border-color 0.2s;}
-.video-row.sent{border-color:var(--green);background:var(--green-light);}
-.video-row-num{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--light);width:20px;text-align:center;flex-shrink:0;}
-.video-row-name{flex:1;font-size:0.87rem;font-weight:500;color:var(--ink);min-width:0;}
-.video-row-name .file-info{font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.video-status{font-size:0.78rem;font-weight:600;flex-shrink:0;}
-.video-status.pending{color:var(--light);}
-.video-status.sent{color:var(--green);}
-.video-upload-btn{flex-shrink:0;min-height:36px;padding:0 12px;background:var(--cream);border:1px solid var(--divider);border-radius:8px;font-size:0.8rem;font-weight:500;color:var(--ink);cursor:pointer;transition:background 0.15s,border-color 0.15s;white-space:nowrap;}
-.video-upload-btn:hover{background:var(--warm);border-color:var(--gold);}
-.video-upload-btn.sent{background:var(--green-light);border-color:var(--green);color:var(--green);}
-input[type="file"]{display:none;}
-.proto-note{font-size:0.76rem;color:var(--light);font-style:italic;text-align:center;margin-top:8px;line-height:1.5;}
-.chat-wrap{display:flex;flex-direction:column;height:calc(100dvh - 56px - 52px - 80px);min-height:400px;}
-.chat-scroll{flex:1;overflow-y:auto;padding:8px 0 16px;scroll-behavior:smooth;}
-.chat-empty{text-align:center;padding:48px 24px;color:var(--light);font-size:0.88rem;line-height:1.6;}
-.chat-empty svg{width:40px;height:40px;color:var(--divider);margin:0 auto 12px;display:block;}
-.chat-msg{display:flex;margin-bottom:16px;gap:10px;padding:0 4px;}
-.chat-msg.from-admin{flex-direction:row;}
-.chat-msg.from-patient{flex-direction:row-reverse;}
-.chat-avatar{width:32px;height:32px;border-radius:50%;background:var(--gold);color:#fff;font-family:'DM Mono',monospace;font-size:0.75rem;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
-.chat-bubble-wrap{max-width:75%;display:flex;flex-direction:column;}
-.chat-msg.from-patient .chat-bubble-wrap{align-items:flex-end;}
-.chat-bubble{border-radius:14px;padding:11px 14px;font-size:0.87rem;line-height:1.55;white-space:pre-wrap;word-break:break-word;}
-.chat-msg.from-admin .chat-bubble{background:var(--warm-2);color:var(--ink);border-top-left-radius:4px;}
-.chat-msg.from-patient .chat-bubble{background:var(--ink);color:#fff;border-top-right-radius:4px;}
-.chat-msg.unread .chat-bubble{border-left:3px solid var(--gold);}
-.chat-meta{display:flex;align-items:center;gap:6px;margin-top:4px;}
-.chat-time{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--light);}
-.chat-new-badge{font-size:0.65rem;font-weight:600;color:var(--gold);background:var(--gold-light);border-radius:4px;padding:1px 5px;text-transform:uppercase;letter-spacing:0.04em;}
-.chat-composer{border-top:1px solid var(--divider);padding:14px 0 0;display:flex;gap:10px;align-items:flex-end;}
-.chat-textarea{flex:1;resize:none;border:1.5px solid var(--divider);border-radius:10px;padding:10px 14px;font-size:0.88rem;line-height:1.5;color:var(--ink);background:#fff;min-height:48px;max-height:120px;transition:border-color 0.2s;}
-.chat-textarea:focus{outline:none;border-color:var(--gold);}
-.chat-textarea::placeholder{color:var(--light);}
-.btn-send{height:48px;min-width:48px;padding:0 16px;background:var(--ink);color:#fff;border:none;border-radius:10px;font-size:0.88rem;font-weight:600;display:flex;align-items:center;gap:6px;transition:background 0.15s,transform 0.1s;flex-shrink:0;}
-.btn-send:hover{background:var(--gold);}
-.btn-send:active{transform:scale(0.97);}
-.btn-send svg{width:18px;height:18px;}
-@media(max-width:640px){
-  .tab-nav{display:none;}
-  .bottom-nav{display:flex;}
-  .app-content{margin-bottom:64px;}
-  .panel-inner{padding:20px 16px 0;}
-  .code-card{padding:36px 24px;}
-  .code-card h1{font-size:1.4rem;}
-  .accordion-body{padding-left:18px;}
-  .video-row{flex-wrap:wrap;}
-  .video-row-name{flex-basis:calc(100% - 32px);}
-  .chat-wrap{height:calc(100dvh - 56px - 64px - 80px);}
-  .topbar-patient-name{display:none;}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
 }
-@media(min-width:641px){
-  .bottom-nav{display:none;}
-  .tab-nav{display:flex;}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+input, textarea { font-family: inherit; }
+
+/* ============================================================
+   SCREEN VISIBILITY
+   ============================================================ */
+#screen-code { display: flex; }
+#screen-app  { display: none; }
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.divider{height:1px;background:var(--divider);margin:20px 0;}
+.topbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.topbar-brand span {
+  color: var(--gold);
+  font-style: italic;
+}
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.topbar-patient-name {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+.topbar-logout {
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.topbar-logout:hover {
+  background: rgba(184,134,11,0.15);
+}
+
+/* ============================================================
+   SCREEN 1: CODE ENTRY
+   ============================================================ */
+#screen-code {
+  min-height: 100dvh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--cream);
+}
+.code-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 10;
+}
+.code-topbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.code-topbar-brand span {
+  color: var(--gold);
+  font-style: italic;
+}
+.code-card {
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 16px;
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(26,22,18,0.08);
+  margin-top: 56px;
+}
+.code-card-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+.code-card-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--gold);
+}
+.code-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.code-card .subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.code-input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.code-input {
+  width: 100%;
+  height: 56px;
+  border: 2px solid var(--divider);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-size: 1.2rem;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+}
+.code-input::placeholder {
+  color: var(--light);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+.code-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184,134,11,0.12);
+  background: #fff;
+}
+.code-input.error {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(138,61,61,0.1);
+}
+.code-error {
+  font-size: 0.83rem;
+  color: var(--red);
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: var(--red-light);
+  border-radius: 8px;
+  text-align: left;
+  display: none;
+}
+.code-error.visible { display: block; }
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--ink-soft); }
+.btn-primary:active { transform: scale(0.98); }
+.code-note {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--light);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SCREEN 2: APP SHELL
+   ============================================================ */
+#screen-app {
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app-content {
+  margin-top: 56px;
+  margin-bottom: 64px; /* space for bottom nav on mobile */
+  flex: 1;
+}
+
+/* ============================================================
+   TAB NAVIGATION (desktop: horizontal under topbar, mobile: bottom fixed)
+   ============================================================ */
+.tab-nav {
+  background: #fff;
+  border-bottom: 1px solid var(--divider);
+  display: flex;
+  position: sticky;
+  top: 56px;
+  z-index: 90;
+}
+.tab-btn {
+  flex: 1;
+  height: 52px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: color 0.2s, border-color 0.2s;
+  position: relative;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  font-weight: 600;
+}
+.tab-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.tab-badge {
+  position: absolute;
+  top: 10px;
+  right: calc(50% - 36px);
+  background: var(--red);
+  color: #fff;
+  font-size: 0.65rem;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 1px 5px;
+  min-width: 16px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Mobile bottom nav */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #fff;
+  border-top: 1px solid var(--divider);
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottom-nav-inner {
+  display: flex;
+  height: 100%;
+}
+.bottom-nav-btn {
+  flex: 1;
+  height: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+  position: relative;
+  transition: color 0.2s;
+}
+.bottom-nav-btn svg {
+  width: 22px;
+  height: 22px;
+}
+.bottom-nav-btn.active {
+  color: var(--gold);
+}
+.bottom-nav-badge {
+  position: absolute;
+  top: 6px;
+  right: calc(50% - 18px);
+  background: var(--red);
+  color: #fff;
+  font-size: 0.6rem;
+  border-radius: 8px;
+  padding: 1px 4px;
+  min-width: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   TAB PANELS
+   ============================================================ */
+.tab-panel { display: none; padding: 0 0 40px; }
+.tab-panel.active { display: block; }
+
+.panel-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 0;
+}
+
+/* ============================================================
+   SECTION HEADERS
+   ============================================================ */
+.panel-header {
+  margin-bottom: 28px;
+}
+.panel-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.panel-header p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   INFO BOXES
+   ============================================================ */
+.info-box {
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  display: flex;
+  gap: 12px;
+}
+.info-box svg { flex-shrink: 0; margin-top: 2px; width: 18px; height: 18px; }
+.info-box.gold {
+  background: var(--gold-light);
+  color: #7a5800;
+  border: 1px solid rgba(184,134,11,0.25);
+}
+.info-box.gold svg { color: var(--gold); }
+.info-box.blue {
+  background: var(--blue-light);
+  color: #1a3a5c;
+  border: 1px solid rgba(46,94,138,0.2);
+}
+.info-box.blue svg { color: var(--blue); }
+
+/* ============================================================
+   TAB 1: CONSIGNES — ACCORDION
+   ============================================================ */
+.consigne-welcome {
+  margin-bottom: 28px;
+}
+.consigne-welcome h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.consigne-welcome p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.accordion-item {
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.accordion-item.open {
+  box-shadow: 0 2px 16px rgba(26,22,18,0.07);
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.accordion-trigger:hover { background: var(--cream); }
+.test-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  background: var(--gold-light);
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.test-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  flex: 1;
+}
+.accordion-chevron {
+  color: var(--light);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.accordion-item.open .accordion-chevron {
+  transform: rotate(180deg);
+}
+.accordion-body {
+  display: none;
+  padding: 0 18px 18px 62px;
+}
+.accordion-item.open .accordion-body { display: block; }
+.accordion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+@media (max-width: 520px) {
+  .accordion-grid { grid-template-columns: 1fr; }
+}
+.consigne-field {
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.consigne-field-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--light);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.consigne-field-label svg { width: 13px; height: 13px; }
+.consigne-field-value {
+  font-size: 0.86rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.consigne-reps {
+  background: var(--gold-light);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  color: #7a5800;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.consigne-reps svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+
+.cta-next {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-cta:hover { background: var(--ink-soft); }
+.btn-cta:active { transform: scale(0.98); }
+.btn-cta svg { width: 18px; height: 18px; }
+
+/* ============================================================
+   TAB 2: MES VIDEOS
+   ============================================================ */
+.progress-bar-wrap {
+  margin-bottom: 24px;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.progress-label span:first-child {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.progress-label span:last-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+.progress-track {
+  height: 8px;
+  background: var(--divider);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), #e6a800);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.video-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.video-row {
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s;
+}
+.video-row.sent { border-color: var(--green); background: var(--green-light); }
+.video-row-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--light);
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.video-row-name {
+  flex: 1;
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--ink);
+  min-width: 0;
+}
+.video-row-name .file-info {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.video-status {
+  font-size: 0.78rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.video-status.pending { color: var(--light); }
+.video-status.sent { color: var(--green); }
+.video-upload-btn {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 12px;
+  background: var(--cream);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.video-upload-btn:hover { background: var(--warm); border-color: var(--gold); }
+.video-upload-btn.sent {
+  background: var(--green-light);
+  border-color: var(--green);
+  color: var(--green);
+}
+input[type="file"] { display: none; }
+
+.proto-note {
+  font-size: 0.76rem;
+  color: var(--light);
+  font-style: italic;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   OBSERVATION FIELDS (in accordion)
+   ============================================================ */
+.obs-wrap {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider);
+}
+.obs-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.71rem;
+  font-weight: 600;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+.obs-label svg { flex-shrink: 0; color: var(--gold); }
+.obs-textarea {
+  width: 100%;
+  min-height: 72px;
+  border: 1.5px solid var(--divider);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--warm);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  line-height: 1.5;
+}
+.obs-textarea:focus { border-color: var(--gold); background: var(--cream); }
+.obs-textarea::placeholder { color: var(--light); font-size: 0.82rem; }
+
+/* ============================================================
+   TAB 3: MESSAGES
+   ============================================================ */
+.chat-wrap {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 56px - 52px - 80px);
+  min-height: 400px;
+}
+.chat-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0 16px;
+  scroll-behavior: smooth;
+}
+.chat-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--light);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.chat-empty svg {
+  width: 40px;
+  height: 40px;
+  color: var(--divider);
+  margin: 0 auto 12px;
+  display: block;
+}
+.chat-msg {
+  display: flex;
+  margin-bottom: 16px;
+  gap: 10px;
+  padding: 0 4px;
+}
+.chat-msg.from-admin { flex-direction: row; }
+.chat-msg.from-patient { flex-direction: row-reverse; }
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.chat-bubble-wrap {
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+.chat-msg.from-patient .chat-bubble-wrap { align-items: flex-end; }
+.chat-bubble {
+  border-radius: 14px;
+  padding: 11px 14px;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.chat-msg.from-admin .chat-bubble {
+  background: var(--warm-2);
+  color: var(--ink);
+  border-top-left-radius: 4px;
+}
+.chat-msg.from-patient .chat-bubble {
+  background: var(--ink);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.chat-msg.unread .chat-bubble {
+  border-left: 3px solid var(--gold);
+}
+.chat-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+.chat-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--light);
+}
+.chat-new-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-light);
+  border-radius: 4px;
+  padding: 1px 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.chat-composer {
+  border-top: 1px solid var(--divider);
+  padding: 14px 0 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.chat-textarea {
+  flex: 1;
+  resize: none;
+  border: 1.5px solid var(--divider);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: #fff;
+  min-height: 48px;
+  max-height: 120px;
+  transition: border-color 0.2s;
+}
+.chat-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.chat-textarea::placeholder { color: var(--light); }
+.btn-send {
+  height: 48px;
+  min-width: 48px;
+  padding: 0 16px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+.btn-send:hover { background: var(--gold); }
+.btn-send:active { transform: scale(0.97); }
+.btn-send svg { width: 18px; height: 18px; }
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 640px) {
+  .tab-nav { display: none; }
+  .bottom-nav { display: flex; }
+  .app-content { margin-bottom: 64px; }
+
+  .panel-inner { padding: 20px 16px 0; }
+  .code-card { padding: 36px 24px; }
+  .code-card h1 { font-size: 1.4rem; }
+
+  .accordion-body { padding-left: 18px; }
+
+  .video-row { flex-wrap: wrap; }
+  .video-row-name { flex-basis: calc(100% - 32px); }
+
+  .chat-wrap { height: calc(100dvh - 56px - 64px - 80px); }
+
+  .topbar-patient-name { display: none; }
+}
+
+@media (min-width: 641px) {
+  .bottom-nav { display: none; }
+  .tab-nav { display: flex; }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 20px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+     SCREEN 1: CODE ENTRY
+     ============================================================ -->
 <div id="screen-code">
-  <div class="code-topbar"><span class="code-topbar-brand">Move<span>Check</span></span></div>
+  <div class="code-topbar">
+    <span class="code-topbar-brand">Move<span>Check</span></span>
+  </div>
   <div class="code-card">
-    <div class="code-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+    <div class="code-card-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
     <h1>Accédez à votre espace</h1>
     <p class="subtitle">Entrez le code d'accès fourni par votre ostéopathe</p>
-    <div class="code-input-wrap"><input type="text" id="code-input" class="code-input" placeholder="MC-XXXX" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false"/></div>
-    <div class="code-error" id="code-error">Code invalide. Vérifiez le code fourni par votre ostéopathe.</div>
+    <div class="code-input-wrap">
+      <input
+        type="text"
+        id="code-input"
+        class="code-input"
+        placeholder="MC-XXXX"
+        maxlength="7"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+      />
+    </div>
+    <div class="code-error" id="code-error">
+      Code invalide. Vérifiez le code fourni par votre ostéopathe.
+    </div>
     <button class="btn-primary" id="code-submit">Accéder</button>
     <p class="code-note">Vous n'avez pas encore de code ? Contactez votre ostéopathe.</p>
   </div>
 </div>
+
+<!-- ============================================================
+     SCREEN 2: APP
+     ============================================================ -->
 <div id="screen-app">
+
+  <!-- Topbar -->
   <div class="topbar">
     <span class="topbar-brand">Move<span>Check</span></span>
     <div class="topbar-right">
@@ -190,6 +967,8 @@ input[type="file"]{display:none;}
       <button class="topbar-logout" id="logout-btn">Se déconnecter</button>
     </div>
   </div>
+
+  <!-- Desktop tab nav -->
   <nav class="tab-nav" id="tab-nav">
     <button class="tab-btn active" data-tab="consignes">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
@@ -205,18 +984,27 @@ input[type="file"]{display:none;}
       <span class="tab-badge" id="msg-badge" style="display:none"></span>
     </button>
   </nav>
+
+  <!-- Content -->
   <div class="app-content">
+
+    <!-- TAB: CONSIGNES -->
     <div class="tab-panel active" id="panel-consignes">
       <div class="panel-inner">
         <div class="consigne-welcome">
           <h2 id="welcome-title">Bonjour,</h2>
           <p>Voici vos instructions de filmage. Suivez chaque test attentivement. Filmez en format portrait, dans une pièce bien éclairée.</p>
         </div>
+
         <div class="info-box gold">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div><strong>Matériel nécessaire :</strong> un smartphone, une surface stable (chaise, table) pour le poser. Pas d'équipement spécial requis.</div>
         </div>
-        <div class="accordion-list" id="accordion-list"></div>
+
+        <div class="accordion-list" id="accordion-list">
+          <!-- Generated by JS -->
+        </div>
+
         <div class="cta-next">
           <button class="btn-cta" id="goto-videos-btn">
             J'ai filmé mes tests, passer à l'envoi
@@ -225,31 +1013,57 @@ input[type="file"]{display:none;}
         </div>
       </div>
     </div>
+
+    <!-- TAB: MES VIDEOS -->
     <div class="tab-panel" id="panel-videos">
       <div class="panel-inner">
-        <div class="panel-header"><h2>Envoyez vos vidéos</h2><p>Pour chaque test filmé, ajoutez la vidéo correspondante.</p></div>
+        <div class="panel-header">
+          <h2>Envoyez vos vidéos</h2>
+          <p>Pour chaque test filmé, ajoutez la vidéo correspondante.</p>
+        </div>
+
         <div class="progress-bar-wrap">
           <div class="progress-label">
             <span>Progression</span>
             <span id="progress-text">0/5 vidéos envoyées</span>
           </div>
-          <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+          </div>
         </div>
-        <div class="video-rows" id="video-rows"></div>
+
+        <div class="video-rows" id="video-rows">
+          <!-- Generated by JS -->
+        </div>
+
         <div class="info-box blue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <div>Vos vidéos sont enregistrées dans votre espace. Votre ostéopathe les recevra automatiquement.</div>
         </div>
+
         <p class="proto-note">Version prototype : les vidéos sont enregistrées localement dans votre navigateur. Dans la version complète, elles seront transmises de façon sécurisée.</p>
       </div>
     </div>
+
+    <!-- TAB: MESSAGES -->
     <div class="tab-panel" id="panel-messages">
-      <div class="panel-inner" style="padding-bottom:0;">
-        <div class="panel-header"><h2>Vos messages avec Nico</h2><p>Posez vos questions, partagez vos observations.</p></div>
+      <div class="panel-inner" style="padding-bottom: 0;">
+        <div class="panel-header">
+          <h2>Vos messages avec Nico</h2>
+          <p>Posez vos questions, partagez vos observations.</p>
+        </div>
+
         <div class="chat-wrap">
-          <div class="chat-scroll" id="chat-scroll"></div>
+          <div class="chat-scroll" id="chat-scroll">
+            <!-- Messages rendered by JS -->
+          </div>
           <div class="chat-composer">
-            <textarea class="chat-textarea" id="chat-textarea" placeholder="Votre message..." rows="2"></textarea>
+            <textarea
+              class="chat-textarea"
+              id="chat-textarea"
+              placeholder="Votre message..."
+              rows="2"
+            ></textarea>
             <button class="btn-send" id="chat-send">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               Envoyer
@@ -258,7 +1072,10 @@ input[type="file"]{display:none;}
         </div>
       </div>
     </div>
-  </div>
+
+  </div><!-- /app-content -->
+
+  <!-- Mobile bottom nav -->
   <nav class="bottom-nav" id="bottom-nav">
     <div class="bottom-nav-inner">
       <button class="bottom-nav-btn active" data-tab="consignes">
@@ -276,68 +1093,202 @@ input[type="file"]{display:none;}
       </button>
     </div>
   </nav>
-</div>
-<script>
-function getData(){return JSON.parse(localStorage.getItem('movecheck_pro')||'{"patients":{}}')};
-function saveData(d){localStorage.setItem('movecheck_pro',JSON.stringify(d))}
-function genId(){return Math.random().toString(36).slice(2,9)}
-function formatDate(iso){return new Date(iso).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'})}
-function formatTime(iso){return new Date(iso).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
-function formatSize(bytes){return bytes>1e6?(bytes/1e6).toFixed(1)+' Mo':(bytes/1e3).toFixed(0)+' Ko'}
 
-const TESTS=[
-  {id:1,name:"L'Overhead Squat",subtitle:'Le scanner global',consigne:'Levez les bras en "Y" au-dessus de la tête. Descendez en squat le plus bas possible, lentement. Remontez. Répétez 3 fois.',angles:['De face','De profil'],demo:'https://youtu.be/2VO765PBHck?is=eIGBOlyEcSEDsk4o'},
-  {id:2,name:"L'Enroulement Vertébral",subtitle:'Chaîne postérieure',consigne:"Debout, jambes tendues. Relâchez la tête en premier, puis laissez le dos s'enrouler vertèbre par vertèbre vers l'avant. Essayez de toucher vos pieds sans forcer. Tenez 3 secondes, puis déroulez lentement.",angles:['De profil uniquement'],demo:'https://youtube.com/shorts/ihzdokaxYW0?is=U8cbpQu8ZiO5M9D2'},
-  {id:3,name:"Le Test d'Apley",subtitle:"Mobilité d'épaule",consigne:"Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés.",angles:['De dos','Côté droit puis gauche'],demo:'https://youtube.com/shorts/DPWV7B3xiIo?is=buyQvZjsjswBJmIt'},
-  {id:4,name:'La Rotation Thoracique Assise',subtitle:'Dissociation',consigne:"Assis sur une chaise, bras croisés sur la poitrine. Tournez le buste au maximum vers la droite, puis vers la gauche, sans bouger le bas du corps. Faites 3 rotations de chaque côté lentement.",angles:['De face'],demo:'https://youtube.com/shorts/95VllZB8ZkY?is=MoBKEIrlQtw6ain1'},
-  {id:5,name:'La Fente Avant',subtitle:'Hanches et équilibre',consigne:"Faites un grand pas en avant, descendez le genou arrière vers le sol en gardant le buste vertical. Tenez 2 secondes. Faites le mouvement 3 fois de chaque côté.",angles:['De profil','Côté droit puis gauche'],demo:'https://youtu.be/nLvfEiEP3NY?is=KVcRwX6wzycY3TRg'}
+</div><!-- /screen-app -->
+
+<script>
+/* ============================================================
+   STORAGE HELPERS
+   ============================================================ */
+function getData() {
+  return JSON.parse(localStorage.getItem('movecheck_pro') || '{"patients":{}}')
+}
+function saveData(d) {
+  localStorage.setItem('movecheck_pro', JSON.stringify(d))
+}
+function genId() {
+  return Math.random().toString(36).slice(2, 9)
+}
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+function formatTime(iso) {
+  return new Date(iso).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+}
+function formatSize(bytes) {
+  return bytes > 1e6 ? (bytes / 1e6).toFixed(1) + ' Mo' : (bytes / 1e3).toFixed(0) + ' Ko'
+}
+
+/* ============================================================
+   TEST DATA
+   ============================================================ */
+const TESTS = [
+  {
+    id: 1,
+    name: "L'Overhead Squat",
+    subtitle: 'Le scanner global',
+    consigne: 'Levez les bras en "Y" au-dessus de la tête. Descendez en squat le plus bas possible, lentement. Remontez. Répétez 3 fois.',
+    angles: ['De face', 'De profil'],
+    demo: 'https://youtu.be/2VO765PBHck?is=eIGBOlyEcSEDsk4o'
+  },
+  {
+    id: 2,
+    name: "L'Enroulement Vertébral",
+    subtitle: 'Chaîne postérieure',
+    consigne: "Debout, jambes tendues. Relâchez la tête en premier, puis laissez le dos s'enrouler vertèbre par vertèbre vers l'avant. Essayez de toucher vos pieds sans forcer. Tenez 3 secondes, puis déroulez lentement.",
+    angles: ['De profil uniquement'],
+    demo: 'https://youtube.com/shorts/ihzdokaxYW0?is=U8cbpQu8ZiO5M9D2'
+  },
+  {
+    id: 3,
+    name: "Le Test d'Apley",
+    subtitle: "Mobilité d'épaule",
+    consigne: "Passez une main par-dessus l'épaule (dans le dos), l'autre par le bas. Essayez de rapprocher vos deux mains dans le dos. Filmez les deux côtés.",
+    angles: ['De dos', 'Côté droit puis gauche'],
+    demo: 'https://youtube.com/shorts/DPWV7B3xiIo?is=buyQvZjsjswBJmIt'
+  },
+  {
+    id: 4,
+    name: 'La Rotation Thoracique Assise',
+    subtitle: 'Dissociation',
+    consigne: "Assis sur une chaise, bras croisés sur la poitrine. Tournez le buste au maximum vers la droite, puis vers la gauche, sans bouger le bas du corps. Faites 3 rotations de chaque côté lentement.",
+    angles: ['De face'],
+    demo: 'https://youtube.com/shorts/95VllZB8ZkY?is=MoBKEIrlQtw6ain1'
+  },
+  {
+    id: 5,
+    name: 'La Fente Avant',
+    subtitle: 'Hanches et équilibre',
+    consigne: "Faites un grand pas en avant, descendez le genou arrière vers le sol en gardant le buste vertical. Tenez 2 secondes. Faites le mouvement 3 fois de chaque côté.",
+    angles: ['De profil', 'Côté droit puis gauche'],
+    demo: 'https://youtu.be/nLvfEiEP3NY?is=KVcRwX6wzycY3TRg'
+  }
 ]
 
-let currentPatient=null;
-function getSession(){return sessionStorage.getItem('mc_code')}
-function setSession(code){sessionStorage.setItem('mc_code',code)}
-function clearSession(){sessionStorage.removeItem('mc_code')}
-function findPatientByCode(code){const data=getData();return Object.values(data.patients||{}).find(p=>p.code===code)||null}
+/* ============================================================
+   SESSION
+   ============================================================ */
+let currentPatient = null
 
-function showCodeScreen(){document.getElementById('screen-code').style.display='flex';document.getElementById('screen-app').style.display='none';currentPatient=null;}
-function showApp(patient){
-  currentPatient=patient;
-  document.getElementById('screen-code').style.display='none';
-  document.getElementById('screen-app').style.display='flex';
-  document.getElementById('topbar-name').textContent=patient.firstName+' '+patient.lastName;
-  document.getElementById('welcome-title').textContent='Bonjour '+patient.firstName+',';
-  renderAccordion();renderVideoRows();renderMessages();updateBadge();
+function getSession() {
+  return sessionStorage.getItem('mc_code')
+}
+function setSession(code) {
+  sessionStorage.setItem('mc_code', code)
+}
+function clearSession() {
+  sessionStorage.removeItem('mc_code')
 }
 
-const codeInput=document.getElementById('code-input'), codeError=document.getElementById('code-error');
-codeInput.addEventListener('input',function(){this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'');codeError.classList.remove('visible');this.classList.remove('error');});
-document.getElementById('code-submit').addEventListener('click',submitCode);
-codeInput.addEventListener('keydown',function(e){if(e.key==='Enter')submitCode();});
-function submitCode(){
-  const code=codeInput.value.trim().toUpperCase();
-  if(!code)return;
-  const patient=findPatientByCode(code);
-  if(patient){setSession(code);showApp(patient);}
-  else{codeError.classList.add('visible');codeInput.classList.add('error');codeInput.focus();}
+function findPatientByCode(code) {
+  const data = getData()
+  return Object.values(data.patients || {}).find(p => p.code === code) || null
 }
 
-document.getElementById('logout-btn').addEventListener('click',function(){clearSession();codeInput.value='';codeError.classList.remove('visible');codeInput.classList.remove('error');showCodeScreen();});
-
-function switchTab(tabName){
-  document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===tabName));
-  document.querySelectorAll('.bottom-nav-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.tab===tabName));
-  document.querySelectorAll('.tab-panel').forEach(panel=>panel.classList.toggle('active',panel.id==='panel-'+tabName));
-  if(tabName==='messages'){markMessagesRead();setTimeout(scrollChatToBottom,50);}
+/* ============================================================
+   SCREEN SWITCHER
+   ============================================================ */
+function showCodeScreen() {
+  document.getElementById('screen-code').style.display = 'flex'
+  document.getElementById('screen-app').style.display = 'none'
+  currentPatient = null
 }
-document.querySelectorAll('.tab-btn,.bottom-nav-btn').forEach(btn=>btn.addEventListener('click',function(){switchTab(this.dataset.tab);}));
-document.getElementById('goto-videos-btn').addEventListener('click',function(){switchTab('videos');});
 
-function renderAccordion(){
-  const list=document.getElementById('accordion-list');
-  list.innerHTML=TESTS.map(test=>`
+function showApp(patient) {
+  currentPatient = patient
+  document.getElementById('screen-code').style.display = 'none'
+  document.getElementById('screen-app').style.display = 'flex'
+  document.getElementById('topbar-name').textContent = patient.firstName + ' ' + patient.lastName
+  document.getElementById('welcome-title').textContent = 'Bonjour ' + patient.firstName + ','
+  renderAccordion()
+  renderVideoRows()
+  renderMessages()
+  updateBadge()
+}
+
+/* ============================================================
+   CODE ENTRY
+   ============================================================ */
+const codeInput = document.getElementById('code-input')
+const codeError = document.getElementById('code-error')
+
+codeInput.addEventListener('input', function () {
+  this.value = this.value.toUpperCase().replace(/[^A-Z0-9-]/g, '')
+  codeError.classList.remove('visible')
+  this.classList.remove('error')
+})
+
+document.getElementById('code-submit').addEventListener('click', submitCode)
+codeInput.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') submitCode()
+})
+
+function submitCode() {
+  const code = codeInput.value.trim().toUpperCase()
+  if (!code) return
+  const patient = findPatientByCode(code)
+  if (patient) {
+    setSession(code)
+    showApp(patient)
+  } else {
+    codeError.classList.add('visible')
+    codeInput.classList.add('error')
+    codeInput.focus()
+  }
+}
+
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+document.getElementById('logout-btn').addEventListener('click', function () {
+  clearSession()
+  codeInput.value = ''
+  codeError.classList.remove('visible')
+  codeInput.classList.remove('error')
+  showCodeScreen()
+})
+
+/* ============================================================
+   TABS
+   ============================================================ */
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabName)
+  })
+  document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabName)
+  })
+  document.querySelectorAll('.tab-panel').forEach(panel => {
+    panel.classList.toggle('active', panel.id === 'panel-' + tabName)
+  })
+  if (tabName === 'messages') {
+    markMessagesRead()
+    setTimeout(scrollChatToBottom, 50)
+  }
+}
+
+document.querySelectorAll('.tab-btn, .bottom-nav-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    switchTab(this.dataset.tab)
+  })
+})
+
+document.getElementById('goto-videos-btn').addEventListener('click', function () {
+  switchTab('videos')
+})
+
+/* ============================================================
+   ACCORDION (CONSIGNES)
+   ============================================================ */
+function renderAccordion() {
+  const list = document.getElementById('accordion-list')
+  const obs = getObservations()
+  list.innerHTML = TESTS.map(test => {
+    const savedObs = (obs[test.id] || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    return `
     <div class="accordion-item" id="acc-${test.id}">
       <button class="accordion-trigger" onclick="toggleAccordion(${test.id})">
-        <span class="test-num">${String(test.id).padStart(2,'0')}</span>
+        <span class="test-num">${String(test.id).padStart(2, '0')}</span>
         <span class="test-name" style="display:flex;flex-direction:column;gap:2px;">
           ${test.name}
           <small style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);font-weight:400;letter-spacing:0.04em;">${test.subtitle}</small>
@@ -346,126 +1297,333 @@ function renderAccordion(){
       </button>
       <div class="accordion-body">
         <div class="consigne-field" style="margin-bottom:12px;">
-          <div class="consigne-field-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>Consigne</div>
+          <div class="consigne-field-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            Consigne
+          </div>
           <div class="consigne-field-value">${test.consigne}</div>
         </div>
         <div class="consigne-field" style="margin-bottom:12px;">
-          <div class="consigne-field-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>Angles de filmage</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">${test.angles.map(a=>`<span style="display:inline-block;background:var(--green);color:#fff;font-size:0.75rem;font-weight:600;padding:3px 10px;border-radius:20px;">${a}</span>`).join('')}</div>
+          <div class="consigne-field-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Angles de filmage
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+            ${test.angles.map(a => `<span style="display:inline-block;background:var(--green);color:#fff;font-size:0.75rem;font-weight:600;padding:3px 10px;border-radius:20px;">${a}</span>`).join('')}
+          </div>
         </div>
         <a href="${test.demo}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-size:0.8rem;font-weight:600;padding:9px 16px;border-radius:8px;text-decoration:none;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Voir la démonstration
         </a>
+        <div class="obs-wrap">
+          <div class="obs-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Vos observations
+          </div>
+          <textarea class="obs-textarea" id="obs-${test.id}" placeholder="Douleur, gêne, limitation..." oninput="saveObs(${test.id}, this.value)">${savedObs}</textarea>
+        </div>
       </div>
     </div>
-  `).join('');
+  `}).join('')
 }
 
-function toggleAccordion(id){document.getElementById('acc-'+id).classList.toggle('open');}
-
-function getPatientVideos(){if(!currentPatient)return[];const data=getData(),p=data.patients[currentPatient.id];return p?(p.videos||[]):[];}
-function getVideoForTest(testName){return getPatientVideos().find(v=>v.testName===testName)||null;}
-
-function renderVideoRows(){
-  const container=document.getElementById('video-rows');
-  container.innerHTML=TESTS.map(test=>{
-    const vid=getVideoForTest(test.name),sent=!!vid;
-    return `<div class="video-row ${sent?'sent':''}" id="vrow-${test.id}">
-      <span class="video-row-num">${String(test.id).padStart(2,'0')}</span>
-      <div class="video-row-name">${test.name}${sent?`<div class="file-info">${vid.fileName} &bull; ${formatSize(vid.fileSize)}</div>`:''}</div>
-      <span class="video-status ${sent?'sent':'pending'}">${sent?'Envoyée ✓':'En attente'}</span>
-      <label class="video-upload-btn ${sent?'sent':''}" for="file-${test.id}" title="${sent?'Remplacer la vidéo':'Choisir la vidéo'}">${sent?'↩ Remplacer':'Choisir la vidéo'}</label>
-      <input type="file" accept="video/*" id="file-${test.id}" data-test="${test.name}" data-test-id="${test.id}" onchange="handleFileSelect(this)"/>
-    </div>`;
-  }).join('');
-  updateProgress();
+function toggleAccordion(id) {
+  const item = document.getElementById('acc-' + id)
+  item.classList.toggle('open')
 }
 
-function handleFileSelect(input){
-  const file=input.files[0]; if(!file)return;
-  const testName=input.dataset.test;
-  const data=getData(),patient=data.patients[currentPatient.id]; if(!patient)return;
-  if(!patient.videos)patient.videos=[];
-  patient.videos=patient.videos.filter(v=>v.testName!==testName);
-  patient.videos.push({id:genId(),testName,fileName:file.name,fileSize:file.size,uploadedAt:new Date().toISOString(),blobUrl:null});
-  saveData(data);
-  currentPatient=data.patients[currentPatient.id];
-  renderVideoRows();
+function getObservations() {
+  if (!currentPatient) return {}
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  return p ? (p.observations || {}) : {}
 }
 
-function updateProgress(){
-  const videos=getPatientVideos();
-  const count=TESTS.filter(t=>videos.find(v=>v.testName===t.name)).length;
-  document.getElementById('progress-text').textContent=count+'/5 vidéos envoyées';
-  document.getElementById('progress-fill').style.width=(count/5*100)+'%';
+function saveObs(testId, value) {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  if (!p) return
+  if (!p.observations) p.observations = {}
+  p.observations[testId] = value
+  saveData(data)
+  currentPatient = data.patients[currentPatient.id]
 }
 
-function getMessages(){if(!currentPatient)return[];const data=getData(),p=data.patients[currentPatient.id];return p?(p.messages||[]):[]; }
-
-function renderMessages(){
-  const scroll=document.getElementById('chat-scroll'),msgs=getMessages();
-  if(!msgs.length){scroll.innerHTML='<div class="chat-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Aucun message pour l\'instant.<br>Votre ostéopathe vous contactera ici.</div>';return;}
-  scroll.innerHTML=msgs.map(msg=>{
-    const fromAdmin=msg.from==='admin',isUnread=fromAdmin&&!msg.read;
-    return `<div class="chat-msg ${fromAdmin?'from-admin':'from-patient'} ${isUnread?'unread':''}">${fromAdmin?'<div class="chat-avatar">N</div>':''}<div class="chat-bubble-wrap"><div class="chat-bubble">${escapeHtml(msg.content)}</div><div class="chat-meta"><span class="chat-time">${formatDate(msg.timestamp)} ${formatTime(msg.timestamp)}</span>${isUnread?'<span class="chat-new-badge">Nouveau</span>':''}</div></div></div>`;
-  }).join('');
+/* ============================================================
+   VIDEO ROWS
+   ============================================================ */
+function getPatientVideos() {
+  if (!currentPatient) return []
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  return p ? (p.videos || []) : []
 }
 
-function scrollChatToBottom(){const s=document.getElementById('chat-scroll');s.scrollTop=s.scrollHeight;}
-
-function markMessagesRead(){
-  if(!currentPatient)return;
-  const data=getData(),patient=data.patients[currentPatient.id];
-  if(!patient||!patient.messages)return;
-  let changed=false;
-  patient.messages.forEach(m=>{if(m.from==='admin'&&!m.read){m.read=true;changed=true;}});
-  if(changed){saveData(data);currentPatient=data.patients[currentPatient.id];updateBadge();renderMessages();setTimeout(scrollChatToBottom,50);}
+function getVideoForTest(testName) {
+  const videos = getPatientVideos()
+  return videos.find(v => v.testName === testName) || null
 }
 
-function updateBadge(){
-  const msgs=getMessages(),unread=msgs.filter(m=>m.from==='admin'&&!m.read).length;
-  const badge=document.getElementById('msg-badge'),badgeMobile=document.getElementById('msg-badge-mobile');
-  if(unread>0){badge.textContent=unread;badge.style.display='inline-block';badgeMobile.textContent=unread;badgeMobile.style.display='inline-block';}
-  else{badge.style.display='none';badgeMobile.style.display='none';}
+function renderVideoRows() {
+  const container = document.getElementById('video-rows')
+  container.innerHTML = TESTS.map(test => {
+    const vid = getVideoForTest(test.name)
+    const sent = !!vid
+    return `
+      <div class="video-row ${sent ? 'sent' : ''}" id="vrow-${test.id}">
+        <span class="video-row-num">${String(test.id).padStart(2, '0')}</span>
+        <div class="video-row-name">
+          ${test.name}
+          ${sent ? `<div class="file-info">${vid.fileName} &bull; ${formatSize(vid.fileSize)}</div>` : ''}
+        </div>
+        <span class="video-status ${sent ? 'sent' : 'pending'}">${sent ? 'Envoyée ✓' : 'En attente'}</span>
+        <label class="video-upload-btn ${sent ? 'sent' : ''}" for="file-${test.id}" title="${sent ? 'Remplacer la vidéo' : 'Choisir la vidéo'}">
+          ${sent ? '↩ Remplacer' : 'Choisir la vidéo'}
+        </label>
+        <input type="file" accept="video/*" id="file-${test.id}" data-test="${test.name}" data-test-id="${test.id}" onchange="handleFileSelect(this)"/>
+      </div>
+    `
+  }).join('')
+  updateProgress()
 }
 
-function sendMessage(){
-  const textarea=document.getElementById('chat-textarea'),content=textarea.value.trim();
-  if(!content||!currentPatient)return;
-  const data=getData(),patient=data.patients[currentPatient.id]; if(!patient)return;
-  if(!patient.messages)patient.messages=[];
-  patient.messages.push({id:genId(),from:'patient',content,timestamp:new Date().toISOString(),read:false});
-  saveData(data);currentPatient=data.patients[currentPatient.id];textarea.value='';
-  renderMessages();setTimeout(scrollChatToBottom,50);
+function handleFileSelect(input) {
+  const file = input.files[0]
+  if (!file) return
+  const testName = input.dataset.test
+  const testId = parseInt(input.dataset.testId)
+
+  const data = getData()
+  const patient = data.patients[currentPatient.id]
+  if (!patient) return
+
+  if (!patient.videos) patient.videos = []
+
+  // Remove existing video for this test if any
+  patient.videos = patient.videos.filter(v => v.testName !== testName)
+
+  // Add new entry (no blobUrl stored — prototype limitation)
+  patient.videos.push({
+    id: genId(),
+    testName: testName,
+    fileName: file.name,
+    fileSize: file.size,
+    uploadedAt: new Date().toISOString(),
+    blobUrl: null
+  })
+
+  saveData(data)
+
+  // Sync currentPatient ref
+  currentPatient = data.patients[currentPatient.id]
+
+  renderVideoRows()
 }
 
-document.getElementById('chat-send').addEventListener('click',sendMessage);
-document.getElementById('chat-textarea').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
-
-function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/\n/g,'<br>');}
-
-const chatTextarea=document.getElementById('chat-textarea');
-chatTextarea.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';});
-
-function init(){
-  const urlParams=new URLSearchParams(window.location.search),urlCode=urlParams.get('code');
-  if(urlCode){const patient=findPatientByCode(urlCode.toUpperCase());if(patient){setSession(urlCode.toUpperCase());showApp(patient);return;}}
-  const sessionCode=getSession();
-  if(sessionCode){const patient=findPatientByCode(sessionCode);if(patient){showApp(patient);return;}else{clearSession();}}
-  showCodeScreen();
+function updateProgress() {
+  const videos = getPatientVideos()
+  const count = TESTS.filter(t => videos.find(v => v.testName === t.name)).length
+  document.getElementById('progress-text').textContent = count + '/5 vidéos envoyées'
+  document.getElementById('progress-fill').style.width = (count / 5 * 100) + '%'
 }
 
-function seedDemoIfEmpty(){
-  const data=getData();
-  if(Object.keys(data.patients||{}).length===0){
-    data.patients={'P001':{id:'P001',code:'MC-DEMO',firstName:'Jean',lastName:'Dupont',email:'jean@test.fr',zone:'Lombaires',messages:[{id:genId(),from:'admin',content:'Bonjour Jean, bienvenue sur MoveCheck Pro. Vous pouvez consulter vos consignes et envoyer vos vidéos depuis cet espace.',timestamp:new Date(Date.now()-86400000).toISOString(),read:false}],videos:[]}};
-    saveData(data);
+/* ============================================================
+   MESSAGES
+   ============================================================ */
+function getMessages() {
+  if (!currentPatient) return []
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  return p ? (p.messages || []) : []
+}
+
+function renderMessages() {
+  const scroll = document.getElementById('chat-scroll')
+  const msgs = getMessages()
+  if (msgs.length === 0) {
+    scroll.innerHTML = `
+      <div class="chat-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Aucun message pour l'instant.<br>Votre ostéopathe vous contactera ici.
+      </div>
+    `
+    return
+  }
+  scroll.innerHTML = msgs.map(msg => {
+    const fromAdmin = msg.from === 'admin'
+    const isUnread = fromAdmin && !msg.read
+    return `
+      <div class="chat-msg ${fromAdmin ? 'from-admin' : 'from-patient'} ${isUnread ? 'unread' : ''}">
+        ${fromAdmin ? `<div class="chat-avatar">N</div>` : ''}
+        <div class="chat-bubble-wrap">
+          <div class="chat-bubble">${escapeHtml(msg.content)}</div>
+          <div class="chat-meta">
+            <span class="chat-time">${formatDate(msg.timestamp)} ${formatTime(msg.timestamp)}</span>
+            ${isUnread ? '<span class="chat-new-badge">Nouveau</span>' : ''}
+          </div>
+        </div>
+      </div>
+    `
+  }).join('')
+}
+
+function scrollChatToBottom() {
+  const scroll = document.getElementById('chat-scroll')
+  scroll.scrollTop = scroll.scrollHeight
+}
+
+function markMessagesRead() {
+  if (!currentPatient) return
+  const data = getData()
+  const patient = data.patients[currentPatient.id]
+  if (!patient || !patient.messages) return
+  let changed = false
+  patient.messages.forEach(m => {
+    if (m.from === 'admin' && !m.read) {
+      m.read = true
+      changed = true
+    }
+  })
+  if (changed) {
+    saveData(data)
+    currentPatient = data.patients[currentPatient.id]
+    updateBadge()
+    renderMessages()
+    setTimeout(scrollChatToBottom, 50)
   }
 }
 
-seedDemoIfEmpty();
-init();
+function updateBadge() {
+  const msgs = getMessages()
+  const unread = msgs.filter(m => m.from === 'admin' && !m.read).length
+  const badge = document.getElementById('msg-badge')
+  const badgeMobile = document.getElementById('msg-badge-mobile')
+  if (unread > 0) {
+    badge.textContent = unread
+    badge.style.display = 'inline-block'
+    badgeMobile.textContent = unread
+    badgeMobile.style.display = 'inline-block'
+  } else {
+    badge.style.display = 'none'
+    badgeMobile.style.display = 'none'
+  }
+}
+
+function sendMessage() {
+  const textarea = document.getElementById('chat-textarea')
+  const content = textarea.value.trim()
+  if (!content || !currentPatient) return
+
+  const data = getData()
+  const patient = data.patients[currentPatient.id]
+  if (!patient) return
+  if (!patient.messages) patient.messages = []
+
+  patient.messages.push({
+    id: genId(),
+    from: 'patient',
+    content: content,
+    timestamp: new Date().toISOString(),
+    read: false
+  })
+
+  saveData(data)
+  currentPatient = data.patients[currentPatient.id]
+  textarea.value = ''
+  renderMessages()
+  setTimeout(scrollChatToBottom, 50)
+}
+
+document.getElementById('chat-send').addEventListener('click', sendMessage)
+document.getElementById('chat-textarea').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault()
+    sendMessage()
+  }
+})
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/\n/g, '<br>')
+}
+
+/* ============================================================
+   AUTO-RESIZE TEXTAREA
+   ============================================================ */
+const chatTextarea = document.getElementById('chat-textarea')
+chatTextarea.addEventListener('input', function () {
+  this.style.height = 'auto'
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px'
+})
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init() {
+  // Check URL for code param
+  const urlParams = new URLSearchParams(window.location.search)
+  const urlCode = urlParams.get('code')
+
+  if (urlCode) {
+    const patient = findPatientByCode(urlCode.toUpperCase())
+    if (patient) {
+      setSession(urlCode.toUpperCase())
+      showApp(patient)
+      return
+    }
+  }
+
+  // Check sessionStorage
+  const sessionCode = getSession()
+  if (sessionCode) {
+    const patient = findPatientByCode(sessionCode)
+    if (patient) {
+      showApp(patient)
+      return
+    } else {
+      clearSession()
+    }
+  }
+
+  showCodeScreen()
+}
+
+// Seed demo data if localStorage is empty (dev helper)
+function seedDemoIfEmpty() {
+  const data = getData()
+  if (Object.keys(data.patients || {}).length === 0) {
+    data.patients = {
+      'P001': {
+        id: 'P001',
+        code: 'MC-DEMO',
+        firstName: 'Jean',
+        lastName: 'Dupont',
+        email: 'jean@test.fr',
+        zone: 'Lombaires',
+        messages: [
+          {
+            id: genId(),
+            from: 'admin',
+            content: 'Bonjour Jean, bienvenue sur MoveCheck Pro. Vous pouvez consulter vos consignes et envoyer vos vidéos depuis cet espace. N\'hésitez pas à me poser vos questions ici.',
+            timestamp: new Date(Date.now() - 86400000).toISOString(),
+            read: false
+          }
+        ],
+        videos: []
+      }
+    }
+    saveData(data)
+  }
+}
+
+seedDemoIfEmpty()
+init()
 </script>
 </body>
 </html>
