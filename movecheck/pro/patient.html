@@ -359,6 +359,37 @@ input, textarea { font-family: inherit; }
 .bottom-nav-btn.active {
   color: var(--gold);
 }
+/* ─── PROGRAMME PANEL ─── */
+.programme-card {
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 4px;
+}
+.programme-pub-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--light);
+  margin-bottom: 16px;
+}
+.programme-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--ink);
+}
+.programme-body strong { color: var(--gold); font-weight: 700; }
+.programme-waiting {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.programme-waiting p { font-size: 0.9rem; line-height: 1.65; max-width: 280px; }
+
 .bottom-nav-badge {
   position: absolute;
   top: 6px;
@@ -983,6 +1014,11 @@ input[type="file"] { display: none; }
       Messages
       <span class="tab-badge" id="msg-badge" style="display:none"></span>
     </button>
+    <button class="tab-btn" data-tab="programme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Programme
+      <span class="tab-badge" id="prog-badge-top" style="display:none"></span>
+    </button>
   </nav>
 
   <!-- Content -->
@@ -1073,6 +1109,17 @@ input[type="file"] { display: none; }
       </div>
     </div>
 
+    <!-- TAB: MON PROGRAMME -->
+    <div class="tab-panel" id="panel-programme">
+      <div class="panel-inner">
+        <div class="panel-header">
+          <h2>Mon programme</h2>
+          <p>Votre programme de mobilité personnalisé établi par votre ostéopathe.</p>
+        </div>
+        <div id="programme-display"></div>
+      </div>
+    </div>
+
   </div><!-- /app-content -->
 
   <!-- Mobile bottom nav -->
@@ -1090,6 +1137,11 @@ input[type="file"] { display: none; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Messages
         <span class="bottom-nav-badge" id="msg-badge-mobile" style="display:none"></span>
+      </button>
+      <button class="bottom-nav-btn" data-tab="programme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Programme
+        <span class="bottom-nav-badge" id="prog-badge-mobile" style="display:none"></span>
       </button>
     </div>
   </nav>
@@ -1204,6 +1256,7 @@ function showApp(patient) {
   renderVideoRows()
   renderMessages()
   updateBadge()
+  updateProgrammeBadge()
 }
 
 /* ============================================================
@@ -1265,6 +1318,12 @@ function switchTab(tabName) {
     markMessagesRead()
     setTimeout(scrollChatToBottom, 50)
   }
+  if (tabName === 'programme') {
+    renderProgrammePanel()
+    document.getElementById('prog-badge-mobile').style.display = 'none'
+    const topBadge = document.getElementById('prog-badge-top')
+    if (topBadge) topBadge.style.display = 'none'
+  }
 }
 
 document.querySelectorAll('.tab-btn, .bottom-nav-btn').forEach(btn => {
@@ -1276,6 +1335,59 @@ document.querySelectorAll('.tab-btn, .bottom-nav-btn').forEach(btn => {
 document.getElementById('goto-videos-btn').addEventListener('click', function () {
   switchTab('videos')
 })
+
+/* ============================================================
+   PROGRAMME
+   ============================================================ */
+function renderProgrammePanel() {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  const prog = p && p.programme
+  const el = document.getElementById('programme-display')
+
+  if (!prog || !prog.content) {
+    el.innerHTML = `
+      <div class="programme-waiting">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        <p><strong style="color:var(--ink);font-size:1rem;">Programme en préparation</strong></p>
+        <p>Votre ostéopathe prépare votre programme personnalisé après analyse de vos vidéos. Il apparaîtra ici dès qu'il sera disponible.</p>
+      </div>
+    `
+    return
+  }
+
+  const rendered = prog.content
+    .split('\n')
+    .map(line => {
+      let l = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      l = l.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      return l || '&nbsp;'
+    })
+    .join('<br>')
+
+  el.innerHTML = `
+    <div class="programme-card">
+      <div class="programme-pub-date">Publié le ${formatDate(prog.publishedAt)}</div>
+      <div class="programme-body">${rendered}</div>
+    </div>
+  `
+}
+
+function updateProgrammeBadge() {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  const hasProgram = !!(p && p.programme && p.programme.content)
+  document.getElementById('prog-badge-mobile').style.display = hasProgram ? 'flex' : 'none'
+  const topBadge = document.getElementById('prog-badge-top')
+  if (topBadge) topBadge.style.display = hasProgram ? 'flex' : 'none'
+}
 
 /* ============================================================
    ACCORDION (CONSIGNES)

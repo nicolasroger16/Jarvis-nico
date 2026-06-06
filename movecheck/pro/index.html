@@ -1190,6 +1190,46 @@
 
     .msg-bubble { max-width: 80%; }
   }
+
+  /* ─── PROGRAMME TAB ─── */
+
+  .programme-area { padding: 20px; overflow-y: auto; height: 100%; }
+  .programme-editor { display: flex; flex-direction: column; gap: 16px; max-width: 720px; }
+  .programme-editor-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 4px; }
+  .programme-editor-desc { font-size: 13px; color: var(--light); line-height: 1.5; margin-top: 4px; }
+  .programme-hint { font-size: 12px; color: var(--light); background: var(--warm); border-radius: 8px; padding: 10px 14px; line-height: 1.6; }
+  .programme-textarea {
+    width: 100%;
+    min-height: 340px;
+    border: 1.5px solid var(--divider);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: #fff;
+    resize: vertical;
+    outline: none;
+    line-height: 1.75;
+    transition: border-color 0.15s;
+  }
+  .programme-textarea:focus { border-color: var(--gold); }
+  .programme-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .btn-publish {
+    padding: 10px 22px;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-publish:hover { background: #9a7009; }
+  .programme-pub-status { font-size: 12px; color: var(--light); }
+  .programme-pub-status.published { color: var(--green); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -1283,6 +1323,7 @@
           <button class="tab-btn active" data-tab="messages">Messages</button>
           <button class="tab-btn" data-tab="videos">Vidéos</button>
           <button class="tab-btn" data-tab="infos">Infos</button>
+          <button class="tab-btn" data-tab="programme">Programme</button>
         </div>
 
         <!-- Tab contents -->
@@ -1346,6 +1387,24 @@
                 </div>
                 <p class="form-created" id="infoCreated"></p>
               </form>
+            </div>
+          </div>
+
+          <!-- PROGRAMME -->
+          <div class="tab-pane" id="tab-programme">
+            <div class="programme-area">
+              <div class="programme-editor">
+                <div>
+                  <div class="programme-editor-label">Programme de mobilité personnalisé</div>
+                  <p class="programme-editor-desc">Rédigez ici le programme du patient. Il sera visible dans son espace dès la publication.</p>
+                </div>
+                <div class="programme-hint">Astuce : utilisez **texte** pour mettre en gras. Sautez des lignes entre les exercices.</div>
+                <textarea class="programme-textarea" id="programmeTextarea" placeholder="Exemple :&#10;&#10;**Exercice 1 – Mobilisation cervicale**&#10;3 séries de 10 répétitions, matin et soir.&#10;&#10;**Exercice 2 – Étirement chaîne postérieure**&#10;2 × 45 secondes de chaque côté, au sol.&#10;&#10;**Suivi J+30**&#10;Renvoyez-moi vos vidéos dans 30 jours."></textarea>
+                <div class="programme-actions">
+                  <button class="btn-publish" id="btnPublish">Publier le programme</button>
+                  <span class="programme-pub-status" id="programmeStatus"></span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1656,6 +1715,7 @@
     if (activeTab === 'messages') renderMessages(p);
     if (activeTab === 'videos') renderVideos(p);
     if (activeTab === 'infos') renderInfos(p);
+    if (activeTab === 'programme') renderProgramme(p);
   }
 
   function renderMessages(p) {
@@ -1955,6 +2015,36 @@
     const url = 'patient.html?code=' + encodeURIComponent(code);
     window.open(url, '_blank');
     document.getElementById('codeDropdown').classList.remove('open');
+  });
+
+  // ─── PROGRAMME ─────────────────────────────────────────────────────────────
+
+  function renderProgramme(p) {
+    const prog = p.programme || {};
+    document.getElementById('programmeTextarea').value = prog.content || '';
+    const statusEl = document.getElementById('programmeStatus');
+    if (prog.publishedAt) {
+      statusEl.textContent = '✓ Publié le ' + formatDatetime(prog.publishedAt);
+      statusEl.className = 'programme-pub-status published';
+    } else {
+      statusEl.textContent = 'Pas encore publié';
+      statusEl.className = 'programme-pub-status';
+    }
+  }
+
+  document.getElementById('btnPublish').addEventListener('click', () => {
+    if (!selectedPatientId) return;
+    const content = document.getElementById('programmeTextarea').value.trim();
+    if (!content) { showToast('Le programme est vide.'); return; }
+
+    const d = getData();
+    const p = d.patients[selectedPatientId];
+    if (!p) return;
+
+    p.programme = { content, publishedAt: new Date().toISOString() };
+    saveData(d);
+    renderProgramme(p);
+    showToast('Programme publié pour <strong>' + esc(p.firstName) + ' ' + esc(p.lastName) + '</strong> ✓');
   });
 
   // ─── SEARCH ─────────────────────────────────────────────────────────────────
