@@ -1134,8 +1134,12 @@
         btnNext.className = 'btn btn-primary';
       }
 
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to top — robust for mobile/tablet
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 50);
     }
 
     function nextStep() {
