@@ -42,11 +42,12 @@ Sur quel domaine voulez-vous votre veille du jour ?
 4. Un sujet spécifique (à préciser)
 ```
 
-Si l'utilisateur tape directement `/morning` ou demande une routine matinale, lance directement la veille sur les 4 domaines par défaut, sans poser la question :
+Si l'utilisateur tape directement `/morning` ou demande une routine matinale, lance directement la veille sur les 5 domaines par défaut, sans poser la question :
 1. Actualités IA et nouvelles technologies
 2. Actualités ostéopathie et thérapie manuelle
 3. Recherche scientifique sur les bénéfices de la mobilité
 4. E-learning et formation pour professionnels de santé
+5. Télérééducation, bilan de mobilité à distance et programmes de mobilité (MoveCheck)
 
 ---
 
@@ -97,6 +98,31 @@ Si PubMed est connecté (outil `search_articles` disponible), l'utiliser EN COMP
 - "osteopathic manipulative treatment randomized controlled trial"
 
 Présenter les résultats PubMed séparément, sous un bloc "Recherche scientifique récente" avec le titre, les auteurs, l'année et le PMID.
+
+MoveCheck (bilan de mobilité à distance et programmes de mobilité) :
+
+Contexte : MoveCheck est un service où le patient filme des tests de mobilité standardisés à domicile et reçoit un programme personnalisé. Promotion via LinkedIn, Facebook, Instagram et TikTok.
+
+Queries web :
+- "télérééducation bilan mobilité à distance actualités 2026"
+- "remote physical assessment home exercise program trends"
+- "telerehabilitation mobility app actualités"
+- "home mobility assessment digital health 2026"
+- "programme mobilité en ligne kinésithérapie ostéopathie"
+- "contenu santé mobilité réseaux sociaux tendances"
+
+Queries PubMed complémentaires :
+- "telerehabilitation home exercise program randomized controlled trial"
+- "remote musculoskeletal assessment validity reliability"
+- "home-based mobility program effectiveness systematic review"
+- "digital health physical therapy outcomes"
+
+Signaux à surveiller spécifiquement pour MoveCheck :
+- Nouveaux concurrents ou services similaires lancés (apps de bilan mobilité à distance)
+- Études validant les tests de mobilité filmés comme outil d'évaluation fiable
+- Tendances de contenu santé sur les réseaux sociaux (formats courts mobilité, TikTok santé)
+- Évolutions réglementaires sur la télémédecine ou le suivi à distance en France
+- Outils IA d'analyse du mouvement ou de la posture (technologies qui pourraient intégrer ou concurrencer MoveCheck)
 
 Adapte intelligemment selon le contexte chargé en Phase 1.
 
@@ -151,6 +177,14 @@ Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actue
 [Étude ou résultat récent sur les bénéfices de la mobilité]
 - Pourquoi c'est important pour vous : [explication personnalisée]
 - Source : [lien ou PMID si source PubMed]
+
+---
+
+📱 MoveCheck : bilan mobilité à distance
+
+[Actualité, étude ou signal du marché pertinent pour MoveCheck]
+- Pourquoi c'est important pour MoveCheck : [impact concret sur le service, l'acquisition, la crédibilité scientifique ou le contenu social]
+- Source : [lien ou PMID]
 
 ---
 
