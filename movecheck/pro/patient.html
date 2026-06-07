@@ -404,6 +404,36 @@ input, textarea { font-family: inherit; }
   line-height: 1.4;
 }
 
+/* ─── ANAMNÈSE PANEL ─── */
+.anamn-form { display: flex; flex-direction: column; gap: 20px; }
+.anamn-section { background: #fff; border: 1px solid var(--divider); border-radius: 14px; padding: 20px 18px; }
+.anamn-section-title { font-weight: 700; color: var(--ink); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+.anamn-section-num { background: var(--gold); color: #fff; font-size: 0.68rem; font-weight: 700; border-radius: 20px; padding: 2px 9px; font-family: 'DM Mono', monospace; flex-shrink: 0; }
+.anamn-section-desc { font-size: 0.82rem; color: var(--light); margin-bottom: 14px; line-height: 1.5; }
+.anamn-field { margin-bottom: 14px; }
+.anamn-field:last-child { margin-bottom: 0; }
+.anamn-label { display: block; font-size: 0.84rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.anamn-label-req::after { content: ' *'; color: var(--red); }
+.anamn-input, .anamn-textarea { width: 100%; border: 1.5px solid var(--divider); border-radius: 9px; padding: 10px 13px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink); background: #fff; outline: none; transition: border-color 0.15s; }
+.anamn-input:focus, .anamn-textarea:focus { border-color: var(--gold); }
+.anamn-textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
+.anamn-readonly { background: var(--warm); color: var(--muted); }
+.anamn-radio-group, .anamn-check-group { display: flex; flex-direction: column; gap: 8px; }
+.anamn-radio-item, .anamn-check-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; padding: 8px 12px; border-radius: 9px; border: 1.5px solid var(--divider); transition: border-color 0.15s; }
+.anamn-radio-item:has(input:checked), .anamn-check-item:has(input:checked) { border-color: var(--gold); background: var(--gold-light); }
+.anamn-radio-item input, .anamn-check-item input { width: 17px; height: 17px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; margin-top: 1px; }
+.anamn-radio-item span, .anamn-check-item span { font-size: 0.88rem; color: var(--ink); line-height: 1.45; }
+.anamn-submit-btn { width: 100%; padding: 14px; background: var(--gold); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.15s; font-family: 'DM Sans', sans-serif; }
+.anamn-submit-btn:hover { background: #9a7009; }
+.anamn-submitted { background: var(--green-light); border: 1.5px solid var(--green); border-radius: 14px; padding: 28px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.anamn-submitted svg { color: var(--green); }
+.anamn-submitted h3 { color: var(--green); font-size: 1rem; font-weight: 700; }
+.anamn-submitted p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; max-width: 280px; }
+.anamn-edit-link { font-size: 0.8rem; color: var(--light); text-decoration: underline; cursor: pointer; }
+.anamn-banner { background: var(--gold-light); border: 1px solid #d4a017; border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 20px; }
+.anamn-banner svg { flex-shrink: 0; color: var(--gold); }
+.anamn-banner-text { font-size: 0.85rem; color: var(--gold); font-weight: 600; }
+
 /* ============================================================
    TAB PANELS
    ============================================================ */
@@ -1019,6 +1049,11 @@ input[type="file"] { display: none; }
       Programme
       <span class="tab-badge" id="prog-badge-top" style="display:none"></span>
     </button>
+    <button class="tab-btn" data-tab="anamn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Anamnèse
+      <span class="tab-badge" id="anamn-badge-top" style="display:none"></span>
+    </button>
   </nav>
 
   <!-- Content -->
@@ -1030,6 +1065,12 @@ input[type="file"] { display: none; }
         <div class="consigne-welcome">
           <h2 id="welcome-title">Bonjour,</h2>
           <p>Voici vos instructions de filmage. Suivez chaque test attentivement. Filmez en format portrait, dans une pièce bien éclairée.</p>
+        </div>
+
+        <!-- Anamnèse banner (shown if not submitted) -->
+        <div class="anamn-banner" id="anamn-banner" style="display:none" onclick="switchTab('anamn')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span class="anamn-banner-text">Remplissez votre anamnèse avant de filmer →</span>
         </div>
 
         <div class="info-box gold">
@@ -1120,6 +1161,17 @@ input[type="file"] { display: none; }
       </div>
     </div>
 
+    <!-- TAB: ANAMNÈSE -->
+    <div class="tab-panel" id="panel-anamn">
+      <div class="panel-inner">
+        <div class="panel-header">
+          <h2>Mon anamnèse</h2>
+          <p>Vos informations médicales et vos attentes pour le bilan.</p>
+        </div>
+        <div id="anamn-content"></div>
+      </div>
+    </div>
+
   </div><!-- /app-content -->
 
   <!-- Mobile bottom nav -->
@@ -1142,6 +1194,11 @@ input[type="file"] { display: none; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         Programme
         <span class="bottom-nav-badge" id="prog-badge-mobile" style="display:none"></span>
+      </button>
+      <button class="bottom-nav-btn" data-tab="anamn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Anamnèse
+        <span class="bottom-nav-badge" id="anamn-badge-mobile" style="display:none"></span>
       </button>
     </div>
   </nav>
@@ -1257,6 +1314,7 @@ function showApp(patient) {
   renderMessages()
   updateBadge()
   updateProgrammeBadge()
+  updateAnamnBadge()
 }
 
 /* ============================================================
@@ -1324,6 +1382,9 @@ function switchTab(tabName) {
     const topBadge = document.getElementById('prog-badge-top')
     if (topBadge) topBadge.style.display = 'none'
   }
+  if (tabName === 'anamn') {
+    renderAnamnPanel()
+  }
 }
 
 document.querySelectorAll('.tab-btn, .bottom-nav-btn').forEach(btn => {
@@ -1387,6 +1448,150 @@ function updateProgrammeBadge() {
   document.getElementById('prog-badge-mobile').style.display = hasProgram ? 'flex' : 'none'
   const topBadge = document.getElementById('prog-badge-top')
   if (topBadge) topBadge.style.display = hasProgram ? 'flex' : 'none'
+}
+
+/* ============================================================
+   ANAMNÈSE
+   ============================================================ */
+function renderAnamnPanel() {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  const anamn = p && p.anamn
+  const el = document.getElementById('anamn-content')
+  if (anamn && anamn.submittedAt) {
+    el.innerHTML = `
+      <div class="anamn-submitted">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Anamnèse envoyée ✓</h3>
+        <p>Vos informations ont été transmises à votre ostéopathe le ${formatDate(anamn.submittedAt)}.</p>
+        <span class="anamn-edit-link" onclick="showAnamnForm()">Modifier mes réponses</span>
+      </div>
+    `
+    return
+  }
+  showAnamnForm()
+}
+
+function showAnamnForm() {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  const a = (p && p.anamn) || {}
+  const e = s => (s || '').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+  const el = document.getElementById('anamn-content')
+  const dureeOptions = ['< 1 mois','De 1 à 6 mois','Plus de 6 mois',"C'est chronique"]
+  el.innerHTML = `
+    <form class="anamn-form" id="anamnForm" onsubmit="submitAnamn(event)">
+      <div class="anamn-section">
+        <div class="anamn-section-title"><span class="anamn-section-num">1</span>Vos informations</div>
+        <div class="anamn-section-desc">Pré-remplies depuis votre dossier. Seul l'âge est à compléter.</div>
+        <div class="anamn-field">
+          <label class="anamn-label">Prénom et Nom</label>
+          <input class="anamn-input anamn-readonly" type="text" value="${e(p.firstName + ' ' + p.lastName)}" readonly>
+        </div>
+        <div class="anamn-field">
+          <label class="anamn-label anamn-label-req">Votre âge</label>
+          <input class="anamn-input" type="number" id="anamnAge" min="10" max="120" placeholder="en années" value="${e(a.age || '')}" required>
+        </div>
+        <div class="anamn-field">
+          <label class="anamn-label">Email</label>
+          <input class="anamn-input anamn-readonly" type="email" value="${e(p.email || '')}" readonly>
+        </div>
+        <div class="anamn-field">
+          <label class="anamn-label">Téléphone</label>
+          <input class="anamn-input anamn-readonly" type="tel" value="${e(p.phone || '')}" readonly>
+        </div>
+      </div>
+
+      <div class="anamn-section">
+        <div class="anamn-section-title"><span class="anamn-section-num">2</span>Votre motif</div>
+        <div class="anamn-section-desc">Décrivez ce qui vous amène à consulter.</div>
+        <div class="anamn-field">
+          <label class="anamn-label anamn-label-req">Qu'est-ce qui vous gêne dans vos mouvements au quotidien ?</label>
+          <textarea class="anamn-textarea" id="anamnGene" placeholder="Décrivez vos difficultés de mobilité..." required>${e(a.gene || '')}</textarea>
+        </div>
+        <div class="anamn-field">
+          <label class="anamn-label anamn-label-req">Depuis combien de temps ?</label>
+          <div class="anamn-radio-group">
+            ${dureeOptions.map(opt => `<label class="anamn-radio-item"><input type="radio" name="anamnDuree" value="${e(opt)}" ${a.duree === opt ? 'checked' : ''} required><span>${e(opt)}</span></label>`).join('')}
+          </div>
+        </div>
+        <div class="anamn-field">
+          <label class="anamn-label anamn-label-req">Avez-vous déjà eu une chirurgie ou un traumatisme important ?</label>
+          <div class="anamn-radio-group">
+            <label class="anamn-radio-item"><input type="radio" name="anamnChirurgie" value="Non" ${a.chirurgie === 'Non' ? 'checked' : ''} onchange="toggleChirurgieField(this)" required><span>Non</span></label>
+            <label class="anamn-radio-item"><input type="radio" name="anamnChirurgie" value="Oui" ${a.chirurgie === 'Oui' ? 'checked' : ''} onchange="toggleChirurgieField(this)"><span>Oui</span></label>
+          </div>
+        </div>
+        <div class="anamn-field" id="chirurgieDetailField" style="${a.chirurgie === 'Oui' ? '' : 'display:none'}">
+          <label class="anamn-label">Si oui, précisez :</label>
+          <input class="anamn-input" type="text" id="anamnChirurgiePrecision" placeholder="Type et date approximative..." value="${e(a.chirurgiePrecision || '')}">
+        </div>
+      </div>
+
+      <div class="anamn-section">
+        <div class="anamn-section-title"><span class="anamn-section-num">3</span>Votre objectif</div>
+        <div class="anamn-section-desc">Qu'attendez-vous de ce bilan ?</div>
+        <div class="anamn-field">
+          <label class="anamn-label anamn-label-req">Qu'attendez-vous de ce bilan ?</label>
+          <textarea class="anamn-textarea" id="anamnObjectif" placeholder="Vos attentes, vos objectifs..." required>${e(a.objectif || '')}</textarea>
+        </div>
+      </div>
+
+      <div class="anamn-section">
+        <div class="anamn-section-title"><span class="anamn-section-num">4</span>Consentement</div>
+        <div class="anamn-section-desc">Merci de confirmer avant d'envoyer.</div>
+        <div class="anamn-check-group">
+          <label class="anamn-check-item"><input type="checkbox" id="anamnConsent1" ${a.consent1 ? 'checked' : ''} required><span>J'accepte que mes données soient utilisées dans le cadre de ce bilan uniquement.</span></label>
+          <label class="anamn-check-item"><input type="checkbox" id="anamnConsent2" ${a.consent2 ? 'checked' : ''} required><span>Je comprends que ce bilan ne remplace pas une consultation ostéopathique.</span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="anamn-submit-btn">Envoyer mon anamnèse</button>
+    </form>
+  `
+}
+
+function toggleChirurgieField(radio) {
+  const field = document.getElementById('chirurgieDetailField')
+  if (field) field.style.display = radio.value === 'Oui' ? '' : 'none'
+}
+
+function submitAnamn(e) {
+  e.preventDefault()
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  if (!p) return
+  const dureeEl = document.querySelector('input[name="anamnDuree"]:checked')
+  const chirurgieEl = document.querySelector('input[name="anamnChirurgie"]:checked')
+  if (!dureeEl || !chirurgieEl) return
+  p.anamn = {
+    age: document.getElementById('anamnAge').value,
+    gene: document.getElementById('anamnGene').value.trim(),
+    duree: dureeEl.value,
+    chirurgie: chirurgieEl.value,
+    chirurgiePrecision: (document.getElementById('anamnChirurgiePrecision') || {}).value || '',
+    objectif: document.getElementById('anamnObjectif').value.trim(),
+    consent1: document.getElementById('anamnConsent1').checked,
+    consent2: document.getElementById('anamnConsent2').checked,
+    submittedAt: new Date().toISOString()
+  }
+  saveData(data)
+  renderAnamnPanel()
+  updateAnamnBadge()
+}
+
+function updateAnamnBadge() {
+  if (!currentPatient) return
+  const data = getData()
+  const p = data.patients[currentPatient.id]
+  const notFilled = !(p && p.anamn && p.anamn.submittedAt)
+  document.getElementById('anamn-badge-mobile').style.display = notFilled ? 'flex' : 'none'
+  const topBadge = document.getElementById('anamn-badge-top')
+  if (topBadge) topBadge.style.display = notFilled ? 'flex' : 'none'
+  const banner = document.getElementById('anamn-banner')
+  if (banner) banner.style.display = notFilled ? 'flex' : 'none'
 }
 
 /* ============================================================
