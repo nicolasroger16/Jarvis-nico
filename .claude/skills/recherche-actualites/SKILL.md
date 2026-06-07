@@ -42,7 +42,11 @@ Sur quel domaine voulez-vous votre veille du jour ?
 4. Un sujet spécifique (à préciser)
 ```
 
-Si l'utilisateur tape directement `/morning` ou demande une routine matinale, lance directement la veille IA + secteur d'activité par défaut, sans poser la question.
+Si l'utilisateur tape directement `/morning` ou demande une routine matinale, lance directement la veille sur les 4 domaines par défaut, sans poser la question :
+1. Actualités IA et nouvelles technologies
+2. Actualités ostéopathie et thérapie manuelle
+3. Recherche scientifique sur les bénéfices de la mobilité
+4. E-learning et formation pour professionnels de santé
 
 ---
 
@@ -72,6 +76,27 @@ Si profil = employé en santé :
 - "IA secteur santé actualités"
 - "régulation IA Europe santé"
 - "nouveaux outils professionnels santé"
+
+**Queries spécifiques pour le profil ostéopathe / thérapeute manuel (Nico) :**
+
+Ostéopathie et thérapie manuelle :
+- "ostéopathie actualités recherche 2026"
+- "manual therapy systematic review 2026"
+- "fascia myofascial techniques evidence 2026"
+- "osteopathy clinical trial results"
+
+Bénéfices de la mobilité :
+- "mobility exercise health benefits research 2026"
+- "mobilité articulaire bénéfices santé étude"
+- "movement therapy outcomes evidence-based"
+- "stretching flexibility clinical benefits"
+
+Si PubMed est connecté (outil `search_articles` disponible), l'utiliser EN COMPLEMENT de la recherche web pour les deux domaines ci-dessus. Queries PubMed conseillées :
+- "myofascial techniques systematic review" (filtre : derniers 12 mois)
+- "joint mobility health outcomes meta-analysis"
+- "osteopathic manipulative treatment randomized controlled trial"
+
+Présenter les résultats PubMed séparément, sous un bloc "Recherche scientifique récente" avec le titre, les auteurs, l'année et le PMID.
 
 Adapte intelligemment selon le contexte chargé en Phase 1.
 
@@ -107,13 +132,25 @@ Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actue
 
 🔥 Ce que vous devez absolument savoir
 
-[Actualité 1]
+[Actualité 1 - IA / tech / business]
 - Pourquoi c'est important pour vous : [explication personnalisée en 1-2 lignes]
 - Source : [lien]
 
-[Actualité 2]
+[Actualité 2 - ostéopathie / thérapie manuelle]
 - Pourquoi c'est important pour vous : [explication personnalisée]
 - Source : [lien]
+
+---
+
+🦴 Ostéopathie et mobilité
+
+[Actualité ou étude récente sur l'ostéopathie en général]
+- Pourquoi c'est important pour vous : [explication personnalisée]
+- Source : [lien]
+
+[Étude ou résultat récent sur les bénéfices de la mobilité]
+- Pourquoi c'est important pour vous : [explication personnalisée]
+- Source : [lien ou PMID si source PubMed]
 
 ---
 
