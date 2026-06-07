@@ -11,21 +11,24 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink:   #1a1612;
-  --muted: #5a5047;
-  --light: #8a7d70;
-  --cream: #faf8f4;
-  --warm:  #f2ede5;
-  --divider: #e0d8cc;
-  --gold:  #b8860b;
+  --ink:        #1a1612;
+  --muted:      #5a5047;
+  --light:      #8a7d70;
+  --cream:      #faf8f4;
+  --warm:       #f2ede5;
+  --divider:    #e0d8cc;
+  --gold:       #b8860b;
   --gold-light: #f5e9c0;
-  --green: #3d7a52;
-  --green-light: #e8f3ec;
+  --green:      #3d7a52;
+  --green-light:#e8f3ec;
+  --amber:      #92580a;
+  --amber-bg:   #fef3e2;
+  --amber-border:#d4860f;
 }
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background: #d0cbc3;
+  background: #c8c2ba;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -40,154 +43,199 @@ body {
   background: var(--cream);
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.22);
 }
 
-/* ─── HEADER SOMBRE ─── */
+/* ─── HEADER ─── */
 .header {
   background: var(--ink);
-  padding: 20px 36px;
+  padding: 18px 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .brand {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 900;
   color: #fff;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.4px;
 }
 .brand em { font-style: italic; color: var(--gold); }
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.header-logo {
-  width: 62px;
-  height: 62px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.06);
-}
-.header-name-block {
-  text-align: right;
-}
-.header-by {
-  font-size: 10px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.8px;
-  font-family: 'DM Mono', monospace;
-  text-transform: uppercase;
-}
-.header-name {
-  font-size: 13px;
-  color: rgba(255,255,255,0.9);
-  font-weight: 500;
-  margin-top: 2px;
-}
-.header-spec {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  margin-top: 2px;
-}
-
-/* ─── BANNIÈRE GOLD ─── */
-.banner-kicker {
-  background: var(--gold);
-  color: #fff;
-  text-align: center;
-  padding: 8px 36px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-family: 'DM Mono', monospace;
-}
+.header-right { display: flex; align-items: center; gap: 12px; }
+.header-logo { width: 58px; height: 58px; object-fit: contain; border-radius: 8px; }
+.header-name-block { text-align: right; }
+.header-by { font-size: 9px; color: rgba(255,255,255,0.4); letter-spacing: 1px; font-family: 'DM Mono', monospace; text-transform: uppercase; }
+.header-name { font-size: 13px; color: rgba(255,255,255,0.92); font-weight: 500; margin-top: 2px; }
+.header-spec { font-size: 10.5px; color: rgba(255,255,255,0.42); margin-top: 2px; }
 
 /* ─── HERO ─── */
 .hero {
-  padding: 36px 36px 0;
+  padding: 32px 36px 24px;
   display: flex;
-  gap: 32px;
+  gap: 28px;
   align-items: flex-start;
 }
 .hero-left { flex: 1; }
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  font-weight: 900;
-  line-height: 1.1;
-  color: var(--ink);
-  letter-spacing: -0.5px;
+
+.hero-pretitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--gold-light);
+  border: 1px solid #d4a017;
+  border-radius: 20px;
+  padding: 4px 13px;
   margin-bottom: 14px;
 }
+.hero-pretitle span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.hero-pretitle-dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.6px;
+  margin-bottom: 6px;
+}
 .hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 16px;
+  letter-spacing: -0.2px;
+}
+.hero-subtitle strong {
+  font-style: normal;
+  color: var(--ink);
+  font-weight: 900;
+}
+
 .hero-desc {
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.7;
-  max-width: 340px;
+  max-width: 330px;
 }
 
 /* ─── PRICE BADGE ─── */
 .price-badge {
-  background: var(--warm);
-  border: 2px solid var(--gold);
+  background: var(--ink);
   border-radius: 16px;
-  padding: 20px 24px;
+  padding: 22px 24px;
   text-align: center;
   flex-shrink: 0;
-  min-width: 130px;
+  min-width: 128px;
 }
 .price-amount {
   font-family: 'Playfair Display', serif;
-  font-size: 52px;
+  font-size: 54px;
   font-weight: 900;
   color: var(--gold);
   line-height: 1;
 }
-.price-currency {
-  font-size: 24px;
-  vertical-align: super;
+.price-currency { font-size: 24px; vertical-align: super; }
+.price-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  line-height: 1.5;
 }
-.price-label {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 4px;
+.price-includes {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.price-includes li {
+  list-style: none;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-align: left;
+}
+.price-includes li::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── DISCLAIMER ─── */
+.disclaimer {
+  margin: 0 36px 20px;
+  background: var(--amber-bg);
+  border: 1.5px solid var(--amber-border);
+  border-radius: 10px;
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.disclaimer-icon { color: var(--amber); flex-shrink: 0; }
+.disclaimer-text {
+  font-size: 12.5px;
+  color: var(--amber);
+  font-weight: 600;
   line-height: 1.45;
 }
-
-/* ─── DIVIDER ─── */
-.divider {
-  height: 1px;
-  background: var(--divider);
-  margin: 28px 36px;
+.disclaimer-text span {
+  font-weight: 400;
+  color: #7a4a06;
+  display: block;
+  font-size: 11.5px;
+  margin-top: 1px;
 }
 
-/* ─── ÉTAPES ─── */
+/* ─── STEPS ─── */
+.steps-title {
+  padding: 0 36px 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
 .steps {
   padding: 0 36px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 11px;
 }
 .step {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 14px;
+  gap: 11px;
+  padding: 13px 14px;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 11px;
   border: 1px solid var(--divider);
 }
 .step-num {
-  width: 30px;
-  height: 30px;
-  min-width: 30px;
-  background: var(--ink);
+  width: 28px; height: 28px; min-width: 28px;
+  background: var(--gold);
   color: #fff;
   border-radius: 50%;
   display: flex;
@@ -200,61 +248,41 @@ body {
 }
 .step-body strong {
   display: block;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--ink);
   margin-bottom: 2px;
 }
-.step-body span {
-  font-size: 11.5px;
-  color: var(--light);
-  line-height: 1.45;
-}
+.step-body span { font-size: 11px; color: var(--light); line-height: 1.4; }
 
 /* ─── QR SECTION ─── */
 .qr-section {
-  margin: 28px 36px 0;
+  margin: 22px 36px 0;
   background: var(--ink);
-  border-radius: 16px;
-  padding: 28px 32px;
+  border-radius: 14px;
+  padding: 24px 28px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
 }
 .qr-wrap {
   background: #fff;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
   flex-shrink: 0;
 }
-.qr-wrap img {
-  display: block;
-  width: 120px;
-  height: 120px;
-}
+.qr-wrap img { display: block; width: 110px; height: 110px; }
 .qr-text { flex: 1; }
 .qr-action {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #fff;
   line-height: 1.2;
   margin-bottom: 10px;
 }
 .qr-action em { font-style: italic; color: var(--gold); }
-.qr-url {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.3px;
-  margin-top: 6px;
-}
-.qr-includes {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 0;
-}
+.qr-includes { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
 .qr-includes li {
   list-style: none;
   font-size: 12px;
@@ -265,49 +293,44 @@ body {
 }
 .qr-includes li::before {
   content: '';
-  width: 5px;
-  height: 5px;
+  width: 5px; height: 5px;
   background: var(--gold);
   border-radius: 50%;
   flex-shrink: 0;
 }
+.qr-url {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.2px;
+}
 
 /* ─── GARANTIE ─── */
 .garantie {
-  margin: 20px 36px 0;
+  margin: 14px 36px 0;
   background: var(--green-light);
   border: 1px solid var(--green);
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 9px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 .garantie-icon { color: var(--green); flex-shrink: 0; }
-.garantie p { font-size: 11.5px; color: var(--green); font-weight: 500; line-height: 1.4; }
+.garantie p { font-size: 11px; color: var(--green); font-weight: 500; }
 
 /* ─── FOOTER ─── */
 .footer {
-  margin-top: auto;
   border-top: 1px solid var(--divider);
-  padding: 16px 36px;
+  padding: 14px 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 28px;
+  margin-top: auto;
 }
-.footer-left {
-  font-size: 11px;
-  color: var(--light);
-  line-height: 1.55;
-}
+.footer-left { font-size: 11px; color: var(--light); line-height: 1.55; display: flex; align-items: center; gap: 12px; }
 .footer-left strong { color: var(--ink); font-size: 12px; }
-.footer-right {
-  font-size: 10px;
-  color: var(--light);
-  text-align: right;
-  line-height: 1.55;
-}
+.footer-right { font-size: 10px; color: var(--light); text-align: right; line-height: 1.6; }
 
 /* ─── PRINT ─── */
 @media print {
@@ -319,8 +342,7 @@ body {
 /* ─── BOUTON IMPRESSION ─── */
 .print-btn {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 28px; right: 28px;
   background: var(--gold);
   color: #fff;
   border: none;
@@ -333,7 +355,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 .print-btn:hover { background: #9a7009; }
 @media print { .print-btn { display: none; } }
@@ -356,32 +378,49 @@ body {
     </div>
   </header>
 
-  <!-- KICKER -->
-  <div class="banner-kicker">Bilan de mobilité à distance</div>
-
   <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
-      <h1 class="hero-title">Bougez mieux,<br><em>depuis chez vous.</em></h1>
+      <div class="hero-pretitle">
+        <div class="hero-pretitle-dot"></div>
+        <span>Nouveau service</span>
+      </div>
+      <h1 class="hero-title">Bilan de mobilité<br><em>à distance</em></h1>
+      <p class="hero-subtitle">& <strong>Programme sur mesure</strong></p>
       <p class="hero-desc">
-        Un bilan complet de votre mobilité réalisé à distance. Vous filmez 5 tests simples depuis votre domicile. J'analyse vos mouvements et vous transmets un programme de mobilité personnalisé.
+        Vous filmez 5 tests simples depuis votre domicile. J'analyse vos mouvements, identifie vos zones de restriction et vous transmets un programme de mobilité entièrement personnalisé.
       </p>
     </div>
     <div class="price-badge">
       <div class="price-amount"><span class="price-currency">€</span>59</div>
-      <div class="price-label">Paiement<br>sécurisé en ligne</div>
+      <div class="price-tag">Tout inclus</div>
+      <ul class="price-includes">
+        <li>Bilan complet</li>
+        <li>Programme sur mesure</li>
+        <li>Suivi J+30</li>
+      </ul>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <div class="disclaimer-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div class="disclaimer-text">
+      Ce bilan ne remplace pas une consultation ostéopathique.
+      <span>Il s'agit d'un outil complémentaire d'évaluation fonctionnelle à distance. En cas de douleur aiguë, consultez directement votre praticien.</span>
+    </div>
+  </div>
 
   <!-- ÉTAPES -->
+  <div class="steps-title">Comment ça marche ?</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
         <strong>Vous payez en ligne</strong>
-        <span>Paiement sécurisé. Code d'accès envoyé sous 24h.</span>
+        <span>Paiement sécurisé. Code d'accès sous 24h.</span>
       </div>
     </div>
     <div class="step">
@@ -395,14 +434,14 @@ body {
       <div class="step-num">3</div>
       <div class="step-body">
         <strong>J'analyse vos vidéos</strong>
-        <span>Zones de restriction et compensations identifiées.</span>
+        <span>Zones de restriction et compensations.</span>
       </div>
     </div>
     <div class="step">
       <div class="step-num">4</div>
       <div class="step-body">
         <strong>Vous recevez votre programme</strong>
-        <span>Programme personnalisé + suivi inclus à J+30.</span>
+        <span>Programme personnalisé + suivi à J+30.</span>
       </div>
     </div>
   </div>
@@ -413,15 +452,14 @@ body {
       <img
         src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&color=1a1612&bgcolor=ffffff&data=https%3A%2F%2Fnicolasroger16.github.io%2FJarvis-nico%2Fmovecheck%2F"
         alt="QR Code MoveCheck"
-        width="120"
-        height="120"
+        width="110" height="110"
       />
     </div>
     <div class="qr-text">
       <div class="qr-action">Scannez pour<br><em>démarrer votre bilan</em></div>
       <ul class="qr-includes">
-        <li>Bilan complet des 5 tests de mobilité</li>
-        <li>Programme de mobilité personnalisé</li>
+        <li>Bilan mobilité à distance — 5 tests guidés</li>
+        <li>Programme sur mesure établi par votre ostéo</li>
         <li>Suivi inclus à J+30</li>
       </ul>
       <div class="qr-url">nicolasroger16.github.io/Jarvis-nico/movecheck</div>
@@ -431,15 +469,15 @@ body {
   <!-- GARANTIE -->
   <div class="garantie">
     <div class="garantie-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
-    <p>Paiement 100% sécurisé par Stripe &nbsp;·&nbsp; Remboursé si annulé sous 48h &nbsp;·&nbsp; Ce bilan ne remplace pas une consultation ostéopathique</p>
+    <p>Paiement 100% sécurisé par Stripe &nbsp;·&nbsp; Remboursé si annulé sous 48h</p>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <div class="footer-left" style="display:flex;align-items:center;gap:12px;">
-      <img src="logo.jpg" alt="Logo" style="width:40px;height:40px;object-fit:contain;border-radius:6px;opacity:0.85;">
+    <div class="footer-left">
+      <img src="logo.jpg" alt="Logo" style="width:38px;height:38px;object-fit:contain;border-radius:6px;opacity:0.8;">
       <div>
         <strong>Nicolas Roger</strong><br>
         Ostéopathe D.O. · Narbonne<br>
@@ -453,7 +491,6 @@ body {
 
 </div>
 
-<!-- BOUTON IMPRESSION -->
 <button class="print-btn no-print" onclick="window.print()">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
   Imprimer le flyer
