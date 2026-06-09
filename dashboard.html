@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarvis — Tableau de bord</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0F172A;
+      --surface: #1E293B;
+      --surface2: #263348;
+      --border: #334155;
+      --text: #F1F5F9;
+      --muted: #94A3B8;
+      --accent: #0D9488;
+      --accent2: #6366F1;
+      --gold: #F59E0B;
+      --green: #22C55E;
+      --red: #EF4444;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 20px 16px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .header-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-left: 48px;
+    }
+
+    /* DATE */
+    .date-bar {
+      padding: 12px 20px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* SECTION */
+    .section {
+      padding: 20px 16px 0;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* CARD GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .grid-1 {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.15s, border-color 0.15s;
+      cursor: pointer;
+    }
+
+    .card:active { background: var(--surface2); }
+
+    .card-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .card-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .card-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-top: 2px;
+      width: fit-content;
+    }
+
+    .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .badge-teal  { background: rgba(13,148,136,0.15); color: var(--accent); }
+    .badge-gold  { background: rgba(245,158,11,0.15); color: var(--gold); }
+    .badge-indigo{ background: rgba(99,102,241,0.15); color: var(--accent2); }
+    .badge-red   { background: rgba(239,68,68,0.15);  color: var(--red); }
+
+    /* WORKFLOW */
+    .workflow {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+
+    .wf-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .wf-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .wf-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .wf-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .wf-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .wf-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    .wf-step:last-child .wf-connector { display: none; }
+
+    .wf-text {
+      padding-bottom: 16px;
+      flex: 1;
+    }
+
+    .wf-text strong {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+
+    .wf-text span {
+      font-size: 11.5px;
+      color: var(--muted);
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 16px 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--border);
+      padding: 24px 16px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <img src="https://nicolasroger16.github.io/Jarvis-nico/movecheck/logo.jpg" class="logo" alt="Logo">
+      <span class="header-title">Tableau de bord</span>
+    </div>
+    <div class="header-sub">Nicolas Roger · Ostéopathe D.O. · Narbonne</div>
+  </header>
+
+  <div class="date-bar" id="dateBar"></div>
+
+  <!-- MOVECHECK -->
+  <div class="section">
+    <div class="section-label">MoveCheck — Bilan mobilité à distance</div>
+
+    <div class="workflow">
+      <div class="wf-title">Workflow patient</div>
+      <div class="wf-steps">
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Flyer salle d'attente</strong><span>Patient scanne le QR code</span></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Landing page</strong><span>Présentation + paiement Stripe 59€</span></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Dashboard pro</strong><span>Créer le dossier + générer le code</span></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Envoi WhatsApp</strong><span>Lien portail + code au patient</span></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Portail patient</strong><span>Consignes + filmage via OneForm + observations</span></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-line"><div class="wf-dot"></div><div class="wf-connector"></div></div>
+          <div class="wf-text"><strong>Analyse + programme</strong><span>FullPhysio → programme personnalisé → suivi J+30</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/pro/" target="_blank">
+        <div class="card-icon">🖥️</div>
+        <div class="card-label">Dashboard pro</div>
+        <div class="card-desc">Patients, codes, messages</div>
+        <span class="card-badge badge-green">Mon espace</span>
+      </a>
+      <a class="card" href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank">
+        <div class="card-icon">🌐</div>
+        <div class="card-label">Landing page</div>
+        <div class="card-desc">Page publique MoveCheck</div>
+        <span class="card-badge badge-teal">En ligne</span>
+      </a>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/pro/patient.html" target="_blank">
+        <div class="card-icon">👤</div>
+        <div class="card-label">Portail patient</div>
+        <div class="card-desc">Accès par code d'accès</div>
+        <span class="card-badge badge-indigo">Patient</span>
+      </a>
+      <a class="card" href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/flyer.html" target="_blank">
+        <div class="card-icon">🖨️</div>
+        <div class="card-label">Flyer</div>
+        <div class="card-desc">Salle d'attente + QR code</div>
+        <span class="card-badge badge-gold">Imprimer</span>
+      </a>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="https://forms.gle/jS4X48muBV4hEeDq9" target="_blank">
+        <div class="card-icon">📋</div>
+        <div class="card-label">Google Form</div>
+        <div class="card-desc">Demandes de bilan</div>
+        <span class="card-badge badge-teal">Réponses</span>
+      </a>
+      <a class="card" href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/consignes-filmage.html" target="_blank">
+        <div class="card-icon">🎬</div>
+        <div class="card-label">Consignes filmage</div>
+        <div class="card-desc">Guide + observations patient</div>
+        <span class="card-badge badge-teal">Patient</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROJETS -->
+  <div class="section">
+    <div class="section-label">Projets en cours</div>
+
+    <div class="grid-1 grid">
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <div class="card-label">E-learning Fascias</div>
+        <div class="card-desc">Cours HTML v2 + SPA interactive. En cours d'intégration.</div>
+        <span class="card-badge badge-gold">En cours</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <div class="card-label">App honoraires</div>
+        <div class="card-desc">PWA facturation cabinet</div>
+        <span class="card-badge badge-green">Actif</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-label">Content Studio</div>
+        <div class="card-desc">Carrousels LinkedIn MoveCheck</div>
+        <span class="card-badge badge-gold">À activer</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- JARVIS -->
+  <div class="section">
+    <div class="section-label">Jarvis — Commandes</div>
+
+    <div class="grid">
+      <div class="card" onclick="copyCmd('/morning')">
+        <div class="card-icon">☀️</div>
+        <div class="card-label">/morning</div>
+        <div class="card-desc">Veille du jour + agenda</div>
+        <span class="card-badge badge-indigo">Copier</span>
+      </div>
+      <div class="card" onclick="copyCmd('/prime')">
+        <div class="card-icon">🧠</div>
+        <div class="card-label">/prime</div>
+        <div class="card-desc">Charger le contexte</div>
+        <span class="card-badge badge-indigo">Copier</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card" onclick="copyCmd('/update')">
+        <div class="card-icon">💾</div>
+        <div class="card-label">/update</div>
+        <div class="card-desc">Mettre à jour le contexte</div>
+        <span class="card-badge badge-indigo">Copier</span>
+      </div>
+      <div class="card" onclick="copyCmd('/morning')">
+        <div class="card-icon">📰</div>
+        <div class="card-label">Veille actu</div>
+        <div class="card-desc">Actualités filtrées</div>
+        <span class="card-badge badge-indigo">Copier</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Jarvis · Nicolas Roger Ostéopathe · Narbonne</div>
+
+  <script>
+    // Date
+    const d = new Date();
+    const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric' };
+    document.getElementById('dateBar').textContent = d.toLocaleDateString('fr-FR', opts);
+
+    // Copy command
+    function copyCmd(cmd) {
+      navigator.clipboard.writeText(cmd).then(() => {
+        const toast = document.createElement('div');
+        toast.textContent = cmd + ' copié';
+        toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0D9488;color:white;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;z-index:999;';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
