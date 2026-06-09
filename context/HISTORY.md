@@ -7,6 +7,33 @@
 
 ---
 
+## 2026-06-09
+
+### MoveCheck — workflow complet opérationnel
+- Workflow validé end-to-end : Flyer (QR) → Landing page → Stripe 59€ → Dashboard pro → Code patient → Portail patient → Dashboard
+- Fichiers en ligne sur GitHub Pages : `nicolasroger16.github.io/Jarvis-nico/movecheck/`
+- Landing page, flyer, dashboard pro, portail patient tous fonctionnels
+- `app.html` et `start.html` (anciennes versions) supprimés
+- Stripe intégré dans la landing page
+- Dashboard pro : création patient, génération code, envoi WhatsApp, suivi vidéos/messages/programme
+- Portail patient : accès par code, consignes de filmage, envoi vidéos, observations
+
+---
+
+## 2026-06-02
+
+### MoveCheck — session intensive de construction
+- Workflow patient MoveCheck défini (6 étapes)
+- Flyer salle d'attente HTML créé avec QR code automatique (Google Form)
+- Google Form créé : `forms.gle/jS4X48muBV4hEeDq9`
+- Guide de filmage patient créé avec vidéos démo YouTube, observations par test, bouton WhatsApp
+- Déploiement GitHub Pages configuré sur branche `gh-pages`
+- OneForm confirmé comme app de filmage patient
+- FullPhysio confirmé pour les plans de mobilité
+- Tarification fixée à 59€ (bilan + programme + suivi J+30)
+
+---
+
 ## 2026-05-31
 
 ### Clarifications stratégiques et mises à jour contexte
