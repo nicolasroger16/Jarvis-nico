@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "nicolasroger16": {
+      "url": "https://mcp.smithery.run/nicolasroger16",
+      "transport": "http"
+    }
+  }
+}
