@@ -7,6 +7,22 @@
 
 ---
 
+## 2026-06-13
+
+### MoveCheck — Protocole bilan épaule structuré
+- Session de travail clinique approfondie sur le module épaule de MoveCheck
+- Résultat : protocole complet documenté dans `context/import/movecheck-epaule-protocole.md`
+- Contenu produit :
+  - Tests sentinelles par pathologie (coiffe antérieure/postérieure, subscapulaire, instabilité, AC joint) avec Se/Sp/LR issues des méta-analyses récentes (dont Vandvik 2024)
+  - Tests de mobilité globale scapulo-thoracique (GH + thoracique) avec fiabilité et faisabilité à distance
+  - Système de scoring 0-2 par test, total /18, avec seuils d'interprétation clinique
+  - Valeurs normatives par test (issues cohorte BMC 2020 n=6635, IJSPT 2024, etc.)
+  - MDC (minimal detectable change) pour chaque test : suivi longitudinal fiable
+  - Notes d'implémentation : tests faisables solo vs avec aide, usage smartphone inclinomètre
+- Prochain chantier MoveCheck épaule envisagé : présentation patient (langage simplifié) et format de rapport généré
+
+---
+
 ## 2026-05-20
 
 ### Installation initiale du Jarvis
