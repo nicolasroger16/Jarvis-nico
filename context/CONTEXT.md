@@ -32,8 +32,8 @@ Ostéopathe en cabinet privé à Narbonne. Pratique evidence-based, avec une sp�
 
 ### Objectifs court terme (3 à 6 mois)
 
+- **Priorité principale actuelle : MoveCheck** (charge de travail importante en cours, juin 2026)
 - Finaliser le module e-learning fascias : intégrer le contenu complet du cours v2 dans la SPA interactive, améliorer la typographie, embarquer les schémas anatomiques
-- Faire vivre et structurer MoveCheck (service d'évaluation de mobilité à distance)
 - Maintenir une démarche active de veille sur les méta-analyses pour approfondir mes techniques et nourrir mon enseignement
 
 ### Objectifs long terme (1 à 3 ans)

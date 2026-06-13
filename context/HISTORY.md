@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-06-13
+
+### Changement de priorité : MoveCheck en premier plan
+- Nico signale une charge de travail importante sur MoveCheck
+- MoveCheck devient la priorité principale à court terme, devant la finalisation du module e-learning fascias
+- Mise à jour de CONTEXT.md en conséquence
+
+---
+
 ## 2026-05-20
 
 ### Installation initiale du Jarvis
