@@ -77,6 +77,24 @@ Adapte intelligemment selon le contexte chargé en Phase 1.
 
 ---
 
+## Phase 3b : Recherche PubMed (publications scientifiques récentes)
+
+En parallèle de la recherche web, effectue une recherche sur PubMed via le MCP `mcp__PubMed__search_articles` pour identifier les publications récentes sur les thèmes clés de l'utilisateur.
+
+**Requêtes à lancer (adaptées au profil ostéopathe evidence-based fascias) :**
+- "myofascial release" (filtre : 90 derniers jours)
+- "fascial tissue manual therapy" (filtre : 90 derniers jours)
+- "osteopathic manipulative treatment" (filtre : 90 derniers jours)
+
+**Critères de sélection :**
+- Privilégier les méta-analyses, revues systématiques et RCT
+- Écarter les études de cas isolées sauf si le sujet est particulièrement pertinent
+- Maximum 2-3 publications à retenir
+
+Si aucune publication récente et pertinente n'est trouvée, sauter cette section silencieusement (ne pas le mentionner dans la sortie).
+
+---
+
 ## Phase 4 : Filtrer selon le contexte
 
 C'est l'étape clé qui différencie cette skill d'une simple recherche Google.
@@ -120,6 +138,16 @@ Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actue
 💡 Bon à savoir aussi
 
 [Actualité 3 ou 4 - bullet points courts]
+
+---
+
+🔬 Publications récentes (si trouvées)
+
+[Publication 1 - Titre + type d'étude (méta-analyse / RCT / revue systématique)]
+- Ce que ça apporte : [implication clinique ou pédagogique en 1-2 lignes]
+- PMID : [identifiant PubMed]
+
+[Publication 2 si pertinente]
 
 ---
 
