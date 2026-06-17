@@ -46,7 +46,7 @@ Si l'utilisateur tape directement `/morning` ou demande une routine matinale, la
 
 ---
 
-## Phase 3 : Effectuer la recherche
+## Phase 3 : Effectuer la recherche actualités
 
 Utilise les outils de recherche web disponibles (web_search ou un MCP comme Perplexity si connecté) pour récupérer les actualités du jour ou des derniers jours sur le périmètre demandé.
 
@@ -73,7 +73,39 @@ Si profil = employé en santé :
 - "régulation IA Europe santé"
 - "nouveaux outils professionnels santé"
 
+Si profil = ostéopathe / thérapeute manuel :
+- "osteopathy manual therapy meta-analysis 2026 pubmed"
+- "IA ostéopathie thérapie manuelle actualités"
+- "outils numériques e-learning santé formation kiné ostéo"
+
 Adapte intelligemment selon le contexte chargé en Phase 1.
+
+---
+
+## Phase 3bis : Veille scientifique PubMed (si profil santé/clinique)
+
+Si le profil dominant est un professionnel de santé ou un praticien en thérapie manuelle, effectue **en parallèle** une recherche ciblée sur PubMed pour les publications récentes (moins de 30 jours).
+
+**Stratégie :**
+- 2 recherches PubMed maximum
+- Cibler : méta-analyses, revues systématiques, RCT récents
+- Thèmes prioritaires pour un ostéopathe evidence-based :
+  - Fascias et douleur myofasciale
+  - Mobilisation articulaire et proprioception
+  - Thérapie manuelle et douleur chronique
+  - Posture et rééducation
+  - Ostéopathie et efficacité clinique
+
+**Queries types :**
+- "osteopathy fascia myofascial therapy systematic review 2026 pubmed"
+- "joint mobilization proprioception meta-analysis 2026 pubmed"
+- "manual therapy chronic pain RCT 2026 pubmed"
+- "fascia pain mechanisms 2026 pubmed"
+
+**Filtre de pertinence scientifique :**
+- Garder uniquement les publications qui apportent une donnée nouvelle ou contredisent une pratique courante
+- Privilégier ce qui peut nourrir un contenu pédagogique ou changer une approche clinique
+- Maximum 2 articles par session, sinon c'est indigeste
 
 ---
 
@@ -120,6 +152,17 @@ Filtrée selon votre contexte : [résumé en 1 ligne du profil et du focus actue
 💡 Bon à savoir aussi
 
 [Actualité 3 ou 4 - bullet points courts]
+
+---
+
+🔬 Veille scientifique (si profil santé/clinique)
+
+[Article 1 - Titre court]
+- Ce que ça dit : [1 phrase sur la conclusion principale]
+- Pourquoi c'est utile : [angle clinique ou pédagogique pour toi]
+- Source : [lien PubMed]
+
+[Article 2 si pertinent - même format]
 
 ---
 
