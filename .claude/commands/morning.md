@@ -32,7 +32,20 @@ Si un connecteur calendrier (Google Calendar, etc.) est actif :
 
 Si aucun connecteur calendrier actif, ne mentionne rien sur l'agenda.
 
-### Étape 4 : Présenter le tout dans un format unique
+### Étape 4 : Analyser mes mails (si possible)
+
+Si un connecteur Gmail est actif :
+- Récupère les mails non lus des 3 derniers jours (inbox uniquement, pageSize 20)
+- Filtre et classe selon 3 catégories :
+  - **À faire aujourd'hui** : RDV, rappels urgents, paiements échoués, demandes avec deadline imminente
+  - **À traiter bientôt** : sujets importants sans urgence immédiate (abonnements, renouvellements, opportunités)
+  - **Info sécurité** : connexions inconnues, alertes compte
+- Ignore tout ce qui est promotionnel, newsletter ou publicitaire (ne pas mentionner, ne pas compter)
+- Si aucun mail pertinent, ne rien afficher dans cette section
+
+Si aucun connecteur Gmail actif, ne mentionner rien sur les mails.
+
+### Étape 5 : Présenter le tout dans un format unique
 
 Format de sortie attendu :
 
@@ -45,8 +58,18 @@ Format de sortie attendu :
 📅 Votre agenda du jour (si connecteur disponible)
 [Liste des événements de la journée]
 
+📬 Vos mails à ne pas rater (si connecteur disponible)
+🚨 À faire aujourd'hui
+[Mails urgents avec action claire]
+
+📌 À traiter bientôt
+[Mails importants non urgents]
+
+🔒 Info sécurité
+[Alertes de connexion ou sécurité]
+
 🎯 Votre focus suggéré
-[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + projets en cours]
+[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + mails + projets en cours]
 
 Bonne journée. Je suis prêt à vous aider.
 ```
