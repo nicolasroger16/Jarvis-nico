@@ -45,7 +45,21 @@ Si un connecteur Gmail est actif :
 
 Si aucun connecteur Gmail actif, ne mentionner rien sur les mails.
 
-### Étape 5 : Présenter le tout dans un format unique
+### Étape 5 : Veille scientifique PubMed (si connecteur disponible)
+
+Si le connecteur PubMed est actif :
+- Lancer 4 recherches en parallèle sur les publications récentes (30 derniers jours), 5 résultats max par recherche, triés par date :
+  1. `fascia OR myofascial` (fascias et techniques myofasciales)
+  2. `manual therapy OR osteopathic manipulative treatment` (thérapie manuelle et ostéopathie)
+  3. `range of motion assessment OR mobility screening` (évaluation de la mobilité)
+  4. `chronic pain AND manual therapy OR chronic musculoskeletal pain` (douleur chronique)
+- Pour chaque article retenu, présenter : titre traduit en français, auteurs, journal, date, et en 1 ligne pourquoi c'est pertinent
+- Garder uniquement 3 à 5 articles au total, les plus pertinents selon le contexte (approche evidence-based, fascias, pratique clinique, e-learning)
+- Ne jamais inventer un article. Si aucun résultat pertinent, ne rien afficher dans cette section
+
+Si le connecteur PubMed n'est pas actif, ne rien mentionner.
+
+### Étape 6 : Présenter le tout dans un format unique
 
 Format de sortie attendu :
 
@@ -68,8 +82,11 @@ Format de sortie attendu :
 🔒 Info sécurité
 [Alertes de connexion ou sécurité]
 
+🔬 Votre veille scientifique (si connecteur PubMed disponible)
+[3 à 5 articles récents filtrés et traduits, avec explication de pertinence]
+
 🎯 Votre focus suggéré
-[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + mails + projets en cours]
+[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + mails + recherche PubMed + projets en cours]
 
 Bonne journée. Je suis prêt à vous aider.
 ```
