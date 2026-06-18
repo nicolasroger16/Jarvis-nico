@@ -24,31 +24,43 @@ Lance la skill `recherche-actualites-contextualisees` avec ces paramètres par d
 - Filtre : selon mon contexte chargé
 - Format : présentation matinale claire
 
-### Étape 3 : Ajouter le résumé de mon agenda (si possible)
+### Étape 3 : Vérifier les mails importants (si possible)
+
+Si un connecteur Gmail est actif :
+- Récupère les mails non lus des dernières 48h avec la query : `is:unread in:inbox newer_than:2d`
+- Filtre : ne garder que les mails pertinents (patients, confrères, formations, outils pro, actualités santé/IA). Ignorer les newsletters génériques, promos e-commerce, réseaux sociaux
+- Présente uniquement les mails qui nécessitent une action ou qui sont informatifs pour la journée
+
+Si aucun connecteur Gmail actif, ne mentionner rien.
+
+### Étape 4 : Ajouter le résumé de mon agenda (si possible)
 
 Si un connecteur calendrier (Google Calendar, etc.) est actif :
 - Récupère mes événements de la journée
-- Présente-les brièvement après la veille
+- Présente-les brièvement
 
-Si aucun connecteur calendrier actif, ne mentionne rien sur l'agenda.
+Si aucun connecteur calendrier actif, ne mentionner rien.
 
-### Étape 4 : Présenter le tout dans un format unique
+### Étape 5 : Présenter le tout dans un format unique
 
 Format de sortie attendu :
 
 ```
-☀️ Bonjour. Voici votre matinée.
+☀️ Bonjour. Voici ta matinée.
 
-📰 Votre veille du jour
+📰 Veille du jour
 [Résultat de la skill recherche-actualites-contextualisees]
 
-📅 Votre agenda du jour (si connecteur disponible)
+📧 Mails à traiter (si connecteur disponible)
+[Liste filtrée des mails importants]
+
+📅 Agenda du jour (si connecteur disponible)
 [Liste des événements de la journée]
 
-🎯 Votre focus suggéré
-[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + projets en cours]
+🎯 Focus suggéré
+[1 phrase qui propose le focus principal de la journée basé sur la veille + mails + agenda + projets en cours]
 
-Bonne journée. Je suis prêt à vous aider.
+Bonne journée. Je suis prêt à t'aider.
 ```
 
 ---
