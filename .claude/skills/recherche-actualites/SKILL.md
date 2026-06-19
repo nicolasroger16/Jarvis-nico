@@ -51,12 +51,22 @@ Si l'utilisateur tape directement `/morning` ou demande une routine matinale, la
 Utilise les outils de recherche web disponibles (web_search ou un MCP comme Perplexity si connecté) pour récupérer les actualités du jour ou des derniers jours sur le périmètre demandé.
 
 **Stratégie de recherche :**
-- 3 à 5 recherches ciblées maximum
+- 5 à 6 recherches ciblées maximum
 - Privilégier les sources récentes (moins de 48 heures idéalement)
 - Couvrir 3 angles : annonces majeures, tendances émergentes, signaux faibles intéressants
 - Sources francophones en priorité, internationales si nécessaire
 
-**Exemples de queries selon le profil :**
+**Queries fixes pour le profil Nico (ostéopathe libéral evidence-based, créateur outils IA santé) :**
+
+Lancer systématiquement ces 6 recherches :
+1. `actualités intelligence artificielle IA [mois année] France`
+2. `ostéopathie evidence-based RCT étude clinique [année]`
+3. `fascia myofascial release nouvelles recherches [année]`
+4. `douleur chronique recherche méta-analyse [année]`
+5. `e-learning santé outils numériques thérapeutes [année] tendances`
+6. `ostéopathie kinésithérapie thérapie manuelle actualités [année]`
+
+**Exemples de queries pour d'autres profils :**
 
 Si profil = étudiant en marketing digital :
 - "actualités IA marketing digital cette semaine"
