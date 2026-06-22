@@ -846,7 +846,7 @@ strong { color: var(--text); font-weight: 600; }
   margin: 0 auto 64px;
 }
 .movecheck-logo {
-  height: 90px;
+  height: 110px;
   width: auto;
   display: block;
   margin: 0 auto 24px;
@@ -942,11 +942,19 @@ strong { color: var(--text); font-weight: 600; }
   line-height: 1;
 }
 .svc-movecheck-logo {
-  width: 160px;
+  width: 140px;
   height: auto;
   display: block;
   margin-bottom: 20px;
-  opacity: 0.9;
+  opacity: 0.95;
+}
+.svc-nr-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 24px;
+  border-radius: 12px;
 }
 
 @media (max-width: 968px) {
