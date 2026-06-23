@@ -839,7 +839,30 @@ strong { color: var(--text); font-weight: 600; }
   .linkedin-body p { margin-left: auto; margin-right: auto; }
 }
 
-/* ===== MOVECHECK SECTION — NEW LAYOUT ===== */
+/* ===== PASTILLE NR — remplace les emojis ===== */
+img.nr-badge {
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
+}
+/* Contextes "grande icône" */
+.problem-icon img.nr-badge        { width: 48px; height: 48px; display: block; }
+.credential-icon img.nr-badge     { width: 40px; height: 40px; display: block; }
+.value-icon img.nr-badge          { width: 36px; height: 36px; }
+.movecheck-why-icon img.nr-badge  { width: 40px; height: 40px; display: block; }
+.funnel-step-icon img.nr-badge    { width: 28px; height: 28px; }
+/* Blog card placeholder (grande zone) */
+.blog-card-img img.nr-badge       { width: 72px; height: 72px; }
+/* Inline texte — pastille petite */
+.sport-tag img.nr-badge,
+.badge img.nr-badge {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+
 .movecheck-header {
   text-align: center;
   max-width: 760px;
