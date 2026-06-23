@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — Nicolas Roger Ostéopathe D.O</title>
+  <meta name="description" content="Galerie photos du cabinet et des interventions de Nicolas Roger, ostéopathe D.O à Narbonne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── GALLERY PAGE ── */
+    .gallery-hero {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+    .gallery-hero h1 { max-width: 600px; margin: 0 auto; }
+
+    /* ── CATEGORY FILTER ── */
+    .gallery-filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 48px 0 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* ── GALLERY GRID ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-section);
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.72) 0%, transparent 100%);
+      padding: 40px 16px 16px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-caption {
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .gallery-item-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+    .gallery-item-cat {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+    }
+    .gallery-view-count {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .gallery-view-count svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+    .view-num {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 20px;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none; border: none;
+      line-height: 1;
+      opacity: 0.8;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 24px;
+      left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    /* ── PLACEHOLDER ── */
+    .gallery-placeholder {
+      height: 260px;
+      background: var(--bg-section);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+    .gallery-placeholder span { font-size: 2rem; }
+
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo-nr.png" alt="Nicolas Roger Ostéopathe" class="nav-logo-img">
+          <span>Nicolas Roger</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="index.html#movecheck">MoveCheck</a></li>
+          <li><a href="galerie.html" class="active">Galerie</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-primary nav-cta">Prendre RDV</a>
+        <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Accueil</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="index.html#movecheck">MoveCheck</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="gallery-hero">
+    <div class="container">
+      <div class="badge">Galerie</div>
+      <h1>Cabinet & terrain</h1>
+      <p style="max-width:520px;margin:16px auto 0;font-size:1.05rem;color:var(--text-muted);">
+        En cabinet à Narbonne et sur le terrain avec les clubs sportifs — l'ostéopathie au quotidien.
+      </p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section">
+    <div class="container">
+
+      <!-- FILTRES -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">Tout voir</button>
+        <button class="filter-btn" data-filter="cabinet">Cabinet</button>
+        <button class="filter-btn" data-filter="sport">Sport & Terrain</button>
+        <button class="filter-btn" data-filter="portrait">Portraits</button>
+      </div>
+
+      <!-- GRILLE PHOTOS -->
+      <div class="gallery-grid" id="galleryGrid">
+
+        <!-- Photo 1 — terrain RCN -->
+        <div class="gallery-item" data-category="sport" data-photo-id="photo-terrain-rcn"
+             data-caption="Soin sur le terrain — Racing Club Narbonnais">
+          <img src="images/terrain-rcn.jpg" alt="Nicolas Roger soin terrain RC Narbonnais" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Soin terrain — Racing Club Narbonnais</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Sport & Terrain</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo 2 — soin terrain -->
+        <div class="gallery-item" data-category="sport" data-photo-id="photo-soin-terrain"
+             data-caption="Intervention terrain — prise en charge sportif">
+          <img src="images/soin-terrain.jpg" alt="Nicolas Roger intervention terrain" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Intervention terrain</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Sport & Terrain</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo 3 — nuit terrain -->
+        <div class="gallery-item" data-category="sport" data-photo-id="photo-nuit-terrain"
+             data-caption="Match en soirée — suivi ostéopathique">
+          <img src="images/nuit-terrain.jpg" alt="Nicolas Roger match en soirée" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Match en soirée</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Sport & Terrain</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo 4 — RCN Hyères -->
+        <div class="gallery-item" data-category="sport" data-photo-id="photo-rcn-hyeres"
+             data-caption="Déplacement avec le RCN — Hyères">
+          <img src="images/rcn-hyeres.jpg" alt="Nicolas Roger RCN Hyères" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Déplacement RCN — Hyères</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Sport & Terrain</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo 5 — portrait -->
+        <div class="gallery-item" data-category="portrait" data-photo-id="photo-portrait"
+             data-caption="Nicolas Roger, Ostéopathe D.O">
+          <img src="images/portrait-full.jpg" alt="Nicolas Roger Ostéopathe D.O" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Nicolas Roger, D.O</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Portrait</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Photo 6 — headshot RCN -->
+        <div class="gallery-item" data-category="sport" data-photo-id="photo-headshot-rcn"
+             data-caption="Maillot du Racing Club Narbonnais">
+          <img src="images/headshot-rcn.jpg" alt="Nicolas Roger maillot RCN" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-caption">Maillot RCN</div>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Sport & Terrain</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- EMPLACEMENTS CABINET — seront remplis avec les nouvelles photos -->
+        <div class="gallery-item" data-category="cabinet" data-photo-id="photo-cabinet-1"
+             data-caption="Nouveau cabinet — Narbonne">
+          <div class="gallery-placeholder">
+            <span>🏥</span>
+            <p>Photo cabinet à venir</p>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Cabinet</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="cabinet" data-photo-id="photo-cabinet-2"
+             data-caption="Cabinet — salle de soin">
+          <div class="gallery-placeholder">
+            <span>🏥</span>
+            <p>Photo cabinet à venir</p>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Cabinet</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="cabinet" data-photo-id="photo-cabinet-3"
+             data-caption="Cabinet — accueil">
+          <div class="gallery-placeholder">
+            <span>🏥</span>
+            <p>Photo cabinet à venir</p>
+          </div>
+          <div class="gallery-item-footer">
+            <span class="gallery-item-cat">Cabinet</span>
+            <span class="gallery-view-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span class="view-num">—</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">✕</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="color:white;">
+            <img src="images/logo-nr.png" alt="NR" class="nav-logo-img" style="filter:brightness(2)">
+            <span>Nicolas Roger</span>
+          </div>
+          <p>Ostéopathe D.O à Narbonne — approche globale articulaire, fasciale, viscérale et crânienne. Créateur de MoveCheck.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="index.html#movecheck">MoveCheck</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank">Prendre RDV (Doctolib)</a></li>
+            <li><a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank">LinkedIn</a></li>
+            <li><a href="#">Cabinet à Narbonne</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nicolas Roger — Ostéopathe D.O. Tous droits réservés.</span>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" title="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── GALLERY FILTER ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        items.forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // ── LIGHTBOX ──
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (!img) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = item.dataset.caption || '';
+        lightbox.classList.add('open');
+      });
+    });
+    document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+
+    // ── VIEW COUNTER (countapi.xyz) ──
+    const NAMESPACE = 'nicolasrogerosteo';
+
+    async function trackView(photoId, el) {
+      try {
+        const res = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${photoId}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        el.textContent = data.value.toLocaleString('fr-FR');
+      } catch (e) {
+        // silently fail — no network count, keep "—"
+      }
+    }
+
+    // Use IntersectionObserver: count only when photo enters viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const item = entry.target;
+          const photoId = item.dataset.photoId;
+          const numEl = item.querySelector('.view-num');
+          if (photoId && numEl) trackView(photoId, numEl);
+          observer.unobserve(item);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    items.forEach(item => observer.observe(item));
+  </script>
+</body>
+</html>
