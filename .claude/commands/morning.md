@@ -24,43 +24,71 @@ Lance la skill `recherche-actualites-contextualisees` avec ces paramètres par d
 - Filtre : selon mon contexte chargé
 - Format : présentation matinale claire
 
-### Étape 3 : Vérifier les mails importants (si possible)
-
-Si un connecteur Gmail est actif :
-- Récupère les mails non lus des dernières 48h avec la query : `is:unread in:inbox newer_than:2d`
-- Filtre : ne garder que les mails pertinents (patients, confrères, formations, outils pro, actualités santé/IA). Ignorer les newsletters génériques, promos e-commerce, réseaux sociaux
-- Présente uniquement les mails qui nécessitent une action ou qui sont informatifs pour la journée
-
-Si aucun connecteur Gmail actif, ne mentionner rien.
-
-### Étape 4 : Ajouter le résumé de mon agenda (si possible)
+### Étape 3 : Ajouter le résumé de mon agenda (si possible)
 
 Si un connecteur calendrier (Google Calendar, etc.) est actif :
 - Récupère mes événements de la journée
-- Présente-les brièvement
+- Présente-les brièvement après la veille
 
-Si aucun connecteur calendrier actif, ne mentionner rien.
+Si aucun connecteur calendrier actif, ne mentionne rien sur l'agenda.
 
-### Étape 5 : Présenter le tout dans un format unique
+### Étape 4 : Analyser mes mails (si possible)
+
+Si un connecteur Gmail est actif :
+- Récupère les mails non lus des 3 derniers jours (inbox uniquement, pageSize 20)
+- Filtre et classe selon 3 catégories :
+  - **À faire aujourd'hui** : RDV, rappels urgents, paiements échoués, demandes avec deadline imminente
+  - **À traiter bientôt** : sujets importants sans urgence immédiate (abonnements, renouvellements, opportunités)
+  - **Info sécurité** : connexions inconnues, alertes compte
+- Ignore tout ce qui est promotionnel, newsletter ou publicitaire (ne pas mentionner, ne pas compter)
+- Si aucun mail pertinent, ne rien afficher dans cette section
+
+Si aucun connecteur Gmail actif, ne mentionner rien sur les mails.
+
+### Étape 5 : Veille scientifique PubMed (si connecteur disponible)
+
+Si le connecteur PubMed est actif :
+- Lancer 4 recherches en parallèle sur les publications récentes (30 derniers jours), 5 résultats max par recherche, triés par date :
+  1. `fascia OR myofascial` (fascias et techniques myofasciales)
+  2. `manual therapy OR osteopathic manipulative treatment` (thérapie manuelle et ostéopathie)
+  3. `range of motion assessment OR mobility screening` (évaluation de la mobilité)
+  4. `chronic pain AND manual therapy OR chronic musculoskeletal pain` (douleur chronique)
+- Pour chaque article retenu, présenter : titre traduit en français, auteurs, journal, date, et en 1 ligne pourquoi c'est pertinent
+- Garder uniquement 3 à 5 articles au total, les plus pertinents selon le contexte (approche evidence-based, fascias, pratique clinique, e-learning)
+- Ne jamais inventer un article. Si aucun résultat pertinent, ne rien afficher dans cette section
+
+Si le connecteur PubMed n'est pas actif, ne rien mentionner.
+
+### Étape 6 : Présenter le tout dans un format unique
 
 Format de sortie attendu :
 
 ```
-☀️ Bonjour. Voici ta matinée.
+☀️ Bonjour. Voici votre matinée.
 
-📰 Veille du jour
+📰 Votre veille du jour
 [Résultat de la skill recherche-actualites-contextualisees]
 
-📧 Mails à traiter (si connecteur disponible)
-[Liste filtrée des mails importants]
-
-📅 Agenda du jour (si connecteur disponible)
+📅 Votre agenda du jour (si connecteur disponible)
 [Liste des événements de la journée]
 
-🎯 Focus suggéré
-[1 phrase qui propose le focus principal de la journée basé sur la veille + mails + agenda + projets en cours]
+📬 Vos mails à ne pas rater (si connecteur disponible)
+🚨 À faire aujourd'hui
+[Mails urgents avec action claire]
 
-Bonne journée. Je suis prêt à t'aider.
+📌 À traiter bientôt
+[Mails importants non urgents]
+
+🔒 Info sécurité
+[Alertes de connexion ou sécurité]
+
+🔬 Votre veille scientifique (si connecteur PubMed disponible)
+[3 à 5 articles récents filtrés et traduits, avec explication de pertinence]
+
+🎯 Votre focus suggéré
+[1 phrase qui propose le focus principal de la journée basé sur la veille + agenda + mails + recherche PubMed + projets en cours]
+
+Bonne journée. Je suis prêt à vous aider.
 ```
 
 ---
