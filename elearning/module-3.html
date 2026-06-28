@@ -7,6 +7,79 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"/>
 <link rel="stylesheet" href="styles.css"/>
+<style>
+.meca-table {
+  width: 100%; border-collapse: collapse;
+  margin: 24px 0; font-size: 0.9rem;
+  border: 1px solid var(--divider);
+  border-radius: 6px; overflow: hidden;
+}
+.meca-table th {
+  background: var(--ink); color: rgba(255,255,255,0.85);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 14px; text-align: left;
+  font-weight: 500;
+}
+.meca-table td {
+  padding: 11px 14px; border-bottom: 1px solid var(--divider);
+  color: var(--muted); vertical-align: top;
+  line-height: 1.55;
+}
+.meca-table tr:last-child td { border-bottom: none; }
+.meca-table tr:nth-child(even) td { background: var(--warm); }
+.meca-table td strong { color: var(--ink); }
+.meca-table td .badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  padding: 3px 7px; border-radius: 100px;
+  font-weight: 600;
+}
+.badge-mod { background: var(--green-light); color: var(--green); }
+.badge-fai { background: var(--gold-light); color: #7a5a10; }
+.badge-cont { background: var(--red-light); color: var(--red); }
+
+.cascade {
+  counter-reset: cascade-step;
+  display: flex; flex-direction: column;
+  gap: 10px; margin: 20px 0;
+}
+.cascade-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  font-size: 0.96rem; color: var(--muted);
+}
+.cascade-step::before {
+  counter-increment: cascade-step;
+  content: counter(cascade-step);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 900;
+  color: var(--gold); line-height: 1;
+  flex-shrink: 0; min-width: 22px;
+  margin-top: -2px;
+}
+.cascade-step strong { color: var(--ink); }
+
+.section-divider {
+  display: flex; align-items: center; gap: 18px;
+  margin: 56px 0 32px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--divider);
+}
+.section-divider-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.22em;
+  color: var(--gold); text-transform: uppercase;
+  white-space: nowrap;
+}
+</style>
 </head>
 <body data-module="m3">
 
@@ -14,7 +87,7 @@
   <a href="index.html" class="topbar-brand">Fascias <em>&amp; Techniques</em></a>
   <span class="topbar-crumb">Module III · Techniques Manuelles</span>
   <span class="topbar-spacer"></span>
-  <span class="topbar-link" data-progress-counter>0/7</span>
+  <span class="topbar-link" data-progress-counter>0/13</span>
   <a href="module-2.html" class="topbar-link">← Module II</a>
   <a href="module-4.html" class="topbar-link primary">Module IV →</a>
 </nav>
@@ -25,10 +98,10 @@
     <div>
       <div class="module-hero-eyebrow">Module III · 03 sur 04</div>
       <h1>Techniques<br/>Manuelles &amp; <em>Preuves</em></h1>
-      <p class="lede">Six approches manuelles à rationalité fasciale, classées par niveau de preuve, avec leurs mécanismes d'action, RCT, méta-analyses et indications cliniques.</p>
+      <p class="lede">Treize approches manuelles à rationalité fasciale : auteurs fondateurs, mécanismes physiologiques au niveau du tissu, données cliniques et niveau de preuve comparé.</p>
     </div>
     <dl class="module-hero-meta">
-      <div><dt>Durée</dt><dd>~140 min<small>7 leçons cliniques</small></dd></div>
+      <div><dt>Durée</dt><dd>~230 min<small>13 leçons cliniques</small></dd></div>
       <div><dt>Pré-requis</dt><dd>Modules I &amp; II<small>Anatomie + physiologie</small></dd></div>
       <div><dt>Objectif</dt><dd>Choix<small>de la technique selon la preuve</small></dd></div>
     </dl>
@@ -40,19 +113,28 @@
   <aside class="module-toc">
     <h4>Sommaire</h4>
     <ol>
-      <li><a href="#intro"><span class="toc-num">06</span>Principe commun</a></li>
-      <li><a href="#t1"><span class="toc-num">T1</span>MFR</a></li>
+      <li><a href="#intro"><span class="toc-num">00</span>Principe commun</a></li>
+      <li><a href="#physio-mecas"><span class="toc-num">⚙</span>Mécanismes transversaux</a></li>
+      <li><a href="#t1"><span class="toc-num">T1</span>MFR — Barnes</a></li>
       <li><a href="#t2"><span class="toc-num">T2</span>Stecco®</a></li>
       <li><a href="#t3"><span class="toc-num">T3</span>Rolfing®</a></li>
       <li><a href="#t4"><span class="toc-num">T4</span>OMT</a></li>
       <li><a href="#t5"><span class="toc-num">T5</span>CTM</a></li>
-      <li><a href="#t6"><span class="toc-num">T6</span>Fasciite plantaire</a></li>
-      <li><a href="#sec-quiz"><span class="toc-num">★</span>Quiz</a></li>
+      <li><a href="#jones"><span class="toc-num">T6</span>Counterstrain</a></li>
+      <li><a href="#myers"><span class="toc-num">T7</span>Anatomy Trains</a></li>
+      <li><a href="#barral"><span class="toc-num">T8</span>Barral</a></li>
+      <li><a href="#iastm"><span class="toc-num">T9</span>IASTM</a></li>
+      <li><a href="#bowen"><span class="toc-num">T10</span>Bowen</a></li>
+      <li><a href="#mezieres"><span class="toc-num">T11</span>Mézières</a></li>
+      <li><a href="#fp"><span class="toc-num">CL</span>Fasciite plantaire</a></li>
+      <li><a href="#t7"><span class="toc-num">★</span>Synthèse comparative</a></li>
+      <li><a href="#sec-quiz"><span class="toc-num">?</span>Quiz</a></li>
     </ol>
   </aside>
 
   <main class="module-content">
 
+    <!-- ═══ INTRO ═══ -->
     <section id="intro">
       <div class="module-prose" style="margin-bottom:32px;">
         <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">Section 06 · Evidence-Based Techniques</div>
@@ -60,10 +142,120 @@
       </div>
       <div class="keybox">
         <div class="keybox-title">🔍 Principe physiopathologique commun</div>
-        <p>Toutes ces techniques cherchent à corriger un même état : la <strong>densification fasciale</strong>. Voies d'action convergentes : <strong>neurogène</strong> (mécanorécepteurs → SNC), <strong>mécanique</strong> (cisaillement du HA), <strong>thermique</strong> (fluidification) et <strong>réflexe</strong> (inhibition sympathique via Ruffini).</p>
+        <p>Toutes ces techniques cherchent à corriger un même état : la <strong>densification fasciale</strong>, perte de glissement entre couches, modification de la viscoélasticité matricielle et sensibilisation des mécanorécepteurs. Les voies d'action sont convergentes : <strong>neurogène</strong> (mécanorécepteurs vers SNC), <strong>mécanique</strong> (cisaillement de l'acide hyaluronique, déformation viscoélastique), <strong>thermique</strong> (fluidification de la substance fondamentale) et <strong>réflexe</strong> (inhibition sympathique via les récepteurs de Ruffini).</p>
       </div>
     </section>
 
+    <!-- ═══ MÉCANISMES PHYSIOLOGIQUES TRANSVERSAUX ═══ -->
+    <section id="physio-mecas" style="margin-top:56px;">
+      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">Fondements communs · Physiologie fasciale</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:var(--ink);margin:0 0 22px;">Mécanismes physiologiques<br/><em style="color:var(--muted);font-style:italic;">transversaux à toutes les techniques</em></h3>
+      <p style="font-size:1.02rem;line-height:1.78;color:var(--muted);margin-bottom:28px;font-weight:300;">Ces mécanismes sont le substrat biologique que toutes les approches manuelles mobilisent, à des degrés différents. Les comprendre permet de raisonner le choix d'une technique selon ce qu'on veut cibler.</p>
+
+      <div class="keybox blue" style="margin-bottom:28px;">
+        <div class="keybox-title">⚙ 1 · Les récepteurs fasciau et leur rôle clinique</div>
+        <p>Le fascia est un organe sensoriel dense. Sa manipulation crée des effets neurophysiologiques majeurs via quatre populations de récepteurs :</p>
+      </div>
+
+      <table class="meca-table">
+        <thead>
+          <tr>
+            <th>Récepteur</th>
+            <th>Stimulus préférentiel</th>
+            <th>Effet physiologique</th>
+            <th>Technique associée</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ruffini</strong></td>
+            <td>Pression soutenue, étirement latéral lent</td>
+            <td>Inhibition sympathique, réduction du tonus myofascial</td>
+            <td>MFR Barnes, Bowen, Rolfing</td>
+          </tr>
+          <tr>
+            <td><strong>Pacini</strong></td>
+            <td>Vibration, pression profonde rapide</td>
+            <td>Adaptation rapide, sens du mouvement</td>
+            <td>IASTM, techniques vibratoires</td>
+          </tr>
+          <tr>
+            <td><strong>Fuseaux neuromusc. (Ia)</strong></td>
+            <td>Étirement du muscle</td>
+            <td>Réflexe myotatique, tonus réflexe</td>
+            <td>Mézières, techniques d'allongement</td>
+          </tr>
+          <tr>
+            <td><strong>Organes de Golgi (Ib)</strong></td>
+            <td>Tension à la jonction MTJ</td>
+            <td>Inhibition autogène, relaxation</td>
+            <td>Bowen, MFR profond, Counterstrain</td>
+          </tr>
+          <tr>
+            <td><strong>Fibres interstitielles III &amp; IV</strong></td>
+            <td>Pression, température, chimio</td>
+            <td>Nociception, modulation douleur, tonus sympathique</td>
+            <td>Stecco, techniques profondes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="keybox blue" style="margin:32px 0 20px;">
+        <div class="keybox-title">⚙ 2 · Mécanotransduction — comment la force devient signal cellulaire</div>
+        <p>Toutes les techniques manuelles exercent leurs effets durables via ce mécanisme. Le délai entre la séance et le remodelage matriciel complet est de 24 à 72 heures, ce qui explique les effets cliniques progressifs.</p>
+      </div>
+      <div class="cascade">
+        <div class="cascade-step">Force mécanique appliquée sur la <strong>matrice extracellulaire (MEC)</strong></div>
+        <div class="cascade-step">Déformation transmise aux <strong>fibroblastes via leurs intégrines</strong> membranaires (pont physique entre MEC et cytosquelette)</div>
+        <div class="cascade-step">Activation du cytosquelette d'actine et des voies de signalisation intracellulaires : <strong>FAK, RhoA, ERK, MAPK</strong></div>
+        <div class="cascade-step">Modification de l'expression génique : gènes du <strong>collagène, MMP, TGF-β</strong></div>
+        <div class="cascade-step">Remodelage de la MEC à 24-72h : nouvelle architecture de collagène, modification du ratio <strong>col I / col III</strong></div>
+      </div>
+
+      <div class="keybox purple" style="margin:32px 0 20px;">
+        <div class="keybox-title">⚙ 3 · Les myofibroblastes — contractilité active du fascia</div>
+        <p>Robert Schleip (2003, 2005) a mis en évidence la présence de <strong>myofibroblastes</strong> dans le fascia thoraco-lombaire. Ces cellules expriment de l'alpha-smooth muscle actin (α-SMA) et peuvent se contracter de manière autonome sous l'effet du stress mécanique et de médiateurs (TGF-β1, endothéline-1). Cela implique que le fascia a une <strong>contractilité propre, indépendante des muscles</strong>. Les techniques manuelles et l'entraînement physique modulent leur activité. Une activation chronique des myofibroblastes contribue au durcissement pathologique fascial.</p>
+      </div>
+
+      <div class="keybox green" style="margin:28px 0 20px;">
+        <div class="keybox-title">⚙ 4 · Acide hyaluronique et glissement interfascial (Stecco 2011–2018)</div>
+        <p>L'HA remplit l'espace entre les feuillets fasciau superposés et conditionne leur glissement relatif. Son état physique est le principal déterminant de la restriction fasciale mécanique.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-num" style="color:var(--green);">Sol</div>
+          <span class="stat-unit">État normal</span>
+          <div class="stat-label">HA de bas poids moléculaire. Fluide, glissement libre entre couches fasciales.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num" style="color:var(--red);">Gel</div>
+          <span class="stat-unit">État pathologique</span>
+          <div class="stat-label">HA polymérisé, viscosité élevée. Restriction de glissement, douleur, limitation.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num" style="font-size:1.4rem;color:var(--gold);">+Chaleur</div>
+          <span class="stat-unit">Action manuelle</span>
+          <div class="stat-label">La friction et la chaleur locale dépolymérisent l'HA, restituant l'état sol.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num" style="font-size:1.2rem;color:var(--blue);">Surmenage</div>
+          <span class="stat-unit">Facteur déclenchant</span>
+          <div class="stat-label">Surmenage, inflammation, immobilisation ou vieillissement déclenchent la densification.</div>
+        </div>
+      </div>
+
+      <div class="evidence" style="margin-top:28px;">
+        <div class="evidence-label">📊 Validation élastographique — Carla Stecco et al.</div>
+        <p>Des mesures d'élastographie ultrasonore avant/après traitement documentent la modification de viscosité interfasciale après manipulation. Les dissections de cadavres non-décollés confirment l'existence anatomique des couches de glissement et la présence d'HA en quantité variable selon l'état du tissu.</p>
+      </div>
+    </section>
+
+    <!-- ═══ DIVIDER ═══ -->
+    <div class="section-divider" style="margin-top:64px;">
+      <span class="section-divider-label">Les treize techniques · Auteurs &amp; mécanismes</span>
+    </div>
+
+    <!-- ═══ T1 MFR ═══ -->
     <article class="lesson" id="t1" data-lesson="m3-l1">
       <header class="lesson-header">
         <div class="lesson-num">T1</div>
@@ -71,75 +263,119 @@
           <div class="lesson-eyebrow">Barnes · Upledger · Ward</div>
           <div class="lesson-title">Myofascial Release <em>(MFR)</em></div>
         </div>
-        <div class="lesson-meta"><span>20 min</span><span class="read-mark"></span></div>
+        <div class="lesson-meta"><span>22 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Pression soutenue à faible force (quelques Newtons) appliquée <em>lentement</em> sur le fascia jusqu'à perception d'un <strong>relâchement tissulaire</strong>. Deux variantes : MFR <strong>directe</strong> (barrière engagée) et <strong>indirecte</strong> (suivi du mouvement vers la liberté). Mécanisme : stimulation des <strong>Ruffini</strong> + déformation viscoélastique de la matrice.</p>
+        <p>John F. Barnes postule que le fascia forme un réseau tridimensionnel continu sous tension permanente. Les restrictions fasciales, conséquences de traumatismes, inflammations ou postures prolongées, créent des pressions locales pouvant atteindre 2 000 lbs/pouce² sur les structures adjacentes. Deux variantes : MFR <strong>directe</strong> (barrière engagée) et <strong>indirecte</strong> (suivi du mouvement vers la liberté).</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Thixotropie :</strong> la substance fondamentale (gel colloïdal de protéoglycanes et glycosaminoglycanes) passe d'un état sol à un état gel selon les contraintes. La pression soutenue et la chaleur locale générée par le contact restituent une fluidité à la matrice intercellulaire.</p>
+          <p style="margin-top:10px;"><strong>Effet piézoélectrique :</strong> la déformation mécanique du collagène génère un courant bioélectrique local qui favorise la réorganisation des fibres de collagène selon les lignes de contrainte.</p>
+          <p style="margin-top:10px;"><strong>Mécanotransduction :</strong> les forces transmises à la MEC sont détectées par les fibroblastes via leurs intégrines. Cela déclenche des cascades de signalisation (FAK, RhoA, MAPK) aboutissant à un remodelage actif de la matrice.</p>
+          <p style="margin-top:10px;"><strong>Récepteurs de Ruffini :</strong> la pression lente et soutenue (notamment latérale/tangentielle) active préférentiellement ces récepteurs, induisant une <strong>réduction du tonus sympathique</strong> local et une relaxation myofasciale réflexe.</p>
+        </div>
+
+        <p><strong>Technique :</strong> Pression soutenue à très faible charge (50 à 100 g), maintenue 90 à 120 secondes minimum, sans glissement sur la peau. La direction de la barrière de résistance est cherchée, puis le praticien suit le "release" du tissu.</p>
+
         <div class="evidence">
           <div class="evidence-label">📊 Méta-analyse — Ajimsha et al. (2015) · JBMT</div>
-          <p>12 RCTs · n = 559 · Réduction de la douleur chronique (EVA : <strong>−2.1 cm</strong>, IC 95% [−2.8 ; −1.4]) · Taille d'effet d = 0.72.</p>
+          <p>12 RCTs · n = 559 · Réduction de la douleur chronique (EVA : <strong>−2.1 cm</strong>, IC 95% [−2.8 ; −1.4]) · Taille d'effet d = 0.72 (modéré à fort).</p>
         </div>
         <div class="evidence">
           <div class="evidence-label">📊 Fibromyalgie — Castro-Sánchez et al. (2011) · JMPT</div>
-          <p>RCT · n = 86 · MFR vs sham. Amélioration douleur (EVA −1.8), sommeil et fatigue à 20 sem. Maintien à 6 mois dans MFR uniquement.</p>
+          <p>RCT · n = 86 · MFR vs sham. Amélioration douleur (EVA −1.8), sommeil et fatigue à 20 sem. Maintien à 6 mois dans le groupe MFR uniquement.</p>
         </div>
         <div class="placeholder">Compléter avec votre protocole MFR personnel : positionnement, durée par zone, signes du relâchement, contre-indications.</div>
       </div>
     </article>
 
+    <!-- ═══ T2 STECCO ═══ -->
     <article class="lesson" id="t2" data-lesson="m3-l2">
       <header class="lesson-header">
         <div class="lesson-num">T2</div>
         <div class="lesson-title-block">
-          <div class="lesson-eyebrow">Luigi &amp; Carla Stecco · Italie</div>
+          <div class="lesson-eyebrow">Luigi &amp; Carla Stecco · Italie · années 1990-2000</div>
           <div class="lesson-title">Manipulation Fasciale <em>de Stecco®</em></div>
         </div>
         <div class="lesson-meta"><span>22 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Approche structurée autour de <strong>Centres de Coordination (CC)</strong> sur le fascia profond, et de <strong>Centres de Fusion (CF)</strong> pour les diagonales. La friction profonde (3-5 min) génère une élévation locale de température, fluidifiant le gel HA.</p>
+        <p>Approche structurée autour d'une cartographie anatomique précise du fascia profond, développée par Luigi Stecco (kinésithérapeute) et validée anatomiquement par Carla Stecco (anatomiste, Université de Padoue). Le fascia profond est organisé en <strong>unités myofasciales (UM)</strong>, chacune associée à un vecteur de mouvement dans l'espace tridimensionnel.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Centres de Coordination (CC) :</strong> points anatomiques précis du fascia profond, un par unité myofasciale, où les forces de traction des différentes couches se concentrent. En dysfonction, ces points présentent une densification de l'HA.</p>
+          <p style="margin-top:10px;"><strong>Densification de l'acide hyaluronique :</strong> en surmenage ou après inflammation, l'HA entre les couches fasciales polymérise et passe en état gel. La restriction de glissement interfascial crée douleur et limitation de mouvement.</p>
+          <p style="margin-top:10px;"><strong>Action de la friction profonde :</strong> la friction soutenue (3 à 5 min) et la chaleur locale générée dépolymérisent l'HA et restaurent l'état sol. Ce mécanisme est distinct de la thixotropie (il cible l'espace interfascial, pas la matrice intrafasciale).</p>
+          <p style="margin-top:10px;"><strong>Fibres interstitielles III &amp; IV :</strong> présentes en haute densité dans le fascia profond, leur stimulation par les CC et les Centres de Fusion (CF) module la nociception et le tonus sympathique segmentaire.</p>
+        </div>
+
+        <p><strong>Technique :</strong> friction profonde et soutenue avec la phalange distale ou le coude, sur les CC (mouvements segmentaires) et les CF (diagonales et plans combinés). Évaluation préalable par anamnèse cinésiopathologique pour cartographier les segments à traiter.</p>
+
         <div class="evidence">
           <div class="evidence-label">📊 Méta-analyse 2025 — Douleurs MSK</div>
-          <p>Lombalgies, cervicalgies, épaule, genou : résultats positifs. <strong>Limites</strong> : niveau de preuve faible à modéré (GRADE), hétérogénéité des populations.</p>
+          <p>Lombalgies, cervicalgies, épaule, genou : résultats positifs dans les études disponibles. <strong>Limites :</strong> niveau de preuve faible à modéré (GRADE), hétérogénéité des populations, absence de sham convaincant.</p>
+        </div>
+        <div class="evidence">
+          <div class="evidence-label">📊 Anatomie cadavérique — Carla Stecco et al.</div>
+          <p>Dissections de fascias non-décollés confirmant la continuité des couches de glissement, la présence mesurable d'HA interfascial et sa variation d'état selon les régions (Stecco C., Porzionato A. et al., 2008–2018).</p>
         </div>
         <div class="placeholder">Ajouter votre cartographie des CC, le séquentiel d'évaluation, ou les particularités des CF dans votre pratique.</div>
       </div>
     </article>
 
+    <!-- ═══ T3 ROLFING ═══ -->
     <article class="lesson" id="t3" data-lesson="m3-l3">
       <header class="lesson-header">
         <div class="lesson-num">T3</div>
         <div class="lesson-title-block">
-          <div class="lesson-eyebrow">Ida Rolf · États-Unis</div>
+          <div class="lesson-eyebrow">Ida Rolf · États-Unis · années 1950</div>
           <div class="lesson-title">Intégration Structurelle <em>(Rolfing®)</em></div>
         </div>
-        <div class="lesson-meta"><span>18 min</span><span class="read-mark"></span></div>
+        <div class="lesson-meta"><span>20 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Système de <strong>10 séances</strong> progressives visant à rééquilibrer la structure dans le champ gravitaire. Plans superficiels (1-3), profonds (4-7), intégration (8-10).</p>
+        <p>Ida Rolf, biochimiste, propose que le fascia est un tissu <strong>plastique</strong> dont l'organisation peut être durablement modifiée pour aligner le corps dans le champ gravitaire. Elle conçoit un protocole en <strong>10 séances progressives</strong> ("recipe") : plans superficiels (séances 1-3), profonds (4-7), intégration (8-10).</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Déformation plastique du tissu conjonctif :</strong> sous des forces soutenues, le collagène peut subir un allongement permanent (creep) au-delà de sa zone élastique, sans rupture. C'est la base biophysique du protocole en 10 séances progressives.</p>
+          <p style="margin-top:10px;"><strong>Réorganisation des fibres de collagène :</strong> les fibroblastes réorganisent activement leurs filopodia en réponse aux contraintes mécaniques appliquées. Les nouvelles fibres se déposent selon les lignes de force dominantes.</p>
+          <p style="margin-top:10px;"><strong>Biotensegrité (Levin) :</strong> Rolf s'appuie sur le modèle de tensegrité de Buckminster Fuller adapté au vivant. Le fascia est l'élément de tension continue qui organise les structures osseuses (compression discontinue). Une modification locale se propage à l'ensemble du système via la transmission de tensions.</p>
+          <p style="margin-top:10px;"><strong>Réorganisation du schéma corporel :</strong> la manipulation profonde et les demandes de mouvement actif modifient les afférences proprioceptives fasciales, entraînant une réorganisation du schéma corporel au niveau du cortex somatosensoriel.</p>
+        </div>
+
         <div class="evidence">
           <div class="evidence-label">📊 Revue — Jacobson (2011)</div>
-          <p>7 études : amélioration flexibilité spinale, réduction douleurs chroniques épaule et dos. Résultats prometteurs, niveau de preuve limité.</p>
+          <p>7 études : amélioration de la flexibilité spinale, réduction des douleurs chroniques d'épaule et de dos. Résultats prometteurs, niveau de preuve limité (études de cohorte, petit n).</p>
         </div>
         <div class="placeholder">Espace pour détailler le déroulé des 10 séances et leurs objectifs spécifiques.</div>
       </div>
     </article>
 
+    <!-- ═══ T4 OMT ═══ -->
     <article class="lesson" id="t4" data-lesson="m3-l4">
       <header class="lesson-header">
         <div class="lesson-num">T4</div>
         <div class="lesson-title-block">
           <div class="lesson-eyebrow">Still · Sutherland · Frymann</div>
-          <div class="lesson-title">Osteopathic Manipulative <em>Treatment</em></div>
+          <div class="lesson-title">Osteopathic Manipulative <em>Treatment (OMT)</em></div>
         </div>
         <div class="lesson-meta"><span>22 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Techniques myofasciales indirectes (functional, BLT), HVLA sur les récepteurs capsulaires, approche crânio-sacrée sur la dure-mère.</p>
+        <p>Techniques myofasciales indirectes (functional technique, BLT — Balanced Ligamentous Tension), HVLA sur les récepteurs capsulaires articulaires, approche crânio-sacrée sur la dure-mère et le fascia cervical profond.</p>
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Techniques indirectes (BLT, functional) :</strong> le praticien suit le fascia vers sa direction de liberté, maintient la position jusqu'au release tissulaire. Mécanisme dominant : activation des récepteurs de Ruffini et des fibres interstitielles → réponse parasympathique, réduction du tonus myofascial.</p>
+          <p style="margin-top:10px;"><strong>HVLA :</strong> l'impulsion à haute vélocité mobilise les récepteurs capsulaires articulaires (Pacini) → inhibition réflexe du muscle périarticulaire et du fascia adjacent → levée de la protection réflexe.</p>
+          <p style="margin-top:10px;"><strong>Myofibroblastes :</strong> les techniques indirectes prolongées sur la fascia thoraco-lombaire semblent moduler l'activité des myofibroblastes fasciau via leur sensibilité aux contraintes mécaniques légères (Schleip 2005).</p>
+        </div>
         <div class="evidence">
           <div class="evidence-label">📊 Lombalgie — Franke et al. (2014)</div>
           <p>6 RCTs · n = 525 · OMT réduit la douleur lombaire (SMD = −0.43) et améliore la fonction (SMD = −0.44). Effets maintenus à 3 mois.</p>
@@ -148,75 +384,405 @@
       </div>
     </article>
 
+    <!-- ═══ T5 CTM ═══ -->
     <article class="lesson" id="t5" data-lesson="m3-l5">
       <header class="lesson-header">
         <div class="lesson-num">T5</div>
         <div class="lesson-title-block">
-          <div class="lesson-eyebrow">Dicke · Leube · Allemagne</div>
+          <div class="lesson-eyebrow">Dicke · Leube · Allemagne · 1929</div>
           <div class="lesson-title">Connective Tissue <em>Massage (CTM)</em></div>
         </div>
         <div class="lesson-meta"><span>15 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Traction tangentielle sur le fascia superficiel avec le majeur, produisant un sillon cutané. Mécanisme principalement <strong>réflexe-autonome</strong>.</p>
+        <p>Elisabeth Dicke développe empiriquement une technique de traction tangentielle sur le fascia superficiel avec le majeur, produisant un sillon cutané caractéristique. Le mécanisme est principalement <strong>réflexe-autonome</strong> : les zones cutanées traitées correspondent aux zones réflexes des organes internes (zones de Head, réflexes de Dicke).</p>
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Traction tangentielle sur le fascia superficiel :</strong> le cisaillement latéral de la peau sur l'hypoderme stimule préférentiellement les récepteurs de Ruffini → inhibition sympathique locale et régionale.</p>
+          <p style="margin-top:10px;"><strong>Réflexes viscéro-cutanés et somato-viscéraux :</strong> les afférences cutanées tractées convergent sur les mêmes neurones spinaux que les afférences viscérales (même segment). La manipulation peut lever des tensions viscérales réflexes ou améliorer la trophicité des organes cibles.</p>
+        </div>
         <div class="evidence">
           <div class="evidence-label">📊 Fibromyalgie — MFR vs CTM (2021)</div>
-          <p>RCT · n = 72. Les deux techniques réduisent FIQ. MFR : avantage sur la douleur. CTM : avantage sur la fatigue et le sommeil. Effets complémentaires.</p>
+          <p>RCT · n = 72. Les deux techniques réduisent le FIQ. MFR : avantage sur la douleur. CTM : avantage sur la fatigue et le sommeil. Effets complémentaires plutôt que redondants.</p>
         </div>
         <div class="placeholder">Compléter avec les zones réflexes de Dicke et leur application clinique en pathologie viscérale.</div>
       </div>
     </article>
 
-    <article class="lesson" id="t6" data-lesson="m3-l6">
+    <!-- ═══ DIVIDER ═══ -->
+    <div class="section-divider">
+      <span class="section-divider-label">Techniques complémentaires</span>
+    </div>
+
+    <!-- ═══ T6 COUNTERSTRAIN - JONES ═══ -->
+    <article class="lesson" id="jones" data-lesson="m3-l8">
       <header class="lesson-header">
         <div class="lesson-num">T6</div>
         <div class="lesson-title-block">
-          <div class="lesson-eyebrow">Protocoles combinés</div>
+          <div class="lesson-eyebrow">Lawrence Jones · États-Unis · 1964</div>
+          <div class="lesson-title">Strain-Counterstrain <em>(SCS / Libération Positionnelle)</em></div>
+        </div>
+        <div class="lesson-meta"><span>16 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Jones découvre accidentellement que positionner un patient dans sa <strong>position de douleur minimale</strong> (raccourcissement passif du segment douloureux) pendant 90 secondes supprime durablement la douleur. Il développe un modèle fondé sur les dysfonctions proprioceptives et cartographie plus de 200 "tender points" fasciau et musculaires.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Inhibition des fuseaux neuromusculaires :</strong> le raccourcissement passif du segment réduit l'étirement des fuseaux → diminution de la décharge afférente (fibres Ia) → réduction de l'activité gamma-motrice → relaxation du tonus réflexe du muscle et du fascia associé.</p>
+          <p style="margin-top:10px;"><strong>Réinitialisation proprioceptive fasciale :</strong> les mécanorécepteurs fasciau (Ruffini, Pacini, interstitiels) se trouvent en situation de "repos mécanique" pendant 90 secondes. Cela permet un reset de leur seuil de sensibilisation, interrompant le cycle douleur-spasme-douleur.</p>
+          <p style="margin-top:10px;"><strong>Réduction de la sensibilisation périphérique :</strong> les nocicepteurs fasciau sensibilisés voient leur environnement chimique local modifié pendant la position de confort (réduction de la pression capillaire, drainage des médiateurs pro-inflammatoires, modification du pH local).</p>
+          <p style="margin-top:10px;"><strong>Réponse parasympathique :</strong> le maintien prolongé en position de confort déclenche une réponse vagale réflexe, contribuant à la détente musculaire générale.</p>
+        </div>
+
+        <p><strong>Technique :</strong> localisation du tender point douloureux (pression légère du praticien), positionnement passif du segment en position de moindre douleur, maintien 90 secondes sans bouger, retour extrêmement lent en position neutre (5 à 10 secondes). Réévaluation immédiate du tender point.</p>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Données cliniques</div>
+          <p>Données surtout descriptives et de cohorte. Niveau de preuve modéré. Utilisé comme technique accessoire dans les études OMT. Le mécanisme proprioceptif est biologiquement plausible et cohérent avec la neurophysiologie des fuseaux (Korr, 1975 ; van Buskirk, 1990).</p>
+        </div>
+        <div class="placeholder">Ajouter vos tender points les plus fréquents en pratique ostéopathique et votre protocole de positionnement.</div>
+      </div>
+    </article>
+
+    <!-- ═══ T7 ANATOMY TRAINS - MYERS ═══ -->
+    <article class="lesson" id="myers" data-lesson="m3-l9">
+      <header class="lesson-header">
+        <div class="lesson-num">T7</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Thomas Myers · États-Unis · 2001</div>
+          <div class="lesson-title">Anatomy Trains — <em>Méridiens Myofasciaux</em></div>
+        </div>
+        <div class="lesson-meta"><span>18 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Myers, rolfer et anatomiste, cartographie des <strong>lignes de transmission de force myofasciale</strong> : des "trains" reliant des segments musculaires via des ponts fasciau continus, sans interruption anatomique. Ce n'est pas une technique en soi mais un cadre conceptuel qui sous-tend de nombreuses approches et guide l'évaluation posturale.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Transmission de force myofasciale (Huijing, Vleeming) :</strong> des études sur cadavres montrent que la force musculaire se transmet partiellement via le fascia adjacent, au-delà des jonctions tendineuses classiques. Cette transmission extra-tendineuse peut représenter jusqu'à 30-40% de la force totale dans certaines configurations.</p>
+          <p style="margin-top:10px;"><strong>Continuité histologique :</strong> les dissections de fascias en continuité non-décollés (Myers, Stecco, Schultz, Van der Wal) mettent en évidence des ponts de tissu conjonctif entre structures musculaires adjacentes, sans interruption anatomique franche.</p>
+          <p style="margin-top:10px;"><strong>Implication clinique :</strong> une restriction dans un segment fascial (ex : fascia plantaire - Superficial Back Line) peut créer une tension à distance (ischios, fascia thoraco-lombaire, sous-occipitaux) via la transmission de tension le long de la chaîne. Traiter localement peut ne pas suffire.</p>
+          <p style="margin-top:10px;"><strong>Principales lignes :</strong> Superficial Back Line (SBL), Superficial Front Line (SFL), Lateral Line (LL), Spiral Line (SPL), Deep Front Line (DFL) — la plus profonde et la plus influente sur la posture globale.</p>
+        </div>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Validation anatomique — Van der Wal (2009)</div>
+          <p>Dissections de membres en continuité montrant l'absence de terminaison anatomique franche entre muscles adjacents. La transmission de force via le fascia intermusculaire est documentée électromyographiquement. Niveau de preuve du cadre clinique : faible à modéré (extrapolation anatomique vers la clinique).</p>
+        </div>
+        <div class="placeholder">Cartographier ici les 7 lignes myofasciales principales avec leurs points de départ, jonctions et pathologies associées.</div>
+      </div>
+    </article>
+
+    <!-- ═══ T8 BARRAL ═══ -->
+    <article class="lesson" id="barral" data-lesson="m3-l10">
+      <header class="lesson-header">
+        <div class="lesson-num">T8</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Jean-Pierre Barral · France · années 1980</div>
+          <div class="lesson-title">Manipulation Viscérale <em>(MV)</em></div>
+        </div>
+        <div class="lesson-meta"><span>18 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Barral, ostéopathe français, développe une approche basée sur la <strong>mobilité</strong> (mouvement du viscère dans son espace lors de la respiration et du mouvement) et la <strong>motilité</strong> (mouvement inhérent lent et autonome de l'organe) des viscères et de leurs attaches fasciales. L'écoute tissulaire permet de détecter les restrictions viscérales.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Fascias viscéraux :</strong> péritoine, péricarde, plèvre, mésos et ligaments suspenseurs sont des structures fasciales continues avec le fascia pariétal et le fascia profond du tronc. Une restriction dans ces structures modifie les patterns de tension globaux du tronc et peut créer des compensations somatiques à distance.</p>
+          <p style="margin-top:10px;"><strong>Connexions viscéro-somatiques réflexes :</strong> les afférences viscérales (fibres C et Aδ) convergent sur les mêmes neurones spinaux que les afférences somatiques du même métamère (zones de Head, réflexes de Dicke). Lever la restriction fasciale viscérale peut lever une tension musculo-fasciale somatique à distance via ces voies réflexes.</p>
+          <p style="margin-top:10px;"><strong>Modulation du système nerveux autonome :</strong> les fascias viscéraux sont richement innervés par le SNA (sympathique et parasympathique). La manipulation douce peut modifier le tonus autonome local et systémique, avec effets sur la douleur, la digestion et le tonus vasculaire.</p>
+          <p style="margin-top:10px;"><strong>Mobilité vs motilité :</strong> la perte de mobilité (mouvement passif lors de la respiration) est plus facilement objectivable que la motilité, dont l'existence et la mesurabilité restent débattues scientifiquement.</p>
+        </div>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Niveau de preuve</div>
+          <p>Faible : les RCTs sont rares et de petite taille. Les connexions viscéro-somatiques réflexes sont bien documentées en neurophysiologie ; l'efficacité clinique de leur traitement manuel est moins établie. La plausibilité biologique est supérieure à la preuve empirique actuelle.</p>
+        </div>
+        <div class="placeholder">Décrire ici les restrictions viscérales les plus fréquentes en pratique ostéopathique (foie, côlon, utérus) et leurs patterns de compensations somato-fasciales associées.</div>
+      </div>
+    </article>
+
+    <!-- ═══ T9 IASTM ═══ -->
+    <article class="lesson" id="iastm" data-lesson="m3-l11">
+      <header class="lesson-header">
+        <div class="lesson-num">T9</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Graston · Hawk Grips · FAKTR · années 1990-2000</div>
+          <div class="lesson-title">Mobilisation Instrumentale <em>(IASTM)</em></div>
+        </div>
+        <div class="lesson-meta"><span>16 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Instrument-Assisted Soft Tissue Mobilization : utilisation d'instruments à bords biseautés (métal, plastique renforcé) pour générer des forces de <strong>cisaillement contrôlées</strong> sur le tissu fascial. Particulièrement indiqué sur les zones de cicatrice, fibrose et adhérences post-traumatiques. La variante FAKTR combine l'application instrumentale avec des mouvements actifs du patient.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Réponse inflammatoire contrôlée (healing cascade) :</strong> les microtraumatismes générés par l'instrument activent les mastocytes et libèrent des cytokines (IL-1β, TNF-α) qui déclenchent la cascade de cicatrisation : prolifération fibroblastique, synthèse de collagène type III, puis remodelage progressif en collagène type I organisé.</p>
+          <p style="margin-top:10px;"><strong>Rupture mécanique des adhérences :</strong> le cisaillement instrumental désolidarise mécaniquement les couches fasciales adhérentes entre elles (cicatrices, fibroses). Ce mécanisme est distinct de la thixotropie ou de la dépolymérisation de l'HA : ici, c'est une rupture physique des pontages collagéniques désorganisés.</p>
+          <p style="margin-top:10px;"><strong>Activation des myofibroblastes :</strong> les contraintes mécaniques induites par l'instrument activent les myofibroblastes fasciau, qui participent au remodelage actif de la matrice. En cas de dysfonction chronique, leur hyperactivation contribue à la fibrose ; les techniques de décharge permettent de moduler leur activité.</p>
+          <p style="margin-top:10px;"><strong>Effets neurophysiologiques :</strong> les récepteurs de Pacini (sensibles aux vibrations et à la pression profonde rapide) sont activés par le glissement instrumental → effet analgésique par gate control et modulation centrale de la douleur.</p>
+        </div>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Revue systématique — Cheatham et al. (2016)</div>
+          <p>16 études. IASTM améliore la mobilité et réduit la douleur dans les tendinopathies chroniques, cicatrices et syndromes myofasciaux. Niveau de preuve modéré. Effets supérieurs aux soins habituels dans les tendinopathies (SMD &gt; 0.5).</p>
+        </div>
+        <div class="placeholder">Ajouter vos protocoles IASTM par région (épaule, talon d'Achille, genou) : angles, pression, durée, fréquence.</div>
+      </div>
+    </article>
+
+    <!-- ═══ T10 BOWEN ═══ -->
+    <article class="lesson" id="bowen" data-lesson="m3-l12">
+      <header class="lesson-header">
+        <div class="lesson-num">T10</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Tom Bowen · Australie · années 1950 · formalisé par Rentsch</div>
+          <div class="lesson-title">Technique de Bowen <em>(Bowenwork)</em></div>
+        </div>
+        <div class="lesson-meta"><span>14 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Tom Bowen développe empiriquement une série de mouvements transversaux très légers sur les jonctions musculo-tendineuses et sur le fascia, avec une particularité structurante : des <strong>pauses obligatoires de 2 à 5 minutes</strong> entre chaque séquence. La formalisation a été assurée par Oswald Rentsch après la mort de Bowen.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Organes tendineux de Golgi (Ib) :</strong> les mouvements transversaux sur les jonctions muscle-tendon stimulent préférentiellement les OTG → inhibition autogène → relaxation du tonus musculaire et du fascia adjacent. Mécanisme similaire au contract-relax mais obtenu passivement.</p>
+          <p style="margin-top:10px;"><strong>Récepteurs de Ruffini :</strong> le glissement latéral de la peau sur le tissu sous-jacent (qui se produit pendant le mouvement de Bowen) est le stimulus électif des récepteurs de Ruffini → inhibition sympathique locale et générale.</p>
+          <p style="margin-top:10px;"><strong>Rôle des pauses (fenêtre neurologique) :</strong> l'hypothèse principale est que le SNC intègre les signaux proprioceptifs fasciau reçus pendant 2 à 5 minutes avant qu'un nouveau stimulus soit appliqué. Ce temps d'intégration permettrait une réponse neuromusculaire plus complète qu'avec une stimulation continue.</p>
+          <p style="margin-top:10px;"><strong>Mobilisation du fluide interstitiel :</strong> les légères oscillations mécaniques favorisent le mouvement du fluide dans les espaces fasciau, améliorant les échanges métaboliques locaux et potentiellement la dynamique de l'HA.</p>
+        </div>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Niveau de preuve</div>
+          <p>Faible : peu d'études contrôlées. Des effets cliniques positifs sont rapportés sur la douleur et la mobilité dans des études pilotes (Marr et al., 2011 sur les douleurs d'épaule). Le mécanisme neurophysiologique est biologiquement plausible mais non démontré spécifiquement pour cette technique.</p>
+        </div>
+        <div class="placeholder">Décrire les séquences de base de la technique de Bowen et leurs indications cliniques principales.</div>
+      </div>
+    </article>
+
+    <!-- ═══ T11 MÉZIÈRES ═══ -->
+    <article class="lesson" id="mezieres" data-lesson="m3-l13">
+      <header class="lesson-header">
+        <div class="lesson-num">T11</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Françoise Mézières · France · 1947</div>
+          <div class="lesson-title">Méthode Mézières — <em>Chaînes Musculaires Aponévrotiques</em></div>
+        </div>
+        <div class="lesson-meta"><span>16 min</span><span class="read-mark"></span></div>
+        <div class="lesson-toggle">+</div>
+      </header>
+      <div class="lesson-body">
+        <p>Françoise Mézières, kinésithérapeute française, conceptualise les <strong>chaînes musculaires</strong> : des groupes de muscles polyarticulaires liés par une enveloppe aponévrotique continue qui fonctionnent en synergie. Elle observe que le corps compense toujours dans le sens du <strong>raccourcissement</strong> de ces chaînes, et que tout traitement localisé provoque une compensation à distance.</p>
+
+        <div class="keybox" style="margin:22px 0;">
+          <div class="keybox-title">⚙ Mécanismes physiologiques au niveau fascial</div>
+          <p><strong>Allongement des chaînes aponévrotiques :</strong> le travail en posture globale vise à allonger simultanément toute la chaîne sans permettre la compensation par d'autres segments. Cela crée un étirement fascial distribué sur toute la longueur de la chaîne, non localisé à un segment.</p>
+          <p style="margin-top:10px;"><strong>Irradiation proprioceptive :</strong> le maintien prolongé des postures sollicite les mécanorécepteurs fasciau (fuseaux, Ruffini, fibres interstitielles) sur toute la longueur de la chaîne, créant une mobilisation sensorielle globale du système fascio-musculaire.</p>
+          <p style="margin-top:10px;"><strong>Résistance aux compensations :</strong> le praticien surveille et bloque activement les compensations (ex : antéversion du bassin lors de l'allongement des ischios). Ce travail de vigilance est spécifique à la méthode et constitue l'essentiel de son originalité technique.</p>
+          <p style="margin-top:10px;"><strong>Précédent conceptuel historique :</strong> Mézières (1947) préfigure de 50 ans les Anatomy Trains de Myers (2001) et la notion de transmission de force myofasciale inter-segmentaire. Elle est la première à décrire cliniquement les conséquences de la continuité fasciale sur la posture globale.</p>
+        </div>
+
+        <div class="evidence">
+          <div class="evidence-label">📊 Niveau de preuve</div>
+          <p>Faible à modéré. Des études de cohorte montrent une efficacité sur les cervicalgies et lombalgies chroniques liées aux déséquilibres posturaux. La conceptualisation des chaînes est validée anatomiquement à posteriori par les travaux de Stecco et Myers. Les RCTs manquent.</p>
+        </div>
+        <div class="placeholder">Décrire les 4 chaînes principales de Mézières et leurs patterns de rétraction. Relier à votre pratique clinique ostéopathique.</div>
+      </div>
+    </article>
+
+    <!-- ═══ DIVIDER ═══ -->
+    <div class="section-divider">
+      <span class="section-divider-label">Cas clinique &amp; synthèse</span>
+    </div>
+
+    <!-- ═══ CAS CLINIQUE : FASCIITE PLANTAIRE ═══ -->
+    <article class="lesson" id="fp" data-lesson="m3-l6">
+      <header class="lesson-header">
+        <div class="lesson-num">CL</div>
+        <div class="lesson-title-block">
+          <div class="lesson-eyebrow">Protocoles combinés · Application clinique</div>
           <div class="lesson-title">Fasciite <em>plantaire</em></div>
         </div>
         <div class="lesson-meta"><span>18 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Modèle clinique le mieux documenté. L'aponévrose plantaire (chaîne LSP) répond à : étirement du mollet + massage transverse profond + MFR de la plante.</p>
+        <p>Modèle clinique le mieux documenté pour l'application des techniques fasciales combinées. L'aponévrose plantaire (Superficial Back Line de Myers, chaîne postérieure de Mézières) répond à : étirement du mollet + massage transverse profond + MFR de la plante.</p>
         <div class="evidence">
           <div class="evidence-label">📊 Renan-Ordine et al. (2011) · JOSPT</div>
-          <p>RCT · n = 60. MFR + étirements vs étirements seuls. Réduction douleur matinale : <strong>−3.1 cm vs −1.4 cm</strong> à 4 sem (p &lt; 0.001).</p>
+          <p>RCT · n = 60. MFR + étirements vs étirements seuls. Réduction douleur matinale : <strong>−3.1 cm vs −1.4 cm</strong> à 4 sem (p &lt; 0.001). NNT = 3.</p>
         </div>
-        <div class="placeholder large">Espace libre — ajouter votre protocole complet (auto-massage balle, exercices excentriques, fréquence), les critères d'arrêt et les drapeaux rouges.</div>
+        <div class="placeholder large">Espace libre — ajouter votre protocole complet (auto-massage balle, exercices excentriques, fréquence), les critères d'arrêt et les drapeaux rouges. Relier à la SBL d'Anatomy Trains : traitement proximal (ischios, dura-mère) si récidives.</div>
       </div>
     </article>
 
+    <!-- ═══ SYNTHÈSE COMPARATIVE ═══ -->
     <article class="lesson" id="t7" data-lesson="m3-l7">
       <header class="lesson-header">
-        <div class="lesson-num">T7</div>
+        <div class="lesson-num">★</div>
         <div class="lesson-title-block">
-          <div class="lesson-eyebrow">Synthèse comparative</div>
-          <div class="lesson-title">Quelle technique <em>pour quel patient</em> ?</div>
+          <div class="lesson-eyebrow">Synthèse comparative · 13 approches</div>
+          <div class="lesson-title">Quelle technique <em>pour quel patient ?</em></div>
         </div>
-        <div class="lesson-meta"><span>20 min</span><span class="read-mark"></span></div>
+        <div class="lesson-meta"><span>22 min</span><span class="read-mark"></span></div>
         <div class="lesson-toggle">+</div>
       </header>
       <div class="lesson-body">
-        <p>Aucune technique n'est supérieure aux autres dans l'absolu. Le choix dépend du tissu cible, du profil du patient et de la chronicité.</p>
-        <div class="placeholder large">Construire ici votre arbre décisionnel : cervicalgie chronique → ?, lombalgie aigüe → ?, fibromyalgie → ?, sportif jeune vs sédentaire âgé.</div>
+        <p>Aucune technique n'est supérieure aux autres dans l'absolu. Le choix dépend du tissu cible (fascial superficiel, profond, viscéral, périarticulaire), du mécanisme dominant (mécanique, neurologique, inflammatoire), du profil du patient et de la chronicité.</p>
+
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin:32px 0 16px;">Tableau comparatif des 13 approches</h3>
+
+        <div style="overflow-x:auto;">
+          <table class="meca-table">
+            <thead>
+              <tr>
+                <th>Technique</th>
+                <th>Auteur</th>
+                <th>Force</th>
+                <th>Mécanisme principal</th>
+                <th>Niveau de preuve</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MFR</strong></td>
+                <td>Barnes (1970s)</td>
+                <td>Faible / soutenu</td>
+                <td>Thixotropie, Ruffini, mécanotransduction</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>Fascia Manipulation</strong></td>
+                <td>L. Stecco (2000s)</td>
+                <td>Profonde, friction</td>
+                <td>Dépolymérisation HA, glissement interfascial</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>Rolfing</strong></td>
+                <td>I. Rolf (1950s)</td>
+                <td>Profonde, lente</td>
+                <td>Déformation plastique collagène, biotensegrité</td>
+                <td><span class="badge badge-fai">Faible</span></td>
+              </tr>
+              <tr>
+                <td><strong>OMT</strong></td>
+                <td>Still, Sutherland</td>
+                <td>Variable</td>
+                <td>Ruffini, myofibroblastes, HVLA capsulaire</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>CTM</strong></td>
+                <td>Dicke (1929)</td>
+                <td>Légère tangentielle</td>
+                <td>Ruffini, réflexes viscéro-cutanés</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>Counterstrain</strong></td>
+                <td>Jones (1964)</td>
+                <td>Nulle (posture)</td>
+                <td>Inhibition des fuseaux, reset proprioceptif</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>Anatomy Trains</strong></td>
+                <td>Myers (2001)</td>
+                <td>Cadre conceptuel</td>
+                <td>Transmission de force myofasciale, lignes</td>
+                <td><span class="badge badge-fai">Anatomique</span></td>
+              </tr>
+              <tr>
+                <td><strong>Manipulation Viscérale</strong></td>
+                <td>Barral (1980s)</td>
+                <td>Très faible</td>
+                <td>Fascias viscéraux, réflexes viscéro-somatiques</td>
+                <td><span class="badge badge-fai">Faible</span></td>
+              </tr>
+              <tr>
+                <td><strong>IASTM</strong></td>
+                <td>Graston (1990s)</td>
+                <td>Forte, cisaillement</td>
+                <td>Cascade inflammatoire, remodelage collagène</td>
+                <td><span class="badge badge-mod">Modéré</span></td>
+              </tr>
+              <tr>
+                <td><strong>Bowen</strong></td>
+                <td>T. Bowen (1950s)</td>
+                <td>Très légère</td>
+                <td>Golgi, Ruffini, fenêtre neurologique</td>
+                <td><span class="badge badge-fai">Faible</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mézières</strong></td>
+                <td>Mézières (1947)</td>
+                <td>Postures globales</td>
+                <td>Allongement chaîne aponévrotique globale</td>
+                <td><span class="badge badge-fai">Faible</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="keybox green" style="margin-top:28px;">
+          <div class="keybox-title">🎯 Logique de décision clinique</div>
+          <p><strong>Restriction de glissement interfascial (densification HA) :</strong> Stecco en premier choix — friction ciblée sur les CC.<br/>
+          <strong>Tonus myofascial élevé, composante sympathique :</strong> MFR Barnes ou Bowen — activation des Ruffini, réduction sympathique.<br/>
+          <strong>Fibrose, cicatrice, adhérence :</strong> IASTM — seule technique qui déclenche une remodélisation collagénique active.<br/>
+          <strong>Dysfonction posturale globale, chaînes :</strong> Mézières ou Rolfing pour travailler les lignées fasciales de bout en bout.<br/>
+          <strong>Composante viscérale, réflexe :</strong> Barral ou CTM selon la cible (viscérale vs cutanée-réflexe).<br/>
+          <strong>Tender point aigu, douleur localisée :</strong> Counterstrain — la moins invasive, applicable en phase aiguë.</p>
+        </div>
+
+        <div class="placeholder large">Construire ici votre arbre décisionnel personnalisé : cervicalgie chronique, lombalgie aiguë, fibromyalgie, sportif jeune vs sédentaire âgé. Relier les choix à vos données cliniques personnelles.</div>
       </div>
     </article>
 
+    <!-- ═══ QUIZ ═══ -->
     <section id="sec-quiz" style="margin-top:72px;">
       <div class="quiz" data-correct="b">
-        <div class="quiz-eyebrow">Quiz · Module III</div>
+        <div class="quiz-eyebrow">Quiz · Module III · Question 1</div>
         <h3>Selon la méta-analyse d'Ajimsha (2015), quelle est la taille d'effet (d de Cohen) du MFR sur la douleur chronique ?</h3>
         <div class="quiz-options">
           <div class="quiz-option" data-value="a"><span class="qo-letter">A</span>d = 0.20 (effet faible)</div>
           <div class="quiz-option" data-value="b"><span class="qo-letter">B</span>d = 0.72 (effet modéré à fort)</div>
           <div class="quiz-option" data-value="c"><span class="qo-letter">C</span>d = 1.50 (effet très fort)</div>
-          <div class="quiz-option" data-value="d"><span class="qo-letter">D</span>Aucune significativité</div>
+          <div class="quiz-option" data-value="d"><span class="qo-letter">D</span>Aucune significativité statistique</div>
         </div>
-        <div class="quiz-feedback">Réponse : <strong>B — d = 0.72</strong>. Effet modéré à fort, avec EVA −2.1 cm. Limite principale : hétérogénéité des protocoles.</div>
+        <div class="quiz-feedback">Réponse : <strong>B — d = 0.72</strong>. Effet modéré à fort, avec réduction EVA de −2.1 cm sur 559 patients. Limite principale : hétérogénéité des protocoles entre les 12 RCTs inclus.</div>
       </div>
-      <div class="placeholder">Ajouter d'autres questions de quiz (Stecco, Rolfing, OMT, CTM).</div>
+
+      <div class="quiz" data-correct="c" style="margin-top:20px;">
+        <div class="quiz-eyebrow">Quiz · Module III · Question 2</div>
+        <h3>Quel est le mécanisme principal par lequel la Manipulation Fasciale de Stecco (friction des CC) restaure le glissement interfascial ?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="a"><span class="qo-letter">A</span>Activation des récepteurs de Ruffini et inhibition sympathique</div>
+          <div class="quiz-option" data-value="b"><span class="qo-letter">B</span>Déformation plastique des fibres de collagène (creep)</div>
+          <div class="quiz-option" data-value="c"><span class="qo-letter">C</span>Dépolymérisation de l'acide hyaluronique par la chaleur et le cisaillement</div>
+          <div class="quiz-option" data-value="d"><span class="qo-letter">D</span>Inhibition des fuseaux neuromusculaires par raccourcissement passif</div>
+        </div>
+        <div class="quiz-feedback">Réponse : <strong>C</strong>. La friction profonde et soutenue génère une chaleur locale qui dépolymérise l'HA (état gel → état sol), restaurant le glissement entre couches fasciales. Les récepteurs de Ruffini (A) sont surtout activés par le MFR Barnes. Le creep (B) est le mécanisme du Rolfing. L'inhibition des fuseaux (D) est le mécanisme du Counterstrain.</div>
+      </div>
+
+      <div class="quiz" data-correct="a" style="margin-top:20px;">
+        <div class="quiz-eyebrow">Quiz · Module III · Question 3</div>
+        <h3>Dans la technique de Counterstrain (Jones), quelle est la durée minimale de maintien en position de confort ?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="a"><span class="qo-letter">A</span>90 secondes</div>
+          <div class="quiz-option" data-value="b"><span class="qo-letter">B</span>30 secondes</div>
+          <div class="quiz-option" data-value="c"><span class="qo-letter">C</span>3 à 5 minutes</div>
+          <div class="quiz-option" data-value="d"><span class="qo-letter">D</span>10 secondes — c'est une technique rapide</div>
+        </div>
+        <div class="quiz-feedback">Réponse : <strong>A — 90 secondes</strong>. Ce temps correspond à la durée nécessaire pour l'inhibition des fuseaux neuromusculaires et la réinitialisation proprioceptive fasciale. Un maintien trop court (30s) ne permet pas l'intégration neurologique. Les 3-5 min correspondent aux pauses de la technique de Bowen.</div>
+      </div>
     </section>
 
     <nav class="next-nav">
@@ -227,7 +793,7 @@
   </main>
 </div>
 
-<footer class="site-footer">Fascias &amp; Techniques Manuelles — Module III</footer>
+<footer class="site-footer">Fascias &amp; Techniques Manuelles — Module III · Evidence-Based</footer>
 <script src="app.js"></script>
 </body>
 </html>
