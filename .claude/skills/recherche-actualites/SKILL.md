@@ -48,40 +48,55 @@ Si l'utilisateur tape directement `/morning` ou demande une routine matinale, la
 
 ## Phase 3 : Effectuer la recherche
 
-Utilise les outils de recherche web disponibles (web_search ou un MCP comme Perplexity si connecté) pour récupérer les actualités du jour ou des derniers jours sur le périmètre demandé.
+La recherche fonctionne sur **2 canaux distincts**. Toujours vérifier la date de chaque résultat : tout article de plus de 7 jours est écarté, même s'il semble pertinent. Mieux vaut 2 résultats frais que 5 recyclés.
 
-**Stratégie de recherche :**
-- 5 à 6 recherches ciblées maximum
-- Privilégier les sources récentes (moins de 48 heures idéalement)
-- Couvrir 3 angles : annonces majeures, tendances émergentes, signaux faibles intéressants
-- Sources francophones en priorité, internationales si nécessaire
+---
 
-**Queries fixes pour le profil Nico (ostéopathe libéral evidence-based, créateur outils IA santé) :**
+### Canal A : Publications scientifiques récentes
 
-Lancer systématiquement ces 6 recherches :
-1. `actualités intelligence artificielle IA [mois année] France`
-2. `ostéopathie evidence-based RCT étude clinique [année]`
-3. `fascia myofascial release nouvelles recherches [année]`
-4. `douleur chronique recherche méta-analyse [année]`
-5. `e-learning santé outils numériques thérapeutes [année] tendances`
-6. `ostéopathie kinésithérapie thérapie manuelle actualités [année]`
+**Si l'outil `mcp__PubMed__search_articles` est disponible** (connecteur PubMed actif) :
+
+Lancer 3 recherches PubMed triées par date de publication, limitées aux 7 derniers jours :
+1. Query `fascia` — pour les nouvelles publications sur les fascias
+2. Query `osteopathic manipulation OR manual therapy` — pour les nouveaux essais cliniques
+3. Query `myofascial pain OR chronic pain manual therapy` — pour les méta-analyses récentes
+
+**Si PubMed MCP n'est pas disponible**, utiliser WebSearch avec :
+- `site:pubmed.ncbi.nlm.nih.gov fascia 2026`
+- `site:cochranelibrary.com osteopathic manual therapy 2026`
+
+---
+
+### Canal B : Actualités IA et numérique santé
+
+Utiliser WebSearch avec la **date exacte du jour** dans chaque requête (récupérée depuis le contexte système `currentDate`). Ne jamais utiliser juste l'année.
+
+**Construire les 4 requêtes en insérant la date et le mois exacts :**
+
+1. `IA santé numérique annonce [jour] [mois] [année]`
+   — Ex : `IA santé numérique annonce 1 juillet 2026`
+
+2. `intelligence artificielle médecine nouveauté [mois] [année]`
+   — Ex : `intelligence artificielle médecine nouveauté juillet 2026`
+
+3. Rotation selon parité de la semaine ISO (calculer depuis `currentDate`) :
+   - **Semaine paire** : `Claude Anthropic OpenAI nouvelle fonctionnalité [mois] [année]`
+   - **Semaine impaire** : `AI Act régulation IA Europe santé [mois] [année]`
+
+4. `e-learning formation thérapeutes ostéopathie kinésithérapie [mois] [année]`
+
+**Règle anti-répétition obligatoire :**
+Pour chaque résultat retourné, lire la date de publication. Si la date est antérieure à 7 jours par rapport à `currentDate` → écarter sans exception. Ne jamais présenter un article daté d'un mois ou d'une semaine passée, même s'il paraît pertinent.
 
 **Exemples de queries pour d'autres profils :**
 
-Si profil = étudiant en marketing digital :
-- "actualités IA marketing digital cette semaine"
-- "outils IA gratuits étudiants 2026"
-- "tendances marketing automation"
-
 Si profil = entrepreneur SaaS :
-- "actualités IA business SaaS"
-- "nouvelles fonctionnalités Claude OpenAI"
-- "outils productivité entrepreneur"
+- `nouvelles fonctionnalités Claude OpenAI [jour] [mois] [année]`
+- `outils IA productivité annonce [mois] [année]`
 
 Si profil = employé en santé :
-- "IA secteur santé actualités"
-- "régulation IA Europe santé"
-- "nouveaux outils professionnels santé"
+- `IA hôpital santé publique annonce [mois] [année]`
+- `régulation IA Europe santé [mois] [année]`
 
 Adapte intelligemment selon le contexte chargé en Phase 1.
 
