@@ -7,7 +7,7 @@
   <meta name="description" content="Galerie photos du cabinet et des interventions de Nicolas Roger, ostéopathe D.O à Narbonne.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── GALLERY PAGE ── */
@@ -37,7 +37,7 @@
       background: #fff;
       cursor: pointer;
       transition: all 0.18s;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Atkinson Hyperlegible', sans-serif;
     }
     .filter-btn:hover, .filter-btn.active {
       background: var(--primary);
@@ -187,17 +187,17 @@
     <div class="container">
       <div class="nav-inner">
         <a href="index.html" class="nav-logo">
-          <img src="images/logo-nr.png" alt="Nicolas Roger Ostéopathe" class="nav-logo-img">
-          <span>Nicolas Roger</span>
+          <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+          <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
         </a>
         <ul class="nav-links">
-          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#parcours">Parcours</a></li>
+          <li><a href="index.html#consulter">Consulter</a></li>
+          <li><a href="galerie.html" class="active">Photos</a></li>
+          <li><a href="blog.html">Articles</a></li>
           <li><a href="a-propos.html">À propos</a></li>
-          <li><a href="index.html#movecheck">MoveCheck</a></li>
-          <li><a href="galerie.html" class="active">Galerie</a></li>
-          <li><a href="blog.html">Blog</a></li>
         </ul>
-        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-primary nav-cta">Prendre RDV</a>
+        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Prendre RDV</a>
         <div class="nav-hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </div>
@@ -206,12 +206,13 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Accueil</a>
+    <a href="index.html#parcours">Parcours</a>
+    <a href="index.html#consulter">Consulter</a>
+    <a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a>
+    <a href="galerie.html">Photos</a>
+    <a href="blog.html">Articles</a>
     <a href="a-propos.html">À propos</a>
-    <a href="index.html#movecheck">MoveCheck</a>
-    <a href="galerie.html">Galerie</a>
-    <a href="blog.html">Blog</a>
-    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
+    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
   </div>
 
   <!-- HERO -->
@@ -560,36 +561,38 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="nav-logo" style="color:white;">
-            <img src="images/logo-nr.png" alt="NR" class="nav-logo-img" style="filter:brightness(2)">
-            <span>Nicolas Roger</span>
+          <div class="nav-logo">
+            <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+            <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
           </div>
-          <p>Ostéopathe D.O à Narbonne — approche globale articulaire, fasciale, viscérale et crânienne. Créateur de MoveCheck.</p>
+          <p>Ostéopathe D.O à Narbonne depuis 2009, ancien kinésithérapeute. Ostéopathie du sport, mobilité et thérapie fasciale. Créateur de MoveCheck.</p>
         </div>
         <div class="footer-col">
-          <h4>Navigation</h4>
+          <h4>Cabinet</h4>
           <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="a-propos.html">À propos</a></li>
-            <li><a href="index.html#movecheck">MoveCheck</a></li>
-            <li><a href="galerie.html">Galerie</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li>11 chemin de Saint-Crescent</li>
+            <li>11100 Narbonne</li>
+            <li>06 95 81 74 10</li>
+            <li>Lun., mar., jeu., ven. : 8 h 30 – 19 h 30</li>
+            <li>Mer. : 8 h – 13 h</li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4>Liens</h4>
           <ul>
-            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank">Prendre RDV (Doctolib)</a></li>
-            <li><a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank">LinkedIn</a></li>
-            <li><a href="#">Cabinet à Narbonne</a></li>
+            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener">Prendre RDV (Doctolib)</a></li>
+            <li><a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a></li>
+            <li><a href="blog.html">Articles</a></li>
+            <li><a href="galerie.html">Photos</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Nicolas Roger — Ostéopathe D.O. Tous droits réservés.</span>
+        <span>© 2026 Nicolas Roger, ostéopathe D.O</span>
         <div class="footer-social">
-          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" title="LinkedIn">in</a>
-          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" title="Instagram">ig</a>
+          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" rel="noopener" title="Instagram">ig</a>
         </div>
       </div>
     </div>
