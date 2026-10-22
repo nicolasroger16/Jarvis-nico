@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commotion : le joueur reprend avant son cerveau | Nicolas Roger Ostéopathe D.O</title>
+  <meta name="description" content="Commotion au rugby : même en respectant les délais de reprise, le joueur n\'a souvent pas retrouvé sa réactivité. Risques au plaquage, seconde commotion, blessures : ce que les coachs doivent savoir. Par Nicolas Roger, ostéopathe D.O à Narbonne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── ARTICLE PAGE ── */
+    .article-hero {
+      background: #0D171B;
+      border-bottom: 1px solid var(--border);
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,64,175,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .article-hero .badge { margin-bottom: 20px; }
+    .article-hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      max-width: 820px; margin: 0 auto;
+      line-height: 1.18; color: #fff;
+    }
+    .article-hero h1 span { color: #60a5fa; }
+    .article-hero .hero-subtitle {
+      max-width: 700px; margin: 20px auto 0;
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem; line-height: 1.7;
+    }
+    .article-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; margin-top: 28px;
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 60px;
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .article-body h2 {
+      font-size: 1.55rem;
+      margin: 48px 0 16px;
+      color: var(--text);
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .article-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 {
+      font-size: 1.15rem;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article-body h4 {
+      font-size: 1rem; font-weight: 700;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+    .article-body p {
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+      margin: 16px 0;
+    }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul, .article-body ol {
+      margin: 16px 0 16px 20px;
+    }
+    .article-body li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .article-body li strong { color: var(--text); }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .callout-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .callout p { margin: 0; font-size: 0.97rem; }
+    .callout.blue { background: var(--bg-alt); border-left: 4px solid var(--primary); }
+    .callout.blue .callout-label { color: var(--primary); }
+    .callout.green { background: #E6EEED; border-left: 4px solid var(--accent); }
+    .callout.green .callout-label { color: var(--accent); }
+    .callout.orange { background: #FFF7ED; border-left: 4px solid #f97316; }
+    .callout.orange .callout-label { color: #ea580c; }
+    .callout.red { background: #FEF2F2; border-left: 4px solid #dc2626; }
+    .callout.red .callout-label { color: #dc2626; }
+    .callout.red p { color: #7f1d1d; }
+    .callout.dark { background: #0D171B; border-left: 4px solid #60a5fa; }
+    .callout.dark .callout-label { color: #60a5fa; }
+    .callout.dark p { color: rgba(255,255,255,0.75); font-style: italic; font-size: 1.05rem; line-height: 1.72; }
+
+    /* ── STAT BOXES ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .stat-box .stat-val {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--primary); line-height: 1;
+      display: block; margin-bottom: 8px;
+    }
+    .stat-box p {
+      font-size: 0.85rem; margin: 0;
+      color: var(--text-muted); line-height: 1.5;
+    }
+
+    /* ── HIA PROTOCOL ── */
+    .hia-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .hia-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+    }
+    .hia-num {
+      width: 40px; height: 40px;
+      background: var(--primary);
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.1rem;
+      margin: 0 auto 12px;
+    }
+    .hia-title { font-weight: 700; font-size: 0.85rem; color: var(--text); margin-bottom: 6px; }
+    .hia-sub { font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+    .hia-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    .hia-redflag {
+      background: #FEF2F2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .hia-redflag strong { color: #dc2626; font-size: 0.95rem; }
+    .hia-redflag p { color: #7f1d1d; font-size: 0.88rem; margin: 8px 0 0; line-height: 1.6; }
+
+    /* ── COMMOTION PROGRESSION ── */
+    .commot-steps {
+      display: flex;
+      gap: 0;
+      margin: 28px 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .commot-step {
+      flex: 1;
+      padding: 24px 18px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .commot-step:last-child { border-right: none; }
+    .commot-step.c1 { background: #E6EEED; }
+    .commot-step.c2 { background: #fef9c3; }
+    .commot-step.c3 { background: #fef2f2; }
+    .commot-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .commot-step.c1 .commot-num { color: #1d4ed8; }
+    .commot-step.c2 .commot-num { color: #92400e; }
+    .commot-step.c3 .commot-num { color: #dc2626; }
+    .commot-days {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 1.6rem; font-weight: 700; line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .commot-step.c1 .commot-days { color: #1d4ed8; }
+    .commot-step.c2 .commot-days { color: #92400e; }
+    .commot-step.c3 .commot-days { color: #dc2626; }
+    .commot-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── SECOND IMPACT WARNING ── */
+    .sis-warning {
+      background: #7f1d1d;
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-align: center;
+      margin: 28px 0;
+    }
+    .sis-warning h4 {
+      font-size: 1.3rem; font-weight: 900;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fca5a5; margin-bottom: 16px;
+    }
+    .sis-warning .sis-skull {
+      font-size: 3rem; margin-bottom: 16px; display: block;
+    }
+    .sis-row { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .sis-item { text-align: center; }
+    .sis-item .sis-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 4px;
+    }
+    .sis-item p { font-size: 0.85rem; color: rgba(255,255,255,0.82); line-height: 1.5; margin: 0; max-width: 200px; }
+
+    /* ── GRTP PHASES ── */
+    .grtp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .grtp-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .grtp-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .grtp-step h5 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .grtp-step p { font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+    /* ── NEUROMETABOLIC BOX ── */
+    .neuro-box {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin: 28px 0;
+    }
+    .neuro-box h4 { color: #0369a1; font-size: 1.05rem; margin-bottom: 16px; text-align: center; }
+    .neuro-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+    .neuro-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 12px;
+      border: 1px solid #bae6fd;
+    }
+    .neuro-item strong { display: block; font-size: 0.85rem; color: #0369a1; margin-bottom: 4px; }
+    .neuro-item p { font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
+
+    /* ── CARTON BLEU ── */
+    .carton-bleu {
+      background: #E6EEED;
+      border: 2px solid #4E95A4;
+      border-radius: 16px;
+      padding: 28px 28px;
+      margin: 28px 0;
+    }
+    .carton-bleu h4 { color: #1d4ed8; font-size: 1.05rem; margin-bottom: 16px; }
+    .carton-bleu ol { margin: 0; padding-left: 20px; }
+    .carton-bleu li { font-size: 0.95rem; color: #22343A; line-height: 1.7; margin-bottom: 8px; }
+    .carton-bleu li strong { color: #1d4ed8; }
+
+    /* ── REFERENCES ── */
+    .references {
+      background: var(--bg-alt);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-top: 56px;
+    }
+    .references h3 {
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 20px;
+    }
+    .references ol { margin: 0; padding-left: 20px; }
+    .references li {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    /* ── SIDEBAR ── */
+    .article-sidebar { position: sticky; top: 90px; }
+    .toc-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      margin-bottom: 20px;
+    }
+    .toc-card h4 {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    .toc-card ol { list-style: none; margin: 0; padding: 0; }
+    .toc-card ol li { margin-bottom: 10px; }
+    .toc-card ol li a {
+      font-size: 0.88rem; color: var(--text-muted);
+      display: flex; gap: 10px; align-items: flex-start;
+      transition: color 0.15s;
+    }
+    .toc-card ol li a:hover { color: var(--primary); }
+    .toc-num {
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--primary); flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── CTA BOTTOM ── */
+    .article-cta {
+      background: var(--primary);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .article-cta h3 { color: #fff; font-size: 1.5rem; margin-bottom: 14px; }
+    .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 24px; }
+    .article-cta .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--primary);
+      border-color: #fff; font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-white:hover { background: #f0f9ff; }
+    .btn-outline-light {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-outline-light:hover { border-color: #fff; }
+
+    @media (max-width: 900px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .article-sidebar { position: static; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .hia-grid { grid-template-columns: repeat(2, 1fr); }
+      .grtp-grid { grid-template-columns: repeat(2, 1fr); }
+      .neuro-flow { grid-template-columns: 1fr; }
+      .commot-steps { flex-direction: column; }
+      .commot-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .commot-step:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .hia-grid { grid-template-columns: 1fr; }
+      .grtp-grid { grid-template-columns: 1fr; }
+      .article-cta { padding: 32px 20px; }
+    }
+
+    /* ── ARTICLE IMAGES ── */
+    .article-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 28px 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      display: block;
+    }
+    .article-img-caption {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: -18px;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+  </style>
+  <link rel="canonical" href="https://nicolasrogerosteopathe.com/blog-reprise-commotion">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+          <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#parcours">Parcours</a></li>
+          <li><a href="index.html#consulter">Consulter</a></li>
+          <li><a href="galerie.html">Photos</a></li>
+          <li><a href="blog.html" class="active">Articles</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Prendre RDV</a>
+        <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#parcours">Parcours</a>
+    <a href="index.html#consulter">Consulter</a>
+    <a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a>
+    <a href="galerie.html">Photos</a>
+    <a href="blog.html">Articles</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="badge" style="background:rgba(96,165,250,0.15);color:#60a5fa;border-color:rgba(96,165,250,0.3);">Rugby & Coaching</div>
+      <h1>Commotion : le joueur reprend <span>avant son cerveau</span></h1>
+      <p class="hero-subtitle">Message aux entraîneurs : même quand les délais de reprise sont respectés, le joueur n'a souvent pas retrouvé toute sa réactivité. Ce que disent les études, et ce que cela change sur le terrain.</p>
+      <div class="article-meta">
+        <span>Nicolas Roger, D.O</span>
+        <span></span>
+        <span>Octobre 2026</span>
+        <span></span>
+        <span>Lecture : ~9 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="article-layout">
+    <article class="article-body">
+
+      <!-- INTRO -->
+      <p>
+        Coachs, cet article s'adresse d'abord à vous. Votre joueur a pris un choc, il a été sorti, il a suivi le protocole, le médecin a donné son feu vert et les délais de reprise ont été respectés. Sur le papier, tout est en règle. Il revient sur la feuille de match.
+      </p>
+      <p>
+        Pourtant, la recherche est claire : <strong>respecter les délais réglementaires ne garantit pas que le joueur a retrouvé tous ses moyens.</strong> Son cerveau peut encore être en convalescence. Et ce qui récupère en dernier, ce n'est pas la douleur ou les maux de tête : ce sont <strong>la vitesse de traitement de l'information, la prise de décision et la réactivité</strong>. Exactement ce dont un joueur a besoin pour se protéger, bien se placer sur un plaquage ou réagir à une phase de jeu.
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-val">7–12 j</span>
+          <p>délai minimal de reprise en LNR selon la commotion (10 j à la FFR pour une première commotion)</p>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">~30–45 j</span>
+          <p>pour que le métabolisme et l'activité électrique du cerveau se normalisent</p>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">+60 %</span>
+          <p>de blessures chez les rugbymen pros revenus de commotion dans la saison</p>
+        </div>
+      </div>
+
+      <!-- SECTION 1 -->
+      <h2 id="delais">Les délais sont un minimum, pas une ligne d'arrivée</h2>
+      <p>
+        En France, le délai minimal de reprise est de <strong>7 à 12 jours en LNR</strong> selon la commotion, et de <strong>10 jours à la FFR</strong> pour une première commotion, avec une reprise progressive en <strong>6 paliers</strong>, chacun validé après 24 h sans symptômes. Ces délais sont indispensables. Mais ils sont construits pour protéger le joueur pendant la phase la plus dangereuse, pas pour certifier que son cerveau est revenu à 100 %. Quand on mesure ce qui se passe à l'intérieur du cerveau, le calendrier est plus long :
+      </p>
+      <ul>
+        <li><strong>Le métabolisme cérébral</strong> : en IRM spectroscopique, un marqueur de la santé des neurones (le NAA) chute d'environ 18 % au 3<sup>e</sup> jour et ne se normalise que <strong>vers le 30<sup>e</sup> jour</strong>, alors que les joueurs ne ressentaient plus rien depuis longtemps. Après une seconde commotion, il faut environ 45 jours.</li>
+        <li><strong>Le débit sanguin cérébral</strong> reste abaissé alors que les tests cliniques sont redevenus normaux, et met souvent un mois à se normaliser.</li>
+        <li><strong>L'activité électrique</strong> : l'EEG reste perturbé plus longtemps que les symptômes. Chez les joueurs qui ont mis plus de deux semaines à récupérer, un indice combinant EEG, cognition et équilibre ne rejoint les valeurs normales qu'<strong>environ 45 jours après le retour au jeu</strong>. Et la réponse électrique du cerveau à un stimulus (la P300) est encore anormale le jour où le joueur est autorisé à reprendre.</li>
+      </ul>
+      <div class="callout blue">
+        <div class="callout-label">Pour le coach</div>
+        <p>Un joueur à J+7, J+10 ou J+12 est <strong>autorisé</strong> à rejouer. Cela ne veut pas dire qu'il est <strong>prêt</strong>. Les délais réglementaires tombent à l'intérieur de la période de convalescence du cerveau, pas après.</p>
+      </div>
+
+      <!-- SECTION 2 -->
+      <h2 id="cerveau">Ce qui récupère en dernier : la vitesse et la décision</h2>
+      <p>
+        Les tests utilisés pour autoriser la reprise (questionnaire de symptômes, équilibre statique, tests cognitifs simples) sont souvent normaux. Mais quand on place le joueur dans des situations plus exigeantes, plus proches du match, les déficits réapparaissent :
+      </p>
+      <ul>
+        <li><strong>Temps de réaction ralenti</strong> : une méta-analyse de 60 études retrouve des déficits jusqu'à <strong>3 à 8 semaines</strong> après la commotion. Dans les 48 heures qui suivent la disparition des symptômes, des athlètes testés sur simulateur réagissaient en moyenne <strong>près de 0,3 seconde plus lentement</strong> que des témoins.</li>
+        <li><strong>Prise de décision moins fiable</strong> : au moment du feu vert, les joueurs font encore plus d'erreurs de direction dans des tests oculomoteurs qui sollicitent le contrôle exécutif, c'est-à-dire la capacité à inhiber un réflexe pour faire le bon choix.</li>
+        <li><strong>Déplacements et anticipation</strong> : plus de 30 jours après la reprise, des athlètes montraient encore des décisions plus variables et un moins bon contrôle de leur centre de gravité pour franchir un passage étroit.</li>
+        <li><strong>Double tâche dégradée</strong> : quand le joueur doit se déplacer tout en traitant une information, il ralentit et perd en contrôle, même après l'autorisation médicale.</li>
+      </ul>
+      <p>
+        Les joueurs eux-mêmes le sentent parfois : dans une étude, <strong>un athlète sur deux</strong> reprenait sans se sentir psychologiquement tout à fait prêt. Et au rugby, des données de World Rugby suggèrent que les joueurs déjà commotionnés ont tendance à <strong>sous-déclarer</strong> leurs symptômes pour ne pas être écartés.
+      </p>
+
+      <!-- SECTION 3 -->
+      <h2 id="plaquage">Sur le terrain : un temps de retard qui peut coûter cher</h2>
+      <p>
+        Le rugby est un sport de <strong>double tâche permanente</strong> : lire l'attaque, communiquer avec la ligne, monter en défense, choisir son épaule, ajuster sa course, placer sa tête, le tout en une fraction de seconde. Un joueur dont le cerveau traite l'information un peu moins vite peut :
+      </p>
+      <ul>
+        <li><strong>prendre une mauvaise décision</strong> ou la prendre trop tard ;</li>
+        <li><strong>monter en retard</strong> et se retrouver mal placé face au porteur de balle ;</li>
+        <li><strong>réaliser un geste défensif approximatif</strong> : tête du mauvais côté, plaquage trop haut, mauvais timing ;</li>
+        <li><strong>mal réceptionner un appui</strong> lors d'un changement de direction.</li>
+      </ul>
+      <p>
+        Or, au rugby, <strong>la grande majorité des commotions surviennent au plaquage</strong>, et c'est le plaqueur qui est le plus souvent touché, généralement à cause d'une mauvaise position de la tête. Un joueur qui arrive avec un temps de retard dans le plaquage s'expose donc précisément au mécanisme qui provoque les commotions.
+      </p>
+      <p>
+        Un indice va dans ce sens : chez des rugbymen professionnels, un moins bon <strong>sens de la position du cou</strong> était associé à un risque plus élevé de commotion au cours de la saison. Le contrôle de la tête et du cou dans le contact compte.
+      </p>
+      <div class="callout orange">
+        <div class="callout-label">Ce qu'il faut savoir</div>
+        <p>Aucune étude n'a encore filmé et mesuré, match par match, la qualité des plaquages après une commotion. Le lien « réactivité diminuée → plaquage mal exécuté → nouveau choc à la tête » est un raisonnement cohérent avec les données, pas une preuve directe. Mais le résultat final, lui, est bien mesuré : <strong>un joueur commotionné a environ 3 fois plus de risque d'en subir une nouvelle.</strong></p>
+      </div>
+
+      <!-- SECTION 4 -->
+      <h2 id="blessures">Un risque de blessure accru dans les mois qui suivent</h2>
+      <p>
+        Le surrisque ne concerne pas que la tête. Après une commotion, <strong>le risque de se blesser ailleurs augmente</strong>, et il dure plusieurs mois :
+      </p>
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-val">×2</span>
+          <p>blessures musculaires, articulaires ou osseuses (méta-analyse, 86 879 athlètes)</p>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">53 j</span>
+          <p>avant la blessure suivante en rugby pro, contre 114 j après une blessure classique</p>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val">×2,3</span>
+          <p>blessures du membre inférieur chez les rugbymen amateurs commotionnés</p>
+        </div>
+      </div>
+      <div class="callout blue">
+        <div class="callout-label">En France : Top 14 et Pro D2</div>
+        <p>Une étude française a suivi 70 joueurs professionnels de Top 14 et de Pro D2 revenus au jeu <strong>7 jours</strong> après une commotion. Dans les 6 semaines suivantes, <strong>26 % se sont blessés</strong>, en moyenne <strong>20 jours après leur retour</strong>, avec <strong>33 jours d'arrêt</strong> en moyenne, surtout pour des blessures ligamentaires et musculaires. Autrement dit, plus d'un joueur sur quatre repart à l'infirmerie dans le mois et demi qui suit une reprise rapide (Duchamp et Cavelier, 2024 ; étude sans groupe de comparaison).</p>
+      </div>
+      <p>
+        Les mécanismes en cause sont justement ceux de la double tâche et de la réactivité :
+      </p>
+      <ul>
+        <li>les athlètes qui se sont blessés dans l'année suivant leur retour avaient vu leurs <strong>performances en double tâche se dégrader</strong> pendant leur récupération, alors que leurs symptômes étaient identiques à ceux des autres ;</li>
+        <li>chez de jeunes athlètes, un <strong>temps de réaction lent au moment de la reprise</strong> était associé à un taux de blessure <strong>presque triplé</strong> l'année suivante ;</li>
+        <li>les réceptions de saut après une commotion montrent plus de <strong>genou qui rentre vers l'intérieur</strong> et moins de flexion, le profil connu pour favoriser les <strong>entorses de cheville</strong> et les <strong>ruptures du ligament croisé</strong>.</li>
+      </ul>
+      <p>
+        En rugby professionnel anglais, <strong>38 % des joueurs</strong> ont même vu leurs symptômes revenir ou échoué à un test pendant leur protocole de reprise : la récupération n'est pas linéaire.
+      </p>
+      <p>
+        Là encore, ce sont des <strong>associations</strong> : d'autres facteurs (poste, style de jeu, exposition) jouent aussi. Mais elles se répètent dans tous les sports étudiés, et elles pointent toutes dans la même direction.
+      </p>
+
+      <!-- SECTION 5 -->
+      <h2 id="coachs">Ce que je propose aux entraîneurs</h2>
+      <h3>1. Considérer le feu vert comme le début d'une phase, pas la fin</h3>
+      <ul>
+        <li>Les 4 à 6 semaines qui suivent la reprise sont une <strong>période de vulnérabilité</strong>. Gérez-les comme le retour d'une blessure musculaire : montée en charge progressive, temps de jeu adapté sur les premiers matchs quand c'est possible.</li>
+        <li>Ne jamais mettre de pression sur un joueur ou sur le staff médical pour avancer une reprise.</li>
+      </ul>
+      <h3>2. Réintroduire la réactivité avant le contact plein</h3>
+      <ul>
+        <li>Intégrer à l'entraînement des exercices de <strong>double tâche</strong> : déplacements avec prise d'information, choix à faire sur signal visuel ou sonore, défense en lecture.</li>
+        <li>Retravailler la <strong>technique de plaquage</strong> (placement de la tête, choix de l'épaule, abaissement du centre de gravité) à vitesse progressive avant les oppositions réelles.</li>
+        <li>Travailler les <strong>appuis et réceptions</strong> : changements de direction, réceptions de saut contrôlées.</li>
+      </ul>
+      <h3>3. Observer le joueur, pas seulement le calendrier</h3>
+      <p>Signaux qui doivent alerter dans les semaines qui suivent la reprise :</p>
+      <ul>
+        <li>montées défensives en retard, hésitations, mauvais choix inhabituels ;</li>
+        <li>plaquages mal exécutés, tête mal placée ;</li>
+        <li>fatigue inhabituelle, irritabilité, baisse de concentration ;</li>
+        <li>retour de maux de tête ou de vertiges après l'effort.</li>
+      </ul>
+      <p>Dans ce cas : on en parle au joueur et au médecin, sans attendre.</p>
+      <h3>4. Créer un climat où l'on déclare ses symptômes</h3>
+      <p>
+        Un joueur qui cache ses symptômes pour garder sa place se met en danger. Le message du coach compte : <strong>déclarer un symptôme n'est pas une faiblesse</strong>, c'est protéger sa carrière et l'équipe.
+      </p>
+      <h3>Le rôle de l'ostéopathe du sport</h3>
+      <p>
+        Je ne pose pas le diagnostic de commotion et je n'autorise pas la reprise : c'est le rôle du médecin. En complément, une fois la phase aiguë passée et en lien avec le suivi médical, l'ostéopathe peut intervenir sur plusieurs plans :
+      </p>
+      <ul>
+        <li><strong>La circulation</strong> : travail sur la <strong>loge viscérale du cou</strong> (le passage des gros vaisseaux qui irriguent et drainent la tête) et sur la <strong>sphère crânienne</strong>, dans le but de favoriser les échanges circulatoires et le drainage, alors que le débit sanguin cérébral est perturbé pendant plusieurs semaines après une commotion ;</li>
+        <li><strong>La composante cervicale</strong> : douleurs, raideurs, maux de tête d'origine cervicale, contrôle de la position de la tête ;</li>
+        <li><strong>L'équilibre, les appuis et la réactivité</strong> en fin de rééducation, en lien avec le staff.</li>
+      </ul>
+      <p>
+        Les premières études sont encourageantes : dans un essai randomisé mené chez des athlètes universitaires commotionnés, deux séances de traitement ostéopathique ont amélioré la mémoire visuelle et le temps de réaction davantage que de simples séances d'information. Chez des patients aux symptômes persistants, une séance réduisait immédiatement l'intensité des maux de tête. Mais ces études portent sur de petits effectifs, et une revue de 2023 conclut que les essais de bonne qualité restent rares : l'ostéopathie est un <strong>complément</strong> à la prise en charge médicale, pas un substitut.
+      </p>
+
+      <!-- SYNTHESE -->
+      <h2 id="synthese">En résumé</h2>
+      <ul>
+        <li>Les délais réglementaires sont <strong>un minimum</strong> : le cerveau met souvent <strong>un mois ou plus</strong> à retrouver un fonctionnement normal.</li>
+        <li>Ce qui récupère en dernier, c'est la <strong>vitesse de réaction et la prise de décision</strong>, invisibles aux tests de reprise classiques.</li>
+        <li>Au rugby, un temps de retard se paie au <strong>plaquage</strong>, là où surviennent la plupart des commotions : le risque d'une nouvelle commotion est environ <strong>3 fois plus élevé</strong>.</li>
+        <li>Le risque de <strong>blessure</strong>, notamment aux genoux et aux chevilles, augmente dans les mois qui suivent : en Top 14 et Pro D2, <strong>1 joueur sur 4</strong> se blesse dans les 6 semaines suivant une reprise à 7 jours.</li>
+        <li>Le rôle du coach : <strong>reprise progressive, travail de double tâche et de technique de plaquage, observation du joueur, et un vestiaire où l'on parle de ses symptômes</strong>.</li>
+      </ul>
+      <div class="callout dark">
+        <div class="callout-label">Le message</div>
+        <p>Autorisé à rejouer ne veut pas dire prêt à rejouer. Un match se rattrape, un cerveau beaucoup moins.</p>
+      </div>
+
+      <div class="callout red">
+        <div class="callout-label">Signes d'alerte : appelez le 15</div>
+        <p>Maux de tête qui s'aggravent, vomissements répétés, somnolence anormale, confusion, convulsions, faiblesse ou fourmillements d'un membre, perte de connaissance. Cet article a une visée d'information et de prévention ; il ne remplace pas une consultation médicale.</p>
+      </div>
+
+      <!-- REFERENCES -->
+      <div class="references">
+        <h3>Références</h3>
+        <ol>
+          <li>Patricios JS et al. Consensus statement on concussion in sport: the 6th International Conference on Concussion in Sport, Amsterdam 2022. Br J Sports Med 2023. doi:10.1136/bjsports-2023-106898</li>
+          <li>Protocoles commotion LNR et FFR (règlements médicaux en vigueur) ; World Rugby, Graduated return to play (passport.world.rugby).</li>
+          <li>Vagnozzi R et al. Assessment of metabolic brain damage and recovery following mild traumatic brain injury: a multicentre, proton MRS study in concussed patients. Brain 2010.</li>
+          <li>Vagnozzi R et al. Temporal window of metabolic brain vulnerability to concussion: a pilot 1H-MRS study in concussed athletes. Neurosurgery 2008. doi:10.1227/01.neu.0000333300.34189.74</li>
+          <li>Kamins J et al. What is the physiological time to recovery after concussion? Br J Sports Med 2017. doi:10.1136/bjsports-2016-097464</li>
+          <li>McCrea M et al. J Head Trauma Rehabil 2010. doi:10.1097/HTR.0b013e3181e67923</li>
+          <li>Jacquin A et al. Comput Biol Med 2018. doi:10.1016/j.compbiomed.2018.09.011</li>
+          <li>Fickling SD et al. Brain vital signs detect concussion-related neurophysiological impairments in ice hockey. Brain 2019. doi:10.1093/brain/awy317</li>
+          <li>Lempke LB et al. Sports Med 2020 (méta-analyse, 60 études, temps de réaction après commotion).</li>
+          <li>Lempke LB et al. J Sport Health Sci 2020. doi:10.1016/j.jshs.2020.09.005</li>
+          <li>Webb B et al. J Neurotrauma 2018 (antisaccades au retour au jeu).</li>
+          <li>Baker CS, Cinelli ME. Physiol Rep 2014.</li>
+          <li>Crofts R et al. Med Sci Sports Exerc 2022 (résumé) ; J Sport Rehabil 2024.</li>
+          <li>Tucker R, Falvey E, Fuller G et al. BMJ Open 2020 (SCAT de base chez des rugbymen professionnels ex-commotionnés).</li>
+          <li>Tucker R et al. Risk factors for head injury events in professional rugby union. Br J Sports Med 2017.</li>
+          <li>Farley T et al. Phys Ther Sport 2022. doi:10.1016/j.ptsp.2022.03.010</li>
+          <li>Liao M-Y et al. BMC Sports Sci Med Rehabil 2025 (méta-analyse, 19 cohortes, 86 879 athlètes).</li>
+          <li>McPherson AL et al. Am J Sports Med 2019. doi:10.1177/0363546518785901</li>
+          <li>Duchamp N, Cavelier V. Commotion cérébrale et rugby professionnel en France : incidence des blessures après un retour au jeu postcommotion cérébrale. J Traumatol Sport 2024;41(3):265-275. doi:10.1016/j.jts.2024.06.016</li>
+          <li>Cross M et al. Br J Sports Med 2016. doi:10.1136/bjsports-2015-094982</li>
+          <li>Hunzinger KJ et al. J Sci Med Sport 2021. doi:10.1016/j.jsams.2020.10.013</li>
+          <li>Howell DR et al. J Neurotrauma 2018 (double tâche et blessure après la reprise).</li>
+          <li>Howell DR, Lynall RC, Buckley TA, Herman DC. Sports Med 2018. doi:10.1007/s40279-018-0871-y</li>
+          <li>Smulligan KL et al. Med Sci Sports Exerc 2025. doi:10.1249/MSS.0000000000003575</li>
+          <li>Chou TY et al. Br J Sports Med 2023 (méta-analyse, biomécanique après commotion).</li>
+          <li>Mancini JD et al. Concussion-related visual memory and reaction time impairment in college athletes improved after osteopathic manipulative medicine: a randomized clinical trial. J Osteopath Med 2022. doi:10.1515/jom-2022-0085</li>
+          <li>Esterov D et al. Osteopathic manipulative medicine in the management of headaches associated with postconcussion syndrome. J Osteopath Med 2021. doi:10.1515/jom-2020-0035</li>
+          <li>Thomas KD et al. Osteopathic manipulative treatment for concussions and postconcussive syndrome in athletes: a literature review. J Osteopath Med 2023. doi:10.1515/jom-2022-0217</li>
+        </ol>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Coach, staff ou joueur ?</h3>
+        <p>Composante cervicale, appuis, réactivité à retravailler après une commotion : je vous accompagne au cabinet à Narbonne, en lien avec le suivi médical.</p>
+        <div class="cta-btns">
+          <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-white">Prendre RDV</a>
+          <a href="blog-commotion.html" class="btn btn-outline-light">Lire « La Blessure Invisible »</a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <div class="toc-card">
+        <h4>Sommaire</h4>
+        <ol>
+          <li><a href="#delais"><span class="toc-num">01</span>Les délais, un minimum</a></li>
+          <li><a href="#cerveau"><span class="toc-num">02</span>Vitesse et décision</a></li>
+          <li><a href="#plaquage"><span class="toc-num">03</span>Un temps de retard au plaquage</a></li>
+          <li><a href="#blessures"><span class="toc-num">04</span>Risque de blessure</a></li>
+          <li><a href="#coachs"><span class="toc-num">05</span>Conseils aux entraîneurs</a></li>
+          <li><a href="#synthese"><span class="toc-num">06</span>En résumé</a></li>
+        </ol>
+      </div>
+
+      <div class="toc-card" style="background:#0D171B;border-color:#22343A;">
+        <h4 style="color:rgba(255,255,255,0.4);">L'auteur</h4>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img src="images/logo-nr.png" alt="NR" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+          <div>
+            <div style="color:#fff;font-weight:600;font-size:0.92rem;">Nicolas Roger</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:0.8rem;">Ostéopathe D.O, Narbonne</div>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.83rem;margin:0;line-height:1.6;">Référent ostéopathique pour des clubs de rugby de Nationale 1. Suivi de sportifs de haut niveau depuis 15 ans.</p>
+        <a href="a-propos.html" style="display:inline-block;margin-top:14px;font-size:0.82rem;color:#60a5fa;">En savoir plus →</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+            <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+          </div>
+          <p>Ostéopathe D.O à Narbonne depuis 2009, ancien kinésithérapeute. Ostéopathie du sport, mobilité et thérapie fasciale. Créateur de MoveCheck.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Cabinet</h4>
+          <ul>
+            <li>11 chemin de Saint-Crescent</li>
+            <li>11100 Narbonne</li>
+            <li>06 95 81 74 10</li>
+            <li>Lun., mar., jeu., ven. : 8 h 30 – 19 h 30</li>
+            <li>Mer. : 8 h – 13 h</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener">Prendre RDV (Doctolib)</a></li>
+            <li><a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a></li>
+            <li><a href="blog.html">Articles</a></li>
+            <li><a href="galerie.html">Photos</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nicolas Roger, ostéopathe D.O</span>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" rel="noopener" title="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
