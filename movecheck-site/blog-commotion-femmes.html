@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commotion au rugby féminin : le guide pour joueuses, parents et éducateurs | Nicolas Roger Ostéopathe D.O</title>
+  <meta name="description" content="Commotion cérébrale au rugby féminin : la reconnaître, bien plaquer et bien tomber, renforcer le cou, ne pas cacher ses symptômes. Un guide illustré pour joueuses, parents et éducateurs, par Nicolas Roger, ostéopathe D.O à Narbonne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── ARTICLE PAGE ── */
+    .article-hero {
+      background: #0D171B;
+      border-bottom: 1px solid var(--border);
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,64,175,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .article-hero .badge { margin-bottom: 20px; }
+    .article-hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      max-width: 820px; margin: 0 auto;
+      line-height: 1.18; color: #fff;
+    }
+    .article-hero h1 span { color: #60a5fa; }
+    .article-hero .hero-subtitle {
+      max-width: 700px; margin: 20px auto 0;
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem; line-height: 1.7;
+    }
+    .article-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; margin-top: 28px;
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 60px;
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .article-body h2 {
+      font-size: 1.55rem;
+      margin: 48px 0 16px;
+      color: var(--text);
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .article-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 {
+      font-size: 1.15rem;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article-body h4 {
+      font-size: 1rem; font-weight: 700;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+    .article-body p {
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+      margin: 16px 0;
+    }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body ul, .article-body ol {
+      margin: 16px 0 16px 20px;
+    }
+    .article-body li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .article-body li strong { color: var(--text); }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .callout-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .callout p { margin: 0; font-size: 0.97rem; }
+    .callout.blue { background: var(--bg-alt); border-left: 4px solid var(--primary); }
+    .callout.blue .callout-label { color: var(--primary); }
+    .callout.green { background: #E6EEED; border-left: 4px solid var(--accent); }
+    .callout.green .callout-label { color: var(--accent); }
+    .callout.orange { background: #FFF7ED; border-left: 4px solid #f97316; }
+    .callout.orange .callout-label { color: #ea580c; }
+    .callout.red { background: #FEF2F2; border-left: 4px solid #dc2626; }
+    .callout.red .callout-label { color: #dc2626; }
+    .callout.red p { color: #7f1d1d; }
+    .callout.dark { background: #0D171B; border-left: 4px solid #60a5fa; }
+    .callout.dark .callout-label { color: #60a5fa; }
+    .callout.dark p { color: rgba(255,255,255,0.75); font-style: italic; font-size: 1.05rem; line-height: 1.72; }
+
+    /* ── STAT BOXES ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .stat-box .stat-val {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--primary); line-height: 1;
+      display: block; margin-bottom: 8px;
+    }
+    .stat-box p {
+      font-size: 0.85rem; margin: 0;
+      color: var(--text-muted); line-height: 1.5;
+    }
+
+    /* ── HIA PROTOCOL ── */
+    .hia-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .hia-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+    }
+    .hia-num {
+      width: 40px; height: 40px;
+      background: var(--primary);
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.1rem;
+      margin: 0 auto 12px;
+    }
+    .hia-title { font-weight: 700; font-size: 0.85rem; color: var(--text); margin-bottom: 6px; }
+    .hia-sub { font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+    .hia-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    .hia-redflag {
+      background: #FEF2F2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .hia-redflag strong { color: #dc2626; font-size: 0.95rem; }
+    .hia-redflag p { color: #7f1d1d; font-size: 0.88rem; margin: 8px 0 0; line-height: 1.6; }
+
+    /* ── COMMOTION PROGRESSION ── */
+    .commot-steps {
+      display: flex;
+      gap: 0;
+      margin: 28px 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .commot-step {
+      flex: 1;
+      padding: 24px 18px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .commot-step:last-child { border-right: none; }
+    .commot-step.c1 { background: #E6EEED; }
+    .commot-step.c2 { background: #fef9c3; }
+    .commot-step.c3 { background: #fef2f2; }
+    .commot-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .commot-step.c1 .commot-num { color: #1d4ed8; }
+    .commot-step.c2 .commot-num { color: #92400e; }
+    .commot-step.c3 .commot-num { color: #dc2626; }
+    .commot-days {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 1.6rem; font-weight: 700; line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .commot-step.c1 .commot-days { color: #1d4ed8; }
+    .commot-step.c2 .commot-days { color: #92400e; }
+    .commot-step.c3 .commot-days { color: #dc2626; }
+    .commot-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── SECOND IMPACT WARNING ── */
+    .sis-warning {
+      background: #7f1d1d;
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-align: center;
+      margin: 28px 0;
+    }
+    .sis-warning h4 {
+      font-size: 1.3rem; font-weight: 900;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fca5a5; margin-bottom: 16px;
+    }
+    .sis-warning .sis-skull {
+      font-size: 3rem; margin-bottom: 16px; display: block;
+    }
+    .sis-row { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .sis-item { text-align: center; }
+    .sis-item .sis-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 4px;
+    }
+    .sis-item p { font-size: 0.85rem; color: rgba(255,255,255,0.82); line-height: 1.5; margin: 0; max-width: 200px; }
+
+    /* ── GRTP PHASES ── */
+    .grtp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .grtp-step {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .grtp-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .grtp-step h5 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .grtp-step p { font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+    /* ── NEUROMETABOLIC BOX ── */
+    .neuro-box {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin: 28px 0;
+    }
+    .neuro-box h4 { color: #0369a1; font-size: 1.05rem; margin-bottom: 16px; text-align: center; }
+    .neuro-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+    .neuro-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 12px;
+      border: 1px solid #bae6fd;
+    }
+    .neuro-item strong { display: block; font-size: 0.85rem; color: #0369a1; margin-bottom: 4px; }
+    .neuro-item p { font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
+
+    /* ── CARTON BLEU ── */
+    .carton-bleu {
+      background: #E6EEED;
+      border: 2px solid #4E95A4;
+      border-radius: 16px;
+      padding: 28px 28px;
+      margin: 28px 0;
+    }
+    .carton-bleu h4 { color: #1d4ed8; font-size: 1.05rem; margin-bottom: 16px; }
+    .carton-bleu ol { margin: 0; padding-left: 20px; }
+    .carton-bleu li { font-size: 0.95rem; color: #22343A; line-height: 1.7; margin-bottom: 8px; }
+    .carton-bleu li strong { color: #1d4ed8; }
+
+    /* ── REFERENCES ── */
+    .references {
+      background: var(--bg-alt);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-top: 56px;
+    }
+    .references h3 {
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 20px;
+    }
+    .references ol { margin: 0; padding-left: 20px; }
+    .references li {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    /* ── SIDEBAR ── */
+    .article-sidebar { position: sticky; top: 90px; }
+    .toc-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      margin-bottom: 20px;
+    }
+    .toc-card h4 {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    .toc-card ol { list-style: none; margin: 0; padding: 0; }
+    .toc-card ol li { margin-bottom: 10px; }
+    .toc-card ol li a {
+      font-size: 0.88rem; color: var(--text-muted);
+      display: flex; gap: 10px; align-items: flex-start;
+      transition: color 0.15s;
+    }
+    .toc-card ol li a:hover { color: var(--primary); }
+    .toc-num {
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--primary); flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── CTA BOTTOM ── */
+    .article-cta {
+      background: var(--primary);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .article-cta h3 { color: #fff; font-size: 1.5rem; margin-bottom: 14px; }
+    .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 24px; }
+    .article-cta .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--primary);
+      border-color: #fff; font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-white:hover { background: #f0f9ff; }
+    .btn-outline-light {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-outline-light:hover { border-color: #fff; }
+
+    @media (max-width: 900px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .article-sidebar { position: static; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .hia-grid { grid-template-columns: repeat(2, 1fr); }
+      .grtp-grid { grid-template-columns: repeat(2, 1fr); }
+      .neuro-flow { grid-template-columns: 1fr; }
+      .commot-steps { flex-direction: column; }
+      .commot-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .commot-step:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .hia-grid { grid-template-columns: 1fr; }
+      .grtp-grid { grid-template-columns: 1fr; }
+      .article-cta { padding: 32px 20px; }
+    }
+
+    /* ── ARTICLE IMAGES ── */
+    .article-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 28px 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      display: block;
+    }
+    .article-img-caption {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: -18px;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+  </style>
+  <link rel="canonical" href="https://nicolasrogerosteopathe.com/blog-commotion-femmes">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+          <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#parcours">Parcours</a></li>
+          <li><a href="index.html#consulter">Consulter</a></li>
+          <li><a href="galerie.html">Photos</a></li>
+          <li><a href="blog.html" class="active">Articles</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Prendre RDV</a>
+        <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#parcours">Parcours</a>
+    <a href="index.html#consulter">Consulter</a>
+    <a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a>
+    <a href="galerie.html">Photos</a>
+    <a href="blog.html">Articles</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="badge" style="background:rgba(96,165,250,0.15);color:#60a5fa;border-color:rgba(96,165,250,0.3);">Rugby féminin & jeunes</div>
+      <h1>Commotion au rugby féminin : <span>ce que joueuses, parents et éducateurs doivent savoir</span></h1>
+      <p class="hero-subtitle">Comprendre ce qu'est une commotion, savoir la reconnaître, et surtout apprendre les bons gestes pour s'en protéger. Un guide pratique, illustré, appuyé sur les études les plus récentes.</p>
+      <div class="article-meta">
+        <span>Nicolas Roger, D.O</span>
+        <span></span>
+        <span>Novembre 2026</span>
+        <span></span>
+        <span>Lecture : ~8 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE -->
+  <div class="article-layout">
+    <article class="article-body">
+
+      <!-- INTRO -->
+      <img src="images/commotion-femmes-match.jpg" alt="Match de rugby féminin : une joueuse italienne porte le ballon face à la défense espagnole" class="article-img">
+      <p class="article-img-caption">Le rugby féminin se joue avec les mêmes règles et la même intensité que le rugby masculin. Photo : Carlos Delgado, CC BY-SA 3.0, via Wikimedia Commons.</p>
+      <p>
+        De plus en plus de filles et de femmes jouent au rugby, et c'est une excellente nouvelle : c'est un sport complet, collectif, qui forge la confiance en soi. Mais c'est aussi un sport de contact, et la <strong>commotion cérébrale</strong> y est l'une des blessures les plus fréquentes.
+      </p>
+      <p>
+        Faut-il s'inquiéter davantage pour une joueuse que pour un joueur ? Pour une adolescente que pour une adulte ? Et surtout, <strong>que peut-on faire concrètement pour la protéger ?</strong> C'est ce que cet article vous explique.
+      </p>
+
+      <!-- SECTION 1 -->
+      <h2 id="comprendre">Une commotion, c'est quoi exactement ?</h2>
+      <p>
+        Le cerveau flotte à l'intérieur du crâne, un peu comme un œuf dans sa coquille. Quand la tête subit une <strong>accélération brutale</strong>, le cerveau est secoué contre les parois du crâne. Pendant plusieurs jours, voire plusieurs semaines, il fonctionne au ralenti : c'est la commotion.
+      </p>
+      <p>Trois idées reçues à oublier :</p>
+      <ul>
+        <li><strong>« Il faut perdre connaissance. »</strong> Faux : dans la grande majorité des commotions, le joueur ne perd pas connaissance.</li>
+        <li><strong>« Il faut un choc direct à la tête. »</strong> Faux : un violent coup du lapin, quand la tête part brutalement en arrière ou sur le côté, suffit. Dans une enquête auprès de joueuses britanniques, seulement 1 sur 8 le savait.</li>
+        <li><strong>« Ça se voit tout de suite. »</strong> Pas toujours : les symptômes peuvent apparaître ou s'aggraver dans les heures qui suivent.</li>
+      </ul>
+
+      <!-- SECTION 2 -->
+      <h2 id="exposees">Les filles sont-elles plus exposées ?</h2>
+      <p>
+        La réponse dépend de l'âge.
+      </p>
+      <ul>
+        <li><strong>Chez les adultes</strong>, la plus grande méta-analyse publiée à ce jour (2026, 98 études réunies) ne montre <strong>pas de différence</strong> entre femmes et hommes au rugby.</li>
+        <li><strong>Chez les adolescentes</strong>, en revanche, le risque paraît plus élevé que chez les garçons du même âge, et la commotion est leur <strong>blessure la plus fréquente</strong>, selon la méta-analyse consacrée au rugby des jeunes (2023, 69 études). Dans certaines compétitions de jeunes, elle représente jusqu'à 4 blessures sur 10 chez les moins de 16 ans.</li>
+      </ul>
+      <p>
+        Pourquoi l'adolescence ? Plusieurs raisons se combinent : un cou encore peu musclé, une technique de plaquage en cours d'apprentissage, des écarts de gabarit importants entre joueuses d'une même catégorie, et un cerveau encore en développement. Beaucoup de joueuses commencent aussi le rugby plus tard que les garçons, avec moins d'heures d'apprentissage technique derrière elles.
+      </p>
+      <div class="callout blue">
+        <div class="callout-label">À retenir</div>
+        <p>Le risque ne tient pas surtout au fait d'être une fille. Il tient à <strong>ce qu'on apprend</strong> aux joueuses, à <strong>la façon dont on les surveille</strong> et à <strong>leur liberté de dire qu'elles ne vont pas bien</strong>. Ce sont trois choses sur lesquelles un club et une famille peuvent agir.</p>
+      </div>
+
+      <!-- SECTION 3 -->
+      <h2 id="cou">Le cou, premier bouclier du cerveau</h2>
+      <p>
+        Imaginez une boule de bowling posée au bout d'un manche. Plus le manche est solide, moins la boule part dans tous les sens au moindre choc. Le cou joue ce rôle pour la tête : <strong>des muscles du cou plus forts freinent mieux la tête</strong> au moment de l'impact.
+      </p>
+      <p>
+        Or, en moyenne, les femmes ont environ <strong>moitié moins de force dans le cou</strong> que les hommes. En laboratoire, pour un même choc, leur tête subit une accélération plus forte. Chez les rugbymen, une méta-analyse de 2025 associe les programmes de renforcement du cou à près de deux fois moins de commotions. Chez les joueuses, ce bénéfice n'a pas encore été mesuré, mais le raisonnement est le même, et ce travail est simple à mettre en place en club avec une bande élastique.
+      </p>
+      <p>
+        Le cou ne sert pas qu'à encaisser. Il informe aussi le cerveau de la position de la tête. Chez des joueuses de haut niveau, celles qui avaient eu une commotion dans l'année percevaient moins bien la position de leur tête, même quand elles n'avaient <strong>plus aucune douleur</strong>. C'est un déficit discret, mais il se rééduque.
+      </p>
+
+      <!-- SECTION 4 -->
+      <h2 id="plaquage">Le plaquage : là où tout se joue</h2>
+      <p>
+        Au rugby, la grande majorité des commotions surviennent au plaquage. Et ce sont les mêmes erreurs qui coûtent cher chez les femmes et chez les hommes : <strong>plaquer trop haut, plaquer redressée, et mettre la tête du mauvais côté</strong>. Une étude sur le rugby féminin de haut niveau montre qu'un contact de la tête contre l'épaule de l'adversaire multiplie le risque par 10 par rapport à un contact contre le torse.
+      </p>
+      <img src="images/commotion-femmes-plaquage-haut.jpg" alt="Plaquage haut au rugby féminin : le bras de la plaqueuse remonte au niveau des épaules de la porteuse" class="article-img">
+      <p class="article-img-caption">À éviter : un plaquage haut. Le bras remonte vers les épaules et le cou de la porteuse, et les deux têtes se retrouvent très proches. Photo : DFAT / Sarah Friend, CC BY 4.0, via Wikimedia Commons.</p>
+      <img src="images/commotion-femmes-plaquage-bon.jpg" alt="Plaquage bas à l'entraînement : épaule au niveau des cuisses, tête sur le côté de l'adversaire, bras qui enserrent les jambes" class="article-img">
+      <p class="article-img-caption">Le bon geste : buste abaissé, épaule au niveau des cuisses, tête placée sur le côté de l'adversaire (« joue contre fesse »), bras qui enserrent les jambes. Photo : Sgt. Jose Torres, US Air Force, domaine public.</p>
+      <h3>Les 4 points clés du plaqueur</h3>
+      <ul>
+        <li><strong>Viser bas</strong> : sous la ceinture, à hauteur des cuisses.</li>
+        <li><strong>S'abaisser</strong> avant le contact : jambes fléchies, dos plat, ne jamais arriver redressée.</li>
+        <li><strong>Tête sur le côté</strong> de l'adversaire, jamais devant sa course ni contre sa hanche.</li>
+        <li><strong>Regarder sa cible</strong> jusqu'au contact, menton relevé, et serrer les bras.</li>
+      </ul>
+      <p>
+        Chez les joueuses, les commotions sont aussi nombreuses quand on <strong>est plaquée</strong> ou dans les regroupements. Il faut donc apprendre aussi à tomber.
+      </p>
+      <img src="images/commotion-femmes-plaquee.jpg" alt="Une joueuse plaquée à la taille protège le ballon en allant au sol" class="article-img">
+      <p class="article-img-caption">Être plaquée, ça s'apprend aussi : menton rentré vers la poitrine, ballon serré, on tombe sur l'épaule et le côté, jamais tête la première. Photo : Carlos Delgado, CC BY-SA 3.0, via Wikimedia Commons.</p>
+      <div class="callout green">
+        <div class="callout-label">Pour les éducateurs</div>
+        <p>Ces gestes s'apprennent d'abord <strong>à genoux puis au ralenti</strong>, sur boucliers ou boudins, avant d'aller vers l'opposition réelle. Pour une joueuse qui découvre le rugby à 14 ou 15 ans, ce temps d'apprentissage est la meilleure protection qu'on puisse lui offrir.</p>
+      </div>
+
+      <!-- SECTION 5 -->
+      <h2 id="reconnaitre">Reconnaître une commotion sur le terrain</h2>
+      <p>
+        Une commotion ne se voit pas toujours. Voici les signes qui doivent faire sortir une joueuse <strong>immédiatement</strong> :
+      </p>
+      <h3>Ce que vous pouvez observer</h3>
+      <ul>
+        <li>elle reste au sol sans bouger, ou se relève lentement ;</li>
+        <li>elle titube, perd l'équilibre, se tient la tête ;</li>
+        <li>elle a le regard vide, semble perdue, ne sait plus le score ou l'adversaire ;</li>
+        <li>elle a perdu connaissance, même quelques secondes.</li>
+      </ul>
+      <h3>Ce qu'elle peut ressentir</h3>
+      <ul>
+        <li>maux de tête, sensation de « pression » dans la tête ;</li>
+        <li>vertiges, nausées, vision trouble ;</li>
+        <li>sensibilité à la lumière ou au bruit ;</li>
+        <li>impression d'être « dans le brouillard », fatigue soudaine, irritabilité ou envie de pleurer.</li>
+      </ul>
+      <img src="images/soin-terrain.jpg" alt="Nicolas Roger évalue un joueur resté au sol sur le terrain du RC Narbonnais" class="article-img">
+      <p class="article-img-caption">Au moindre doute après un choc, on s'arrête et on évalue. Ici, au bord du terrain avec le RC Narbonnais.</p>
+      <div class="callout dark">
+        <div class="callout-label">La règle d'or</div>
+        <p>Dans le doute, on sort. Et on ne revient pas jouer le même jour, même si « ça va mieux ».</p>
+      </div>
+
+      <!-- SECTION 6 -->
+      <h2 id="silence">Le vrai danger : se taire</h2>
+      <p>
+        Dans une enquête auprès de joueuses britanniques, <strong>4 sur 10 reconnaissent avoir déjà caché une commotion</strong>, surtout lors des matchs importants, pour ne pas laisser tomber l'équipe ou perdre leur place.
+      </p>
+      <p>
+        C'est le comportement le plus dangereux. Une joueuse qui continue de jouer avec une commotion réagit moins vite, se met en danger au plaquage, et peut recevoir un second choc avant que son cerveau ait récupéré. Les études montrent aussi que <strong>continuer à jouer après le choc allonge nettement la récupération</strong>.
+      </p>
+      <img src="images/galerie-rcn-soin-nuit.jpg" alt="Un joueur du RC Narbonnais quitte le terrain soutenu par le staff médical, son casque à la main" class="article-img">
+      <p class="article-img-caption">Sortir du terrain n'est pas un aveu de faiblesse : c'est protéger sa saison. Ici avec le staff médical du RC Narbonnais.</p>
+      <p>Le rôle des adultes autour d'elle est décisif :</p>
+      <ul>
+        <li><strong>Entraîneurs</strong> : dire clairement, devant tout le groupe, que déclarer un symptôme est la bonne attitude, et ne jamais mettre de pression pour une reprise rapide.</li>
+        <li><strong>Coéquipières</strong> : signaler une partenaire qui semble « bizarre » après un choc, c'est la protéger.</li>
+        <li><strong>Parents</strong> : poser la question après chaque match (« tu as pris un coup à la tête ? ») et observer le comportement le soir et le lendemain.</li>
+      </ul>
+
+      <!-- SECTION 7 -->
+      <h2 id="recuperer">Après une commotion : récupérer sans brûler les étapes</h2>
+      <p>
+        Dans le rugby féminin, une commotion entraîne en moyenne <strong>plus d'un mois d'arrêt</strong>. On a longtemps pensé que les filles récupéraient moins vite par nature. En réalité, une grande partie de l'écart vient du fait qu'elles <strong>consultent plus tard</strong> : quand on en tient compte, la différence disparaît. La méta-analyse du consensus international (2023, 278 études) conclut d'ailleurs que filles et garçons récupèrent de façon similaire.
+      </p>
+      <p>Les bons réflexes :</p>
+      <ul>
+        <li><strong>Consulter un médecin rapidement</strong>, dans les 24 à 48 heures, même si les symptômes semblent légers.</li>
+        <li><strong>Repos relatif</strong> les premiers jours, sans s'enfermer dans le noir : une activité calme, une marche légère et un retour progressif aux écrans et aux cours sont conseillés.</li>
+        <li><strong>Reprendre par étapes</strong>, du footing léger jusqu'au contact, avec l'accord du médecin à la fin.</li>
+        <li><strong>Penser au cou</strong> : douleurs cervicales, maux de tête qui partent de la nuque ou vertiges qui traînent méritent d'être évalués.</li>
+      </ul>
+
+      <!-- SECTION 8 -->
+      <h2 id="prevenir">Prévenir : ce qui marche vraiment</h2>
+      <h3>1. L'échauffement neuromusculaire, 3 fois par semaine</h3>
+      <p>
+        C'est la mesure la mieux démontrée. Un programme d'échauffement associant équilibre, renforcement de tout le corps, sauts et apprentissage des réceptions et changements d'appui a fait <strong>baisser les commotions de près de 60 %</strong> chez les jeunes joueurs qui le pratiquaient au moins 3 fois par semaine, dans un essai mené auprès de plus de 3 000 joueurs de 14 à 18 ans. La méta-analyse sur le rugby des jeunes le classe comme la stratégie de prévention la plus prometteuse. Il ne demande aucun matériel, seulement de la régularité.
+      </p>
+      <div class="callout green">
+        <div class="callout-label">Le programme gratuit de World Rugby</div>
+        <p>Ce programme s'appelle <strong>Activate</strong>. World Rugby le met à disposition gratuitement, en français, avec des versions adaptées à chaque âge : moins de 15 ans, moins de 16 ans, moins de 18 ans et adultes. Les exercices sont détaillés et filmés, et peuvent être faits à l'échauffement de l'entraînement ou avant le match.<br><a href="https://passport.world.rugby/fr/prevention-des-blessures-et-gestion-des-risques/activate-programme/" target="_blank" rel="noopener"><strong>Découvrir le programme Activate sur le site de World Rugby →</strong></a></p>
+      </div>
+      <h3>2. Le renforcement du cou</h3>
+      <p>
+        Quelques minutes, intégrées à l'échauffement : poussées de la tête contre la main ou contre une bande élastique, dans toutes les directions, en gardant la tête immobile. C'est simple, sans risque quand c'est progressif, et cela renforce le premier bouclier du cerveau.
+      </p>
+      <h3>3. Le protège-dents</h3>
+      <p>
+        Dans les sports de collision, la méta-analyse du consensus international (2023) l'associe à environ un quart de commotions en moins. Il protège aussi les dents et la mâchoire. Il devrait être systématique, à l'entraînement comme en match.
+      </p>
+      <h3>4. Apprendre à plaquer et à tomber</h3>
+      <p>
+        Plaquer bas, tête sur le côté, et savoir chuter quand on est plaquée. Le rugby amateur évolue d'ailleurs dans ce sens : World Rugby recommande désormais un plaquage plus bas, sous le sternum. En Irlande, chez les femmes adultes amateurs, les commotions au plaquage ont fortement baissé après ce changement de règle.
+      </p>
+      <h3>Et le casque ?</h3>
+      <p>
+        Le casque souple protège des coupures et des oreilles abîmées, mais <strong>il ne protège pas de la commotion</strong>. Le cerveau bouge à l'intérieur du crâne, que la tête soit casquée ou non. Il ne doit surtout pas donner un faux sentiment de sécurité.
+      </p>
+
+      <!-- SECTION 9 -->
+      <h2 id="osteo">Le rôle de l'ostéopathe du sport</h2>
+      <p>
+        Je ne pose pas le diagnostic de commotion et je n'autorise pas la reprise : c'est le rôle du médecin. En complément, et en lien avec le suivi médical, j'interviens sur trois plans :
+      </p>
+      <ul>
+        <li><strong>En début de saison</strong> : un bilan du cou (force, mobilité, perception de la position de la tête), qui sert aussi de point de comparaison en cas de choc ;</li>
+        <li><strong>Après une commotion</strong> : la composante cervicale (douleurs, raideurs, maux de tête qui partent de la nuque, perception de la position de la tête) ;</li>
+        <li><strong>En fin de récupération</strong> : l'équilibre, les appuis et la réactivité, avant le retour au contact.</li>
+      </ul>
+
+      <!-- SYNTHESE -->
+      <h2 id="synthese">En résumé</h2>
+      <ul>
+        <li>Une commotion peut survenir <strong>sans perte de connaissance</strong> et <strong>sans choc direct</strong> à la tête.</li>
+        <li>Les <strong>adolescentes</strong> sont la population la plus exposée : c'est chez elles que la prévention compte le plus.</li>
+        <li>Le <strong>cou</strong> est le premier bouclier du cerveau : il se renforce.</li>
+        <li>Le <strong>plaquage</strong> se joue sur la technique : bas, buste abaissé, tête sur le côté. Et on apprend aussi à tomber.</li>
+        <li><strong>Dans le doute, on sort</strong>, on consulte vite, et on ne cache jamais ses symptômes.</li>
+        <li>La prévention la plus efficace : <strong>échauffement neuromusculaire 3 fois par semaine</strong>, renforcement du cou et protège-dents.</li>
+      </ul>
+      <div class="callout dark">
+        <div class="callout-label">Le message</div>
+        <p>Une joueuse bien formée, bien préparée et libre de dire « je ne me sens pas bien » est une joueuse protégée.</p>
+      </div>
+
+      <!-- ETUDES -->
+      <h2 id="etudes">Sur quelles études s'appuie cet article ?</h2>
+      <p>
+        Une <strong>méta-analyse</strong> rassemble les résultats de nombreuses études sur un même sujet pour obtenir une réponse plus fiable qu'une étude isolée. C'est le niveau de preuve le plus solide en médecine. Voici les principales sur lesquelles je me suis appuyé :
+      </p>
+      <ul>
+        <li><strong>Commotion au rugby, 2014-2024</strong> (British Journal of Sports Medicine, 2026) : 98 études et plus de 10 000 commotions. Pas de différence entre femmes et hommes adultes, mais plus de commotions chez les filles de moins de 18 ans que chez les garçons.</li>
+        <li><strong>Blessures dans le rugby des jeunes</strong> (Sports Medicine, 2023) : 69 études. La commotion est la blessure la plus fréquente chez les filles, le plaquage est en cause dans 7 blessures sur 10, et l'échauffement neuromusculaire est la prévention la plus prometteuse.</li>
+        <li><strong>Commotion chez les adolescentes dans les sports de contact</strong> (Sports Medicine, 2024) : 66 études. Le rugby à XV est le sport où les adolescentes ont le plus de commotions, et le risque est 7 fois plus élevé en match qu'à l'entraînement.</li>
+        <li><strong>Commotion dans le rugby féminin</strong> (Sports Medicine, 2022) : 16 études. Plus d'un mois d'arrêt en moyenne par commotion.</li>
+        <li><strong>Renforcement du cou au rugby et au football</strong> (Journal of Bodywork and Movement Therapies, 2025) : 10 études. Près de deux fois moins de commotions chez les rugbymen qui renforcent leur cou ; pas encore d'étude chez les joueuses.</li>
+        <li><strong>Récupération après une commotion</strong> (British Journal of Sports Medicine, 2023, consensus international) : 278 études. Continuer à jouer et consulter tard allongent la récupération ; filles et garçons récupèrent de façon similaire.</li>
+        <li><strong>Prévention de la commotion</strong> (British Journal of Sports Medicine, 2023, consensus international) : le protège-dents est associé à environ un quart de commotions en moins dans les sports de collision.</li>
+      </ul>
+      <p>
+        La liste complète des références se trouve ci-dessous.
+      </p>
+
+      <div class="callout red">
+        <div class="callout-label">Signes d'alerte : appelez le 15</div>
+        <p>Maux de tête qui s'aggravent, vomissements répétés, somnolence anormale, confusion, convulsions, faiblesse ou fourmillements d'un membre, perte de connaissance. Cet article a une visée d'information et de prévention ; il ne remplace pas une consultation médicale.</p>
+      </div>
+
+      <!-- REFERENCES -->
+      <div class="references">
+        <h3>Pour aller plus loin : les études citées</h3>
+        <ol>
+          <li>De Sousa-De Sousa et al. A decade of concussion in rugby: a 2014-2024 systematic review and meta-analysis update. Br J Sports Med 2026. doi:10.1136/bjsports-2025-110774</li>
+          <li>West et al. Injury rates, mechanisms, risk factors and prevention strategies in youth rugby union: a systematic review and meta-analysis. Sports Med 2023. doi:10.1007/s40279-023-01826-z</li>
+          <li>Ernst et al. Incidence and risk factors for sport-related concussion in female youth athletes participating in contact and collision invasion sports: a systematic review. Sports Med 2024. doi:10.1007/s40279-024-02133-x</li>
+          <li>King et al. The incidence, cost, and burden of concussion in women's rugby league and rugby union: a systematic review and pooled analysis. Sports Med 2022. doi:10.1007/s40279-022-01645-8</li>
+          <li>Putukian et al. Clinical recovery from concussion, return to school and sport: a systematic review and meta-analysis. Br J Sports Med 2023. doi:10.1136/bjsports-2022-106682</li>
+          <li>Patricios et al. Consensus statement on concussion in sport: the 6th International Conference on Concussion in Sport, Amsterdam 2022. Br J Sports Med 2023. doi:10.1136/bjsports-2023-106898</li>
+          <li>Paul et al. J Sci Med Sport 2026. doi:10.1016/j.jsams.2026.09.020</li>
+          <li>Tierney et al. Med Sci Sports Exerc 2005. doi:10.1249/01.mss.0000152734.47516.aa</li>
+          <li>Alvacite Cardenas et al. Does strengthening the cervical spine musculature enhance neck strength and reduce sports-related concussions in rugby and football players? A systematic literature review. J Bodyw Mov Ther 2025. doi:10.1016/j.jbmt.2025.08.023</li>
+          <li>Farley et al. Phys Ther Sport 2026. doi:10.1016/j.ptsp.2026.101966</li>
+          <li>Hides et al. JSAMS Plus 2026. doi:10.1016/j.jsampl.2026.100157</li>
+          <li>Tucker et al. J Sci Med Sport 2025. doi:10.1016/j.jsams.2025.03.014</li>
+          <li>Power et al. Sports Health 2026. doi:10.1177/19417381261474860</li>
+          <li>Thomas et al. Phys Sportsmed 2025. doi:10.1080/00913847.2024.2439239</li>
+          <li>Desai et al. Clin J Sport Med 2019. doi:10.1097/JSM.0000000000000646</li>
+          <li>Hislop et al. Br J Sports Med 2017 (essai randomisé en clusters, programme Activate). doi:10.1136/bjsports-2016-097434</li>
+          <li>Eliason et al. Br J Sports Med 2023 (méta-analyse, consensus d'Amsterdam). doi:10.1136/bjsports-2022-106656</li>
+          <li>Guilfoyle et al. J Sci Med Sport 2026. doi:10.1016/j.jsams.2026.05.011</li>
+          <li>Stokes et al. Int J Sports Med 2021. doi:10.1055/a-1345-9163</li>
+          <li>World Rugby. Recommandation sur la hauteur de plaquage dans le rugby amateur, décembre 2025 (world.rugby).</li>
+          <li>World Rugby Passport. Programme Activate : https://passport.world.rugby/fr/prevention-des-blessures-et-gestion-des-risques/activate-programme/</li>
+        </ol>
+      </div>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h3>Joueuse, parent ou éducateur ?</h3>
+        <p>Bilan du cou en début de saison, douleurs cervicales ou équilibre à retravailler après une commotion : je vous accompagne au cabinet à Narbonne, en lien avec le suivi médical.</p>
+        <div class="cta-btns">
+          <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" class="btn btn-white">Prendre RDV</a>
+          <a href="blog-reprise-commotion.html" class="btn btn-outline-light">Lire « Le joueur reprend avant son cerveau »</a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <div class="toc-card">
+        <h4>Sommaire</h4>
+        <ol>
+          <li><a href="#comprendre"><span class="toc-num">01</span>Une commotion, c'est quoi ?</a></li>
+          <li><a href="#exposees"><span class="toc-num">02</span>Les filles plus exposées ?</a></li>
+          <li><a href="#cou"><span class="toc-num">03</span>Le cou, premier bouclier</a></li>
+          <li><a href="#plaquage"><span class="toc-num">04</span>Le plaquage</a></li>
+          <li><a href="#reconnaitre"><span class="toc-num">05</span>Reconnaître une commotion</a></li>
+          <li><a href="#silence"><span class="toc-num">06</span>Le danger de se taire</a></li>
+          <li><a href="#recuperer"><span class="toc-num">07</span>Bien récupérer</a></li>
+          <li><a href="#prevenir"><span class="toc-num">08</span>Prévenir</a></li>
+          <li><a href="#osteo"><span class="toc-num">09</span>Le rôle de l'ostéopathe</a></li>
+          <li><a href="#synthese"><span class="toc-num">10</span>En résumé</a></li>
+          <li><a href="#etudes"><span class="toc-num">11</span>Les études</a></li>
+        </ol>
+      </div>
+
+      <div class="toc-card" style="background:#0D171B;border-color:#22343A;">
+        <h4 style="color:rgba(255,255,255,0.4);">L'auteur</h4>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img src="images/logo-nr.png" alt="NR" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+          <div>
+            <div style="color:#fff;font-weight:600;font-size:0.92rem;">Nicolas Roger</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:0.8rem;">Ostéopathe D.O, Narbonne</div>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.83rem;margin:0;line-height:1.6;">Référent ostéopathique pour des clubs de rugby de Nationale 1. Suivi de sportifs de haut niveau depuis 15 ans.</p>
+        <a href="a-propos.html" style="display:inline-block;margin-top:14px;font-size:0.82rem;color:#60a5fa;">En savoir plus →</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+            <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+          </div>
+          <p>Ostéopathe D.O à Narbonne depuis 2009, ancien kinésithérapeute. Ostéopathie du sport, mobilité et thérapie fasciale. Créateur de MoveCheck.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Cabinet</h4>
+          <ul>
+            <li>11 chemin de Saint-Crescent</li>
+            <li>11100 Narbonne</li>
+            <li>06 95 81 74 10</li>
+            <li>Lun., mar., jeu., ven. : 8 h 30 – 19 h 30</li>
+            <li>Mer. : 8 h – 13 h</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener">Prendre RDV (Doctolib)</a></li>
+            <li><a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a></li>
+            <li><a href="blog.html">Articles</a></li>
+            <li><a href="galerie.html">Photos</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nicolas Roger, ostéopathe D.O</span>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" rel="noopener" title="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b851243312c04f82b6842a250cb77a59"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

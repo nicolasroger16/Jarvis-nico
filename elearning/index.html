@@ -3,358 +3,435 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Fascias & Techniques Manuelles — E-learning</title>
+<title>Nicolas Roger — Ostéopathe à Narbonne</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"/>
-<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"/>
 <style>
-.hero {
-  background: var(--ink);
-  color: #fff;
-  min-height: 88vh;
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #e2e8f0;
   display: flex; align-items: center;
-  position: relative; overflow: hidden;
-  padding: 80px 32px;
+  padding: 0 40px; height: 66px;
+  gap: 8px;
 }
-.hero::before {
-  content:'';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 25% 30%, #2d2218 0%, #1a1612 70%);
+.nav-brand {
+  font-weight: 700; font-size: 0.97rem;
+  letter-spacing: -0.02em; flex: 1;
+  color: #0f172a;
 }
-.hero-inner {
-  position: relative;
-  max-width: 1100px; margin: 0 auto;
-  width: 100%;
-  display: grid; grid-template-columns: 1.3fr 1fr;
-  gap: 80px; align-items: center;
+.nav-brand span { color: #0284c7; }
+.nav-link {
+  font-size: 0.85rem; font-weight: 500;
+  color: #64748b; padding: 8px 14px;
+  border-radius: 8px; transition: all 0.15s;
+  white-space: nowrap;
 }
-.hero-eyebrow {
+.nav-link:hover { color: #0f172a; background: #f1f5f9; }
+.nav-cta {
+  font-size: 0.85rem; font-weight: 600;
+  background: #0284c7; color: #fff;
+  padding: 9px 18px; border-radius: 9px;
+  transition: background 0.15s; white-space: nowrap;
+}
+.nav-cta:hover { background: #0369a1; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 1080px; margin: 0 auto;
+  padding: 80px 40px 56px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #e0f2fe; color: #0369a1;
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.25em;
-  color: var(--gold); text-transform: uppercase;
-  border: 1px solid var(--gold); border-radius: 2px;
-  padding: 7px 16px; display: inline-block;
-  margin-bottom: 32px;
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: #0369a1; border-radius: 50%;
 }
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.6rem, 6vw, 5rem);
-  font-weight: 900; line-height: 1.05;
-  color: #fff;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.035em; color: #0f172a;
+  max-width: 760px; margin: 0 auto;
 }
-.hero h1 em { color: var(--gold); font-style: italic; }
-.hero p.lede {
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.65);
-  margin-top: 28px; max-width: 520px;
-  line-height: 1.65; font-weight: 300;
+.hero h1 em { font-style: normal; color: #0284c7; }
+.hero-sub {
+  font-size: 1.15rem; color: #64748b; font-weight: 400;
+  margin: 20px auto 0; max-width: 580px; line-height: 1.7;
 }
-.hero-cta {
-  display: flex; gap: 14px;
-  margin-top: 40px;
-}
-.btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 24px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.18em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  transition: all 0.2s;
-}
-.btn:hover { border-color: var(--gold); color: var(--gold); }
-.btn.primary {
-  background: var(--gold); border-color: var(--gold); color: #fff;
-}
-.btn.primary:hover { background: #d49d22; border-color: #d49d22; color: #fff; }
 
-/* progress card right side */
-.hero-progress {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 32px;
+/* ── DUAL SERVICE CARDS ── */
+.services {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 40px 96px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
-.hp-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.hp-pct {
-  font-family: 'Playfair Display', serif;
-  font-size: 4rem; font-weight: 900;
-  color: #fff; line-height: 1;
-}
-.hp-pct .pct-sign {
-  font-size: 2rem; color: var(--gold);
-  margin-left: 4px;
-}
-.hp-bar {
-  height: 4px; background: rgba(255,255,255,0.1);
-  border-radius: 2px; margin-top: 18px;
-  overflow: hidden;
-}
-.hp-bar-fill {
-  height: 100%; background: var(--gold);
-  width: 0%; transition: width 0.6s;
-}
-.hp-modules {
+
+.svc-card {
+  border-radius: 22px; padding: 48px 44px 44px;
   display: flex; flex-direction: column;
-  gap: 10px; margin-top: 24px;
-  font-size: 0.88rem;
+  position: relative; overflow: hidden;
 }
-.hp-module {
-  display: flex; justify-content: space-between;
-  color: rgba(255,255,255,0.55);
-}
-.hp-module .mp-pct {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.78rem; color: var(--gold);
+.svc-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 110% 110%, rgba(255,255,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* MODULES SECTION */
-.modules-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 100px 32px;
-}
-.section-eye {
+.svc-card.osteo { background: #0c4a6e; color: #fff; }
+.svc-card.movecheck { background: #064e3b; color: #fff; }
+
+.svc-tag {
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.22em;
-  color: var(--gold); text-transform: uppercase;
+  font-size: 0.65rem; letter-spacing: 0.22em;
+  text-transform: uppercase; opacity: 0.5;
+  margin-bottom: 28px;
+}
+.svc-icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.55rem; margin-bottom: 24px;
+  flex-shrink: 0;
+}
+.svc-card h2 {
+  font-size: 2rem; font-weight: 800;
+  line-height: 1.15; letter-spacing: -0.025em;
   margin-bottom: 16px;
 }
-.section-h {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4.4vw, 3rem);
-  font-weight: 900; line-height: 1.15;
-  color: var(--ink); max-width: 700px;
+.svc-card p {
+  font-size: 1rem; line-height: 1.72;
+  opacity: 0.75; margin-bottom: 28px; flex: 1;
 }
-.section-h em { color: var(--muted); font-style: italic; }
-.section-p {
-  font-size: 1.1rem; color: var(--muted);
-  margin-top: 18px; max-width: 640px;
-  line-height: 1.7; font-weight: 300;
+.svc-list {
+  list-style: none; display: flex;
+  flex-direction: column; gap: 11px;
+  margin-bottom: 40px;
+}
+.svc-list li {
+  display: flex; align-items: flex-start; gap: 11px;
+  font-size: 0.93rem; opacity: 0.85; line-height: 1.55;
+}
+.svc-list li::before {
+  content: '✓';
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
 }
 
-.module-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 56px;
+.svc-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 14px 24px; border-radius: 12px;
+  font-weight: 600; font-size: 0.92rem;
+  transition: all 0.2s; align-self: flex-start;
+  letter-spacing: -0.01em; white-space: nowrap;
 }
-.module-card {
-  position: relative;
-  display: block;
-  background: #fff;
-  border: 1px solid var(--divider);
-  border-radius: 12px;
-  padding: 36px 36px 30px;
-  transition: all 0.3s;
+.osteo .svc-btn {
+  background: #0ea5e9; color: #fff;
+}
+.osteo .svc-btn:hover { background: #38bdf8; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(14,165,233,0.35); }
+.movecheck .svc-btn {
+  background: #10b981; color: #fff;
+}
+.movecheck .svc-btn:hover { background: #34d399; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(16,185,129,0.35); }
+
+/* ── SEPARATOR ── */
+.sep {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ── E-LEARNING SECTION ── */
+.elearning {
+  max-width: 1080px; margin: 0 auto;
+  padding: 80px 40px 100px;
+}
+.el-header {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 24px; align-items: end;
+  margin-bottom: 48px;
+}
+.el-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #94a3b8;
+  margin-bottom: 12px;
+}
+.el-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 900; line-height: 1.2;
+  letter-spacing: -0.01em; color: #0f172a;
+}
+.el-header h2 em { color: #94a3b8; font-style: italic; }
+.el-header p {
+  font-size: 0.97rem; color: #64748b;
+  margin-top: 12px; line-height: 1.7; max-width: 520px;
+}
+.el-progress {
+  background: #fff; border: 1px solid #e2e8f0;
+  border-radius: 16px; padding: 24px 28px;
+  min-width: 220px; text-align: center;
+}
+.el-prog-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #94a3b8;
+  margin-bottom: 10px;
+}
+.el-prog-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 900; color: #0f172a; line-height: 1;
+}
+.el-prog-pct span { font-size: 1.6rem; color: #0284c7; }
+.el-prog-bar {
+  height: 4px; background: #e2e8f0; border-radius: 2px; margin-top: 14px;
   overflow: hidden;
 }
-.module-card::before {
+.el-prog-bar-fill {
+  height: 100%; background: #0284c7; width: 0%;
+  transition: width 0.6s ease; border-radius: 2px;
+}
+
+/* ── MODULE CARDS ── */
+.module-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.mod-card {
+  position: relative; display: block;
+  background: #fff; border: 1px solid #e2e8f0;
+  border-radius: 16px; padding: 32px 32px 26px;
+  transition: all 0.25s; overflow: hidden;
+}
+.mod-card::after {
   content: '';
-  position: absolute;
-  top: 0; left: 0; height: 3px; width: 0%;
-  background: var(--gold);
+  position: absolute; top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
   transition: width 0.4s;
 }
-.module-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); border-color: var(--ink); }
-.module-card:hover::before { width: 100%; }
-.mc-num {
+.mod-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+  border-color: #cbd5e1;
+}
+.mod-card:hover::after { width: 100%; }
+
+.mod-num {
   font-family: 'DM Mono', monospace;
-  font-size: 0.72rem; letter-spacing: 0.22em;
-  color: var(--gold); text-transform: uppercase;
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #0284c7;
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
 }
-.mc-num .mc-pill {
-  display: inline-block; margin-left: 8px;
-  font-size: 0.62rem; letter-spacing: 0.1em;
-  background: var(--warm); color: var(--muted);
-  padding: 3px 8px; border-radius: 100px;
+.mod-pill {
+  font-size: 0.6rem; letter-spacing: 0.08em;
+  background: #f1f5f9; color: #94a3b8;
+  padding: 3px 9px; border-radius: 100px;
+  font-weight: 500;
 }
-.mc-num .mc-pill.done { background: var(--green-light); color: var(--green); }
-.mc-title {
+.mod-pill.done { background: #dcfce7; color: #16a34a; }
+
+.mod-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.7rem; font-weight: 900;
-  color: var(--ink); margin: 18px 0 12px;
-  line-height: 1.18;
+  font-size: 1.45rem; font-weight: 900;
+  color: #0f172a; margin-bottom: 10px;
+  line-height: 1.2;
 }
-.mc-title em { color: var(--muted); font-style: italic; }
-.mc-desc {
-  font-size: 0.98rem; color: var(--muted);
-  line-height: 1.65; margin-bottom: 24px;
-  font-weight: 300;
+.mod-title em { color: #94a3b8; font-style: italic; }
+.mod-desc {
+  font-size: 0.92rem; color: #64748b;
+  line-height: 1.68; margin-bottom: 22px; font-weight: 400;
 }
-.mc-meta {
-  display: flex; gap: 22px;
+.mod-meta {
+  display: flex; gap: 16px; align-items: center;
+  border-top: 1px solid #f1f5f9; padding-top: 16px;
   font-family: 'DM Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.12em;
-  color: var(--light); text-transform: uppercase;
-  border-top: 1px solid var(--divider);
-  padding-top: 18px;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  color: #94a3b8; text-transform: uppercase;
 }
-.mc-meta .mc-prog-bar {
-  flex: 1; height: 2px; background: var(--divider);
-  align-self: center; border-radius: 1px; overflow: hidden;
+.mod-pbar {
+  flex: 1; height: 3px; background: #e2e8f0;
+  border-radius: 2px; overflow: hidden;
 }
-.mc-meta .mc-prog-bar span {
+.mod-pbar span {
   display: block; height: 100%;
-  background: var(--gold); width: 0%;
+  background: #0284c7; width: 0%;
   transition: width 0.6s;
 }
 
-/* INFO STRIP */
-.info-strip {
-  background: var(--warm);
-  border-top: 1px solid var(--divider);
-  border-bottom: 1px solid var(--divider);
-  padding: 60px 32px;
-}
-.info-strip-inner {
-  max-width: 1100px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-}
-.info-stat .num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem; font-weight: 900;
-  color: var(--ink); line-height: 1;
-}
-.info-stat .unit {
+/* ── FOOTER ── */
+.site-footer {
+  background: #0f172a; color: rgba(255,255,255,0.35);
+  padding: 36px 40px; text-align: center;
   font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.15em;
-  color: var(--gold); display: block;
-  margin: 8px 0 4px;
-}
-.info-stat .desc {
-  font-size: 0.88rem; color: var(--muted);
-  line-height: 1.55;
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 880px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .services { grid-template-columns: 1fr; gap: 14px; }
+  .svc-card { padding: 36px 30px 32px; }
   .module-grid { grid-template-columns: 1fr; }
-  .info-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .el-header { grid-template-columns: 1fr; gap: 20px; }
+  .el-progress { text-align: left; }
+  .hero { padding: 60px 24px 44px; }
+  .services, .sep, .elearning { padding-left: 24px; padding-right: 24px; }
+  .nav { padding: 0 24px; }
+  .nav-link { display: none; }
 }
+@media (max-width: 500px) {
+  .nav-link { display: none; }
+  .hero h1 { font-size: 2rem; }
+  .svc-card h2 { font-size: 1.7rem; }
+}
+
 </style>
 </head>
-<body data-page="home">
+<body>
 
-<nav class="topbar">
-  <a href="index.html" class="topbar-brand">Fascias <em>&amp; Techniques</em></a>
-  <span class="topbar-crumb">Evidence-Based Practice · 2025</span>
-  <span class="topbar-spacer"></span>
-  <a href="#modules" class="topbar-link">Modules</a>
-  <a href="bibliographie.html" class="topbar-link">Références</a>
-  <a href="atlas.html" class="topbar-link" style="background:var(--gold);color:var(--ink);padding:6px 14px;border-radius:999px;">✦ Édition Atlas</a>
+<!-- ══════ NAV ══════ -->
+<nav class="nav">
+  <div class="nav-brand">Nicolas Roger — <span>Ostéopathe D.O.</span></div>
+  <a href="#elearning" class="nav-link">Formation</a>
+  <a href="#movecheck" class="nav-link">MoveCheck</a>
+  <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="nav-cta">Prendre RDV →</a>
 </nav>
 
 <!-- ══════ HERO ══════ -->
 <section class="hero">
-  <div class="hero-inner">
+  <div class="hero-badge">Ostéopathe · Narbonne · Evidence-Based</div>
+  <h1>Soins ostéopathiques<br/>et outils pour votre <em>mobilité</em></h1>
+  <p class="hero-sub">Consultation en cabinet à Narbonne ou accompagnement digital avec MoveCheck pour évaluer et améliorer votre mobilité à distance.</p>
+</section>
+
+<!-- ══════ DEUX SERVICES ══════ -->
+<section class="services">
+
+  <!-- OSTÉOPATHIE -->
+  <div class="svc-card osteo">
+    <div class="svc-tag">Cabinet · Narbonne</div>
+    <div class="svc-icon">🩺</div>
+    <h2>Séances<br/>d'ostéopathie</h2>
+    <p>Consultation individuelle en cabinet. Prise en charge globale avec une approche evidence-based et des techniques manuelles adaptées à votre bilan clinique.</p>
+    <ul class="svc-list">
+      <li>Bilan postural et fonctionnel complet</li>
+      <li>Techniques myofasciales validées scientifiquement</li>
+      <li>Conseils personnalisés entre les séances</li>
+    </ul>
+    <a href="https://www.doctolib.fr" target="_blank" rel="noopener" class="svc-btn">
+      Prendre rendez-vous sur Doctolib →
+    </a>
+  </div>
+
+  <!-- MOVECHECK -->
+  <div class="svc-card movecheck" id="movecheck">
+    <div class="svc-tag">Application · À distance</div>
+    <div class="svc-icon">📊</div>
+    <h2>MoveCheck —<br/>Évaluation mobilité</h2>
+    <p>Travaillez votre mobilité à partir d'un bilan personnalisé. MoveCheck identifie vos restrictions, génère un programme adapté et suit votre progression.</p>
+    <ul class="svc-list">
+      <li>Bilan de mobilité personnalisé en ligne</li>
+      <li>Programme d'exercices sur mesure généré automatiquement</li>
+      <li>Suivi de progression et ajustements au fil du temps</li>
+    </ul>
+    <a href="#" class="svc-btn">
+      Découvrir MoveCheck →
+    </a>
+  </div>
+
+</section>
+
+<!-- ══════ SÉPARATEUR ══════ -->
+<div class="sep"></div>
+
+<!-- ══════ E-LEARNING ══════ -->
+<section class="elearning" id="elearning">
+  <div class="el-header">
     <div>
-      <div class="hero-eyebrow">E-learning · 4 modules</div>
-      <h1>Fascias &amp;<br/>Techniques<br/><em>Manuelles</em></h1>
-      <p class="lede">Une formation interactive Evidence-Based : anatomie systémique, physiologie sensorielle, techniques cliniques validées et pédagogie pour praticiens.</p>
-      <div class="hero-cta">
-        <a href="module-1.html" class="btn primary">Commencer le Module I →</a>
-        <a href="#modules" class="btn">Voir les modules</a>
-      </div>
+      <div class="el-tag">Formation · 4 modules</div>
+      <h2>Fascias &amp; Techniques<br/><em>Manuelles</em></h2>
+      <p>Un parcours e-learning evidence-based conçu pour les praticiens en thérapie manuelle : anatomie systémique, physiologie sensorielle, techniques cliniques validées.</p>
     </div>
-    <aside class="hero-progress">
-      <div class="hp-label">Votre progression globale</div>
-      <div class="hp-pct"><span data-global-pct>0</span><span class="pct-sign">%</span></div>
-      <div class="hp-bar"><div class="hp-bar-fill" data-global-fill></div></div>
-      <div class="hp-modules">
-        <div class="hp-module"><span>Module I — Nouveau Monde</span><span class="mp-pct" data-mp="m1">0%</span></div>
-        <div class="hp-module"><span>Module II — Sensation</span><span class="mp-pct" data-mp="m2">0%</span></div>
-        <div class="hp-module"><span>Module III — Techniques</span><span class="mp-pct" data-mp="m3">0%</span></div>
-        <div class="hp-module"><span>Module IV — Pédagogie</span><span class="mp-pct" data-mp="m4">0%</span></div>
-      </div>
-    </aside>
-  </div>
-</section>
-
-<!-- ══════ INFO STRIP ══════ -->
-<section class="info-strip">
-  <div class="info-strip-inner">
-    <div class="info-stat">
-      <div class="num">22</div>
-      <span class="unit">Leçons</span>
-      <div class="desc">réparties en 4 modules thématiques progressifs</div>
-    </div>
-    <div class="info-stat">
-      <div class="num">~6h</div>
-      <span class="unit">Durée totale</span>
-      <div class="desc">en parcours autonome, à votre rythme</div>
-    </div>
-    <div class="info-stat">
-      <div class="num">35+</div>
-      <span class="unit">Études citées</span>
-      <div class="desc">RCT, méta-analyses et revues systématiques</div>
-    </div>
-    <div class="info-stat">
-      <div class="num">6</div>
-      <span class="unit">Techniques</span>
-      <div class="desc">manuelles fasciales documentées et comparées</div>
+    <div class="el-progress">
+      <div class="el-prog-label">Votre progression</div>
+      <div class="el-prog-pct"><span data-global-pct>0</span><span>%</span></div>
+      <div class="el-prog-bar"><div class="el-prog-bar-fill" data-global-fill></div></div>
     </div>
   </div>
-</section>
-
-<!-- ══════ MODULES ══════ -->
-<section class="modules-section" id="modules">
-  <div class="section-eye">Parcours · 4 modules</div>
-  <h2 class="section-h">Une progression structurée<br/><em>de l'anatomie à la clinique</em></h2>
-  <p class="section-p">Chaque module est composé de leçons courtes que vous pouvez compléter à votre rythme. Marquez vos lectures, suivez votre progression et passez au module suivant.</p>
 
   <div class="module-grid">
 
-    <a class="module-card" href="module-1.html" data-mod-card="m1">
-      <div class="mc-num">Module I <span class="mc-pill" data-mp-pill="m1">Non commencé</span></div>
-      <h3 class="mc-title">Le Fascia —<br/><em>Un Nouveau Monde</em></h3>
-      <p class="mc-desc">Anatomie systémique du tissu conjonctif, histologie de la matrice extracellulaire, biomécanique et tensegrité. Les fondations indispensables.</p>
-      <div class="mc-meta">
+    <a class="mod-card" href="module-1.html" data-mod-card="m1">
+      <div class="mod-num">Module I <span class="mod-pill" data-mp-pill="m1">Non commencé</span></div>
+      <h3 class="mod-title">Le Fascia —<br/><em>Un Nouveau Monde</em></h3>
+      <p class="mod-desc">Anatomie systémique du tissu conjonctif, histologie de la matrice extracellulaire, biomécanique et tensegrité. Les fondations indispensables.</p>
+      <div class="mod-meta">
         <span>3 sections · 6 leçons</span>
-        <div class="mc-prog-bar"><span data-mp-bar="m1"></span></div>
+        <div class="mod-pbar"><span data-mp-bar="m1"></span></div>
         <span>~95 min</span>
       </div>
     </a>
 
-    <a class="module-card" href="module-2.html" data-mod-card="m2">
-      <div class="mc-num">Module II <span class="mc-pill" data-mp-pill="m2">Non commencé</span></div>
-      <h3 class="mc-title">Physiologie du<br/><em>Mouvement &amp; de la Sensation</em></h3>
-      <p class="mc-desc">Acide hyaluronique et glissement fascial, mécanorécepteurs, douleur myofasciale. Comprendre les cibles thérapeutiques.</p>
-      <div class="mc-meta">
+    <a class="mod-card" href="module-2.html" data-mod-card="m2">
+      <div class="mod-num">Module II <span class="mod-pill" data-mp-pill="m2">Non commencé</span></div>
+      <h3 class="mod-title">Physiologie du<br/><em>Mouvement &amp; de la Sensation</em></h3>
+      <p class="mod-desc">Acide hyaluronique et glissement fascial, mécanorécepteurs, douleur myofasciale. Comprendre les cibles thérapeutiques.</p>
+      <div class="mod-meta">
         <span>2 sections · 5 leçons</span>
-        <div class="mc-prog-bar"><span data-mp-bar="m2"></span></div>
+        <div class="mod-pbar"><span data-mp-bar="m2"></span></div>
         <span>~75 min</span>
       </div>
     </a>
 
-    <a class="module-card" href="module-3.html" data-mod-card="m3">
-      <div class="mc-num">Module III <span class="mc-pill" data-mp-pill="m3">Non commencé</span></div>
-      <h3 class="mc-title">Techniques<br/><em>Manuelles &amp; Preuves</em></h3>
-      <p class="mc-desc">MFR, Stecco, Rolfing, OMT, CTM : six approches fasciales décortiquées avec leurs RCT, méta-analyses et indications cliniques.</p>
-      <div class="mc-meta">
+    <a class="mod-card" href="module-3.html" data-mod-card="m3">
+      <div class="mod-num">Module III <span class="mod-pill" data-mp-pill="m3">Non commencé</span></div>
+      <h3 class="mod-title">Techniques<br/><em>Manuelles &amp; Preuves</em></h3>
+      <p class="mod-desc">MFR, Stecco, Rolfing, OMT, CTM : six approches fasciales décortiquées avec leurs RCT, méta-analyses et indications cliniques.</p>
+      <div class="mod-meta">
         <span>1 section · 7 leçons</span>
-        <div class="mc-prog-bar"><span data-mp-bar="m3"></span></div>
+        <div class="mod-pbar"><span data-mp-bar="m3"></span></div>
         <span>~140 min</span>
       </div>
     </a>
 
-    <a class="module-card" href="module-4.html" data-mod-card="m4">
-      <div class="mc-num">Module IV <span class="mc-pill" data-mp-pill="m4">Non commencé</span></div>
-      <h3 class="mc-title">Conception<br/><em>E-learning EBP</em></h3>
-      <p class="mc-desc">Les 5 piliers d'une formation pédagogique de niveau professionnel : audience, micro-learning, multimodalité, évaluation, monétisation.</p>
-      <div class="mc-meta">
+    <a class="mod-card" href="module-4.html" data-mod-card="m4">
+      <div class="mod-num">Module IV <span class="mod-pill" data-mp-pill="m4">Non commencé</span></div>
+      <h3 class="mod-title">Conception<br/><em>E-learning EBP</em></h3>
+      <p class="mod-desc">Les 5 piliers d'une formation pédagogique de niveau professionnel : audience, micro-learning, multimodalité, évaluation, monétisation.</p>
+      <div class="mod-meta">
         <span>1 section · 4 leçons</span>
-        <div class="mc-prog-bar"><span data-mp-bar="m4"></span></div>
+        <div class="mod-pbar"><span data-mp-bar="m4"></span></div>
         <span>~50 min</span>
       </div>
     </a>
@@ -363,7 +440,7 @@
 </section>
 
 <footer class="site-footer">
-  Fascias &amp; Techniques Manuelles — Evidence-Based · Nico Ostéopathe Narbonne · 2025
+  Nicolas Roger — Ostéopathe D.O. · Narbonne · 2025
 </footer>
 
 <script>
@@ -376,8 +453,6 @@
   ids.forEach(id => {
     const pct = modules[id] || 0;
     total += pct;
-    const txt = document.querySelector(`[data-mp="${id}"]`);
-    if (txt) txt.textContent = pct + '%';
     const bar = document.querySelector(`[data-mp-bar="${id}"]`);
     if (bar) bar.style.width = pct + '%';
     const pill = document.querySelector(`[data-mp-pill="${id}"]`);
@@ -390,7 +465,7 @@
   const pctEl = document.querySelector('[data-global-pct]');
   if (pctEl) pctEl.textContent = global;
   const fill = document.querySelector('[data-global-fill]');
-  if (fill) setTimeout(() => { fill.style.width = global + '%'; }, 100);
+  if (fill) setTimeout(() => { fill.style.width = global + '%'; }, 150);
 })();
 </script>
 </body>
