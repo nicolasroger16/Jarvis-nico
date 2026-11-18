@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ischio-jambiers : déchirure, récidive et protocole d'Askling — Nicolas Roger Ostéopathe D.O</title>
+  <meta name="description" content="Lésion des ischio-jambiers au sprint, au freinage ou en changement de direction : causes, récidive, protocole d'Askling en 3 exercices et prévention. Par Nicolas Roger, ostéopathe D.O à Narbonne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── ARTICLE PAGE ── */
+    .article-hero {
+      background: #0D171B;
+      border-bottom: 1px solid var(--border);
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(47,115,131,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .article-hero .badge { margin-bottom: 20px; }
+    .article-hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      max-width: 820px; margin: 0 auto;
+      line-height: 1.18; color: #fff;
+    }
+    .article-hero h1 span { color: #9FD6E0; }
+    .article-hero .hero-subtitle {
+      max-width: 700px; margin: 20px auto 0;
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem; line-height: 1.7;
+    }
+    .article-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; margin-top: 28px;
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── COVER IMAGE ── */
+    .article-cover {
+      width: 100%; max-height: 480px;
+      overflow: hidden;
+      background: #0D171B;
+    }
+    .article-cover img {
+      width: 100%; height: 480px;
+      object-fit: cover; object-position: center 30%;
+      display: block;
+    }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 60px;
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .article-body h2 {
+      font-size: 1.55rem;
+      margin: 48px 0 16px;
+      color: var(--text);
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .article-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+    .article-body h3 {
+      font-size: 1.15rem;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+    .article-body h4 {
+      font-size: 1rem; font-weight: 700;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+    .article-body p {
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+      margin: 16px 0;
+    }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body em { font-style: italic; }
+    .article-body ul, .article-body ol {
+      margin: 16px 0 16px 20px;
+    }
+    .article-body li {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .article-body li strong { color: var(--text); }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+    .callout-label {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .callout p { margin: 0; font-size: 0.97rem; }
+    .callout.blue { background: var(--bg-alt); border-left: 4px solid var(--primary); }
+    .callout.blue .callout-label { color: var(--primary); }
+    .callout.green { background: #E6EEED; border-left: 4px solid var(--accent); }
+    .callout.green .callout-label { color: var(--accent); }
+    .callout.orange { background: #FFF7ED; border-left: 4px solid #f97316; }
+    .callout.orange .callout-label { color: #ea580c; }
+    .callout.teal { background: #f0fdf4; border-left: 4px solid #4E95A4; }
+    .callout.teal .callout-label { color: #2F7383; }
+    .callout.dark { background: #0D171B; border-left: 4px solid #9FD6E0; }
+    .callout.dark .callout-label { color: #9FD6E0; }
+    .callout.dark p { color: rgba(255,255,255,0.75); font-style: italic; font-size: 1.05rem; line-height: 1.72; }
+
+    /* ── RATIO CARDS ── */
+    .ratio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .ratio-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .ratio-card .ratio-val {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 2rem; font-weight: 700;
+      color: #4E95A4; line-height: 1;
+      display: block; margin-bottom: 8px;
+    }
+    .ratio-card .ratio-danger {
+      font-family: 'Schibsted Grotesk', serif;
+      font-size: 2rem; font-weight: 700;
+      color: #dc2626; line-height: 1;
+      display: block; margin-bottom: 8px;
+    }
+    .ratio-card p {
+      font-size: 0.85rem; margin: 0;
+      color: var(--text-muted); line-height: 1.5;
+    }
+
+    /* ── MUSCLE SECTION ── */
+    .muscle-block {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 24px 0;
+      border-left: 4px solid #0D171B;
+    }
+    .muscle-block h3 {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
+      color: var(--text);
+    }
+    .muscle-block.inhibited { border-left-color: #6b7280; }
+    .muscle-block.inhibited h3 { color: #6b7280; }
+
+    /* ── SIDEBAR TOC ── */
+    .article-sidebar { position: sticky; top: 90px; }
+    .toc-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .toc-card h4 {
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    .toc-card ol {
+      margin: 0; padding: 0;
+      list-style: none;
+    }
+    .toc-card ol li {
+      margin-bottom: 10px; font-size: 0.88rem;
+    }
+    .toc-card ol li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex; align-items: flex-start; gap: 10px;
+      transition: color 0.2s;
+    }
+    .toc-card ol li a:hover { color: var(--text); }
+    .toc-num {
+      min-width: 24px; height: 24px;
+      background: var(--bg-alt); color: var(--text-muted);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ── CTA BOTTOM ── */
+    .article-cta {
+      background: #0D171B;
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .article-cta h3 { color: #fff; font-size: 1.5rem; margin-bottom: 14px; }
+    .article-cta p { color: rgba(255,255,255,0.75); margin-bottom: 24px; }
+    .article-cta .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: #fff; color: var(--primary);
+      border-color: #fff; font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-white:hover { background: #f0f9ff; }
+    .btn-outline-light {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+    }
+    .btn-outline-light:hover { border-color: #fff; }
+
+    @media (max-width: 900px) {
+      .article-layout { grid-template-columns: 1fr; }
+      .article-sidebar { position: static; }
+      .ratio-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-cta { padding: 32px 20px; }
+      .article-cover img { height: 300px; }
+    }
+
+    /* ── ARTICLE IMAGES ── */
+    .article-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 28px 0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      display: block;
+    }
+    .article-img-caption {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: -18px;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    /* ── DOSSIER ── */
+    .article-body .cle { background:#0D171B; color:#fff; border-radius:var(--radius); padding:22px 26px; margin:24px 0; }
+    .article-body .cle li, .article-body .cle strong { color:#fff; }
+    .article-body .cle li { color:rgba(255,255,255,0.85); }
+    .article-body .note { background:var(--bg-alt); border-left:4px solid var(--primary); border-radius:var(--radius); padding:16px 22px; margin:24px 0; color:var(--text-muted); }
+    .article-body .attention { background:#FFF7ED; border-left:4px solid #f97316; border-radius:var(--radius); padding:16px 22px; margin:24px 0; color:var(--text-muted); }
+    .article-body .niv { font-size:.72rem; font-weight:700; border-radius:4px; padding:1px 7px; white-space:nowrap; vertical-align:middle; }
+    .article-body .niv.fort { background:#d8efe0; color:#1d6b3a; } .article-body .niv.moyen { background:#fdf0d8; color:#8a5a00; } .article-body .niv.faible { background:#f9dede; color:#9a2a2a; }
+    .article-body table { border-collapse:collapse; width:100%; font-size:.92rem; margin:20px 0; }
+    .article-body th, .article-body td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; color:var(--text-muted); }
+    .article-body th { background:var(--bg-alt); color:var(--text); }
+    .article-body .ref li { font-size:.88rem; }
+  </style>
+  <link rel="canonical" href="https://nicolasrogerosteopathe.com/blog-ischio-jambiers">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+          <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#parcours">Parcours</a></li>
+          <li><a href="index.html#consulter">Consulter</a></li>
+          <li><a href="galerie.html">Photos</a></li>
+          <li><a href="blog.html" class="active">Articles</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+        </ul>
+        <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Prendre RDV</a>
+        <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#parcours">Parcours</a>
+    <a href="index.html#consulter">Consulter</a>
+    <a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a>
+    <a href="galerie.html">Photos</a>
+    <a href="blog.html">Articles</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:8px;justify-content:center;">Prendre RDV</a>
+  </div>
+
+    <!-- HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="badge">Sport · Ischio-jambiers</div>
+      <h1>Ischio-jambiers : <span>pourquoi ça lâche, et comment éviter la récidive</span></h1>
+      <p class="hero-subtitle">Football, rugby, handball, basket : la lésion des ischio-jambiers est l'une des blessures les plus fréquentes des sports d'accélération, de freinage et de changement de direction. Elle récidive souvent. Voici ce qu'il faut comprendre, et ce qui marche vraiment pour revenir solide.</p>
+      <div class="article-meta">
+        <span>Nicolas Roger, D.O</span>
+        <span></span>
+        <span>Novembre 2026</span>
+        <span></span>
+        <span>Lecture : ~20 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVER IMAGE -->
+  <div class="article-cover">
+    <img src="images/ischio-sprint.jpg" alt="Deux footballeurs lancés en plein sprint vers le ballon : la jambe qui revient vers l'avant, phase où les ischio-jambiers freinent le genou" style="object-position:center 55%;">
+  </div>
+  <p class="article-img-caption" style="margin-top:10px;">Le sprint vers le ballon : c'est quand la jambe revient vers l'avant que les ischio-jambiers freinent le genou et sont le plus exposés. Photo : Jethrude Hipolito, <a href="https://commons.wikimedia.org/wiki/File:Ahadi_and_Rublico_Sprint_for_the_Ball_-_PHI_vs_AFG,_September_12,_2023.png" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" target="_blank" rel="noopener">CC BY-SA 4.0</a></p>
+
+  <!-- ARTICLE -->
+  <div class="article-layout">
+    <article class="article-body">
+
+
+
+
+<p>Légende du niveau de preuve : <span class="niv fort">solide</span> plusieurs méta-analyses concordantes · <span class="niv moyen">modéré</span> données cohérentes mais limitées · <span class="niv faible">faible</span> études isolées, petits effectifs ou cas cliniques.</p>
+
+<div class="cle">
+<strong>L'essentiel en 7 points</strong>
+<ol>
+<li>La lésion type touche le <strong>biceps fémoral, chef long</strong>, à la jonction myotendineuse proximale, en fin de phase oscillante du sprint. Le semi-membraneux est plutôt touché lors des mécanismes « en étirement » (flexion de hanche avec genou tendu).</li>
+<li>La <strong>décélération</strong> impose le plus grand allongement à tous les ischio-jambiers. L'<strong>accélération</strong> impose les plus grandes forces au biceps fémoral et au semi-membraneux. Ce sont donc deux situations à travailler spécifiquement.</li>
+<li>Les deux facteurs de risque les plus forts ne se modifient pas : l'<strong>âge</strong> et un <strong>antécédent de lésion</strong> (risque multiplié par environ 2,7, et par environ 4,8 si la lésion est récente).</li>
+<li>Les facteurs modifiables sont la <strong>longueur des fascicules</strong> du biceps fémoral, la force excentrique et ses asymétries, le <strong>contrôle lombo-pelvien</strong> et l'activation fessière, la <strong>fatigue</strong> et les <strong>pics de charge</strong> en course rapide.</li>
+<li>Après une lésion, une <strong>inhibition neuromusculaire</strong> persiste : activation volontaire excentrique réduite d'environ 24 % et déficit qui s'étend au grand fessier et au tronc. C'est une cible clé de la rééducation.</li>
+<li>Rééducation : le travail <strong>en allongement</strong> (protocole L d'Askling) a les meilleures données pour raccourcir le retour au jeu. Aucune technique n'a démontré qu'elle réduisait clairement la récidive.</li>
+<li>Le PRP ferait gagner quelques jours, de façon incertaine, sans effet sur la récidive. La thérapie manuelle et la neurodynamique n'ont pas encore été testées par des essais spécifiques à cette lésion : elles <strong>accompagnent l'exercice</strong>.</li>
+</ol>
+</div>
+
+<h2 id="mecanismes">1. Les mécanismes de la lésion</h2>
+
+<h3>Le sprint : la fin de phase oscillante <span class="niv fort">solide</span></h3>
+<p>Une revue systématique de 26 études (Danielsson, 2020) conclut que les lésions en course surviennent le plus probablement en <strong>fin de phase oscillante</strong>. À ce moment, les ischio-jambiers freinent l'extension du genou et la flexion de hanche en se contractant de façon excentrique, au moment de leur longueur maximale. Le biceps fémoral chef long atteint la plus grande longueur des trois muscles, et ses contraintes les plus fortes se situent à la <strong>jonction myotendineuse proximale</strong>. Elles augmentent avec la vitesse.</p>
+
+<p>Le <strong>début d'appui</strong> est aussi incriminé, car des forces opposées s'exercent à la hanche et au genou au contact du sol. Le débat n'est pas tranché : une partie des données vient de modélisations, et certains auteurs pensent que le muscle travaille plutôt de façon isométrique, le tendon absorbant l'étirement (Huygaerts, 2020).</p>
+
+<h3>Deux types de lésion <span class="niv moyen">modéré</span></h3>
+<table>
+<tr><th></th><th>Type « sprint »</th><th>Type « étirement »</th></tr>
+<tr><td>Geste</td><td>Course à vitesse maximale ou quasi maximale</td><td>Flexion de hanche extrême genou tendu (frappe, tacle glissé, grand écart)</td></tr>
+<tr><td>Muscle</td><td>Biceps fémoral, chef long</td><td>Semi-membraneux, tendon proximal</td></tr>
+<tr><td>Récupération</td><td>Plus courte</td><td>Plus longue, souvent sous-estimée</td></tr>
+</table>
+
+<h3>Accélération, décélération et changement de direction <span class="niv moyen">modéré</span></h3>
+<p>Une étude de modélisation récente (Steventon-Lorenzen, Scand J Med Sci Sports, 2026) chez 20 adultes actifs compare ces trois gestes, très fréquents dans les sports de pivot :</p>
+<ul>
+<li><strong>Décélération :</strong> c'est elle qui impose le plus grand <strong>allongement</strong> à tous les ischio-jambiers (10,9 à 13,7 %), devant le pas chassé (8,9 à 12,4 %) et l'accélération (5,5 à 10,2 %).</li>
+<li><strong>Accélération :</strong> c'est elle qui impose les plus grandes <strong>forces</strong> au biceps fémoral chef long (1,5 fois le poids du corps) et au semi-membraneux (2,7 fois le poids du corps).</li>
+<li><strong>Changement de direction (pas chassé à 45°) :</strong> c'est lui qui impose le plus grand travail excentrique au semi-membraneux.</li>
+</ul>
+<p>Pendant toute une accélération sur 40 m chez des footballeurs semi-professionnels, l'élongation du biceps fémoral chef long est maximale dans les <strong>premiers appuis</strong>. Elle dépend surtout de la flexion de hanche et de l'<strong>orientation du bassin</strong> (Astrella, 2024). Cela explique la part importante de lésions en phase d'accélération.</p>
+<div class="note"><strong>Pour le terrain :</strong> une rééducation limitée au sprint en ligne droite ne prépare pas aux gestes les plus exigeants pour chaque muscle. Les freinages et les changements de direction doivent être réintroduits progressivement et spécifiquement.</div>
+
+<h3>La fatigue <span class="niv moyen">modéré</span></h3>
+<p>La fatigue modifie la coordination neuromusculaire et la cinématique du sprint, ce qui pourrait augmenter le risque (Huygaerts, 2020). Après une lésion, les joueurs perdent davantage de force horizontale sur des sprints répétés (Hanief, 2026). C'est cohérent avec la survenue fréquente des lésions en fin de match.</p>
+
+<h2 id="causes">2. Les causes et facteurs de risque</h2>
+
+<h3>Les facteurs non modifiables <span class="niv fort">solide</span></h3>
+<p>Une méta-analyse de 78 études portant sur 71 324 athlètes et 8 319 lésions (Green, Br J Sports Med, 2020) trouve :</p>
+<table>
+<tr><th>Facteur</th><th>Augmentation du risque</th></tr>
+<tr><td>Antécédent de lésion des ischio-jambiers (quel qu'il soit)</td><td>× 2,7</td></tr>
+<tr><td>Lésion <strong>récente</strong> des ischio-jambiers</td><td>× 4,8</td></tr>
+<tr><td>Antécédent de rupture du ligament croisé antérieur</td><td>× 1,7</td></tr>
+<tr><td>Antécédent de lésion du mollet</td><td>× 1,5</td></tr>
+<tr><td>Âge plus élevé</td><td>Associé de façon significative</td></tr>
+</table>
+<p>Le risque de récidive s'évalue mieux avec les <strong>données cliniques</strong> qu'avec l'IRM de la première lésion.</p>
+
+<h3>Les causes musculaires et l'architecture <span class="niv moyen">modéré</span></h3>
+<ul>
+<li><strong>Longueur des fascicules du biceps fémoral chef long :</strong> des fascicules de moins de 10,56 cm multiplient le risque par 4,1 chez des footballeurs d'élite (Timmins, cité dans Hagos, 2025). Le seuil est de 10,42 cm dans le football australien, avec un risque multiplié par 1,9 (Opar, 2021). Avoir des fascicules plus longs <strong>atténue</strong> le sur-risque lié à l'âge ou à un antécédent.</li>
+<li><strong>Force excentrique :</strong> la force absolue n'était pas associée au risque dans le football australien. En revanche, une <strong>asymétrie gauche-droite de plus de 9 %</strong> l'était, avec un risque multiplié par 1,8 (Opar, 2021).</li>
+<li><strong>Anatomie :</strong> l'aponévrose étroite du biceps fémoral chef long concentrerait les contraintes (Zhu, 2026).</li>
+<li><strong>Raideur des ischio-jambiers</strong> et rapport de force ischio-jambiers/quadriceps sont cités comme facteurs, avec des données moins homogènes (Chapman, 2025 ; Hagos, 2025).</li>
+</ul>
+
+<h3>Les causes neurologiques et neuromusculaires <span class="niv moyen">modéré</span></h3>
+<p>C'est probablement le volet le plus sous-estimé en pratique.</p>
+<ul>
+<li><strong>Inhibition persistante :</strong> des membres précédemment lésés montrent une <strong>activation volontaire réduite d'environ 24 %</strong> en contraction excentrique maximale, mais pas en concentrique. Les réflexes d'étirement et tendineux du biceps fémoral sont aussi diminués (Buhmann, Med Sci Sports Exerc, 2020).</li>
+<li><strong>Un déficit qui dépasse le muscle lésé :</strong> chez 21 footballeurs ayant eu une lésion, l'activation du biceps fémoral diminue de 21 à 29 %, celle du <strong>grand fessier</strong> de 20 à 24 %, et celle du grand dorsal et des érecteurs lombaires de 12 à 17 %. C'est vrai sur le Nordic, le kettlebell swing et le leg curl glissé, même après le retour au jeu (Gülgösteren, 2025).</li>
+<li><strong>Des antagonistes trop actifs :</strong> chez des footballeurs d'élite, le côté lésé montre moins d'activité du biceps fémoral, un taux de développement de la force plus faible et une co-activation du quadriceps plus élevée (Ritzmann, 2022).</li>
+<li><strong>Au niveau cortical :</strong> une moindre inhibition corticale du biceps fémoral a été rapportée chez des sprinteurs (Higashihara, résumé de congrès, 2024 : donnée très préliminaire).</li>
+<li><strong>Nerf sciatique :</strong> une mécanosensibilité ou un piégeage du sciatique au niveau ischiatique peut <strong>imiter des « récidives »</strong> de lésion. Cela a été décrit chez un footballeur professionnel guéri à l'IRM mais symptomatique, amélioré par un travail de mobilité neurale (Sawaf, 2026). <span class="niv faible">faible</span> Ce ne sont que des cas cliniques.</li>
+</ul>
+<div class="note"><strong>Hypothèse clinique cohérente avec ces données :</strong> une lésion → une inhibition excentrique → moins de stimulus en position allongée → des fascicules qui raccourcissent → davantage de contraintes à vitesse élevée → une récidive. Ces travaux sont transversaux : ils montrent des associations, pas une chaîne causale démontrée.</div>
+
+<h3>Les causes articulaires, lombo-pelviennes et posturales <span class="niv moyen">modéré</span> à <span class="niv faible">faible</span></h3>
+<ul>
+<li>Une revue sur les footballeurs (Hanief, 2026, revue Q3, 6 études) rapporte qu'une <strong>antéversion du bassin</strong> et une <strong>inclinaison latérale du tronc</strong> plus marquées au sprint sont associées à davantage de lésions. À l'inverse, une <strong>activation plus forte du grand fessier et du tronc</strong> est associée à moins de lésions.</li>
+<li>L'antéversion du bassin, la flexion du tronc et la flexion de hanche augmentent l'allongement du biceps fémoral (Zhu, 2026 ; Astrella, 2024). Le bassin est donc un levier mécanique direct.</li>
+<li>L'activation du moyen fessier est citée comme facteur modifiable dans le football australien (Chapman, 2025).</li>
+<li>La position lombaire modifie la sensibilité neurale : un slump test réalisé en <strong>extension lombaire</strong> provoque plus de symptômes distaux et réduit l'extension du genou (Swanson, 2025, chez des sujets sains).</li>
+</ul>
+<div class="attention">Il n'existe pas, à ma connaissance, d'étude prospective solide reliant une « dysfonction » sacro-iliaque ou lombaire objectivée à un risque de lésion des ischio-jambiers. Le lien passe surtout par le <strong>contrôle moteur</strong> du bassin pendant le sprint, plus que par une restriction articulaire isolée.</div>
+
+<h3>La charge et l'entraînement <span class="niv moyen">modéré</span></h3>
+<ul>
+<li>Les <strong>augmentations brutales du volume de course rapide</strong> sont un facteur de risque majeur (Chapman, 2025).</li>
+<li>Un <strong>arrêt brutal de l'entraînement</strong>, comme une reprise après coupure ou une intersaison, et la fatigue augmentent le risque et la récidive (Zhu, 2026).</li>
+<li>Exposer régulièrement l'athlète à la <strong>vitesse maximale</strong> à l'entraînement est protecteur, car le sprint allonge aussi les fascicules (Rudisill, 2022).</li>
+</ul>
+
+<h3>Une limite importante : on prédit mal la blessure individuelle</h3>
+<p>Même en combinant antécédent, architecture et asymétrie de force, la capacité à prédire quel joueur se blessera reste modeste : aire sous la courbe de 0,68 à 0,73. Mesurer ces paramètres plusieurs fois dans la saison ne l'améliore pas (Opar, 2021). Ces tests servent à <strong>orienter le travail</strong>, pas à prédire une lésion.</p>
+
+<h2 id="irm">3. Le diagnostic et le pronostic : l'IRM et la classification BAMIC</h2>
+<p>La classification britannique (BAMIC) note le grade de la lésion, de 0 à 4, et sa localisation : a = myofasciale, b = jonction myotendineuse, c = <strong>intratendineuse</strong>.</p>
+
+<ul>
+<li><strong>Lésions intratendineuses (« c ») :</strong> le retour à l'entraînement est plus long. Il prend 34 jours pour un grade 2c et 48 jours pour un 3c chez des athlètes d'athlétisme d'élite, contre 18,6 jours en moyenne pour l'ensemble des lésions (Pollock, Br J Sports Med, 2021). Dans un club de Premier League, il prenait <strong>36 jours contre 24</strong>, avec <strong>38,5 % de récidives contre 12,5 %</strong> (Shamji, 2021).</li>
+<li>Avec une rééducation <strong>adaptée à la localisation</strong> (approche British Athletics), le taux de récidive est tombé à <strong>2,9 %</strong>, et aucune lésion intratendineuse n'a récidivé (Pollock, 2021).</li>
+<li>Une méta-analyse confirme un meilleur pronostic pour les lésions de jonction (« b ») que pour les lésions intratendineuses (« c »). Les éléments IRM les plus péjoratifs sont l'aspect « ondulé » du tendon et la <strong>perte de tension tendineuse</strong>, plus que la longueur de l'atteinte (Beattie, 2023).</li>
+</ul>
+<div class="note">Une atteinte du tendon intramusculaire impose de <strong>ralentir la progression</strong> des charges en allongement et en vitesse, sans pour autant tout immobiliser.</div>
+
+<h2 id="prevention">4. La prévention : ce qui marche, et avec quelle certitude</h2>
+<table>
+<tr><th>Stratégie</th><th>Résultat</th><th>Niveau</th></tr>
+<tr><td>Renforcement excentrique (dont le Nordic)</td><td>De 57 à 70 % de lésions en moins. Allonge les fascicules (+0,9 cm) et réduit les asymétries (Rudisill, Am J Sports Med, 2022, 108 essais randomisés)</td><td><span class="niv moyen">modéré</span></td></tr>
+<tr><td>Nordic seul, réanalysé avec une méthodologie stricte</td><td>Risque relatif de 0,59, mais un intervalle de confiance de 0,27 à 1,29 : l'effet n'est <strong>pas démontré</strong> de façon robuste, car les essais présentent un risque de biais élevé (Impellizzeri, 2021)</td><td><span class="niv faible">incertain</span></td></tr>
+<tr><td>FIFA 11+ (football)</td><td>Le plus constant en méta-analyse en réseau : 45 % de lésions en moins (rapport des taux d'incidence 0,55), mais une certitude faible à très faible (Hong, Sports Med Open, 2026)</td><td><span class="niv moyen">modéré</span></td></tr>
+<tr><td>Dose de Nordic</td><td>Une phase à volume élevé, puis un entretien d'environ <strong>48 répétitions par semaine</strong>, idéalement à l'échauffement (Nunes, revue parapluie, 2024)</td><td><span class="niv moyen">modéré</span></td></tr>
+<tr><td>Étirements</td><td>Gagnent en souplesse, mais l'effet préventif seul n'est pas démontré (Rudisill, 2022)</td><td><span class="niv faible">faible</span></td></tr>
+</table>
+<div class="attention"><strong>L'observance est déterminante :</strong> avec 91 % d'observance, le Nordic protège ; avec 21 %, presque pas (Nunes, 2024). Les courbatures sont la première cause d'abandon, d'où l'intérêt d'une progression douce.</div>
+
+<h2 id="traitements">5. Les traitements en cours et leurs résultats</h2>
+
+<h3>La rééducation par l'exercice : le socle</h3>
+<ul>
+<li><strong>Protocole L d'Askling (exercices en allongement) :</strong> c'est le mieux étayé pour <strong>raccourcir le retour au jeu</strong>. Une méta-analyse de 2026 (Zhu, Scientific Reports, 14 essais randomisés, 693 athlètes) le juge avec une <strong>certitude modérée</strong>, sans hausse de la récidive. Les deux essais d'Askling rapportent 23 et 37 jours de moins que le protocole classique (Aali, 2026). <span class="niv moyen">modéré</span> Ces résultats viennent d'un seul groupe de recherche.</li>
+<li><strong>Allongement précoce ou différé :</strong> dans un essai randomisé de 90 athlètes (Vermeulen, Br J Sports Med, 2022), introduire l'allongement <strong>dès le premier jour</strong> plutôt qu'après une course à 70 % de la vitesse maximale ne change ni le délai de retour (23 jours contre 33, différence non significative) ni la récidive. On peut donc commencer tôt sans danger, mais ce n'est pas une accélération garantie.</li>
+<li><strong>PATS (agilité progressive et stabilisation du tronc) :</strong> une méta-analyse de 2022 trouve une <strong>réduction de la récidive à 12 mois</strong> (Jankaew, 2022). Celle de 2026 la juge <strong>non concluante</strong>, avec une certitude très faible (Zhu, 2026). <span class="niv faible">faible</span></li>
+<li><strong>Rééducation « jusqu'au seuil de douleur » :</strong> plus de force, sans retarder le retour (1 essai, certitude modérée).</li>
+<li><strong>Le constat d'ensemble :</strong> la revue « vivante » de Sports Medicine (Afonso, 2023) conclut qu'<strong>aucune intervention n'est clairement supérieure</strong>, que ce soit pour le délai de retour ou la récidive. Les programmes d'exercice sont aussi souvent mal décrits et mal dosés.</li>
+</ul>
+<h3 id="askling">Le protocole d'Askling en pratique : les 3 exercices</h3>
+<p>Dans les deux essais d'Askling, la course progressive était la même pour tous : seuls les exercices de renforcement changeaient (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-092165" target="_blank" rel="noopener">Askling, 2013</a> ; <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-093214" target="_blank" rel="noopener">Askling, 2014</a>).</p>
+<div class="ratio-grid">
+        <div class="ratio-card"><span class="ratio-val">28 j</span><p>retour au jeu avec le protocole L chez des footballeurs d'élite</p></div>
+        <div class="ratio-card"><span class="ratio-danger">51 j</span><p>retour au jeu avec la rééducation classique</p></div>
+        <div class="ratio-card"><span class="ratio-val">49 j</span><p>contre 86 jours chez des sprinteurs et sauteurs d'élite</p></div>
+      </div>
+      <p>
+        Dans les deux études, la course progressive était la même pour tout le monde : seuls les exercices de renforcement changeaient (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-092165" target="_blank" rel="noopener">Askling, 2013</a> ; <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-093214" target="_blank" rel="noopener">Askling, 2014</a>). Le protocole repose sur <strong>trois exercices</strong>, du plus doux au plus exigeant.
+      </p>
+
+      <div class="muscle-block">
+        <h3>Exercice 1 · L'Extender, pour démarrer en douceur</h3>
+        <ul>
+          <li>Allongé sur le dos, la hanche pliée à environ 90°, tenez votre cuisse avec les deux mains.</li>
+          <li>Tendez lentement le genou jusqu'à sentir l'étirement, <strong>juste avant la douleur</strong>, puis revenez.</li>
+          <li>Repère : <strong>2 fois par jour, 3 séries de 12</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="muscle-block">
+        <h3>Exercice 2 · Le Diver, « l'arabesque »</h3>
+        <ul>
+          <li>Debout sur la jambe blessée, genou légèrement plié.</li>
+          <li>Penchez le buste en avant en tendant les bras devant vous, pendant que l'autre jambe part en arrière, comme un plongeon. Revenez debout.</li>
+          <li>C'est la hanche qui travaille : le dos reste droit.</li>
+          <li>Repère : <strong>1 fois par jour, 3 séries de 6</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="muscle-block">
+        <h3>Exercice 3 · Le Glider, le plus exigeant</h3>
+        <ul>
+          <li>Debout, les mains sur un appui (barre, dossier de chaise), la jambe blessée devant, genou légèrement plié, le poids sur le talon avant.</li>
+          <li>Faites glisser l'autre jambe vers l'arrière, sur une serviette ou un sol glissant : l'arrière de la cuisse avant s'étire sous charge.</li>
+          <li>Revenez <strong>en tirant avec les bras</strong>, pour ne pas forcer sur la jambe blessée.</li>
+          <li>Repère : <strong>1 jour sur 2, 3 séries de 4</strong>, en allant progressivement plus loin puis plus vite.</li>
+        </ul>
+      </div>
+
+      <div class="callout orange">
+        <div class="callout-label">Les règles à respecter</div>
+        <p>Aucun exercice ne doit faire mal : une légère gêne est acceptable, une douleur non. On passe à l'exercice suivant quand le précédent est bien toléré. Ces repères sont ceux des études : votre ostéopathe, kiné ou préparateur physique les adaptera à votre lésion. Le retour au sport se valide notamment par un test d'élévation rapide de la jambe tendue, sans appréhension.</p>
+      </div>
+
+
+
+<h3>Le PRP (plasma riche en plaquettes)</h3>
+<ul>
+<li>Méta-analyse du British Journal of Sports Medicine de 2026 (Nakagawa, 6 essais randomisés, 277 patients) : <strong>8,6 jours de moins</strong> en moyenne (21,4 contre 30 jours), mais avec une hétérogénéité très forte (I² = 94 %). <strong>Pas d'effet sur la récidive</strong> (15 % contre 16 %).</li>
+<li>Méta-analyse de Sports Medicine Open de 2026 (Bensa, 9 essais randomisés) : environ 7,5 jours de moins, un léger gain sur la douleur pour les ischio-jambiers, et pas d'effet sur la récidive.</li>
+<li>Les synthèses plus anciennes (Seow, 2020 ; Afonso, 2023) ne trouvaient <strong>pas de bénéfice significatif</strong>.</li>
+<li><span class="niv faible">faible à modéré</span> Le gain éventuel est de quelques jours, sans aucune protection contre la récidive.</li>
+</ul>
+
+<h3>Les autres techniques</h3>
+<ul>
+<li><strong>Ondes de choc radiales :</strong> un bénéfice modeste, sur un seul essai. <span class="niv faible">faible</span></li>
+<li><strong>Laser de basse intensité :</strong> aucun bénéfice ajouté. <span class="niv faible">faible</span></li>
+<li><strong>Cryothérapie :</strong> moins efficace qu'une rééducation active sans douleur (Abdulridha, 2025).</li>
+<li><strong>Neurodynamique (glissements et mises en tension du sciatique) :</strong> elle améliore la souplesse des ischio-jambiers immédiatement et à court terme, mieux que l'étirement statique à court terme (Núñez de Arenas-Arroyo, 2025, 13 essais randomisés, sujets <strong>sans lésion</strong>). Sur la lésion elle-même, on ne dispose que de <strong>cas cliniques</strong>, dont celui d'un footballeur professionnel « récidivant » en réalité atteint d'une atteinte neurale. <span class="niv faible">faible</span></li>
+<li><strong>Thérapie manuelle et ostéopathie :</strong> c'est un bon complément au travail de rééducation mené en kinésithérapie. Le travail de mobilité permet de lever les dysfonctions <strong>sacro-iliaques, lombaires et iliaques</strong> et de <strong>redonner de la mobilité aux hanches</strong>, et le <strong>travail fascial</strong> relâche les tensions de la chaîne arrière. Le joueur aborde ainsi le renforcement et la reprise de la course dans de meilleures conditions.</li>
+</ul>
+
+<h3>Les critères de retour au jeu</h3>
+<p>Une revue de Sports Medicine de 2026 (Pecci, 135 études, footballeurs) retient pour les ischio-jambiers :</p>
+<ul>
+<li>les plus utilisés : une <strong>symétrie de force</strong> des fléchisseurs et extenseurs du genou, et l'<strong>absence de douleur</strong> sur les gestes spécifiques du sport ;</li>
+<li>les mieux étayés : les tests d'<strong>amplitude</strong> (extension active du genou, élévation de la jambe tendue active et passive, <strong>H-test d'Askling</strong>) et le sentiment subjectif d'être prêt.</li>
+</ul>
+
+<h2 id="recidives">6. Les récidives : ce que préconisent les études</h2>
+<p>La récidive est le vrai problème des ischio-jambiers : une lésion <strong>récente</strong> multiplie le risque par près de 5 (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2019-100983">Green, 2020</a>), et une récidive éloigne plus longtemps du terrain que la première blessure (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2019-100666">Ekstrand, 2020</a>). Quand plusieurs joueurs d'une même équipe se blessent ou se re-blessent, les études orientent d'abord vers des causes <strong>collectives</strong>, liées à l'organisation du club.</p>
+
+<h3>Ce que pensent les médecins des grands clubs <span class="niv faible">avis d'experts</span></h3>
+<p>Les médecins-chefs de 15 clubs de Ligue des champions ont classé les causes des lésions des ischio-jambiers. La plupart étaient <strong>liées au club et au staff, pas aux joueurs</strong>. En tête : le <strong>manque de communication entre le staff médical et les entraîneurs</strong>, puis le <strong>manque d'exposition régulière à la course à haute vitesse</strong> à l'entraînement (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bmjsem-2022-001461">Ekstrand, 2023</a>).</p>
+
+<h3>La communication dans le staff <span class="niv moyen">modéré</span></h3>
+<ul>
+<li>Dans 14 clubs européens d'élite suivis sur 4 saisons, une <strong>meilleure communication entre le staff médical et les préparateurs physiques</strong>, et l'<strong>implication continue du médical dans la gestion de la charge</strong>, étaient associées à moins de jours perdus aux ischio-jambiers (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bmjsem-2024-002182">Ekstrand, 2025</a>).</li>
+<li>Dans 36 clubs, une <strong>mauvaise communication entre l'entraîneur et le staff médical</strong> allait avec plus de blessures graves et moins de joueurs disponibles (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2018-099411">Ekstrand, 2019</a>).</li>
+</ul>
+
+<h3>La gestion de la charge <span class="niv moyen">modéré</span></h3>
+<ul>
+<li><strong>Éviter les pics :</strong> courir nettement plus vite et plus souvent que d'habitude la semaine précédente était associé à un risque environ 6 fois plus élevé (<a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2015-095679">Duhig, 2016</a>). Au FC Barcelone, c'est la charge cumulée sur <strong>28 jours</strong> qu'il fallait surveiller (<a target="_blank" rel="noopener" href="https://doi.org/10.1080/15438627.2025.2468799">Guitart-Trench, 2025</a>).</li>
+<li><strong>Ne pas sous-exposer :</strong> en Liga, les joueurs qui avaient <strong>peu joué lors des 2 derniers matchs</strong> se blessaient davantage (<a target="_blank" rel="noopener" href="https://doi.org/10.1177/19417381231158117">Moreno-Pérez, 2024</a>). Remplaçants et joueurs de retour de blessure doivent sprinter à l'entraînement.</li>
+</ul>
+
+<h3>Une prévention réellement appliquée</h3>
+<p>En Major League Soccer, 89 % des clubs disaient utiliser le Nordic, mais seulement <strong>21 % appliquaient vraiment le programme complet</strong>, freinés par les courbatures et le peu d'adhésion des joueurs (<a target="_blank" rel="noopener" href="https://doi.org/10.1123/jsr.2021-0262">Chesterton, 2022</a>). Un programme sur le papier ne protège pas.</p>
+
+<div class="note"><strong>Ce que préconisent les études, en pratique :</strong>
+<ol>
+<li><strong>Faire travailler ensemble</strong> l'entraîneur, le préparateur physique et le staff médical (médecin, kiné, ostéopathe), avec des échanges réguliers sur l'état des joueurs.</li>
+<li><strong>Associer le staff médical à la gestion de la charge</strong> : planification des séances, volumes de course rapide, retours de blessure.</li>
+<li><strong>Surveiller la course à haute vitesse</strong> (GPS si disponible) : pas de hausse brutale, mais une exposition régulière, y compris pour les remplaçants.</li>
+<li><strong>Valider le retour au jeu sur des critères objectifs</strong> : force comparée au côté sain, amplitude (H-test d'Askling), sprint maximal sans douleur ni appréhension, pas seulement « il n'a plus mal ».</li>
+<li><strong>Appliquer la prévention toute la saison</strong>, avec une progression qui limite les courbatures pour garder l'adhésion des joueurs.</li>
+</ol></div>
+<div class="attention">Ces études montrent des <strong>associations</strong>, surtout dans le football professionnel ; elles ne prouvent pas une relation de cause à effet. Mais leur message est cohérent : les blessures musculaires se préviennent aussi par l'organisation du staff.</div>
+
+<h2 id="pratique">7. Ce que j'en retiens comme ostéopathe de terrain</h2>
+<div class="note">
+<ol>
+<li><strong>Le bilan :</strong> antécédents (ischio-jambiers, LCA, mollet), âge, asymétrie de force excentrique (plus de 9 %), contrôle du bassin au sprint, activation fessière, slump test (y compris en extension lombaire), et palpation de l'interface entre l'ischion et le sciatique.</li>
+<li><strong>Penser « chaîne postérieure » et pas seulement « ischio » :</strong> après une lésion, le grand fessier et le tronc sont eux aussi sous-activés. Les exercices dominants de hanche (soulevé de terre jambes tendues, kettlebell swing) ont donc leur place, à côté des exercices dominants de genou (Nordic, leg curl glissé).</li>
+<li><strong>Travailler en allongement tôt et progressivement</strong> (protocole L), puis réintroduire la vitesse, puis la <strong>décélération et les changements de direction</strong>, qui sont les gestes les plus contraignants.</li>
+<li><strong>Adapter la rééducation à l'IRM :</strong> une lésion intratendineuse (« c ») demande une progression plus prudente et un délai plus long.</li>
+<li><strong>Le rôle de l'ostéopathie :</strong> lever les dysfonctions sacro-iliaques, lombaires et iliaques, redonner de la mobilité aux hanches et au nerf sciatique, et libérer les fascias de la chaîne arrière. C'est un complément au travail de rééducation en kinésithérapie et au renforcement, qui reconstruit le muscle.</li>
+<li><strong>Face à une « récidive » à l'IRM normale,</strong> penser à une composante <strong>neurale</strong> (sciatique), surtout quand la douleur est profonde et fessière et qu'elle est reproduite par la neurodynamique.</li>
+<li><strong>En prévention :</strong> Nordic ou FIFA 11+ avec une <strong>bonne observance</strong>, une exposition régulière au sprint maximal, et une surveillance des pics de course rapide, surtout à la reprise.</li>
+</ol>
+</div>
+
+<h2 id="limites">8. Les limites de ce dossier</h2>
+<ul>
+<li>Beaucoup d'études portent sur des <strong>hommes</strong>, footballeurs ou joueurs de football australien. Les données sur le rugby et sur les femmes sont rares.</li>
+<li>Les mécanismes reposent en partie sur des <strong>modélisations</strong>. Les études sur les facteurs neuromusculaires sont transversales et montrent des associations, pas des causes.</li>
+<li>Les essais sur la rééducation sont peu nombreux, souvent à risque de biais, et décrivent mal les programmes d'exercice.</li>
+</ul>
+
+<div class="article-cta">
+        <h3>Une cuisse qui tire, une blessure qui revient ?</h3>
+        <p>Au cabinet à Narbonne, je fais le bilan complet de la chaîne arrière et je vous accompagne jusqu'au retour sur le terrain.</p>
+        <div class="cta-btns">
+          <a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener" class="btn btn-white">Prendre RDV</a>
+          <a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener" class="btn btn-outline-light">Découvrir MoveCheck</a>
+        </div>
+      </div>
+<h2 id="references">Références</h2>
+<ol class="ref">
+<li>Danielsson A et al. The mechanism of hamstring injuries – a systematic review. <em>BMC Musculoskelet Disord</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1186/s12891-020-03658-8">doi:10.1186/s12891-020-03658-8</a></li>
+<li>Huygaerts S et al. Mechanisms of hamstring strain injury: interactions between fatigue, muscle activation and function. <em>Sports</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/sports8050065">doi:10.3390/sports8050065</a></li>
+<li>Steventon-Lorenzen N et al. Hamstring mechanics during acceleration, deceleration and sidestep cutting. <em>Scand J Med Sci Sports</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.1111/sms.70257">doi:10.1111/sms.70257</a></li>
+<li>Astrella A et al. Biceps femoris muscle-tendon strain during an entire overground sprint acceleration. <em>Sports Biomech</em> 2024. <a target="_blank" rel="noopener" href="https://doi.org/10.1080/14763141.2024.2353233">doi:10.1080/14763141.2024.2353233</a></li>
+<li>Hanief YN, Haryono S. Sprint biomechanics associated with hamstring strain injury in football: a systematic review. <em>Reabilitacijos mokslai</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.33607/rmske.v1i34.2279">doi:10.33607/rmske.v1i34.2279</a></li>
+<li>Zhu J et al. Mechanisms of hamstring strain injuries in sprinting: an integrative scoping review. <em>Front Physiol</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.3389/fphys.2026.1943228">doi:10.3389/fphys.2026.1943228</a></li>
+<li>Green B et al. Recalibrating the risk of hamstring strain injury: a 2020 systematic review and meta-analysis. <em>Br J Sports Med</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2019-100983">doi:10.1136/bjsports-2019-100983</a></li>
+<li>Opar DA et al. Screening hamstring injury risk factors multiple times in a season does not improve the identification of future injury risk. <em>Med Sci Sports Exerc</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1249/mss.0000000000002782">doi:10.1249/mss.0000000000002782</a></li>
+<li>Hagos A et al. Risk factors and injury prevention strategies for hamstring injuries: a narrative review. <em>EFORT Open Rev</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1530/eor-2024-0135">doi:10.1530/eor-2024-0135</a></li>
+<li>Chapman DW et al. A scoping review for hamstring injury risk monitoring in Australian rules football. <em>Encyclopedia</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/encyclopedia5020072">doi:10.3390/encyclopedia5020072</a></li>
+<li>Buhmann R et al. Voluntary activation and reflex responses after hamstring strain injury. <em>Med Sci Sports Exerc</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1249/mss.0000000000002327">doi:10.1249/mss.0000000000002327</a></li>
+<li>Gülgösteren E et al. Persistent neuromuscular deficits in the posterior kinetic chain following hamstring strain injury. <em>BMC Sports Sci Med Rehabil</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1186/s13102-025-01435-5">doi:10.1186/s13102-025-01435-5</a></li>
+<li>Ritzmann R et al. Neuromuscular characteristics of agonists and antagonists during maximal eccentric knee flexion in soccer players with a history of hamstring injuries. <em>PLoS One</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1371/journal.pone.0277949">doi:10.1371/journal.pone.0277949</a></li>
+<li>Higashihara A et al. Effects of previous hamstring strain injury on corticospinal excitability and cortical inhibition (résumé de congrès). <em>Br J Sports Med</em> 2024. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2024-ioc.212">doi:10.1136/bjsports-2024-ioc.212</a></li>
+<li>Sawaf A. Proximal hamstring-related sciatic nerve entrapment presenting as recurrent hamstring strain in a professional footballer. <em>J Orthop Case Rep</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.13107/jocr.2026.v16.i09.8028">doi:10.13107/jocr.2026.v16.i09.8028</a></li>
+<li>Swanson BT et al. The influence of spine position on measures of lower extremity neural sensitivity. <em>J Back Musculoskelet Rehabil</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/10538127251370575">doi:10.1177/10538127251370575</a></li>
+<li>Pollock N et al. A 4-year study of hamstring injury outcomes in elite track and field using the British Athletics rehabilitation approach. <em>Br J Sports Med</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2020-103791">doi:10.1136/bjsports-2020-103791</a></li>
+<li>Shamji R et al. Association of the BAMIC and anatomic location with return to full training and reinjury following hamstring injury in elite football. <em>BMJ Open Sport Exerc Med</em> 2021. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bmjsem-2020-001010">doi:10.1136/bmjsem-2020-001010</a></li>
+<li>Beattie CE et al. Are return-to-play times longer in lower-limb muscle injuries involving the intramuscular tendon? <em>J Sci Med Sport</em> 2023. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jsams.2023.10.002">doi:10.1016/j.jsams.2023.10.002</a></li>
+<li>Rudisill SS et al. Evidence-based hamstring injury prevention and risk factor management: a meta-analysis of RCTs. <em>Am J Sports Med</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/03635465221083998">doi:10.1177/03635465221083998</a></li>
+<li>Impellizzeri FM et al. Why methods matter in a meta-analysis: a reappraisal showed inconclusive injury preventive effect of Nordic hamstring exercise. <em>J Clin Epidemiol</em> 2021. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jclinepi.2021.09.007">doi:10.1016/j.jclinepi.2021.09.007</a></li>
+<li>Hong B et al. Comparative effectiveness of exercise interventions for hamstring injury prevention in football players: network meta-analysis. <em>Sports Med Open</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.1186/s40798-026-01087-w">doi:10.1186/s40798-026-01087-w</a></li>
+<li>Nunes H et al. The effects of Nordic hamstring exercise on performance and injury: an umbrella review. <em>Healthcare</em> 2024. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/healthcare12151462">doi:10.3390/healthcare12151462</a></li>
+<li>Askling CM et al. Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols. <em>Br J Sports Med</em> 2013. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-092165">doi:10.1136/bjsports-2013-092165</a></li>
+<li>Askling CM et al. Acute hamstring injuries in Swedish elite sprinters and jumpers: a prospective randomised controlled clinical trial comparing two rehabilitation protocols. <em>Br J Sports Med</em> 2014. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2013-093214">doi:10.1136/bjsports-2013-093214</a></li>
+<li>Zhu J et al. Effects of rehabilitation interventions on time to return to play and reinjury rate in athletes with acute hamstring strain injuries. <em>Sci Rep</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.1038/s41598-026-70693-1">doi:10.1038/s41598-026-70693-1</a></li>
+<li>Aali S et al. Prevention and rehabilitation of hamstring injuries through the Nordic and Askling protocols: a systematic review. <em>Human Movement</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.5114/hm/217862">doi:10.5114/hm/217862</a></li>
+<li>Vermeulen R et al. Early versus delayed lengthening exercises for acute hamstring injury in male athletes: an RCT. <em>Br J Sports Med</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2020-103405">doi:10.1136/bjsports-2020-103405</a></li>
+<li>Jankaew A et al. Therapeutic exercises and modalities in athletes with acute hamstring injuries: a meta-analysis. <em>Sports Health</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/19417381221118085">doi:10.1177/19417381221118085</a></li>
+<li>Afonso JR et al. Effectiveness of conservative interventions after acute hamstrings injuries in athletes: a living systematic review. <em>Sports Med</em> 2023. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s40279-022-01783-z">doi:10.1007/s40279-022-01783-z</a></li>
+<li>Abdulridha KH et al. Comparative effectiveness of rehabilitation protocols for hamstring injuries: a meta-analysis. <em>J Bodyw Mov Ther</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.jbmt.2025.06.030">doi:10.1016/j.jbmt.2025.06.030</a></li>
+<li>Nakagawa HF et al. Effects of percutaneous PRP injection on return-to-play after acute hamstring muscle injury: a meta-analysis. <em>Br J Sports Med</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2025-110683">doi:10.1136/bjsports-2025-110683</a></li>
+<li>Bensa A et al. Platelet-rich plasma accelerates the return to sport in athletes with acute muscle injuries: a fragility index-based meta-analysis. <em>Sports Med Open</em> 2026. <a target="_blank" rel="noopener" href="https://doi.org/10.1186/s40798-026-01017-w">doi:10.1186/s40798-026-01017-w</a></li>
+<li>Seow D et al. Platelet-rich plasma injection for the treatment of hamstring injuries: meta-analysis with best-worst case analysis. <em>Am J Sports Med</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/0363546520916729">doi:10.1177/0363546520916729</a></li>
+<li>Núñez de Arenas-Arroyo S et al. Immediate and short-term effects of neurodynamic techniques on hamstring flexibility: a meta-analysis. <em>PLoS One</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1371/journal.pone.0318671">doi:10.1371/journal.pone.0318671</a></li>
+<li>Pecci J et al. Return-to-play criteria following lower limb muscle injuries in soccer: a systematic review. <em>Sports Med</em> 2026 (DOI non fourni par la base ; consultable via <a href="https://consensus.app/papers/details/w:644241aa-92b1-4655-a575-16fb08da57db/">Consensus</a>).</li>
+</ol>
+
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <div class="toc-card">
+        <h4>Sommaire</h4>
+        <ol>
+          <li><a href="#mecanismes"><span class="toc-num">01</span>Les mécanismes</a></li>
+          <li><a href="#causes"><span class="toc-num">02</span>Causes et facteurs de risque</a></li>
+          <li><a href="#irm"><span class="toc-num">03</span>IRM et pronostic</a></li>
+          <li><a href="#prevention"><span class="toc-num">04</span>La prévention</a></li>
+          <li><a href="#traitements"><span class="toc-num">05</span>Traitements et résultats</a></li>
+          <li><a href="#askling"><span class="toc-num">06</span>Les 3 exercices d'Askling</a></li>
+          <li><a href="#recidives"><span class="toc-num">07</span>Les récidives</a></li>
+          <li><a href="#pratique"><span class="toc-num">08</span>Ce que j'en retiens</a></li>
+          <li><a href="#references"><span class="toc-num">09</span>Références</a></li>
+        <li>Ekstrand J et al. Time before return to play for the most common injuries in professional football: a 16-year follow-up of the UEFA Elite Club Injury Study. <em>Br J Sports Med</em> 2020. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2019-100666">doi:10.1136/bjsports-2019-100666</a></li>
+<li>Ekstrand J et al. Risk factors for hamstring muscle injury in male elite football: medical expert experience and conclusions from 15 European Champions League clubs. <em>BMJ Open Sport Exerc Med</em> 2023. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bmjsem-2022-001461">doi:10.1136/bmjsem-2022-001461</a></li>
+<li>Ekstrand J et al. Higher level of communication between the medical staff and the performance staff is associated with a lower hamstring injury burden. <em>BMJ Open Sport Exerc Med</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bmjsem-2024-002182">doi:10.1136/bmjsem-2024-002182</a></li>
+<li>Ekstrand J et al. Communication quality between the medical team and the head coach/manager is associated with injury burden and player availability in elite football clubs. <em>Br J Sports Med</em> 2019. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2018-099411">doi:10.1136/bjsports-2018-099411</a></li>
+<li>Duhig S et al. Effect of high-speed running on hamstring strain injury risk. <em>Br J Sports Med</em> 2016. <a target="_blank" rel="noopener" href="https://doi.org/10.1136/bjsports-2015-095679">doi:10.1136/bjsports-2015-095679</a></li>
+<li>Guitart-Trench M et al. Does accumulated physical load in different time windows affect hamstring injuries in elite football players? <em>Res Sports Med</em> 2025. <a target="_blank" rel="noopener" href="https://doi.org/10.1080/15438627.2025.2468799">doi:10.1080/15438627.2025.2468799</a></li>
+<li>Moreno-Pérez V et al. Reduced match exposure in the previous 2 matches accounts for hamstring muscle injury incidence in professional football players. <em>Sports Health</em> 2024. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/19417381231158117">doi:10.1177/19417381231158117</a></li>
+<li>Chesterton P et al. The uptake of Nordic hamstring exercise program for injury prevention in Major League Soccer and its barriers to implementation. <em>J Sport Rehabil</em> 2022. <a target="_blank" rel="noopener" href="https://doi.org/10.1123/jsr.2021-0262">doi:10.1123/jsr.2021-0262</a></li>
+</ol>
+      </div>
+
+      <div class="toc-card" style="background:var(--deep);">
+        <h4 style="color:rgba(220,231,229,0.5);">L'auteur</h4>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img src="images/logo-nr-badge.png" alt="" style="width:48px;height:48px;object-fit:contain;">
+          <div>
+            <div style="color:#fff;font-weight:700;font-size:0.92rem;">Nicolas Roger</div>
+            <div style="color:rgba(220,231,229,0.55);font-size:0.8rem;">Ostéopathe D.O, Narbonne</div>
+          </div>
+        </div>
+        <p style="color:rgba(220,231,229,0.65);font-size:0.83rem;margin:0;line-height:1.6;">Ostéopathe auprès du Narbonne Volley et du Racing Club Narbonnais. Ancien kinésithérapeute, ostéopathe D.O depuis 2009.</p>
+        <a href="a-propos.html" style="display:inline-block;margin-top:14px;font-size:0.82rem;color:#9FD6E0;">En savoir plus →</a>
+      </div>
+    </aside>
+  </div>
+
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="images/logo-nr-badge.png" alt="" class="nav-logo-img" width="44" height="44">
+            <span>Nicolas Roger<small>Ostéopathe D.O</small></span>
+          </div>
+          <p>Ostéopathe D.O à Narbonne depuis 2009, ancien kinésithérapeute. Ostéopathie du sport, mobilité et thérapie fasciale. Créateur de MoveCheck.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Cabinet</h4>
+          <ul>
+            <li>11 chemin de Saint-Crescent</li>
+            <li>11100 Narbonne</li>
+            <li>06 95 81 74 10</li>
+            <li>Lun., mar., jeu., ven. : 8 h 30 – 19 h 30</li>
+            <li>Mer. : 8 h – 13 h</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="https://www.doctolib.fr/osteopathe/narbonne/nicolas-roger-narbonne" target="_blank" rel="noopener">Prendre RDV (Doctolib)</a></li>
+            <li><a href="https://nicolasroger16.github.io/Jarvis-nico/movecheck/" target="_blank" rel="noopener">Programme MoveCheck</a></li>
+            <li><a href="blog.html">Articles</a></li>
+            <li><a href="galerie.html">Photos</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nicolas Roger, ostéopathe D.O</span>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/nicolas-roger-04272996" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/nicolasrogerosteopathe" target="_blank" rel="noopener" title="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b851243312c04f82b6842a250cb77a59"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
